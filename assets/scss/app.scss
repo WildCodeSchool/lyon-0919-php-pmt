@@ -1,4 +1,5 @@
 @import "vars";
+@import "~bootstrap/scss/bootstrap";
 
 body {
     background-color: $secondary-color;
@@ -6,4 +7,30 @@ body {
 
 a {
     color: $warm-color;
+}
+
+.nav-background{
+    width: 100%;
+    background-image: url('/img/fondSite buble.jpg') ;
+    height:350px;
+    padding: 0px;
+}
+
+
+
+.svgnavbar {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    height: 350px;
+    /* set height to pixels if you want angle to change with screen width */
+}
+
+.logosite{
+    position: absolute;
+    left: 50px; top: 80px;
+    width: 15%;
+    height: auto;
+    filter: drop-shadow(10px 10px 4px black);
+    /* set height to pixels if you want angle to change with screen width */
 }
