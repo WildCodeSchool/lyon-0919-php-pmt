@@ -27,7 +27,7 @@ class Inscription
     private $internalProcedure;
 
     /**
-     * @ORM\Column(tyep="string", length=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $medicalCertificate;
 
