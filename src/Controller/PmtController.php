@@ -8,10 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  *
- * @Route("/tmp", name="pmt")
+ * @Route("/pmt", name="pmt")
  */
 class PmtController extends AbstractController
 {
@@ -26,5 +25,4 @@ class PmtController extends AbstractController
     {
         return $this->render('tmp/index.html.twig');
     }
-
 }
