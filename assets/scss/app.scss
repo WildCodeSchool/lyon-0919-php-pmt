@@ -1,4 +1,6 @@
 @import "vars";
+@import "~bootstrap/scss/bootstrap";
+@import "styleNavFooter.scss";
 
 body {
     background-color: $secondary-color;
