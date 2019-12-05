@@ -7,3 +7,25 @@ body {
 a {
     color: $warm-color;
 }
+
+/*************INSCRIPTION CLUB*********************************/
+
+.checkbox{width:50px}
+.inline {
+    display: inline-block;
+}
+label {
+    min-width: 120px;
+}
+.titleprghp {
+    background: #060040;
+    height: 46px;
+    color: #ffffff;
+    font-size: 23px;
+    height: 46px;
+    line-height: 40px;
+    padding: 0 0 0 20px;
+    margin: 20px 0 20px;
+}
+
+@import "~bootstrap/scss/bootstrap";
