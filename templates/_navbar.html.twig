@@ -1,32 +1,19 @@
 <div class="nav-background">
-    <nav class="navbar navbar-expand-lg">
-        <a class="navbar-brand  text-white p-0" href="#"><h1>Pour Marion , Tous à poil!!! </h1></a>
+    <nav class="navbar navbar-expand-lg positionZ">
+        <a class="navbar-brand  p-0" href="#"><h1>Plongeurs Masqués de Trévoux</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="
             navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon bg-warning"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Nos activités
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Apéro</a>
-                        <div class="dropdown-divider"></div>
-                    </div>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto ">
+                <li class="nav-item " >
+                    <a class="nav-link text-white" href="{{ path('pmtindex') }}">Accueil</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link text-white" href="#">Bureau<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link text-white" href="#">Stylisation<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link text-white" href="#">Mouillés<span class="sr-only">(current)</span></a>
+                    <a class="nav-link text-white" href="{{ path('contact') }}">Contactez-nous</a>
                 </li>
             </ul>
         </div>

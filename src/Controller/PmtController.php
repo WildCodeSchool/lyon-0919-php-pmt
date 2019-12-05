@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  *
- * @Route("/pmt", name="pmt")
+ * @Route("/", name="pmt")
  */
 class PmtController extends AbstractController
 {
