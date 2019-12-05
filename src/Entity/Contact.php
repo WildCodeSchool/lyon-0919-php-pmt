@@ -11,15 +11,19 @@ class Contact
      * @var string|null
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100)
-     *
+     * @Assert\Regex(
+     *     pattern="/^[A-Z][A-Za-z\é\è\ê\-]+/"
+     * )
      */
     private $firstname;
 
     /**
      * @var string|null
      * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=100)
-     *
+     * @Assert\Length(min=2, max=100,)
+     * @Assert\Regex(
+     *     pattern="/^[A-Z][A-Za-z\é\è\ê\-]+/"
+     * )
      */
     private $lastname;
 
@@ -44,6 +48,7 @@ class Contact
      * @var string|null
      * @Assert\NotBlank()
      * @Assert\Length(min="10")
+     *
      */
     private $message;
 
