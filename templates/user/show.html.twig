@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <h1>User</h1>
+    <div class="container">
+        <div hidden>{{ user.id }}</div>
+        <div class="row">
+            <div class="card col-4" style="width: 18rem;">
+                <img src="{{ user.picture }}" class="card-img-top" alt="photo de l'adherent">
+                <h5 class="card-title font-weight-bold">{{ user.firstname }} {{ user.lastname }}</h5>
+                <p class="card-text">mail:{{ user.mail }} </p>
+                <p class="card-text">Téléphone:{{ user.homePhone }} </p>
+                <p class="card-text">Mobile:{{ user.mobilePhone }} </p>
+                <p class="card-text">Adresse:{{ user.address }} </p>
+                <p class="card-text">{{ user.zipCode }} {{ user.city }} </p>
+                <p class="card-text">Date naissance:{{ user.birthday ? user.birthday|date('Y-m-d') : '' }} </p>
+                <a href="#" class="btn btn-primary">Modifiez vos informations</a>
+            </div>
+            <div class="col-8">
+                <div>Commentaire: {{ user.comment }}</div>
+                <div>Fiche crée le: {{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</div>
+                <div>Dernière mise à jour: {{ user.updateAt ? user.updateAt|date('Y-m-d H:i:s') : '' }}</div>
+                <div>IsAdmin:{{ user.isAdmin ? 'Yes' : 'No' }}</div>
+                <div>IsMonitor: {{ user.isMonitor ? 'Yes' : 'No' }}</div>
+                <div>IsSwim:{{ user.isSwim ? 'Yes' : 'No' }}</div>
+                <div>IsDiver:{{ user.isDiver ? 'Yes' : 'No' }}</div>
+                <div>IsHandi:{{ user.isHandi ? 'Yes' : 'No' }}</div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <a href="{{ path('user_index') }}">back to list</a>
+
+    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}
