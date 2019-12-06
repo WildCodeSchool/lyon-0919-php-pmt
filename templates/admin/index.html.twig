@@ -5,7 +5,7 @@
 {% block body %}
     <div class="d-flex m-2" id="wrapper">
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Menu de configuration</div>
+            <div class="sidebar-heading" style="text-align: center">Menu </div>
             <div class="list-group list-group-flush">
                 <a href="{{ path ('trip_index') }}" class="list-group-item list-group-item-action bg-light"> Sorties</a>
                 <a href="" class="list-group-item list-group-item-action bg-light">Adhérents</a>
@@ -16,7 +16,11 @@
             </div>
         </div>
         <div class="container-fluid">
-            <p> Bonjour admin,</p>
+
+            <p> Bonjour, vous êtes ici sur votre espace d'administrateur. Pour pouvoir ajouter, supprimer, voir vos
+                membres, sortie ,etc , tout se passe sur le menu de gauche.</p>
+
         </div>
     </div>
+
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Trip;
 use App\Form\Trip1Type;
+use App\Repository\ParticipantRepository;
 use App\Repository\TripRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,8 @@ class TripController extends AbstractController
     public function index(TripRepository $tripRepository): Response
     {
         return $this->render('trip/index.html.twig', [
-            'trips' => $tripRepository->findAll(),
+            'trips' => $tripRepository->findBy(array(), ['createdAt' => 'desc'])
+
         ]);
     }
 
@@ -34,11 +36,12 @@ class TripController extends AbstractController
         $form = $this->createForm(Trip1Type::class, $trip);
         $form->handleRequest($request);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $trip->setCreatedAt(new \DateTime('now'));
             $entityManager->persist($trip);
             $entityManager->flush();
-
             return $this->redirectToRoute('trip_index');
         }
 
@@ -67,6 +70,7 @@ class TripController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $trip->setUpdatedAt(new \DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('trip_index');
@@ -83,7 +87,7 @@ class TripController extends AbstractController
      */
     public function delete(Request $request, Trip $trip): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$trip->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $trip->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($trip);
             $entityManager->flush();
