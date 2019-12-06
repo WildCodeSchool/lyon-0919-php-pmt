@@ -129,8 +129,6 @@ class AppFixtures extends Fixture
             $this->addReference('adherent' . ($i + 115), $user);
             $manager->persist($user);
         }
-
-
         $manager->flush();
     }
 }
