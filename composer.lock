@@ -4,9 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-    "content-hash": "8b437d80fc75a1fbfb47762ed46357de",
-
+    "content-hash": "e4d2a95b3afc3490d3d6fdde7f2929c0",
     "packages": [
         {
             "name": "alexandresalome/mailcatcher",
