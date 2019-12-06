@@ -38,22 +38,16 @@ class InscriptionClubType extends AbstractType
             ->add('comment', TextareaType::class)
             ->add('createdAt', DateType::class)
             ->add('level', TextType::class)
-            ->add('inscriptionYear', EntityType::class, [
-                'class' => Inscription::class,
-                'label' => 'inscription_year', ])
-            ->add('inscription', EntityType::class, [
-                'class' => Inscription::class,
-                'label' => 'image_right'])
-            ->add('payment', EntityType::class, [
-                'class' => Payment::class,
-                'label' => 'insurance'])
+            ->add('inscription', null, ['choice_label' => 'inscriptionYear'])
+            ->add('inscription', null, ['choice_label' => 'imageRight'])
+            ->add('payment', null, ['label' => 'insurance'])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => null,
+            'data_class' => User::class,
         ]);
     }
 }
