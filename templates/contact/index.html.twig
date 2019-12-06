@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+    <h2 style="text-align: center; margin-bottom: 10px"> Formulaire de contact</h2>
+
+        {{ form_start(form) }}
+        <div class="jumbotron  p-3 m-2">
+            <div class="row">
+                <div class="col-6">
+                    {{ form_label (form.firstname, 'Prénom :') }}
+                    {{ form_widget(form.firstname) }}
+                    {{ form_label (form.lastname, 'Nom :') }}
+                    {{ form_widget(form.lastname) }}
+                </div>
+                <div class="col-6">
+                    {{ form_label (form.phone, 'Téléphone :') }}
+                    {{ form_widget(form.phone) }}
+                    {{ form_label (form.email, 'Email :') }}
+                    {{ form_widget(form.email) }}
+                </div>
+                <div class="col-12 m-1">
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+    <button class="btn-primary float-right" type="submit">Envoyer</button>
+
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,4 +1,6 @@
 @import "vars";
+@import "~bootstrap/scss/bootstrap";
+@import "styleNavFooter.scss";
 
 body {
     background-color: $secondary-color;
@@ -27,5 +29,3 @@ label {
     padding: 0 0 0 20px;
     margin: 20px 0 20px;
 }
-
-@import "~bootstrap/scss/bootstrap";
