@@ -22,6 +22,8 @@ class InscriptionFixtures extends Fixture implements DependentFixtureInterface
             $inscription = new Inscription();
             $inscription->setStatus($this->getReference('inscriptionStatus' .
                 $this->faker->numberBetween(0, 2))->getId());
+            $inscription->setInscriptionStatus($this->getReference('inscriptionStatus' .
+                $this->faker->numberBetween(0, 2)));
             $inscription->setInternalProcedure('urlReglInterior');
             $inscription->setMedicalCertificate('urlMedical');
             $inscription->setInscriptionSheet('urlinscription');

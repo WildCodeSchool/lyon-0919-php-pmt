@@ -3,10 +3,16 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+    <div hidden>{{ user.id }}</div>
+
+
     <div class="container">
-        <div hidden>{{ user.id }}</div>
+        <div class="row mb-5">
+            <h3 class="text-center col-12 border-bottom border-primary">Bienvenue {{ user.firstname }}</h3>
+        </div>
+
         <div class="row">
+{#        affichage du porfil utilisateurs    #}
             <div class="card col-4" style="width: 18rem;">
                 <img src="{{ user.picture }}" class="card-img-top" alt="photo de l'adherent">
                 <h5 class="card-title font-weight-bold">{{ user.firstname }} {{ user.lastname }}</h5>
@@ -18,23 +24,54 @@
                 <p class="card-text">Date naissance:{{ user.birthday ? user.birthday|date('Y-m-d') : '' }} </p>
                 <a href="#" class="btn btn-primary">Modifiez vos informations</a>
             </div>
+
+{#            navigation dans les diefférents onglets accesibles par l'adherent#}
             <div class="col-8">
+{#                navigation dans les différentes zones 3 en initiales#}
+                <nav class="navbar navbar-expand-sm  text-primary border-bottom border-primary border-bottom-2">
+                    <!-- Links -->
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mon inscription</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mon parcours plongeurs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Les sorties</a>
+                        </li>
+                    </ul>
+
+                </nav>
+
+                <div>
+                <h3 class="font-weight-bold">Mon inscription</h3>
+                    {% for inscr in user.inscription %}
+                        <div>Inscription valable pour {{ inscr.inscriptionYear }}</div>
+                        <div>Statut inscription:{{ inscr.inscriptionStatus.name }}
+                        </div>
+                <h5 class="font-weight-bold">Mes documents:</h5>
+                        <div>internalProcedure {{ inscr.internalProcedure }}</div>
+                        <div>medicalCertificate{{ inscr.medicalCertificate }}</div>
+                        <div>inscriptionSheet {{ inscr.inscriptionSheet }}</div>
+                <h5 class="font-weight-bold">Droits à l'image</h5>
+                        <div>imageRight : {{ inscr.imageRight? 'Autorisé' : 'Non autorisé' }}</div>
+
+                    {% endfor %}
+                </div>
+
                 <div>Commentaire: {{ user.comment }}</div>
-                <div>Fiche crée le: {{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</div>
-                <div>Dernière mise à jour: {{ user.updateAt ? user.updateAt|date('Y-m-d H:i:s') : '' }}</div>
+
                 <div>IsAdmin:{{ user.isAdmin ? 'Yes' : 'No' }}</div>
                 <div>IsMonitor: {{ user.isMonitor ? 'Yes' : 'No' }}</div>
                 <div>IsSwim:{{ user.isSwim ? 'Yes' : 'No' }}</div>
                 <div>IsDiver:{{ user.isDiver ? 'Yes' : 'No' }}</div>
                 <div>IsHandi:{{ user.isHandi ? 'Yes' : 'No' }}</div>
-
             </div>
 
         </div>
+
     </div>
-
-
-
     <a href="{{ path('user_index') }}">back to list</a>
 
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
