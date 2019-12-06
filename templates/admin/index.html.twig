@@ -3,16 +3,17 @@
 {% block title %}Hello Admin!{% endblock %}
 
 {% block body %}
-    <div class="d-flex m-2" id="wrapper">
-        <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="d-flex m-2 w-75" id="wrapper">
+        <div class="bg-primary border-right w-100 h-75" id="sidebar-wrapper">
             <div class="sidebar-heading" style="text-align: center">Menu </div>
+            <hr>
             <div class="list-group list-group-flush">
-                <a href="{{ path ('trip_index') }}" class="list-group-item list-group-item-action bg-light"> Sorties</a>
-                <a href="" class="list-group-item list-group-item-action bg-light">Adhérents</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+                <a href="{{ path ('trip_index') }}" class="list-group-item list-group-item-action bg-primary" style="text-align: center"> Sorties</a>
+                <a href="{{ path ('user_index') }}" class="list-group-item list-group-item-action bg-primary" style="text-align: center">Adhérents</a>
+                <a href="#" class="list-group-item list-group-item-action bg-primary" style="text-align: center">Overview</a>
+                <a href="#" class="list-group-item list-group-item-action bg-primary" style="text-align: center">Events</a>
+                <a href="" class="list-group-item list-group-item-action bg-primary" style="text-align: center">Profile</a>
+                <a href="#" class="list-group-item list-group-item-action bg-primary" style="text-align: center">Status</a>
             </div>
         </div>
         <div class="container-fluid">

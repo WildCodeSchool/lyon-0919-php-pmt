@@ -5,34 +5,37 @@
 {% block body %}
     <div class="container">
         <h1>Récapitulatif de vos sorties annuelles</h1>
+
         {% for trip in trips %}
-        <table class="table table-hove">
-            <tbody>
-            <tr></tr>
-            <td>{{ trip.id }}</td>
-            <td>{{ trip.price }}</td>
-            <td>{{ trip.dateStart ? trip.dateStart|date('Y-m-d') : '' }}</td>
-            <td>{{ trip.dateEnd ? trip.dateEnd|date('Y-m-d') : '' }}</td>
-            <td>{{ trip.nbDiver }}</td>
-            <td>{{ trip.nbMonitor }}</td>
-            <td>{{ trip.createdAt ? trip.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            <td><p>{{ trip.description }}</p></td>
-            <td>{{ trip.location }}</td>
-            <td>{{ trip.name }}</td>
-            <td><a href="{{ path('trip_show', {'id': trip.id}) }}">Aperçu</a>
-                <a href="{{ path('trip_edit', {'id': trip.id}) }}">Editer la sortie</a>
-            </td>
+            <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#id-{{ trip.id }}"
+                                aria-expanded="true" aria-controls="id-{{ trip.id }}">
+                            Nom de la sortie : {{ trip.name }}
+                        </button>
+                    </h2>
+                </div>
+
+            </div>
+            <div id="id-{{ trip.id }}" class="collapse" aria-labelledby="headingOne"
+                 data-parent="#accordionExample">
+                <div class="card-body">
+                    <p>{{ trip.description }}</p>
+                    <button class="btn-btn-light"><a href="{{ path('trip_show', {'id': trip.id}) }}">Aperçu</a></button>
+                    <button class="btn-btn-light"><a href="{{ path('trip_edit', {'id': trip.id}) }}">Editer la
+                            sortie</a></button>
+
+                </div>
+            </div>
+        {% else %}
+            <tr>
+                <td colspan="12">Aucunes sorties</td>
             </tr>
-
-            </tbody>
-
-
-            {% else %}
-                <tr>
-                    <td colspan="12">Aucunes sorties</td>
-                </tr>
-            {% endfor %}
-        </table>
+            </div>
+        {% endfor %}
         <div class="row">
             <div class="col-2">
                 <a href="{{ path('trip_new') }}">Ajouter une nouvelle sortie</a>
