@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Inscription;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -27,7 +28,7 @@ class InscriptionFixtures extends Fixture implements DependentFixtureInterface
             $inscription->setInternalProcedure('urlReglInterior');
             $inscription->setMedicalCertificate('urlMedical');
             $inscription->setInscriptionSheet('urlinscription');
-            $date = new \DateTime('@' . strtotime('now'));
+            $date = new DateTime('@' . strtotime('now'));
             $inscription->setCreatedAt($date);
             $inscription->setUpdatedAt($date);
             $inscription->setInscriptionYear('2019-2020');
