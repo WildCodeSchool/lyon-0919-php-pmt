@@ -3,15 +3,24 @@
 {% block title %}Liste des voyages{% endblock %}
 
 {% block body %}
-    <div class="container">
-        <h1>Récapitulatif de vos sorties annuelles</h1>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                <button class="btn btn-secondary"><a href="{{ path('trip_new') }}">Ajouter une nouvelle sortie</a>
+                </button>
+            </div>
+            <div class="offset-8 col-2">
+                <button class="btn btn-secondary"><a href="{{ path ('admin') }}">Retour au Menu</a></button>
+            </div>
+        </div>
+        <h1 style="padding: 10px;text-align: center; margin-bottom: 20px">Récapitulatif de vos sorties annuelles</h1>
         {% for trip in trips %}
             <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                    <h2 class="mb-0" style="text-align: center">
+                        <button class="btn btn-secondary" type="button" data-toggle="collapse"
                                 data-target="#id-{{ trip.id }}"
                                 aria-expanded="true" aria-controls="id-{{ trip.id }}">
                             Nom de la sortie : {{ trip.name }}
@@ -24,8 +33,9 @@
                  data-parent="#accordionExample">
                 <div class="card-body">
                     <p>{{ trip.description }}</p>
-                    <button class="btn-btn-light"><a href="{{ path('trip_show', {'id': trip.id}) }}">Aperçu</a></button>
-                    <button class="btn-btn-light"><a href="{{ path('trip_edit', {'id': trip.id}) }}">Editer la
+                    <button class="btn btn-secondary"><a href="{{ path('trip_show', {'id': trip.id}) }}">Aperçu</a>
+                    </button>
+                    <button class="btn btn-secondary"><a href="{{ path('trip_edit', {'id': trip.id}) }}">Editer la
                             sortie</a></button>
 
                 </div>
@@ -36,13 +46,7 @@
             </tr>
             </div>
         {% endfor %}
-        <div class="row">
-            <div class="col-2">
-                <a href="{{ path('trip_new') }}">Ajouter une nouvelle sortie</a>
-            </div>
-            <div class="offset-8 col-2">
-                <a href="{{ path ('admin') }}">Retour au Menu</a>
-            </div>
-        </div>
     </div>
+
+
 {% endblock %}
