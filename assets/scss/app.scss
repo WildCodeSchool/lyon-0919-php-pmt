@@ -1,15 +1,31 @@
-
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
 @import "styleNavFooter.scss";
 @import "adherentPage.scss";
 
 body {
-    background-color: $secondary-color;
+  background-color: $secondary-color;
 }
 
 a {
-    color: $warm-color;
+  color: $warm-color;
+}
+
+/*************INSCRIPTION CLUB*********************************/
+
+.logo {
+  width: 200px;
+}
+
+.sheet_title{
+  display: flex;
+  align-items: center;
+}
+
+.title_p{
+  text-align: center;
+  width: 90vh;
+  margin: 30px 0;
 }
 /* scss page accueil */
 
@@ -51,3 +67,25 @@ a {
 
 
 
+.checkbox {
+  width: 50px
+}
+
+.inline {
+  display: inline-block;
+}
+
+label {
+  min-width: 120px;
+}
+
+.inscriptionTitle {
+  background: #060040;
+  height: 46px;
+  color: #ffffff;
+  font-size: 23px;
+  height: 46px;
+  line-height: 40px;
+  padding: 0 0 0 20px;
+  margin: 20px 0 20px;
+}

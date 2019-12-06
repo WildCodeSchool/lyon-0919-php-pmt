@@ -11,9 +11,12 @@ class AppFixtures extends Fixture
 {
     protected $faker;
 
+    /**
+     * @param ObjectManager $manager
+     * @throws \Exception
+     */
     public function load(ObjectManager $manager)
     {
-
         $this->manager = $manager;
         $this->faker = Factory::create('fr_FR');
 
