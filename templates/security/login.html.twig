@@ -14,6 +14,41 @@
             background: #F5F5F5;
             padding: 2px 6px;
         }
+
+        .card-signin {
+            border: 0;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .card-signin .card-title {
+            margin-bottom: 2rem;
+            font-weight: 300;
+            font-size: 1.5rem;
+        }
+
+        .card-signin .card-body {
+            padding: 2rem;
+        }
+
+        .form-signin .btn {
+            font-size: 80%;
+            border-radius: 5rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+        .form-label-group {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .form-label-group input {
+            height: auto;
+            border-radius: 2rem;
+        }
     </style>
 
     <div class="example-wrapper">
@@ -23,8 +58,6 @@
             <span class="error">{{ error.messageKey }}</span>
 
         {% endif %}
-
-
         <div class="container">
             <div class="row">
                 <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -34,21 +67,22 @@
                                 <h5 class="card-title text-center">Connecte toi ici !</h5>
                                 <div class="form-label-group ">
                                     <label for="inputEmail">Adresse email : </label>
-                                    <input type="text" name="_username" value="{{ last_username }}">
+                                    <input type="text" name="_username" value="{{ last_username }}"
+                                           style="border-radius: 5rem">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword">Mot de passe :</label>
-                                    <input type="password" name="_password">
+                                    <input type="password" name="_password" style=" border-radius: 5rem;">
 
                                 </div>
                                 <div class="form-group">
                                     <button class="btn-secondary float-right" type="submit">Connexion</button>
                                 </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-            </form>
         </div>
     </div>
 {% endblock %}
