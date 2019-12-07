@@ -20,7 +20,7 @@ class LevelRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Level[] Returns an array of Level objects
+    //  * @return LevelFixtures[] Returns an array of LevelFixtures objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class LevelRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Level
+    public function findOneBySomeField($value): ?LevelFixtures
     {
         return $this->createQueryBuilder('l')
             ->andWhere('l.exampleField = :val')
