@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserLoginRepository")
  */
-class UserLogin implements UserInterface
+class UserLogin implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -57,7 +57,7 @@ class UserLogin implements UserInterface
      */
     public function getUsername(): string
     {
-        return (string) $this->email;
+        return (string)$this->email;
     }
 
     /**
@@ -84,7 +84,7 @@ class UserLogin implements UserInterface
      */
     public function getPassword(): string
     {
-        return (string) $this->password;
+        return (string)$this->password;
     }
 
     public function setPassword(string $password): self
@@ -109,5 +109,23 @@ class UserLogin implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function serialize()
+    {
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password
+        ]);
+    }
+
+    public function unserialize($string)
+    {
+        list(
+            $this->id,
+            $this->email,
+            $this->password
+            ) = unserialize($string, ['allowed_classes' => false]);
     }
 }

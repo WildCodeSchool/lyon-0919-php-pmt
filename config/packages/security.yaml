@@ -1,14 +1,13 @@
 security:
+    encoders:
+        App\Entity\UserLogin:
+            algorithm: bcrypt
 
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        # used to reload user from session & other features (e.g. switch_user)
-        in_memory:
-            memory:
-                users:
-                    admin:
-                        password: admin
-                        roles: ROLES_ADMIN
+        my_provider:
+            entity:
+                class: App\Entity\UserLogin
+                property: email
 
     firewalls:
         dev:
@@ -19,21 +18,16 @@ security:
 
             # activate different ways to authenticate
 
-            http_basic: true
-
-                # where to redirect after logout
-                # target: app_any_route
-            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: true
-            # https://symfony.com/doc/current/security/form_login_setup.html
+            form_login:
+                login_path: login
+                check_path: login
+                provider: my_provider
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-          -  { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
-    encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+
