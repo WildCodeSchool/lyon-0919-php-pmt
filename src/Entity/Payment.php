@@ -24,7 +24,7 @@ class Payment
     private $typePayment;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=255)
      */
     private $insurance;
 
@@ -55,12 +55,12 @@ class Payment
         return $this;
     }
 
-    public function getInsurance(): ?int
+    public function getInsurance(): ?string
     {
         return $this->insurance;
     }
 
-    public function setInsurance(int $insurance): self
+    public function setInsurance(string $insurance): self
     {
         $this->insurance = $insurance;
 
