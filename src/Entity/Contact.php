@@ -12,7 +12,7 @@ class Contact
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100)
      * @Assert\Regex(
-     *     pattern="/^[A-Z][A-Za-z\é\è\ê\-]+/"
+     *     pattern="/[A-Za-z\é\è\ê\-]+/"
      * )
      */
     private $firstname;
@@ -22,7 +22,7 @@ class Contact
      * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100,)
      * @Assert\Regex(
-     *     pattern="/^[A-Z][A-Za-z\é\è\ê\-]+/"
+     *     pattern="/^[A-Za-z\é\è\ê\-]+/"
      * )
      */
     private $lastname;
