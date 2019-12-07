@@ -41,20 +41,26 @@ class InscriptionClubType extends AbstractType
             ->add('comment', TextareaType::class, ['required' => false,])
             ->add('level', null, ['choice_label' => 'name'])
 //            ->add('payment', null, ['choice_label' => 'typePayment'])
-            ->add('inscription', null, ['choice_label' => 'inscriptionYear'])
+            ->add('inscription', EntityType::class, [
+                'class' => Inscription::class,
+                'choice_label' => 'inscriptionYear',
+                'expanded' => false,
+                'multiple' => false,
+                'by_reference' => false,
+            ])
             ->add('document', EntityType::class, [
                 'class' => Document::class,
                 'choice_label' => 'name',
                 'expanded' => true,
-                'multiple' => false,
+                'multiple' => true,
                 'by_reference' => false,
             ])
             ->add('insurance', EntityType::class, [
                 'class' => Payment::class,
-                'choice_label' => 'insurance',
-                'expanded' => true,
+                'choice_label' => 'typePayment',
+                'expanded' => false,
                 'multiple' => false,
-                'by_reference' => false,
+                'by_reference' => true,
             ])
         ;
     }
