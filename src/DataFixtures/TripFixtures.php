@@ -1,7 +1,9 @@
 <?php
 
+
 namespace App\DataFixtures;
 
+use App\Entity\TypeTrip;
 use App\Entity\Trip;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -14,6 +16,8 @@ class TripFixtures extends Fixture
         $faker = Factory::create('fr_FR');
         for ($i = 0; $i < 10; $i++) {
             $trip = new Trip();
+            $type = new TypeTrip();
+            $type->setName($faker->domainWord);
             $trip->setLocation($faker->country);
             $trip->setName($faker->city);
             $trip->setDescription($faker->text);
@@ -25,6 +29,7 @@ class TripFixtures extends Fixture
             $trip->setNbMonitor($faker->randomDigit);
             $trip->setNbDiver($faker->numberBetween(0, 35));
             $manager->persist($trip);
+            $manager->persist($type);
         }
         $manager->flush();
     }

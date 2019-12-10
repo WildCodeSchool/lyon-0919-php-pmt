@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class InscriptionClubController extends AbstractController
 {
     /**
-     * @Route("/", name="inscriptionForm")
+     * @Route("/inscriptionForm", name="inscriptionForm")
      * @param Request $request
      * @return Response
      */

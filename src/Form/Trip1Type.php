@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Trip;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -26,7 +27,8 @@ class Trip1Type extends AbstractType
             ->add('description')
             ->add('location')
             ->add('name')
-            ->add('typeTrip', null, ['choice_label' => 'name']);
+            ->add('typeTrip', null, ['choice_label' => 'name'])
+            ->add('picture', FileType::class, array('label' => 'Image(JPG)'));
     }
 
     public function configureOptions(OptionsResolver $resolver)
