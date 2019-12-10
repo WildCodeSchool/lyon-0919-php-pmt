@@ -24,6 +24,7 @@ class UserLoginFixtures extends Fixture
         $userLogin->setPassword(
             $this->encoder->encodePassword($userLogin, '0000')
         );
+        $userLogin->setRoles(["ROLE_ADMIN"]);
         $manager->persist($userLogin);
         $manager->flush();
     }
