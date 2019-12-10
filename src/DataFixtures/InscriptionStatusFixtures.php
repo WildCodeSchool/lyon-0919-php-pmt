@@ -20,13 +20,13 @@ class InscriptionStatusFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-        $i = 0;
+        $counter = 0;
 
         foreach (self::INSCRIPTIONSTATUS as $inscriptionName) {
             $inscriptionstatus = new InscriptionStatus();
             $inscriptionstatus->setName($inscriptionName);
-            $this->addReference('inscriptionStatus' . $i, $inscriptionstatus);
-            $i++;
+            $this->addReference('inscriptionStatus' . $counter, $inscriptionstatus);
+            $counter++;
             $manager->persist($inscriptionstatus);
         }
 

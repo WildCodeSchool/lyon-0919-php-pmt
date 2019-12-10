@@ -11,6 +11,7 @@ class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options = $options; // Avoid PhpMd warning
         $builder
             ->add('firstname')
             ->add('lastname')
