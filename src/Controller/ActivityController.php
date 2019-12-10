@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  *
- * @Route("/", name="tmp")
+ * @Route("/activity", name="activity_")
  */
 class ActivityController extends AbstractController
 {
@@ -18,7 +18,7 @@ class ActivityController extends AbstractController
     /**
      * show all rows for Program's entity
      *
-     * @Route("", name="tmp")
+     * @Route("", name="index")
      * @return Response
      */
     public function index(): Response

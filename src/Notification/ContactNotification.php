@@ -4,6 +4,7 @@
 namespace App\Notification;
 
 use App\Entity\Contact;
+use Swift_Message;
 use Twig\Environment;
 
 class ContactNotification
@@ -26,8 +27,8 @@ class ContactNotification
 
     public function notify(Contact $contact)
     {
-        $message = (new \Swift_Message('Nouveau email de ' . $contact->getLastname() . " ". $contact->getFirstname()))
-            ->setFrom($contact->getEmail())
+        $message = (new Swift_Message('Nouveau email de ' . $contact->getLastname() . " " . $contact->getFirstname()))
+            ->setFrom(array($contact->getEmail()))
             ->setTo('pamouse@hotmail.fr')
             ->setReplyTo($contact->getEmail())
             ->setBody($this->renderer->render('emails/contact.html.twig', [
