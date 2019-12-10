@@ -3,11 +3,20 @@
 {% block title %}Trip{% endblock %}
 
 {% block body %}
+    <button class="btn-secondary mt-2"><a href="{{ path('trip_index') }}">Retour</a></button>
     <div class="container">
         <div class="card">
             <div class=" card-header"><h1 style="text-align: center">{{ trip.name }} ( {{ trip.id }} )</h1>
-                <button class="btn-secondary"><a
-                            href="{{ path('trip_edit', {'id': trip.id}) }}">edit</a></button>
+                <div class="row">
+                    <div class="col-1">
+                        <button class="btn-secondary"><a
+                                    href="{{ path('trip_edit', {'id': trip.id}) }}">Modifier</a></button>
+                    </div>
+                    <div class="offset-10 col-1">
+                        {{ include('trip/_delete_form.html.twig') }}
+                    </div>
+                </div>
+
             </div>
             <div class="card-title" style="text-align: center"><h4>{{ trip.location }}</h4>
             </div>
@@ -31,13 +40,10 @@
                     <br>
                     Mise à jour le
                     {{ trip.updatedAt ? trip.updatedAt|date('Y-m-d H:i:s') : '' }}</small></p>
-            <div class="card-footer">
+            <div class="card-footer" style="text-align: center">
                 {{ trip.price }} €
             </div>
         </div>
     </div>
 
-    <a href="{{ path('trip_index') }}">back to list</a>
-
-    {{ include('trip/_delete_form.html.twig') }}
 {% endblock %}
