@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trip{% endblock %}
+
+{% block body %}
+    <button class="btn-secondary mt-2"><a href="{{ path('trip_index') }}">Retour</a></button>
+    <div class="container">
+        <div class="card">
+            <div class=" card-header"><h1 style="text-align: center">{{ trip.name }} ( {{ trip.id }} )</h1>
+                <div class="row">
+                    <div class="col-1">
+                        <button class="btn-secondary"><a
+                                    href="{{ path('trip_edit', {'id': trip.id}) }}">Modifier</a></button>
+                    </div>
+                    <div class="offset-10 col-1">
+                        {{ include('trip/_delete_form.html.twig') }}
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-title" style="text-align: center"><h4>{{ trip.location }}</h4>
+            </div>
+            <p class="card-text" style="text-align: center"> {{ trip.description }}</p>
+            <p style="text-align: center">
+                Date de début :
+                {{ trip.dateStart ? trip.dateStart|date('Y-m-d H:i:s') : '' }}
+                <br>
+                Date de fin :
+                {{ trip.dateEnd ? trip.dateEnd|date('Y-m-d H:i:s') : '' }}
+                <br>
+                Nombre de plongeurs
+                {{ trip.nbDiver }}
+                <br>
+                Nombre de moniteurs
+                {{ trip.nbMonitor }}
+            </p>
+            <br>
+            <p class="card-text" style="text-align: center"><small class="text-muted"> Sortie crée le :
+                    {{ trip.createdAt ? trip.createdAt|date('Y-m-d H:i:s') : '' }}
+                    <br>
+                    Mise à jour le
+                    {{ trip.updatedAt ? trip.updatedAt|date('Y-m-d H:i:s') : '' }}</small></p>
+            <div class="card-footer" style="text-align: center">
+                {{ trip.price }} €
+            </div>
+        </div>
+    </div>
+{% endblock %}

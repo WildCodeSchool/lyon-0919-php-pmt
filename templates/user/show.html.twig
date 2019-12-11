@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div hidden>{{ user.id }}</div>
+
+
+    <div class="container">
+        <div class="row mb-5">
+            <h3 class="text-center col-12 border-bottom border-primary">Bienvenue {{ user.firstname }}</h3>
+        </div>
+
+        <div class="row">
+            {#        affichage du porfil utilisateurs    #}
+            <div class="card col-4" style="width: 18rem;">
+                <img src="{{ user.picture }}" class="card-img-top" alt="photo de l'adherent">
+                <h5 class="card-title font-weight-bold">{{ user.firstname }} {{ user.lastname }}</h5>
+                <p class="card-text">mail:{{ user.mail }} </p>
+                <p class="card-text">Téléphone:{{ user.homePhone }} </p>
+                <p class="card-text">Mobile:{{ user.mobilePhone }} </p>
+                <p class="card-text">Adresse:{{ user.address }} </p>
+                <p class="card-text">{{ user.zipCode }} {{ user.city }} </p>
+                <p class="card-text">Date naissance:{{ user.birthday ? user.birthday|date('Y-m-d') : '' }} </p>
+                <a href="#" class="btn btn-primary">Modifiez vos informations</a>
+            </div>
+
+            {#            navigation dans les diefférents onglets accesibles par l'adherent#}
+            <div class="col-8">
+                {#                navigation dans les différentes zones 3 en initiales#}
+                <section id="tabs" class="project-tab">
+                    <div class="container">
+                        <div class="row">
+                            {% for inscr in user.inscription %}
+                            <div class="col-md-12">
+                                <nav>
+                                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
+                                           href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Mon
+                                            inscription</a>
+                                        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
+                                           href="#nav-profile" role="tab" aria-controls="nav-profile"
+                                           aria-selected="false">Mes documents</a>
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                           href="#nav-contact" role="tab" aria-controls="nav-contact"
+                                           aria-selected="false">Droits et autres</a>
+                                        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
+                                           href="#nav-contact" role="tab" aria-controls="nav-contact"
+                                           aria-selected="false">Et hop autres</a>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                                         aria-labelledby="nav-home-tab">
+                                        <div class="mt-2">Inscription valable pour {{ inscr.inscriptionYear }}</div>
+                                        <div>Statut inscription:{{ inscr.inscriptionStatus.name }}</div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                         aria-labelledby="nav-profile-tab">
+                                        <div class="mt-2">internalProcedure {{ inscr.internalProcedure }}</div>
+                                        <div>medicalCertificate{{ inscr.medicalCertificate }}</div>
+                                        <div>inscriptionSheet {{ inscr.inscriptionSheet }}</div>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel"
+                                         aria-labelledby="nav-contact-tab">
+                                        <div class="mt-2">imageRight
+                                            : {{ inscr.imageRight? 'Autorisé' : 'Non autorisé' }}</div>
+                                        <div>Commentaire: {{ user.comment }}</div>
+                                        <div>IsAdmin:{{ user.isAdmin ? 'Yes' : 'No' }}</div>
+                                        <div>IsMonitor: {{ user.isMonitor ? 'Yes' : 'No' }}</div>
+                                        <div>IsSwim:{{ user.isSwim ? 'Yes' : 'No' }}</div>
+                                        <div>IsDiver:{{ user.isDiver ? 'Yes' : 'No' }}</div>
+                                        <div>IsHandi:{{ user.isHandi ? 'Yes' : 'No' }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ path('user_index') }}">back to list</a>
+    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

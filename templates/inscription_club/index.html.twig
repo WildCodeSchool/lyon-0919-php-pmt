@@ -1,0 +1,158 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche d'inscription{% endblock %}
+
+{% block body %}
+    {{ form_start(inscriptionForm) }}
+    <div>
+        <div class="container">
+            <div class="title_p">
+                <h1>Le plongeur masqué de Trévoux</h1>
+                <p>P.M.T 636 chemin d'Arras TREVOUX</p>
+            </div>
+            <div>
+                <h2>Bulletin d'inscription -
+                    Saison {{ form_widget(inscriptionForm.inscription) }}</h2>
+            </div>
+
+            <div class="contact_container">
+                <div class="inscriptionTitle">
+                    <span>Informations Adhérent</span>
+                </div>
+                <div class='row'>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="nom" class="col-12 control-label">Nom :</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.lastname, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="prenom" class="col-12 control-label">Prenom :</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.firstname, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mail" class="col-12 control-label">Email :</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.mail, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tel" class="col-12 control-label">Téléphone fixe :</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.homePhone, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile" class="col-12 control-label">Mobile :</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.mobilePhone, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile" class="col-12 control-label">Niveau de plongée :</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.level, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="societe" class="col-12 control-label">Date de
+                                naissance</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.birthday) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="adresse" class="col-12 control-label">Adresse</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.address, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cp" class="col-12 control-label">Code Postal</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.zipCode, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ville" class="col-12 control-label">Ville</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.city, {'attr': {'class': 'form-control'}}) }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pays" class="col-12 control-label">Commentaires</label>
+                            <div class="col-10">
+                                {{ form_widget(inscriptionForm.comment) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inscriptionTitle">
+                    <span>Tarifs des cotisations</span>
+                </div>
+                <div>
+                    <ul>
+                        <li>Plongeur de Trévoux :</li>
+                        <li>Plongeur extérieur à Trévoux :</li>
+                        <li>Adhérent piscine Adulte :</li>
+                        <li>Adhérent piscine Enfant :</li>
+                    </ul>
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="inscriptionTitle">
+                            <span class="prg">Choix de l'assurance</span>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="programme" class="col-12 control-label">Assurance individuelle AXA
+                                    : </label>
+                                <div class="col-10">
+{#                                    {{ form_widget(inscriptionForm.insurance) }}#}
+                                </div>
+                                <label for="programme" class="col-12 control-label">Paiement de l'adhésion : </label>
+                                <div class="col-10">
+                                    {{ form_widget(inscriptionForm.insurance) }}
+{#                                    {{ form_widget(inscriptionForm.payment) }}#}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-6">
+                        <div class="inscriptionTitle">
+                            <span class="prg">Documents à fournir </span>
+                        </div>
+                        <div class="col-12">
+                            <ul>
+                                <li>Certificat médical</li>
+                                <li><label for="programme"
+                                           class="col-12 control-label">Droit à l'image : </label>
+                                    {{ form_widget(inscriptionForm.document) }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn_footer">
+                <button class="btn btn-info">{{ button_label|default('Save') }}</button>
+                {#            <form>#}
+                {#                <input id="impression" name="impression" type="button" value="Imprimer" class="btn btn-info"/>#}
+                {#            </form>#}
+            </div>
+        </div>
+    </div>
+    {{ form_end(inscriptionForm) }}
+{% endblock %}
