@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Admin!{% endblock %}
+
+{% block body %}
+
+    <hr style="width: 50%">
+    <div class="d-flex m-5 w-50" id="wrapper">
+        <div class="bg-secondary border-right w-100 " id="sidebar-wrapper">
+            <div class="sidebar-heading" style="text-align: center; color: white">Menu</div>
+            <hr>
+            <div class="list-group list-group-flush">
+                <a href="{{ path ('trip_index') }}" class="list-group-item list-group-item-action bg-secondary "
+                   style="text-align: center; color: white"> Sorties</a>
+                <a href="{{ path ('user_index') }}" class="list-group-item list-group-item-action bg-secondary"
+                   style="text-align: center; color: white">Adhérents</a>
+                <a href="#" class="list-group-item list-group-item-action bg-secondary"
+                   style="text-align: center; color: white">Calendrier</a>
+                <a href="" class="list-group-item list-group-item-action bg-secondary"
+                   style="text-align: center; color: white">Documents</a>
+            </div>
+        </div>
+        <div class="container">
+            <p> Bonjour, vous êtes ici sur votre espace d'administrateur. Pour pouvoir ajouter, supprimer, voir vos
+                membres, sortie ,etc , tout se passe sur le menu de gauche.</p>
+
+        </div>
+    </div>
+{% endblock %}
