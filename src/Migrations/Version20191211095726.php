@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20191211084646 extends AbstractMigration
+final class Version20191211095726 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -24,7 +24,7 @@ final class Version20191211084646 extends AbstractMigration
 
         $this->addSql('CREATE TABLE user_login (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_48CA3048E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE trip CHANGE updated_at updated_at DATETIME DEFAULT NULL');
-        $this->addSql('ALTER TABLE payment CHANGE type_payment type_payment VARCHAR(255) NOT NULL, CHANGE insurance insurance VARCHAR(255) NOT NULL');
+        $this->addSql('ALTER TABLE payment DROP insurance');
     }
 
     public function down(Schema $schema) : void
@@ -33,7 +33,7 @@ final class Version20191211084646 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('DROP TABLE user_login');
-        $this->addSql('ALTER TABLE payment CHANGE type_payment type_payment VARCHAR(255) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`, CHANGE insurance insurance VARCHAR(45) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
+        $this->addSql('ALTER TABLE payment ADD insurance VARCHAR(45) CHARACTER SET utf8mb4 DEFAULT NULL COLLATE `utf8mb4_unicode_ci`');
         $this->addSql('ALTER TABLE trip CHANGE updated_at updated_at DATETIME NOT NULL');
     }
 }

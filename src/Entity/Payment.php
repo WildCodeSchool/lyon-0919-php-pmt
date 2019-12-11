@@ -24,11 +24,6 @@ class Payment
     private $typePayment;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $insurance;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="payment")
      */
     private $participant;
@@ -51,18 +46,6 @@ class Payment
     public function setTypePayment(string $typePayment): self
     {
         $this->typePayment = $typePayment;
-
-        return $this;
-    }
-
-    public function getInsurance(): ?string
-    {
-        return $this->insurance;
-    }
-
-    public function setInsurance(string $insurance): self
-    {
-        $this->insurance = $insurance;
 
         return $this;
     }

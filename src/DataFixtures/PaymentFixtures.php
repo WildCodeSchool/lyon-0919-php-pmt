@@ -18,12 +18,12 @@ class PaymentFixtures extends Fixture
             $typePayment->setTypePayment($payment);
             $manager->persist($typePayment);
         }
-
-        foreach (self::INSURANCE as $insurance) {
-            $typeInsurance = new Payment();
-            $typeInsurance->setInsurance($insurance);
-            $manager->persist($typeInsurance);
-        }
+//
+//        foreach (self::INSURANCE as $insurance) {
+//            $typeInsurance = new Payment();
+//            $typeInsurance->setInsurance($insurance);
+//            $manager->persist($typeInsurance);
+//        }
         $manager->flush();
     }
 }
