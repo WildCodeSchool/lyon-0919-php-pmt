@@ -1,4 +1,129 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+<div class="container">
+
+    {# afficahge infos personnelle ( nom prenom adresse tel date anniv...#}
+    <div class="inscriptionTitle col-12 ">
+        <span>Informations Adhérent</span>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form_label(form.firstname) }}
+            {{ form_widget(form.firstname) }}
+        </div>
+        <div class="col-6">
+            {{ form_label(form.lastname) }}
+            {{ form_widget(form.lastname) }}
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-6">
+            {{ form_label(form.homePhone) }}
+            {{ form_widget(form.homePhone) }}
+        </div>
+        <div class="col-6">
+            {{ form_label(form.mobilePhone) }}
+            {{ form_widget(form.mobilePhone) }}
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+        </div>
+    </div>
+    {# adresse de l'adherent #}
+    <div class="inscriptionTitle col-12">
+        <span>Adresse</span>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            {{ form_label(form.address) }}
+            {{ form_widget(form.address) }}
+        </div>
+        <div class="col-4">
+            {{ form_label(form.zipCode) }}
+            {{ form_widget(form.zipCode) }}
+        </div>
+        <div class="col-4">
+            {{ form_label(form.city) }}
+            {{ form_widget(form.city) }}
+        </div>
+    </div>
+    {# anniversaire #}
+    <div class="inscriptionTitle col-12">
+        <span>Date d'anniversaire</span>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form_widget(form.birthday) }}
+        </div>
+    </div>
+    {# email #}
+    <div class="inscriptionTitle col-12">
+        <span>Photos de profil</span>
+    </div>
+    <div class="row">
+        <div class="col-6 offset-3">
+            {{ form_widget(form.picture) }}
+        </div>
+    </div>
+
+    {# champ administrateur #}
+    {% if is_granted('ROLE_ADMIN') %}
+
+        <div class="inscriptionTitle col-12">
+            <span>Modification accesibles par admin:</span>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <h5><strong>Modification des attributs du membre</strong></h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3 offset-1">
+                {{ form_label(form.isDiver) }}
+                {{ form_widget(form.isDiver) }}
+            </div>
+            <div class="col-3">
+                {{ form_label(form.isMonitor) }}
+                {{ form_widget(form.isMonitor) }}
+            </div>
+            <div class="col-3">
+                {{ form_label(form.isSwim) }}
+                {{ form_widget(form.isSwim) }}
+            </div>
+            <div class="col-2">
+                {{ form_label(form.isHandi) }}
+                {{ form_widget(form.isHandi) }}
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <h5><strong>Modification du niveau de plongée du membre</strong></h5>
+            </div>
+            <div class="col-8 offset-2">
+                {{ form_widget(form.level) }}
+            </div>
+        </div>
+        <div class="row text-center mt-5 mb-5">
+            <button class="btn btn-primary col-3 ">{{ button_label|default('Save') }}</button>
+            {{ include('user/_delete_form.html.twig') }}
+            <a href="{{ path('user_index') }}">
+                <button class="btn btn-primary col-2 offset-1">Retour à la liste</button>
+            </a>
+
+        </div>
+
+    {% else %}
+
+        {#        validation si pas admin #}
+        <div class="row text-center">
+            <button class="btn btn-primary col-4 offset-4 mt-5 mb-5">{{ button_label|default('Save') }}</button>
+        </div>
+    {% endif %}
+
+</div>
+
 {{ form_end(form) }}

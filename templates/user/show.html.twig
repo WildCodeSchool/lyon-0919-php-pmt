@@ -26,7 +26,7 @@
 
 {#  navigation dans les diefférents onglets accesibles par l'adherent#}
             <div class="col-8">
-{#  navigation dans les différentes zones 3 en initiales #}
+{#  navigation dans les différentes zones 3 en initiales#}
                 <section id="tabs" class="project-tab">
                     <div class="container">
                         <div class="row">
@@ -48,18 +48,22 @@
                                            aria-selected="false">Et hop autres</a>
                                     </div>
                                 </nav>
+
                                 <div class="tab-content" id="nav-tabContent">
+
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                          aria-labelledby="nav-home-tab">
                                         <div class="mt-2">Inscription valable pour {{ inscr.inscriptionYear }}</div>
                                         <div>Statut inscription:{{ inscr.inscriptionStatus.name }}</div>
                                     </div>
+
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                          aria-labelledby="nav-profile-tab">
                                         <div class="mt-2">internalProcedure {{ inscr.internalProcedure }}</div>
                                         <div>medicalCertificate{{ inscr.medicalCertificate }}</div>
                                         <div>inscriptionSheet {{ inscr.inscriptionSheet }}</div>
                                     </div>
+
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel"
                                          aria-labelledby="nav-contact-tab">
                                         <div class="mt-2">imageRight
@@ -71,6 +75,7 @@
                                         <div>IsDiver:{{ user.isDiver ? 'Yes' : 'No' }}</div>
                                         <div>IsHandi:{{ user.isHandi ? 'Yes' : 'No' }}</div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -80,6 +85,7 @@
             </div>
         </div>
     </div>
+
 
     <a href="{{ path('user_index') }}">back to list</a>
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
