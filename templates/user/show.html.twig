@@ -5,29 +5,28 @@
 {% block body %}
     <div hidden>{{ user.id }}</div>
 
-
     <div class="container">
         <div class="row mb-5">
             <h3 class="text-center col-12 border-bottom border-primary">Bienvenue {{ user.firstname }}</h3>
         </div>
 
         <div class="row">
-            {#        affichage du porfil utilisateurs    #}
+{#  affichage du porfil utilisateurs#}
             <div class="card col-4" style="width: 18rem;">
                 <img src="{{ user.picture }}" class="card-img-top" alt="photo de l'adherent">
                 <h5 class="card-title font-weight-bold">{{ user.firstname }} {{ user.lastname }}</h5>
-                <p class="card-text">mail:{{ user.mail }} </p>
+                <p class="card-text">mail:{{ user.email }} </p>
                 <p class="card-text">Téléphone:{{ user.homePhone }} </p>
                 <p class="card-text">Mobile:{{ user.mobilePhone }} </p>
                 <p class="card-text">Adresse:{{ user.address }} </p>
                 <p class="card-text">{{ user.zipCode }} {{ user.city }} </p>
                 <p class="card-text">Date naissance:{{ user.birthday ? user.birthday|date('Y-m-d') : '' }} </p>
-                <a href="#" class="btn btn-primary">Modifiez vos informations</a>
+                <a href="{{ path('user_edit', {'id': user.id}) }}" class="btn btn-primary">Modifiez vos informations</a>
             </div>
 
-            {#            navigation dans les diefférents onglets accesibles par l'adherent#}
+{#  navigation dans les diefférents onglets accesibles par l'adherent#}
             <div class="col-8">
-                {#                navigation dans les différentes zones 3 en initiales#}
+{#  navigation dans les différentes zones 3 en initiales #}
                 <section id="tabs" class="project-tab">
                     <div class="container">
                         <div class="row">
@@ -85,5 +84,4 @@
     <a href="{{ path('user_index') }}">back to list</a>
     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
 
-    {{ include('user/_delete_form.html.twig') }}
 {% endblock %}
