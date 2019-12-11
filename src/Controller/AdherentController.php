@@ -4,7 +4,6 @@
 namespace App\Controller;
 
 use App\Form\UserType;
-use App\Form\UserUpdateType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

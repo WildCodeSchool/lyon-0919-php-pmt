@@ -39,7 +39,8 @@ class UserType extends AbstractType
             ->add('address')
             ->add('zipCode')
             ->add('city')
-            ->add('picture', FileType::class, [
+            ->add('picture')
+            ->add('ImageFile', FileType::class, [
                 'label' => 'photos de profil',
                 'mapped' => false,
                 'required' => false,

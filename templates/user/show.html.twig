@@ -13,7 +13,7 @@
         <div class="row">
 {#  affichage du porfil utilisateurs#}
             <div class="card col-4" style="width: 18rem;">
-                <img src="{{ user.picture }}" class="card-img-top" alt="photo de l'adherent">
+                <img src="{{ '/uploads/' ~ user.picture }}" class="card-img-top" alt="photo de l'adherent">
                 <h5 class="card-title font-weight-bold">{{ user.firstname }} {{ user.lastname }}</h5>
                 <p class="card-text">mail:{{ user.email }} </p>
                 <p class="card-text">Téléphone:{{ user.homePhone }} </p>
