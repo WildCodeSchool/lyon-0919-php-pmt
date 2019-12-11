@@ -32,32 +32,36 @@ a {
 //    margin-bottom: 5%;
 //    width: 100%;
 //}
-.cardImg{
-    width: 238px;
-    height: 100px;
-}
-.presentation{
-    width: 40%;
+
+.presentation {
+    width: 50%;
     margin-left: 10%;
     margin-bottom: 5%;
 }
 
 .cardTitle{
-    background-color: #324a99;
+
     text-align: center;
     color: white;
     width: 100%;
     padding: 20px 0;
 }
 .cardText{
-    padding: 0 30px;
-    font-size: 0.9em;
+  margin: 30px 0;
+  padding: 0 30px;
+  font-size: 0.9em;
 }
-.carousel{
-    width: 90%;
-    margin-bottom: 5px;
-    margin-top: 5px;
-    margin-left: 10px;
+.card-body{
+  margin-top: 5px;
+}
+
+.carousel-portfolio{
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+.card-accueil{
+  box-shadow: -8px -8px 12px #aaa;
 }
 
 
@@ -110,4 +114,10 @@ label {
     background-color:#1678a5;
     color: white;
     width: 100%;
+}
+.card-footer{
+  background-color: $color-footer-card;
+}
+.card-header{
+  background-color: $color-footer-card;
 }
