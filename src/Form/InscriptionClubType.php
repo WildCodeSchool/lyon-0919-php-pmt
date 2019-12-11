@@ -49,13 +49,13 @@ class InscriptionClubType extends AbstractType
                 'multiple' => false,
                 'by_reference' => false,
             ])
-            ->add('payment', EntityType::class, [
-                'class' => Payment::class,
-                'choice_label' => 'typePayment',
-                'expanded' => false,
-                'multiple' => false,
-                'by_reference' => false,
-            ])
+//            ->add('payment', EntityType::class, [
+//                'class' => Payment::class,
+//                'choice_label' => 'typePayment',
+//                'expanded' => false,
+//                'multiple' => false,
+//                'by_reference' => false,
+//            ])
             ->add('inscription', EntityType::class, [
                 'class' => Inscription::class,
                 'choice_label' => 'inscriptionYear',
