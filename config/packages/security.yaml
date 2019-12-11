@@ -1,17 +1,7 @@
 security:
-    encoders:
-        App\Entity\UserLogin:
-            algorithm: bcrypt
-    role_hierarchy:
-        ROLE_SUBSCRIBER: IS_AUTHENTICATED_ANONYMOUSLY
-        ROLE_ADMIN:  ROLE_SUBSCRIBER
-
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        my_provider:
-            entity:
-                class: App\Entity\UserLogin
-                property: email
-
+        in_memory: { memory: ~ }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -21,20 +11,14 @@ security:
 
             # activate different ways to authenticate
 
-            form_login:
-                login_path: login
-                check_path: login
-                provider: my_provider
-                
-            logout:
-                path: security_logout
-                target: /
+            # http_basic: true
+            # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: true
+            # https://symfony.com/doc/current/security/form_login_setup.html
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-          - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        # - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-
-
