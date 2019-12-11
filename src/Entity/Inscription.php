@@ -66,6 +66,16 @@ class Inscription
      */
     private $inscriptionStatus;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Insurance", inversedBy="inscription")
+     */
+    private $insurance;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\AdhesionPrice", inversedBy="inscription")
+     */
+    private $adhesionPrice;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +197,30 @@ class Inscription
     public function setInscriptionStatus(?InscriptionStatus $inscriptionStatus): self
     {
         $this->inscriptionStatus = $inscriptionStatus;
+
+        return $this;
+    }
+
+    public function getInsurance(): ?Insurance
+    {
+        return $this->insurance;
+    }
+
+    public function setInsurance(?Insurance $insurance): self
+    {
+        $this->insurance = $insurance;
+
+        return $this;
+    }
+
+    public function getAdhesionPrice(): ?AdhesionPrice
+    {
+        return $this->adhesionPrice;
+    }
+
+    public function setAdhesionPrice(?AdhesionPrice $adhesionPrice): self
+    {
+        $this->adhesionPrice = $adhesionPrice;
 
         return $this;
     }

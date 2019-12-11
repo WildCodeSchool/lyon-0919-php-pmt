@@ -97,35 +97,44 @@
                 </div>
 
                 <div class="inscriptionTitle">
-                    <span>Tarifs des cotisations</span>
+                    <span>Informations</span>
                 </div>
                 <div>
-                    <ul>
-                        <li>Plongeur de Trévoux :</li>
-                        <li>Plongeur extérieur à Trévoux :</li>
-                        <li>Adhérent piscine Adulte :</li>
-                        <li>Adhérent piscine Enfant :</li>
-                    </ul>
+                    <p class="col-12 control-label">Je reconnais avoir pris connaissance du règlement du PMT et je
+                        m'engage à le respecter.<br/>
+                        L'inscription au PMT comprend l'adhésion à l'assurance individuelle AXA pour la catégorie
+                        1.<br/>
+                        J'ai été informé des caractéristiques des options complémentaires.</p>
                 </div>
 
                 <div class="row">
                     <div class="col-6">
                         <div class="inscriptionTitle">
-                            <span class="prg">Choix de l'assurance</span>
+                            <span class="prg">Choix des adhésions</span>
                         </div>
 
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="programme" class="col-12 control-label">Assurance individuelle AXA
+                                <label for="programme" class="col-12 control-label">Choix du type d'assurance
                                     : </label>
                                 <div class="col-10">
-{#                                    {{ form_widget(inscriptionForm.insurance) }}#}
-                                </div>
-                                <label for="programme" class="col-12 control-label">Paiement de l'adhésion : </label>
-                                <div class="col-10">
                                     {{ form_widget(inscriptionForm.insurance) }}
-{#                                    {{ form_widget(inscriptionForm.payment) }}#}
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="programme" class="col-12 control-label">Choix du type d'adhésion : </label>
+                                <div class="col-10">
+                                    {{ form_widget(inscriptionForm.adhesion) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="programme" class="col-12 control-label">Choix du type de paiement : </label>
+                                <div class="col-10">
+                                    {{ form_widget(inscriptionForm.payment) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {#                                {{ dump(inscriptionForm.payment) }}#}
                             </div>
                         </div>
                     </div>
@@ -136,12 +145,7 @@
                             <span class="prg">Documents à fournir </span>
                         </div>
                         <div class="col-12">
-                            <ul>
-                                <li>Certificat médical</li>
-                                <li><label for="programme"
-                                           class="col-12 control-label">Droit à l'image : </label>
-                                    {{ form_widget(inscriptionForm.document) }}</li>
-                            </ul>
+                            {{ form_widget(inscriptionForm.document) }}</li>
                         </div>
                     </div>
                 </div>

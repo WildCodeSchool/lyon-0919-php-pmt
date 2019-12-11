@@ -24,7 +24,6 @@ class InscriptionClubController extends AbstractController
         $inscriptionForm->handleRequest($request);
 
         if ($inscriptionForm->isSubmitted() && $inscriptionForm->isValid()) {
-            $inscriptionForm->getData();
             $task = $inscriptionForm->getData();
 
             $entityManager = $this->getDoctrine()->getManager();

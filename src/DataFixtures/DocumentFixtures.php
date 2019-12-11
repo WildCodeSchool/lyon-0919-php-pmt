@@ -12,9 +12,9 @@ class DocumentFixtures extends Fixture
 {
 
     public const DOCUMENTS = [
-        'Certificat médicale',
-        'Reglement Interieur',
-        'Et puis merde',
+        'Certificat médical',
+        'Règlement intérieur',
+        'Attestation de droit à l\'image'
     ];
 
     public function load(ObjectManager $manager)
