@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Level;
 use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +17,7 @@ class UserType extends AbstractType
         $builder
             ->add('firstname')
             ->add('lastname')
-            ->add('mail')
+            ->add('email')
             ->add('homePhone')
             ->add('mobilePhone')
             ->add('birthday')
@@ -31,8 +33,10 @@ class UserType extends AbstractType
             ->add('isSwim')
             ->add('isDiver')
             ->add('isHandi')
-            ->add('level')
-        ;
+            ->add('level', EntityType::class, [
+                'class' => Level::class,
+                'choice_label' => 'name',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
