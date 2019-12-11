@@ -139,7 +139,6 @@
     "gedmo/doctrine-extensions": {
         "version": "v2.4.38"
     },
-
     "gitonomy/gitlib": {
         "version": "v1.0.4"
     },
