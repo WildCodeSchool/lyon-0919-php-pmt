@@ -3,34 +3,18 @@
 {% block title %}Fiche d'inscription{% endblock %}
 
 {% block body %}
-    {{ dump(inscriptionForm) }}
+    {{ form_start(inscriptionForm) }}
     <div>
         <div class="container">
-
-            <div class="sheet_title">
-                <div class="logo">
-                    <img src="img/Le-Plongeur-Masque.png" class="logo">
-                </div>
-                <div class="title_p">
-                    <h1>Le plongeur masqué de Trévoux</h1>
-                    <p>P.M.T 636 chemin d'Arras TREVOUX</p>
-                </div>
+            <div class="title_p">
+                <h1>Le plongeur masqué de Trévoux</h1>
+                <p>P.M.T 636 chemin d'Arras TREVOUX</p>
             </div>
             <div>
                 <h2>Bulletin d'inscription -
                     Saison {{ form_widget(inscriptionForm.inscription) }}</h2>
             </div>
-            <div class="inscriptionTitle">
-                <span>Tarifs des cotisations</span>
-            </div>
-            <div>
-                <ul>
-                    <li>Plongeur de Trévoux :</li>
-                    <li>Plongeur extérieur à Trévoux :</li>
-                    <li>Adhérent piscine Adulte :</li>
-                    <li>Adhérent piscine Enfant :</li>
-                </ul>
-            </div>
+
 
             <div class="contact_container">
                 <div class="inscriptionTitle">
@@ -77,7 +61,6 @@
                     </div>
 
                     <div class="col-6">
-                        <!--<form class="form-horizontal" role="form">-->
                         <div class="form-group">
                             <label for="societe" class="col-12 control-label">Date de
                                 naissance</label>
@@ -114,6 +97,18 @@
                     </div>
                 </div>
 
+                <div class="inscriptionTitle">
+                    <span>Tarifs des cotisations</span>
+                </div>
+                <div>
+                    <ul>
+                        <li>Plongeur de Trévoux :</li>
+                        <li>Plongeur extérieur à Trévoux :</li>
+                        <li>Adhérent piscine Adulte :</li>
+                        <li>Adhérent piscine Enfant :</li>
+                    </ul>
+                </div>
+
                 <div class="row">
                     <div class="col-6">
                         <div class="inscriptionTitle">
@@ -122,26 +117,15 @@
 
                         <div class="col-lg-12">
                             <div class="form-group">
-                                <label for="programme"
-                                       class="col-12 control-label">Assurance individuelle
-                                    AXA</label>
+                                <label for="programme" class="col-12 control-label">Assurance individuelle AXA
+                                    : </label>
                                 <div class="col-10">
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="option1">
-                                        Loisir 1 {{ form_widget(inscriptionForm.payment) }}
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="option2">
-                                        Loisir 2
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="option3">
-                                        Loisir 3
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" value="option3">
-                                        Loisir 4
-                                    </label>
+{#                                    {{ form_widget(inscriptionForm.insurance) }}#}
+                                </div>
+                                <label for="programme" class="col-12 control-label">Paiement de l'adhésion : </label>
+                                <div class="col-10">
+                                    {{ form_widget(inscriptionForm.insurance) }}
+{#                                    {{ form_widget(inscriptionForm.payment) }}#}
                                 </div>
                             </div>
                         </div>
@@ -150,25 +134,27 @@
 
                     <div class="col-6">
                         <div class="inscriptionTitle">
-                            <span class="prg">Certificat </span>
+                            <span class="prg">Documents à fournir </span>
                         </div>
                         <div class="col-12">
+                            <ul>
+                                <li>Certificat médical</li>
+                                <li><label for="programme"
+                                           class="col-12 control-label">Droit à l'image : </label>
+                                    {{ form_widget(inscriptionForm.document) }}</li>
+                            </ul>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-10">
-                {#            <!-- <div class="col-lg-1"><img src="img/ajout_contact.png" alt=""></div>-->#}
-                {#            <h1 class="titre-contact">Le plongeur masqué de Trévoux</h1>#}
-                {#            <h2 class="titre-contact">Bulletin d'inscription - Années {{ form_widget(inscriptionForm.inscription_year) }}</h2>#}
-            </div>
-            <div class="col-2">
-                <form>
-                    <input id="impression" name="impression" type="button" value="Imprimer" class="btn btn-info"/>
-                </form>
+            <div class="btn_footer">
+                <button class="btn btn-info">{{ button_label|default('Save') }}</button>
+                {#            <form>#}
+                {#                <input id="impression" name="impression" type="button" value="Imprimer" class="btn btn-info"/>#}
+                {#            </form>#}
             </div>
         </div>
     </div>
+    {{ form_end(inscriptionForm) }}
 {% endblock %}

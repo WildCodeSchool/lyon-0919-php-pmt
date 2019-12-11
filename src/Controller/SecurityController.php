@@ -14,14 +14,21 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="login")
+     * @param Request $request
+     * @param AuthenticationUtils $utils
+     * @param UserInterface|null $user
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function login(Request $request, AuthenticationUtils $utils, ?UserInterface $user)
     {
+        $prout = $request;
+        $prout = $user;
         $error = $utils->getLastAuthenticationError();
         $lastUsername = $utils->getLastUsername();
         return $this->render('security/login.html.twig', [
             'error' => $error,
-            'last_username' => $lastUsername
+            'last_username' => $lastUsername,
+            'prout' => $prout,
         ]);
     }
 

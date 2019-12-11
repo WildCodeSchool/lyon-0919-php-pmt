@@ -6,6 +6,7 @@ use App\Entity\Trip;
 use App\Form\Trip1Type;
 use App\Repository\ParticipantRepository;
 use App\Repository\TripRepository;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,8 @@ class TripController extends AbstractController
 {
     /**
      * @Route("/", name="trip_index", methods={"GET"})
+     * @param TripRepository $tripRepository
+     * @return Response
      */
     public function index(TripRepository $tripRepository): Response
     {
@@ -39,7 +42,7 @@ class TripController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $trip->setCreatedAt(new \DateTime('now'));
+            $trip->setCreatedAt(new DateTime('now'));
             $entityManager->persist($trip);
             $entityManager->flush();
             return $this->redirectToRoute('trip_index');
@@ -53,6 +56,8 @@ class TripController extends AbstractController
 
     /**
      * @Route("/{id}", name="trip_show", methods={"GET"})
+     * @param Trip $trip
+     * @return Response
      */
     public function show(Trip $trip): Response
     {
@@ -70,7 +75,7 @@ class TripController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $trip->setUpdatedAt(new \DateTime('now'));
+            $trip->setUpdatedAt(new DateTime('now'));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('trip_index');

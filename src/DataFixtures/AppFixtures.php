@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\User;
+use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
@@ -34,7 +35,7 @@ class AppFixtures extends Fixture
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
             $user->setPicture($this->faker->imageUrl());
-            $date = new \DateTime('@' . strtotime('now'));
+            $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
             $user->setIsAdmin(1);
@@ -57,7 +58,7 @@ class AppFixtures extends Fixture
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
             $user->setPicture($this->faker->imageUrl());
-            $date = new \DateTime('@' . strtotime('now'));
+            $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
             $user->setIsMonitor(1);
@@ -80,7 +81,7 @@ class AppFixtures extends Fixture
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
             $user->setPicture($this->faker->imageUrl());
-            $date = new \DateTime('@' . strtotime('now'));
+            $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
             $user->setIsDiver(1);
@@ -102,7 +103,7 @@ class AppFixtures extends Fixture
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
             $user->setPicture($this->faker->imageUrl());
-            $date = new \DateTime('@' . strtotime('now'));
+            $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
             $user->setIsDiver(1);
@@ -125,7 +126,7 @@ class AppFixtures extends Fixture
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
             $user->setPicture($this->faker->imageUrl());
-            $date = new \DateTime('@' . strtotime('now'));
+            $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
             $user->setIsSwim(1);
