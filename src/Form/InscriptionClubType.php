@@ -31,7 +31,7 @@ class InscriptionClubType extends AbstractType
         $builder
             ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
-            ->add('mail', EmailType::class)
+            ->add('email', EmailType::class)
             ->add('homePhone', TelType::class, ['required' => false,])
             ->add('mobilePhone', TelType::class)
             ->add('birthday', BirthdayType::class)

@@ -7,6 +7,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\User;
 
 /**
  *
@@ -24,5 +25,26 @@ class PmtController extends AbstractController
     public function index(): Response
     {
         return $this->render('tmp/index.html.twig');
+    }
+
+    /**
+     * @Route("team", name="_team")
+     * @return Response
+     */
+    public function showTeam(): Response
+    {
+        $userAdmins = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findBy(['isAdmin'=>true]);
+
+        $userMonitors = $this->getDoctrine()
+            ->getRepository(User::class)
+            ->findBy(['isMonitor'=>true]);
+
+
+        return $this->render('tmp/team.html.twig', [
+            'userAdmins' => $userAdmins,
+            'userMonitors' => $userMonitors
+        ]);
     }
 }
