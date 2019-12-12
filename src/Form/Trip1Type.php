@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class Trip1Type extends AbstractType
 {
@@ -28,7 +29,16 @@ class Trip1Type extends AbstractType
             ->add('location')
             ->add('name')
             ->add('typeTrip', null, ['choice_label' => 'name'])
-            ->add('picture', FileType::class, array('label' => 'Image(JPG)'));
+            ->add('imageFile', FileType::class, [
+                'label' => 'Image',
+                'mapped'=>false,
+                'required'=>false,
+                'constraints'=>[
+                    new File([
+                        'maxSize'=>'2000k',
+                    ])
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

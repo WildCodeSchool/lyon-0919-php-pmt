@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}User index{% endblock %}
 
@@ -53,8 +53,8 @@
 {#                <td>{{ user.isDiver ? 'Yes' : 'No' }}</td>#}
 {#                <td>{{ user.isHandi ? 'Yes' : 'No' }}</td>#}
                 <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
