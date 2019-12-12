@@ -11,12 +11,21 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
  * @Route("/user")
  */
 class UserController extends AbstractController
 {
+    protected $auth;
+    public function __construct(AuthorizationCheckerInterface $auth)
+    {
+        $this->auth = $auth;
+    }
+
+
+
     /**
      * @Route("/", name="user_index", methods={"GET"})
      */
@@ -87,7 +96,13 @@ class UserController extends AbstractController
             // ... persist the $product variable or any other work
             $this->getDoctrine()->getManager()->flush();
 //            return $this->redirect($this->generateUrl('app_product_list'));
-            return $this->redirectToRoute('user_index');
+
+            if ($this->auth->isGranted('ROLE_ADMIN')) {
+                return $this->redirectToRoute('user_index');
+            }
+            if ($this->auth->isGranted('ROLE_SUBSCRIBER')) {
+                return $this->redirectToRoute('account_index');
+            }
         }
         return $this->render('user/edit.html.twig', ['user' => $user,
             'form' => $form->createView(),]);
