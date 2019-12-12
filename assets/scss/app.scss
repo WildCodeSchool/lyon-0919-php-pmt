@@ -64,8 +64,6 @@ a {
   box-shadow: -8px -8px 12px #aaa;
 }
 
-
-
 .checkbox {
   width: 50px
 }
@@ -89,6 +87,7 @@ label {
 }
 
 .btn_footer{
+  text-align: center;
   margin-top : 30px;
 }
 
@@ -108,8 +107,10 @@ label {
   font-size: 0.9em;
 }
 
+
 .card-body {
   margin-top: 5px;
+
 }
 
 .card-accueil {
@@ -123,6 +124,11 @@ label {
   margin-left: 10px;
 }
 
+
+.signForm{
+  margin-bottom: 100px;
+}
+
 .card-footer{
   background-color: $color-footer-card;
 }
@@ -133,4 +139,5 @@ label {
 
 .titleMembers{
   margin-left: 10%;
+
 }

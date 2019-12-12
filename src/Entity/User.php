@@ -112,12 +112,12 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Inscription", mappedBy="user")
      */
-    private $inscription;
+    private $inscriptions;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user")
      */
-    private $participant;
+    private $participants;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
@@ -137,8 +137,8 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
-        $this->inscription = new ArrayCollection();
-        $this->participant = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
+        $this->participants = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -377,15 +377,15 @@ class User implements UserInterface, \Serializable
     /**
      * @return Collection|Inscription[]
      */
-    public function getInscription(): Collection
+    public function getInscriptions(): Collection
     {
-        return $this->inscription;
+        return $this->inscriptions;
     }
 
     public function addInscription(Inscription $inscription): self
     {
-        if (!$this->inscription->contains($inscription)) {
-            $this->inscription[] = $inscription;
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
             $inscription->setUser($this);
         }
 
@@ -394,8 +394,8 @@ class User implements UserInterface, \Serializable
 
     public function removeInscription(Inscription $inscription): self
     {
-        if ($this->inscription->contains($inscription)) {
-            $this->inscription->removeElement($inscription);
+        if ($this->inscriptions->contains($inscription)) {
+            $this->inscriptions->removeElement($inscription);
             // set the owning side to null (unless already changed)
             if ($inscription->getUser() === $this) {
                 $inscription->setUser(null);
@@ -410,26 +410,26 @@ class User implements UserInterface, \Serializable
      */
     public function getParticipant(): Collection
     {
-        return $this->participant;
+        return $this->participants;
     }
 
-    public function addParticipant(Participant $participant): self
+    public function addParticipant(Participant $participants): self
     {
-        if (!$this->participant->contains($participant)) {
-            $this->participant[] = $participant;
-            $participant->setUser($this);
+        if (!$this->participants->contains($participants)) {
+            $this->participants[] = $participants;
+            $participants->setUser($this);
         }
 
         return $this;
     }
 
-    public function removeParticipant(Participant $participant): self
+    public function removeParticipant(Participant $participants): self
     {
-        if ($this->participant->contains($participant)) {
-            $this->participant->removeElement($participant);
+        if ($this->participants->contains($participants)) {
+            $this->participants->removeElement($participants);
             // set the owning side to null (unless already changed)
-            if ($participant->getUser() === $this) {
-                $participant->setUser(null);
+            if ($participants->getUser() === $this) {
+                $participants->setUser(null);
             }
         }
 

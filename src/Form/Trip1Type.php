@@ -14,7 +14,7 @@ class Trip1Type extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $prout = $options;
+        $options;
         $builder
             ->add('price')
             ->add('dateStart', DateType::class, [

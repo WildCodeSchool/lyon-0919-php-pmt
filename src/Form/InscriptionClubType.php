@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\AdhesionPrice;
 use App\Entity\Document;
 use App\Entity\Inscription;
+use App\Entity\Insurance;
+use App\Entity\Level;
 use App\Entity\Payment;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -27,26 +30,35 @@ class InscriptionClubType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $options;
         $builder
-            ->add('firstname', TextType::class)
-            ->add('lastname', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('homePhone', TelType::class, ['required' => false,])
-            ->add('mobilePhone', TelType::class)
-            ->add('birthday', BirthdayType::class)
-            ->add('address', TextType::class)
-            ->add('zipCode', TextType::class)
-            ->add('city', TextType::class)
-            ->add('comment', TextareaType::class, ['required' => false,])
-            ->add('level', null, ['choice_label' => 'name'])
-//            ->add('payment', null, ['choice_label' => 'typePayment'])
-            ->add('inscription', EntityType::class, [
-                'class' => Inscription::class,
-                'choice_label' => 'inscriptionYear',
+
+            ->add('user', UserType::class, ['data' =>  $options['user']])
+            ->add('inscription', InscriptionType::class, ['data' => new Inscription()])
+
+            ->add('level', EntityType::class, [
+                'class' => Level::class,
+                'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => false,
                 'by_reference' => false,
+            ])
+            ->add('insurance', EntityType::class, [
+                'class' => Insurance::class,
+                'choice_label' =>  function ($insurance) {
+                    return $insurance->getName() . ' : ' . $insurance->getPrice() . " €";
+                },
+                'expanded' => false,
+                'multiple' => false,
+                'by_reference' => true,
+            ])
+            ->add('adhesion', EntityType::class, [
+                'class' => AdhesionPrice::class,
+                'choice_label' => function ($adhesion) {
+                    return $adhesion->getName() . ' : ' . $adhesion->getPrice() . " €";
+                },
+                'expanded' => false,
+                'multiple' => false,
+                'by_reference' => true,
             ])
             ->add('document', EntityType::class, [
                 'class' => Document::class,
@@ -55,20 +67,14 @@ class InscriptionClubType extends AbstractType
                 'multiple' => true,
                 'by_reference' => false,
             ])
-            ->add('insurance', EntityType::class, [
-                'class' => Payment::class,
-                'choice_label' => 'typePayment',
-                'expanded' => false,
-                'multiple' => false,
-                'by_reference' => true,
-            ])
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => null,
+            'user' => null,
         ]);
     }
 }
