@@ -43,7 +43,7 @@ a {
 }
 
 .cardTitle{
-    background-color: #324a99;
+    background-color: #1678a5;
     text-align: center;
     color: white;
     width: 100%;
@@ -79,7 +79,6 @@ label {
   height: 46px;
   color: #ffffff;
   font-size: 23px;
-  height: 46px;
   line-height: 40px;
   padding: 0 0 0 20px;
   margin: 20px 0 20px;
@@ -91,30 +90,39 @@ label {
 
 /* CSS page Activity */
 
-.containerActivity-fluid {
-    margin-left: 20px;
-    margin-right: 10px;
-}
-
-.button {
-    display: block;
-    width: 100%;
-    text-align: center;
-}
-
-.btn-primary {
-    background-color:#1678a5;;
-}
-
-.card-title {
-    background-color:#1678a5;
-    color: white;
-    width: 100%;
-}
-
-.title_activity {
+.cardTitle {
+  background-color: #1678a5;
   text-align: center;
-  margin: 0 auto;
+  color: white;
   width: 100%;
+  padding: 20px O;
 }
 
+.cardText {
+  margin: 30px 0;
+  padding: 0 30px;
+  font-size: 0.9em;
+}
+
+.card-body {
+  margin-top: 5px;
+}
+
+.card-accueil {
+  box-shadow: -8px -8px 12px #aaa;
+}
+
+.card-footer {
+  background-color: #1678a5;
+}
+
+.card-header {
+  background-color: #1678a5;
+}
+
+.carouselActivity {
+  width: 90%;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  margin-left: 10px;
+}
