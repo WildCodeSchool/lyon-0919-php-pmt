@@ -6,13 +6,28 @@ use App\Entity\Level;
 use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Validator\Constraints\File;
 
 class UserType extends AbstractType
 {
+
+    protected $auth;
+
+    public function __construct(AuthorizationCheckerInterface $auth)
+    {
+        $this->auth = $auth;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        // Use the user object to build the form
+
         $options = $options; // Avoid PhpMd warning
         $builder
             ->add('firstname')
@@ -24,19 +39,33 @@ class UserType extends AbstractType
             ->add('address')
             ->add('zipCode')
             ->add('city')
-            ->add('comment')
             ->add('picture')
-            ->add('createdAt')
-            ->add('updateAt')
-            ->add('isAdmin')
-            ->add('isMonitor')
-            ->add('isSwim')
-            ->add('isDiver')
-            ->add('isHandi')
-            ->add('level', EntityType::class, [
-                'class' => Level::class,
-                'choice_label' => 'name',
+            ->add('ImageFile', FileType::class, [
+                'label' => 'photos de profil',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/jpg',
+                            'application/jpeg',
+                        ],
+                        'mimeTypesMessage' => 'Please upload a valid JPG or JPEG pics',
+                    ])
+                ],
             ]);
+
+        if ($this->auth->isGranted('ROLE_ADMIN')) {
+            $builder->add('isMonitor')
+                ->add('isSwim')
+                ->add('isDiver')
+                ->add('isHandi')
+                ->add('level', EntityType::class, [
+                    'class' => Level::class,
+                    'choice_label' => 'name',
+                ]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

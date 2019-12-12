@@ -3,7 +3,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,7 +14,7 @@ class AdherentController extends AbstractController
     /**
      * @Route("/account", name="account_index", methods={"GET"})
      */
-    public function show(): Response
+    public function show(Request $request): Response
     {
 
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -24,9 +24,19 @@ class AdherentController extends AbstractController
         /** @var \App\Entity\User $user */
         $userLogin = $this->getUser();
 
+//        Gestion du form de mise à jour des infos de l'adherent
+        $form = $this->createForm(UserType::class, $userLogin);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($userLogin);
+            $entityManager->flush();
+        }
 
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,
+            'form' => $form,
         ]);
     }
 }
