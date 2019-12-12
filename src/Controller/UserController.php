@@ -70,18 +70,21 @@ class UserController extends AbstractController
 
         // Attention le form n'est pas valide lors de la submitation: && $form->isValid()
         if ($form->isSubmitted()) {
-            // $file stores the uploaded PDF file
-            $file = $form['ImageFile']->getData();
-            $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-            // moves the file to the directory where brochures are stored
-            $file->move(
-                './uploads/',
-                $fileName
-            );
 
-            // updates the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $user->setPicture($fileName);
+            $file = $form['ImageFile']->getData();
+            if ($file) {
+                $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
+                // moves the file to the directory where brochures are stored
+                $destination = $this->getParameter('pictures_directory');
+                $file->move(
+                    $destination,
+                    $fileName
+                );
+
+                // updates the 'brochure' property to store the PDF file name
+                // instead of its contents
+                $user->setPicture($fileName);
+            }
             // ... persist the $product variable or any other work
             $this->getDoctrine()->getManager()->flush();
 //            return $this->redirect($this->generateUrl('app_product_list'));
