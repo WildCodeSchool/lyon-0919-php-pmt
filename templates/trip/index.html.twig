@@ -1,50 +1,56 @@
-{% extends 'base.html.twig' %}
+{% extends 'baseAdmin.html.twig' %}
 
 {% block title %}Liste des voyages{% endblock %}
 
 {% block body %}
-{{ dump() }}
-    <div class="container">
-        <div class="row">
-            <div class="col-2">
-                <button class="btn btn-secondary"><a href="{{ path('trip_new') }}">Ajouter une nouvelle sortie</a>
-                </button>
-            </div>
-            <div class="offset-8 col-2">
-                <button class="btn btn-secondary"><a href="{{ path ('admin') }}">Retour au Menu</a></button>
-            </div>
+    <h1 style="padding: 10px;text-align: center; margin-bottom: 20px">Récapitulatif de vos sorties annuelles</h1>
+    <div class="col-12 col-md-12">
+        <button class="btn btn-secondary" style="display: block; margin: auto;"><a href="{{ path('trip_new') }}">Ajouter
+                une nouvelle sortie</a>
+        </button>
+        <div class="container p-2">
+            {% for trip in trips %}
+                <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0" style="text-align: center">
+                            <button class="btn btn-secondary" type="button" data-toggle="collapse"
+                                    data-target="#id-{{ trip.id }}"
+                                    aria-expanded="true" aria-controls="id-{{ trip.id }}">
+                                Nom de la sortie : {{ trip.name }}
+                            </button>
+                        </h2>
+                    </div>
+
+                </div>
+                <div id="id-{{ trip.id }}" class="collapse" aria-labelledby="headingOne"
+                     data-parent="#accordionExample">
+                    <div class="card-body">
+                        <p>{{ trip.description }}</p>
+                        <div class="row">
+                            <div class="col-2 col-md-2">
+                                <button class="btn btn-secondary"><a
+                                            href="{{ path('trip_show', {'id': trip.id}) }}">Aperçu</a>
+                                </button>
+                            </div>
+                            <div class=" offset-1 col-5 col-md-6">
+                                <button class="btn btn-secondary"><a href="{{ path('trip_edit', {'id': trip.id}) }}">Editer
+                                        la
+                                        sortie</a></button>
+                            </div>
+
+                            <div class=" col-2 col-md-1">
+                                {{ include('trip/_delete_form.html.twig') }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <tr>
+                    <td colspan="12">Aucunes sorties</td>
+                </tr>
+                </div>
+            {% endfor %}
         </div>
-        <h1 style="padding: 10px;text-align: center; margin-bottom: 20px">Récapitulatif de vos sorties annuelles</h1>
-        {% for trip in trips %}
-            <div class="accordion" id="accordionExample">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0" style="text-align: center">
-                        <button class="btn btn-secondary" type="button" data-toggle="collapse"
-                                data-target="#id-{{ trip.id }}"
-                                aria-expanded="true" aria-controls="id-{{ trip.id }}">
-                            Nom de la sortie : {{ trip.name }}
-                        </button>
-                    </h2>
-                </div>
-
-            </div>
-            <div id="id-{{ trip.id }}" class="collapse" aria-labelledby="headingOne"
-                 data-parent="#accordionExample">
-                <div class="card-body">
-                    <p>{{ trip.description }}</p>
-                    <button class="btn btn-secondary"><a href="{{ path('trip_show', {'id': trip.id}) }}">Aperçu</a>
-                    </button>
-                    <button class="btn btn-secondary"><a href="{{ path('trip_edit', {'id': trip.id}) }}">Editer la
-                            sortie</a></button>
-
-                </div>
-            </div>
-        {% else %}
-            <tr>
-                <td colspan="12">Aucunes sorties</td>
-            </tr>
-            </div>
-        {% endfor %}
     </div>
 {% endblock %}

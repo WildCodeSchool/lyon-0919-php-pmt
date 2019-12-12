@@ -56,6 +56,7 @@ class TripController extends AbstractController
             $trip->setCreatedAt(new DateTime('now'));
             $entityManager->persist($trip);
             $entityManager->flush();
+            return $this->redirectToRoute('trip_index');
         }
         return $this->render('trip/new.html.twig', ['trip' => $trip,
             'form' => $form->createView(),]);
