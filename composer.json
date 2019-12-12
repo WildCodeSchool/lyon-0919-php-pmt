@@ -31,7 +31,8 @@
         "symfony/web-link": "4.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.3.*",
-        "twbs/bootstrap": "4.0.0"
+        "twbs/bootstrap": "4.0.0",
+      "ext-intl": "*"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
