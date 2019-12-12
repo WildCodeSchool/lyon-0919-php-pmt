@@ -19,7 +19,7 @@ class InscriptionFixtures extends Fixture implements DependentFixtureInterface
         $this->faker = Factory::create('fr_FR');
 
         //165 adherents inscrits dans la base
-        for ($i = 0; $i < 165; $i++) {
+        for ($i = 0; $i < 161; $i++) {
             $inscription = new Inscription();
             $inscription->setStatus($this->getReference('inscriptionStatus' .
                 $this->faker->numberBetween(0, 2))->getId());
