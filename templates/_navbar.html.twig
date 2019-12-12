@@ -1,10 +1,9 @@
 <div class="nav-background">
-    <nav class="navbar navbar-expand-lg positionZ">
-        <a class="navbar-brand  p-0" href="#"><h1>Plongeurs Masqués de Trévoux</h1></a>
+    <nav class="navbar navbar-expand-lg positionZ bgNavbar-primary navbar-dark ">
+        <a class="navbar-brand  p-0" href="#"><h1>PMT</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="
-            navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon bg-warning"></span>
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
 
         {#        // listes en bourrin des liens vers les différents pages#}
@@ -14,24 +13,33 @@
                     <a class="nav-link text-white" href="{{ path('pmtindex') }}">Accueil</a>
                 </li>
                 <li class="nav-item ">
+                    <a class="nav-link text-white" href="{{ path('activity_index') }}">Nos activités</a>
+                </li>
+                <li class="nav-item ">
                     <a class="nav-link text-white" href="{{ path('contact') }}">Contactez-nous</a>
                 </li>
-                {% if app.user %}
-                <li class="nav-item ">
-                    <a href="{{ path('app_logout') }}"> Se déconnecter</a>
-                </li>
-                {% else %}
-                <li class="nav-item ">
-                    <a href="{{ path('login') }}"> Se connecter</a>
-                </li>
             </ul>
-            {% endif %}
-            {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
-                    <a href="{{ path ('admin') }}">Administration</a>
-                </li>
-            {% endif %}
-
+        </div>
+        <div class="collapse navbar-collapse mr-1" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mr-1 ">
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('account_index') }}"> Mon compte</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('app_logout') }}"> Se déconnecter</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path('login') }}"> Se connecter</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{{ path ('admin') }}">Administration</a>
+                    </li>
+                {% endif %}
+            </ul>
         </div>
     </nav>
 

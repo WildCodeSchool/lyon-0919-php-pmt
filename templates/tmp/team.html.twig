@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block title %}bureau{% endblock %}
+{% block body %}
+<div class="titleMembers">
+    <h2>Membres du l'association</h2>
+</div>
+
+    <div class="card-accueil mt-5 ml-5" style="width: 30rem;">
+        <div class="card-header"><h4>Bureau</h4></div>
+            <div class="card-body">
+                <ul>
+                    {% for userAdmin in userAdmins %}
+                            <li>{{ userAdmin.firstname }} {{ userAdmin.lastname|upper }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+    <div class="card-accueil mt-5 ml-5" style="width: 30rem;">
+        <div class="card-header"><h4>Formateurs</h4></div>
+            <div class="card-body">
+                <ul>
+                    {% for userMonitor in userMonitors %}
+                        <li>{{ userMonitor.firstname }} {{ userMonitor.lastname|upper }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include '_footer.html.twig' %}
+{% endblock %}
