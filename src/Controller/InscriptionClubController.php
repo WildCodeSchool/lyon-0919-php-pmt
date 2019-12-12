@@ -2,7 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Inscription;
+use App\Entity\Level;
 use App\Form\InscriptionClubType;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,14 +23,25 @@ class InscriptionClubController extends AbstractController
      */
     public function index(Request $request)
     {
-        $inscriptionForm = $this->createForm(InscriptionClubType::class);
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['isAdmin' => null]);
+
+        $inscriptionForm = $this->createForm(InscriptionClubType::class, null, ['user' => $user]);
         $inscriptionForm->handleRequest($request);
 
         if ($inscriptionForm->isSubmitted() && $inscriptionForm->isValid()) {
-            $task = $inscriptionForm->getData();
+            $data = $inscriptionForm->getData();
 
+            $inscription = $data['inscription'];
+            $insurance = $data['insurance'];
+            $adhesion = $data['adhesion'];
+            $inscription->setUser($user);
+            $inscription->setInsurance($insurance);
+            $inscription->setAdhesionPrice($adhesion);
+
+            $user->setLevel($data['level']);
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($task);
+            $entityManager->persist($data['user']);
+            $entityManager->persist($inscription);
             $entityManager->flush();
 
             return $this->redirectToRoute('inscriptionForm');

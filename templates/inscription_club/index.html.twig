@@ -12,7 +12,7 @@
             </div>
             <div>
                 <h2>Bulletin d'inscription -
-                    Saison {{ form_widget(inscriptionForm.inscription) }}</h2>
+                    Saison {{ form_widget(inscriptionForm.inscription['inscriptionYear']) }}</h2>
             </div>
 
             <div class="contact_container">
@@ -24,31 +24,31 @@
                         <div class="form-group">
                             <label for="nom" class="col-12 control-label">Nom :</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.lastname, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.lastname, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="prenom" class="col-12 control-label">Prenom :</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.firstname, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.firstname, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mail" class="col-12 control-label">Email :</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.mail, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.mail, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="tel" class="col-12 control-label">Téléphone fixe :</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.homePhone, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.homePhone, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="mobile" class="col-12 control-label">Mobile :</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.mobilePhone, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.mobilePhone, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
@@ -64,33 +64,33 @@
                             <label for="societe" class="col-12 control-label">Date de
                                 naissance</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.birthday) }}
+                                {{ form_widget(inscriptionForm.user.birthday) }}
                             </div>
                         </div>
                         <div class="form-group">
 
                             <label for="adresse" class="col-12 control-label">Adresse</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.address, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.address, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label for="cp" class="col-12 control-label">Code Postal</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.zipCode, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.zipCode, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ville" class="col-12 control-label">Ville</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.city, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(inscriptionForm.user.city, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="pays" class="col-12 control-label">Commentaires</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.comment) }}
+                                {{ form_widget(inscriptionForm.user.comment) }}
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,6 @@
                         1.<br/>
                         J'ai été informé des caractéristiques des options complémentaires.</p>
                 </div>
-
                 <div class="row">
                     <div class="col-6">
                         <div class="inscriptionTitle">
@@ -127,15 +126,6 @@
                                     {{ form_widget(inscriptionForm.adhesion) }}
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="programme" class="col-12 control-label">Choix du type de paiement : </label>
-                                <div class="col-10">
-{#                                    {{ form_widget(inscriptionForm.payment) }}#}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                {#                                {{ dump(inscriptionForm.payment) }}#}
-                            </div>
                         </div>
                     </div>
 
@@ -149,6 +139,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="signForm">
+                {#                Fait le : #}
+                {#                Signature :#}
+
             </div>
             <div class="btn_footer">
                 <button class="btn btn-info">{{ button_label|default('Save') }}</button>
