@@ -16,10 +16,12 @@ use Symfony\Component\Validator\Constraints\File;
 class UserType extends AbstractType
 {
     protected $auth;
+
     public function __construct(AuthorizationCheckerInterface $auth)
     {
         $this->auth = $auth;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Use the user object to build the form
@@ -31,10 +33,11 @@ class UserType extends AbstractType
             ->add('homePhone')
             ->add('mobilePhone')
             ->add('birthday')
+            ->add('comment', HiddenType::class)
             ->add('address')
             ->add('zipCode')
             ->add('city')
-            ->add('picture')
+            ->add('picture', HiddenType::class)
             ->add('ImageFile', FileType::class, [
                 'label' => 'photos de profil',
                 'mapped' => false,
@@ -61,6 +64,7 @@ class UserType extends AbstractType
                 ]);
         }
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
