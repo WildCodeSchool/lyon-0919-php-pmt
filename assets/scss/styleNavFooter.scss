@@ -1,7 +1,8 @@
 //style de la navbar
 .nav-background {
     width: 100%;
-    background-image: url('/img/fondSite buble.jpg');
+    background-image: url('/img/navbarTest.jpg');
+    background-size: cover;
     height: 350px;
     padding: 0px;
 }
@@ -40,7 +41,8 @@
 .footer-background {
     width: 100%;
     height: 350px;
-    background-image: url('/img/imgFooter.jpg');
+    background-image: url('/img/footerTest.jpg');
+    background-size: cover;
     padding: 0px;
     margin: 0px;
     position: absolute;
