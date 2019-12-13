@@ -2,9 +2,18 @@
 @import "~bootstrap/scss/bootstrap";
 @import "styleNavFooter.scss";
 @import "adherentPage.scss";
+@import url(https://fonts.googleapis.com/css?family=Alatsi|Roboto&display=swap);
+
+$font-family: 'Alatsi', sans-serif;
+$font-family2: 'Roboto', sans-serif;
 
 body {
   background-color: $secondary-color;
+  font-family: $font-family2;
+}
+
+h1, h2, h3, h4, h5{
+  font-family: $font-family;
 }
 
 a {
@@ -17,11 +26,12 @@ a {
   width: 200px;
 }
 
-.title_p{
+.title_p {
   text-align: center;
   width: 100%;
   margin: 30px 0;
 }
+
 /* scss page accueil */
 
 //.container{
@@ -34,33 +44,35 @@ a {
 //}
 
 .presentation {
-    width: 50%;
-    margin-left: 10%;
-    margin-bottom: 5%;
+  width: 50%;
+  margin-left: 10%;
+  margin-bottom: 5%;
 }
 
-.cardTitle{
-    background-color: #1678a5;
-    text-align: center;
-    color: white;
-    width: 100%;
-    padding: 20px 0;
+.cardTitle {
+  background-color: #1678a5;
+  text-align: center;
+  color: white;
+  width: 100%;
+  padding: 20px 0;
 }
-.cardText{
+
+.cardText {
   margin: 30px 0;
   padding: 0 30px;
   font-size: 0.9em;
 }
-.card-body{
+
+.card-body {
   margin-top: 5px;
 }
 
-.carousel-portfolio{
+.carousel-portfolio {
   margin-left: 50px;
   margin-top: 20px;
 }
 
-.card-accueil{
+.card-accueil {
   box-shadow: -8px -8px 12px #aaa;
 }
 
@@ -86,9 +98,9 @@ label {
   margin: 20px 0 20px;
 }
 
-.btn_footer{
-  text-align: center;
-  margin-top : 30px;
+.btn_footer {
+  text-align: right;
+  margin: 20px 0;
 }
 
 /* CSS page Activity */
@@ -98,7 +110,7 @@ label {
   text-align: center;
   color: white;
   width: 100%;
-  padding: 20px O;
+  padding: 20px 0;
 }
 
 .cardText {
@@ -125,19 +137,21 @@ label {
 }
 
 
-.signForm{
+.signForm {
   margin-bottom: 100px;
 }
 
-.card-footer{
+.card-footer {
   background-color: $color-footer-card;
 }
-.card-header{
+
+.card-header {
   background-color: $color-footer-card;
 }
+
 /* page présentation bureau */
 
-.titleMembers{
+.titleMembers {
   margin-left: 10%;
 
 }

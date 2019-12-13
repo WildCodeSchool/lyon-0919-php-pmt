@@ -96,16 +96,7 @@
                     </div>
                 </div>
 
-                <div class="inscriptionTitle">
-                    <span>Informations</span>
-                </div>
-                <div>
-                    <p class="col-12 control-label">Je reconnais avoir pris connaissance du règlement du PMT et je
-                        m'engage à le respecter.<br/>
-                        L'inscription au PMT comprend l'adhésion à l'assurance individuelle AXA pour la catégorie
-                        1.<br/>
-                        J'ai été informé des caractéristiques des options complémentaires.</p>
-                </div>
+
                 <div class="row">
                     <div class="col-6">
                         <div class="inscriptionTitle">
@@ -140,18 +131,22 @@
                     </div>
                 </div>
             </div>
-            <div class="signForm">
-                {#                Fait le : #}
-                {#                Signature :#}
-
+            <div class="inscriptionTitle">
+                <span>Informations</span>
+            </div>
+            <div>
+                <p class="col-12 control-label">Je reconnais avoir pris connaissance du règlement du PMT et je
+                    m'engage à le respecter.<br/>
+                    L'inscription au PMT comprend l'adhésion à l'assurance individuelle AXA pour la catégorie
+                    1.<br/>
+                    J'ai été informé des caractéristiques des options complémentaires.</p>
             </div>
             <div class="btn_footer">
-                <button class="btn btn-info">{{ button_label|default('Save') }}</button>
+                <button class="btn btn-info">{{ button_label|default('S\'inscrire') }}</button>
                 {#            <form>#}
                 {#                <input id="impression" name="impression" type="button" value="Imprimer" class="btn btn-info"/>#}
                 {#            </form>#}
             </div>
         </div>
     </div>
-    {{ form_end(inscriptionForm) }}
 {% endblock %}
