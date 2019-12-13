@@ -9,7 +9,7 @@
         <div class="card-header"><h4>Bureau</h4></div>
             <div class="card-body">
                 <ul>
-                    {% for userAdmin in userAdmins %}
+                   {% for userAdmin in userAdmins %}
                             <li>{{ userAdmin.firstname }} {{ userAdmin.lastname|upper }}</li>
                     {% endfor %}
                 </ul>
@@ -20,7 +20,7 @@
             <div class="card-body">
                 <ul>
                     {% for userMonitor in userMonitors %}
-                        <li>{{ userMonitor.firstname }} {{ userMonitor.lastname|upper }}</li>
+                        <li>{{ userMonitor.firstname }}  {{ userMonitor.lastname|upper }}</li>
                     {% endfor %}
                 </ul>
             </div>
