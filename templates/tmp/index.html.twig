@@ -12,17 +12,15 @@
 
     <div class="container-fluid">
         <div class="row justify-content-around mb-5">
-            <div class="card col-12 col-lg-3 mt-4 p-0 card-accueil">
-                <div class="cardBody">
-                    <a style="text-decoration:none" href="#">
-                        <div class="card-header"><h5 class="cardTitle">ACTIVITES</h5></div>
-                    </a>
-                    <p class="cardText">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                <div class="card col-12 col-lg-3 mt-4 p-0 card-accueil">
+                    <a style="text-decoration:none" href="{{ path('activity_index') }}"><div class="cardBody">
+                        <div class="card-header"><h5 class="cardTitle">ACTIVITES</h5></div></a>
+                        <p class="cardText">Some quick example text to build on the card title and make up the bulk of the
+                            card's content.</p>
+                    </div>
+                    <img src="../img/activite_piscine.jpg" class="card-img-bottom" alt="...">
                 </div>
-                <img src="../img/activite_piscine.jpg" class="card-img-bottom" alt="...">
 
-            </div>
 
             <div class="card col-12 col-lg-3 mt-4 p-0 card-accueil">
                 <img src="../img/Equipe_resized.jpg" class="card-img-top" alt="...">
@@ -50,12 +48,12 @@
 
         <div class="row justify-content-around mb-5">
             <div class="card  col-12 col-lg-3 mt-4 p-0 card-accueil">
-                <img src="../img/Equipe.jpg" class="card-img-top" alt="equipe_bureau">
-                <div class="cardBody mb-5"><p class="cardText">Some quick example text to build on the card title and make up
-                        the bulk of the card's content.</p></div>
-                <a style="text-decoration:none" href="{{ path('pmt_showTeam') }}">
-                    <div class="card-footer"><h5 class="cardTitle">MEMBRE BUREAU</h5></div>
-                </a>
+
+                    <img src="../img/Equipe.jpg" class="card-img-top" alt="equipe_bureau">
+                    <div class="cardBody mb-5"><p class="cardText">Some quick example text to build on the card title and make up
+                            the bulk of the card's content.</p></div>
+                    <a style="text-decoration:none" href="{{ path('pmt_showTeam') }}">
+                    <div class="card-footer"><h5 class="cardTitle">MEMBRE BUREAU</h5></div></a>
             </div>
 
             <div class="card col-12 col-lg-3 mt-4 p-0 card-accueil">
