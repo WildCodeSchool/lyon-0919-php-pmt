@@ -17,4 +17,3 @@ $(document)
         $('[data-toggle="popover"]')
             .popover();
     });
-

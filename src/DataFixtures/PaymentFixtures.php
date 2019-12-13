@@ -8,8 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class PaymentFixtures extends Fixture
 {
-    const PAYMENTS = ['chèque', 'chèque vacances', 'virement', 'espèce'];
-    const INSURANCE = ['loisir 1', 'loisir 2', 'loisir 3', 'loisir 4'];
+    const PAYMENTS = ['Chèque', 'Chèque vacances', 'Virement', 'Espèce'];
 
     public function load(ObjectManager $manager)
     {
@@ -18,12 +17,7 @@ class PaymentFixtures extends Fixture
             $typePayment->setTypePayment($payment);
             $manager->persist($typePayment);
         }
-//
-//        foreach (self::INSURANCE as $insurance) {
-//            $typeInsurance = new Payment();
-//            $typeInsurance->setInsurance($insurance);
-//            $manager->persist($typeInsurance);
-//        }
+
         $manager->flush();
     }
 }
