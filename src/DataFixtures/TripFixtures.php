@@ -13,7 +13,7 @@ class TripFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('fr_FR');
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 11; $i++) {
             $trip = new Trip();
             $type = new TypeTrip();
             $type->setName($faker->domainWord);
@@ -27,9 +27,14 @@ class TripFixtures extends Fixture
             $trip->setUpdatedAt($faker->dateTimeThisYear);
             $trip->setNbMonitor($faker->randomDigit);
             $trip->setNbDiver($faker->numberBetween(0, 35));
+            $trip->setPicture($this->getReference('trip'. $i));
             $manager->persist($trip);
             $manager->persist($type);
         }
         $manager->flush();
+    }
+    public function getDependencies()
+    {
+        return [PicturesFixtures::class];
     }
 }
