@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Trip;
 use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +25,12 @@ class AdherentController extends AbstractController
         /** @var \App\Entity\User $user */
         $userLogin = $this->getUser();
 
+        //on recupere la liste des sorties
+        $trips = $this->getDoctrine()
+            ->getRepository(Trip::class)
+            ->findAll();
+
+
 //        Gestion du form de mise à jour des infos de l'adherent
         $form = $this->createForm(UserType::class, $userLogin);
         $form->handleRequest($request);
@@ -37,6 +44,7 @@ class AdherentController extends AbstractController
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,
             'form' => $form,
+            'trips' => $trips
         ]);
     }
 }
