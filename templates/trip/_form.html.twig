@@ -1,39 +1,39 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {{ form_start(form) }}
-<div class="container col-12 col-md-6">
+<div class="container">
     <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
             {{ form_label (form.name, ' Nom :') }}
             {{ form_widget(form.name) }}
             {{ form_label (form.location, ' Lieux :') }}
             {{ form_widget(form.location) }}
         </div>
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
             {{ form_label (form.typeTrip, ' Type de sortie :') }}
             {{ form_widget(form.typeTrip) }}
             {{ form_label (form.price, ' Prix :') }}
             {{ form_widget(form.price) }}
         </div>
-        <div class="col-6 col-md-4">
+        <div class="col-12 col-md-3">
             {{ form_label (form.dateStart, ' Début :') }}
             {{ form_widget(form.dateStart) }}
-        </div>
-        <div class="col-6 col-md-4">
             {{ form_label (form.dateEnd, ' Fin :') }}
             {{ form_widget(form.dateEnd) }}
         </div>
-        <div class="col-8 col-md-4">
+        <div class="col-12 col-md-3">
+            {{ form_row(form.imageFile) }}
+        </div>
+        <div class="col-12 col-md-6">
             {{ form_label (form.nbDiver, 'Nombre de plongeur maximum : ') }}
             {{ form_widget(form.nbDiver) }}
             {{ form_label (form.nbMonitor, 'Nombre de moniteur: ') }}
             {{ form_widget(form.nbMonitor) }}
 
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-12">
             {{ form_label (form.description, ' Description :') }}
             {{ form_widget(form.description) }}
         </div>
-        <div>{{ form_row(form.imageFile) }}</div>
     </div>
     <button class="btn-light float-right">{{ button_label|default('Sauvegarder') }}</button>
 </div>

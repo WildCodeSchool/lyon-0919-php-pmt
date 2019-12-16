@@ -3,12 +3,18 @@
 {% block title %}Hello Admin!{% endblock %}
 {% block body %}
 
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-4">Bonjour admin</h1>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('pmtindex') }}" role="button">Retour au site</a>
+                <a class="btn btn-primary btn-lg" href="{{ path('trip_index') }}" role="button">Liste des sorties</a>
+                <a class="btn btn-primary btn-lg" href="{{ path('trip_new') }}" role="button">Ajouter une Sortie</a>
+                <a class="btn btn-primary btn-lg" href="{{ path('pmtindex') }}" role="button">Liste des membres</a>
+                <a class="btn btn-primary btn-lg" href="" role="button">Créer un  membre</a>
+            </p>
+        </div>
 
-    <div class="jumbotron">
-        <h1 class="display-4">Bonjour admin</h1>
-        <hr class="my-4">
-        <p class="lead">
-            <a class="btn btn-primary btn-lg" href="{{ path('pmtindex') }}" role="button">Retour au site</a>
-        </p>
     </div>
 {% endblock %}
