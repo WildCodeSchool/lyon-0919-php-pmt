@@ -119,30 +119,9 @@
 
                             </div>
 
-                            {#                                    affichage de la zone de telechargement des docs #}
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                 aria-labelledby="nav-profile-tab">
-{#                                TODO ajouter liste des docs à télécharger en plus de ceux du menbres #}
-                                {% if user.inscriptions is empty  %}
-                                    <div class="mt-2">Aucun document disponible ( à revoir si besoin) </div>
-                                {% else %}
-                                    {% for inscr in user.inscriptions %}
-    {#                                lien vers le téléchargemetn des docs uploadé par les menbres#}
-                                    <div class="mt-2">Téléchargement du réglement intérieur</div>
-                                    <a href="{{ inscr.internalProcedure }}">Télécharger</a>
-
-                                    <div class="mt-2">Téléchargement de votre fiche inscription</div>
-                                    <a href="{{ inscr.inscriptionSheet }}"> Télécharger</a>
-
-                                    <div class="mt-2">Téléchargement de votre certificat médicale</div>
-                                    <a href="{{ inscr.medicalCertificate }}"> Télécharger</a>
-                                    {% endfor %}
-                                {% endif %}
-                            </div>
-
                             {# affichage de la listes des sorties #}
                             <div class="tab-pane fade" id="nav-contact" role="tabpanel"
-                                 aria-labelledby="nav-contact-tab">
+                            aria-labelledby="nav-contact-tab">
                                 <h4 class="mt-3"><strong>Listes des sorties disponibles:</strong></h4>
                                 {#                                         ajout  des sorties une par une : suelement celle en cours#}
                                 {% for trip in trips %}
@@ -165,26 +144,45 @@
                                                     <p class="card-text"><small
                                                                 class="text-muted">du {{ trip.dateStart|date("d/m/Y") }}
                                                             au {{ trip.dateEnd|date("d/m/Y") }}</small></p>
-
                                                 </div>
                                             </div>
                                         </div>
                                         {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                         on renvoi la validation de l'inscription #}
                                         <div class="card-footer bg-transparent border-success">
-
-                                            <form>
+                                            <form method="POST">
+                                                <input hidden name="user" value="{{ user.id }}"></input>
+                                                <input hidden name="trip" value="{{ trip.id }}"></input>
                                                 <button type="submit" class="btn btn-primary">M'inscrire
                                                 </button>
                                             </form>
-
                                         </div>
                                     </div>
 
                                 {% endfor %}
                             </div>
 
+                            {#                                    affichage de la zone de telechargement des docs #}
+{#                            TODO faire afficahge des lien à télécharge: 2 colonnes doc à uploader et doc en download#}
+                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
+                                 aria-labelledby="nav-profile-tab">
+                                {#                                TODO ajouter liste des docs à télécharger en plus de ceux du menbres #}
+                                {% if user.inscriptions is empty  %}
+                                    <div class="mt-2">Aucun document disponible ( à revoir si besoin) </div>
+                                {% else %}
+                                    {% for inscr in user.inscriptions %}
+                                        {#                                lien vers le téléchargemetn des docs uploadé par les menbres#}
+                                        <div class="mt-2">Téléchargement du réglement intérieur</div>
+                                        <a href="{{ inscr.internalProcedure }}">Télécharger</a>
 
+                                        <div class="mt-2">Téléchargement de votre fiche inscription</div>
+                                        <a href="{{ inscr.inscriptionSheet }}"> Télécharger</a>
+
+                                        <div class="mt-2">Téléchargement de votre certificat médicale</div>
+                                        <a href="{{ inscr.medicalCertificate }}"> Télécharger</a>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
 
                         </div>
                     </div>
@@ -196,7 +194,8 @@
     </div>
 
 
-    <a href="{{ path('user_index') }}">back to list</a>
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+{% endblock %}
 
+{% block footer %}
+    {% include '_footer.html.twig' %}
 {% endblock %}

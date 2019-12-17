@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdherentController extends AbstractController
 {
     /**
-     * @Route("/account", name="account_index", methods={"GET"})
+     * @Route("/account", name="account_index", methods={"GET" , "POST"})
      */
     public function show(Request $request): Response
     {
@@ -29,7 +29,6 @@ class AdherentController extends AbstractController
         $trips = $this->getDoctrine()
             ->getRepository(Trip::class)
             ->findAll();
-
 
 //        Gestion du form de mise à jour des infos de l'adherent
         $form = $this->createForm(UserType::class, $userLogin);
