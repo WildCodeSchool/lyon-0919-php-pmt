@@ -150,15 +150,29 @@
                                         {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                         on renvoi la validation de l'inscription #}
                                         <div class="card-footer bg-transparent border-success">
-                                            <form method="POST">
-                                                <input hidden name="user" value="{{ user.id }}"></input>
-                                                <input hidden name="trip" value="{{ trip.id }}"></input>
-                                                <button type="submit" class="btn btn-primary">M'inscrire
-                                                </button>
-                                            </form>
+{#                                            <form method="POST">#}
+{#
+{#                                                <button type="submit" class="btn btn-primary">M'inscrire#}
+{#                                                </button>#}
+{#                                            </form>#}
+{#                                            creation du collapse de l'insription form participant Form2 de la page #}
+                                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#{{ 'collapse' ~ trip.id}}" aria-expanded="false" aria-controls="{{ 'collapse' ~ trip.id}}">
+                                                M'inscrire à la sortie
+                                            </button>
+                                            <div class="collapse" id="{{ 'collapse' ~ trip.id}}">
+                                                <div class="card card-body">
+{#                                                    afficahge form de participation #}
+                                                    <div class="container">
+                                                        {% set form2 = formObject.createView %}
+                                                        {{ form_start(form2) }}
+{#                                                            <input hidden name="trip" value="{{ trip.id }}">#}
+                                                        {{ form_widget(form2.trip, {'value' : trip.id }) }}
+                                                            <button type="submit" class="btn btn-primary">M'inscrire</button>
+                                                        {{ form_end(form2) }}
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-
                                 {% endfor %}
                             </div>
 
