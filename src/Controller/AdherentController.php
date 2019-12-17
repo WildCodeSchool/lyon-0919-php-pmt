@@ -13,6 +13,8 @@ class AdherentController extends AbstractController
 {
     /**
      * @Route("/account", name="account_index", methods={"GET"})
+     * @param Request $request
+     * @return Response
      */
     public function show(Request $request): Response
     {
