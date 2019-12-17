@@ -1,0 +1,14 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion des documents{% endblock %}
+
+{% block body %}
+    <h1> Gestion de documents</h1>
+    {{ form_start(form) }}
+    <div class="container">
+        {{ form_row(form.name) }}
+        <button class="btn-light float-right">{{ button_label|default('Sauvegarder') }}</button>
+    </div>
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -15,7 +15,7 @@ class AppExtension extends AbstractExtension
 
     public function getUrlFilter($url): string
     {
-        if (!preg_match("/https?:\/\/~/", $url)) {
+        if (!preg_match("/https?\/\/+/", $url)) {
             $url = "/uploads/images/" . $url;
         }
         return $url;
