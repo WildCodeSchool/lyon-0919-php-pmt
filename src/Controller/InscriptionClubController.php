@@ -2,10 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\Document;
 use App\Entity\Inscription;
 use App\Entity\Level;
 use App\Form\InscriptionClubType;
 use App\Entity\User;
+use App\Repository\DocumentRepository;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -58,27 +60,23 @@ class InscriptionClubController extends AbstractController
 
     /**
      * @Route("/pdf", name="pdf")
-     * @param Request $request
-     * @return
+     * @return void
      */
-    public function pdfAction(Request $request)
+    public function pdfAction()
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // returns your User object, or null if the user is not authenticated
-        // use inline documentation to tell your editor your exact User class
-        /** @var \App\Entity\User $user */
         $userLogin = $this->getUser();
 
-//        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['isAdmin' => null]);
-//
-//        $inscriptionForm = $this->createForm(InscriptionClubType::class, null, ['user' => $user]);
-//        $inscriptionForm->handleRequest($request);
-//        $data = $inscriptionForm->getData();
-        dd($userLogin);
+        $documents = $this->getDoctrine()
+            ->getRepository(Document::class)
+            ->findAll();
+
+//        dd($userLogin);
 
         $template = $this->renderView('inscription_club/pdf.html.twig', [
-            'inscriptionForm' => $inscriptionForm->createView(),
+            'userLogin' => $userLogin,
+            'documents' => $documents,
         ]);
 
         $html2pdf = new PDF();
