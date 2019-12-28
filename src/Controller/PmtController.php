@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Level;
 
 /**
  *
@@ -27,19 +28,20 @@ class PmtController extends AbstractController
         return $this->render('tmp/index.html.twig');
     }
 
-    /**
-     * @Route("team", name="_team")
+     /**
+     * @Route("team", name="_showTeam")
      * @return Response
      */
     public function showTeam(): Response
     {
         $userAdmins = $this->getDoctrine()
             ->getRepository(User::class)
-            ->findBy(['isAdmin'=>true]);
+            ->findBy(['isAdmin' => true]);
 
         $userMonitors = $this->getDoctrine()
             ->getRepository(User::class)
-            ->findBy(['isMonitor'=>true]);
+            ->findBy(['isMonitor' => true]);
+
 
 
         return $this->render('tmp/team.html.twig', [
@@ -47,4 +49,7 @@ class PmtController extends AbstractController
             'userMonitors' => $userMonitors
         ]);
     }
+
+
+
 }

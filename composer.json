@@ -7,7 +7,6 @@
         "ext-iconv": "*",
         "ext-intl": "*",
         "alexandresalome/mailcatcher": "^1.2",
-        "dompdf/dompdf": "^0.8.3",
         "fzaninotto/faker": "^1.9",
         "gedmo/doctrine-extensions": "^2.4",
         "phpmd/phpmd": "^2.6",
@@ -34,7 +33,8 @@
         "symfony/web-link": "4.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.3.*",
-        "twbs/bootstrap": "4.0.0"
+        "twbs/bootstrap": "4.0.0",
+        "twig/extensions": "^1.5"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.3",
