@@ -126,7 +126,7 @@
                             <span class="prg">Documents à fournir </span>
                         </div>
                         <div class="col-12">
-                            {{ form_widget(inscriptionForm.document) }}</li>
+                            {{ form_widget(inscriptionForm.document) }}
                         </div>
                     </div>
                 </div>
@@ -143,10 +143,9 @@
             </div>
             <div class="btn_footer">
                 <button class="btn btn-info">{{ button_label|default('S\'inscrire') }}</button>
-                {#            <form>#}
-                {#                <input id="impression" name="impression" type="button" value="Imprimer" class="btn btn-info"/>#}
-                {#            </form>#}
+                <a href="{{ path ('pdf') }}" class="btn btn-info">{{ button_label|default('Générer un pdf') }}</a>
             </div>
         </div>
     </div>
+    {{ form_end(inscriptionForm) }}
 {% endblock %}

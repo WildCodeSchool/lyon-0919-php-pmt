@@ -1,0 +1,105 @@
+<style type="text/css">
+    <!--
+    .container {
+        width: 200mm;
+    }
+    p{
+        line-height: 20px;
+    }
+    -->
+</style>
+
+<div class="container">
+    <div class="title_p" style="text-align: left">
+        <div style="margin-left: 200px; text-align: center; width: 300px">
+            <h1>Le plongeur masqué de Trévoux</h1>
+            <p>P.M.T 636 chemin d'Arras TREVOUX</p>
+        </div>
+        <img src="img/Le-Plongeur-Masque.png" style="width: 150px; position: absolute; margin-top: 20px">
+    </div>
+    <div>
+        <h3>Bulletin d'inscription -
+            Saison
+            {% for inscription in userLogin.inscriptions %}
+                {{ inscription.inscriptionYear }}
+            {% endfor %}
+        </h3>
+    </div>
+
+    <div class="contact_container">
+        <div class="inscriptionTitle">
+            <h3>Informations Adhérent</h3>
+        </div>
+        <p>Nom : {{ userLogin.lastname }}<br/>
+        Prenom : {{ userLogin.firstname }}<br/>
+        Email : {{ userLogin.email }}<br/>
+        Téléphone fixe : {{ userLogin.homePhone }}<br/>
+        Mobile : {{ userLogin.mobilePhone }}<br/>
+        Date de naissance : {{ userLogin.birthday|date('Y-m-d') }}<br/>
+        Adresse : {{ userLogin.address }}<br/>
+        Code Postal : {{ userLogin.zipCode }}<br/>
+        Ville : {{ userLogin.city }}<br/>
+        Niveau de plongée :
+            {% for levelName in userLogin.level %}
+                {{ levelName.name }}
+            {% endfor %}
+        <br/>
+        Commentaires : {{ userLogin.comment }}</p>
+    </div>
+
+
+    <div class="row">
+        <div class="inscriptionTitle">
+            <h3>Choix des adhésions : </h3>
+        </div>
+
+        <p>Choix du type d'assurance :
+            {% for inscription in userLogin.inscriptions %}
+                {% for insurance in inscription %}
+                    {{ insurance['name'] }} : {{ insurance.price }}
+                {% endfor %}
+            {% endfor %}
+        </p>
+        <p>Choix du type d'adhésion :
+            {% for inscription in userLogin.inscriptions %}
+                {% for adhesionPrice in inscription %}
+                    {{ adhesionPrice['name'] }} : {{ adhesionPrice.price }}
+                {% endfor %}
+            {% endfor %}
+        </p>
+    </div>
+
+
+    <div class="col-6">
+        <div class="inscriptionTitle">
+            <h3 class="prg">Documents à fournir </h3>
+        </div>
+        <div class="col-12">
+            <ul>
+                {% for document in documents %}
+                    <li>{{ document.name }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="inscriptionTitle">
+        <h3>Informations complémentaires</h3>
+    </div>
+    <div>
+        <p>Je reconnais avoir pris connaissance du règlement du PMT et je
+            m'engage à le respecter.<br/>
+            L'inscription au PMT comprend l'adhésion à l'assurance individuelle AXA pour la catégorie
+            1.<br/>
+            J'ai été informé des caractéristiques des options complémentaires.</p>
+        <p>
+            Fait à :
+        </p>
+        <p>
+            Le : {{ userLogin.updateAt|date('Y-m-d') }}
+        </p>
+        <p>Signature de l'adhérent : </p>
+    </div>
+</div>
+
+
