@@ -90,6 +90,11 @@ class Trip
      */
     private $participant;
 
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
+
     public function __construct()
     {
         $this->participant = new ArrayCollection();

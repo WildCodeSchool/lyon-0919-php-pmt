@@ -28,6 +28,11 @@ class TypeTrip
      */
     private $trip;
 
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
+
     public function __construct()
     {
         $this->trip = new ArrayCollection();

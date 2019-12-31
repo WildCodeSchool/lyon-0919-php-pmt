@@ -26,6 +26,11 @@ class Picture
      */
     private $trip;
 
+    public function __toString(): string
+    {
+        return $this->getId();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
