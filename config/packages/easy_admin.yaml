@@ -142,11 +142,18 @@ easy_admin:
             list:
                 title: 'Liste des photos'
                 fields:
-                    - { property: 'url', type: 'image'}
+                    - name
+                    - { property: 'imageFile', type: 'image', base_path: '%app.path.gallery_images%'}
+            show:
+                title: 'Liste des photos'
+                fields:
+                    - name
+                    - { property: 'imageFile', type: 'image', base_path: '%app.path.gallery_images%'}
             form:
                 title: 'Ajouter une photo'
                 fields:
-                    - { property: 'url', type: 'file_upload' }
+                    - name
+                    - { property: 'imageFile', type: 'vich_image' }
         Payment:
             class: App\Entity\Payment
             label: 'Types de paiement'

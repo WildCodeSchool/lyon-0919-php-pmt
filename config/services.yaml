@@ -6,6 +6,8 @@
 parameters:
     locale: 'fr'
     pictures_directory: '%kernel.project_dir%/public/uploads/images'
+    app.path.gallery_images: /uploads/images/gallery
+
 services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
