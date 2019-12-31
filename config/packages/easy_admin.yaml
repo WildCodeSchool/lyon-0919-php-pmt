@@ -23,7 +23,6 @@ easy_admin:
         max_results: 20
 
     entities:
-#        # List the entity class name you want to manage
         Level:
             class: App\Entity\Level
             label: 'Niveaux de plongée'
@@ -132,21 +131,22 @@ easy_admin:
                 title : 'Types de sortie'
                 fields:
                     - name
-            edit :
+            form :
                 title : 'Editer un type de sortie'
                 fields :
                     - name
         Picture:
             class: App\Entity\Picture
             label: 'Photos'
+            actions: ['search', 'delete', 'show']
             list:
                 title: 'Liste des photos'
                 fields:
                     - { property: 'url', type: 'image'}
-            new:
+            form:
                 title: 'Ajouter une photo'
                 fields:
-                    - url
+                    - { property: 'url', type: 'file_upload' }
         Payment:
             class: App\Entity\Payment
             label: 'Types de paiement'
@@ -154,7 +154,7 @@ easy_admin:
                 title: 'Types de paiement'
                 fields:
                     - type_payment
-            edit:
+            form:
                 title: 'Editer un type de paiement'
                 fields:
                     - type_payment
@@ -171,7 +171,7 @@ easy_admin:
                 fields:
                     - name
                     - { property: 'price', type_options: { currency: 'EUR' } }
-            edit:
+            form:
                 title: "Types d'assurance"
                 fields:
                     - name
@@ -181,16 +181,48 @@ easy_admin:
             label: "Status des inscriptions"
             list:
                 title: "Status des inscriptions"
+                fields:
+                    - name
+            form:
+                title: "Editer un status"
+                fields:
+                    - name
         Inscription:
             class: App\Entity\Inscription
             label: 'Inscriptions'
             list:
-                title: 'Inscriptions'
+                title: 'Liste des inscriptions'
+                fields:
+                    - user
+                    - inscription_status
+                    - inscription_year
+                    - internal_procedure
+                    - medical_certificate
+                    - inscription_sheet
+                    - image_right
+            form:
+                title: "Inscription de l'adhérent"
+                fields:
+                    - user
+                    - inscription_status
+                    - inscription_year
+                    - internal_procedure
+                    - medical_certificate
+                    - inscription_sheet
+                    - image_right
         Document:
             class: App\Entity\Document
             label: 'Documents'
             list:
                 title: 'Documents'
+                fields:
+                    - name
+                    - { property: 'path', type: 'image' }
+            form:
+                title: 'Documents'
+                fields:
+                    - name
+                    - { property: 'path', type: 'file_upload' }
         AdhesionPrice:
             class: App\Entity\AdhesionPrice
             label: "Types d'adhésion"

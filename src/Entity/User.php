@@ -137,7 +137,8 @@ class User implements UserInterface, \Serializable
 
     public function __toString(): string
     {
-        return $this->getId();
+        $completeName = $this->getFirstname() . " " . $this->getLastname();
+        return $completeName;
     }
 
     public function __construct()
