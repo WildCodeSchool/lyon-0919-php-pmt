@@ -96,16 +96,7 @@
                     </div>
                 </div>
 
-                <div class="inscriptionTitle">
-                    <span>Informations</span>
-                </div>
-                <div>
-                    <p class="col-12 control-label">Je reconnais avoir pris connaissance du règlement du PMT et je
-                        m'engage à le respecter.<br/>
-                        L'inscription au PMT comprend l'adhésion à l'assurance individuelle AXA pour la catégorie
-                        1.<br/>
-                        J'ai été informé des caractéristiques des options complémentaires.</p>
-                </div>
+
                 <div class="row">
                     <div class="col-6">
                         <div class="inscriptionTitle">
@@ -135,21 +126,24 @@
                             <span class="prg">Documents à fournir </span>
                         </div>
                         <div class="col-12">
-                            {{ form_widget(inscriptionForm.document) }}</li>
+                            {{ form_widget(inscriptionForm.document) }}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="signForm">
-                {#                Fait le : #}
-                {#                Signature :#}
-
+            <div class="inscriptionTitle">
+                <span>Informations</span>
+            </div>
+            <div>
+                <p class="col-12 control-label">Je reconnais avoir pris connaissance du règlement du PMT et je
+                    m'engage à le respecter.<br/>
+                    L'inscription au PMT comprend l'adhésion à l'assurance individuelle AXA pour la catégorie
+                    1.<br/>
+                    J'ai été informé des caractéristiques des options complémentaires.</p>
             </div>
             <div class="btn_footer">
-                <button class="btn btn-info">{{ button_label|default('Save') }}</button>
-                {#            <form>#}
-                {#                <input id="impression" name="impression" type="button" value="Imprimer" class="btn btn-info"/>#}
-                {#            </form>#}
+                <button class="btn btn-info">{{ button_label|default('S\'inscrire') }}</button>
+                <a href="{{ path ('pdf') }}" class="btn btn-info">{{ button_label|default('Générer un pdf') }}</a>
             </div>
         </div>
     </div>

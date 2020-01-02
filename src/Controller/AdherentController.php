@@ -16,7 +16,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdherentController extends AbstractController
 {
     /**
+
      * @Route("/account", name="account_index", methods={"GET" , "POST"})
+     * @param Request $request
+     * @return Response
+
      */
     public function show(Request $request): Response
     {

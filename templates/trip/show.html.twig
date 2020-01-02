@@ -34,7 +34,8 @@
                 {{ trip.nbMonitor }}
             </p>
 
-            <img src="{{ ('/uploads/images/' ~ trip.picture.url) }}">
+                <img src="{{trip.picture.url | getUrlFilter}}">
+
 
             <br>
             <p class="card-text" style="text-align: center"><small class="text-muted"> Sortie crée le :
