@@ -143,17 +143,17 @@ easy_admin:
                 title: 'Liste des photos'
                 fields:
                     - name
-                    - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%'}
+                    - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%'}
             show:
                 title: 'Liste des photos'
                 fields:
                     - name
-                    - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%'}
+                    - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%'}
             form:
                 title: 'Ajouter une photo'
                 fields:
                     - name
-                    - { property: 'imageFile', type: 'vich_image' }
+                    - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%' }
         Payment:
             class: App\Entity\Payment
             label: 'Types de paiement'
