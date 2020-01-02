@@ -1,0 +1,237 @@
+easy_admin:
+    site_name: 'Le Plongeur Masqué de Trévoux'
+    design:
+        brand_color: '#1ABC9C'
+        menu:
+            - { label: 'Membres' }
+            - { entity: 'User', icon: 'user' }
+            - { entity: 'Inscription', icon: 'check-circle' }
+            - { entity: 'InscriptionStatus', icon: 'check-circle' }
+            - { label: 'Les sorties' }
+            - { entity: 'Trip', icon: 'plane' }
+            - { entity: 'Type', icon: 'ship' }
+            - { entity: 'Participant', icon: 'group' }
+            - { label: 'Adhésion / Assurance' }
+            - { entity: 'AdhesionPrice', icon: 'pencil' }
+            - { entity: 'Payment', icon: 'credit-card' }
+            - { entity: 'Insurance', icon: 'balance-scale' }
+            - { label: 'Autres' }
+            - { entity: 'Picture', icon: 'photo' }
+            - { entity: 'Level', icon: 'life-saver' }
+            - { entity: 'Document', icon: 'info' }
+    list:
+        max_results: 20
+
+    entities:
+        Level:
+            class: App\Entity\Level
+            label: 'Niveaux de plongée'
+            list:
+                title: 'Niveaux de plongée'
+                fields:
+                    - order_level
+                    - name
+            edit:
+                title: 'Editer un niveaux de plongée'
+                fields:
+                    - order_level
+                    - name
+        Trip:
+            class: App\Entity\Trip
+            label: 'Sorties'
+            list:
+                title: 'Liste des sorties'
+                fields :
+                    - name
+                    - location
+                    - price
+                    - typeTrip
+                    - { property: 'date_start', type: 'date' }
+                    - { property: 'date_end', type: 'date' }
+                    - description
+                    - nb_diver
+                    - nb_monitor
+            form:
+                title: 'Editer une sortie'
+                fields:
+                    - name
+                    - typeTrip
+                    - location
+                    - price
+                    - { property: 'date_start', type: 'date' }
+                    - { property: 'date_end', type: 'date' }
+                    - description
+                    - nb_diver
+                    - nb_monitor
+        User:
+            class: App\Entity\User
+            label: 'Adhérents au PMT'
+            list:
+                actions: ['edit', 'search', 'delete', 'show']
+                title: 'Liste des adhérents au PMT'
+                fields:
+                    - { property: 'picture', type: 'avatar', is_image_url: 'true', height: 128 }
+                    - { property: 'firstname',  type: 'text' }
+                    - { property: 'lastname',  type: 'text' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'home_phone', type: 'tel' }
+                    - { property: 'mobile_phone', type: 'tel' }
+                    - birthday
+                    - address
+                    - { property: 'zip_code',  type: 'text' }
+                    - city
+                    - comment
+                    - { property: 'is_admin',  type: 'boolean' }
+                    - { property: 'is_monitor',  type: 'boolean' }
+                    - { property: 'is_swim',  type: 'boolean' }
+                    - { property: 'is_diver',  type: 'boolean' }
+                    - { property: 'is_handi',  type: 'boolean' }
+            form:
+                title: 'Editer un adhérent'
+                fields:
+#                    - { property: 'picture', type: 'avatar', is_image_url: 'true', height: 128 }
+                    - { property: 'firstname',  type: 'text' }
+                    - { property: 'lastname',  type: 'text' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'home_phone', type: 'tel' }
+                    - { property: 'mobile_phone', type: 'tel' }
+                    - birthday
+                    - address
+                    - { property: 'zip_code',  type: 'text' }
+                    - city
+                    - comment
+                    - { property: 'is_admin',  type: 'text' }
+                    - { property: 'is_monitor',  type: 'text' }
+                    - { property: 'is_swim',  type: 'text' }
+                    - { property: 'is_diver',  type: 'text' }
+                    - { property: 'is_handi',  type: 'text' }
+            show:
+                title: "Profil de l'adhérent"
+                fields:
+                    - { property: 'picture', type: 'avatar', is_image_url: 'true', height: 128 }
+                    - firstname
+                    - lastname
+                    - { property: 'email', type: 'email' }
+                    - { property: 'home_phone', type: 'tel' }
+                    - { property: 'mobile_phone', type: 'tel' }
+                    - birthday
+                    - address
+                    - zip_code
+                    - city
+                    - comment
+                    - { property: 'is_admin',  type: 'boolean' }
+                    - { property: 'is_monitor',  type: 'boolean' }
+                    - { property: 'is_swim',  type: 'boolean' }
+                    - { property: 'is_diver',  type: 'boolean' }
+                    - { property: 'is_handi',  type: 'boolean' }
+        Type :
+            class : App\Entity\TypeTrip
+            label : 'Types de sortie'
+            list :
+                title : 'Types de sortie'
+                fields:
+                    - name
+            form :
+                title : 'Editer un type de sortie'
+                fields :
+                    - name
+        Picture:
+            class: App\Entity\Picture
+            label: 'Photos'
+            actions: ['search', 'delete', 'show']
+            list:
+                title: 'Liste des photos'
+                fields:
+                    - name
+                    - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%'}
+            show:
+                title: 'Liste des photos'
+                fields:
+                    - name
+                    - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%'}
+            form:
+                title: 'Ajouter une photo'
+                fields:
+                    - name
+                    - { property: 'imageFile', type: 'vich_image', base_path: '%app.path.product_images%' }
+        Payment:
+            class: App\Entity\Payment
+            label: 'Types de paiement'
+            list:
+                title: 'Types de paiement'
+                fields:
+                    - type_payment
+            form:
+                title: 'Editer un type de paiement'
+                fields:
+                    - type_payment
+        Participant:
+            class: App\Entity\Participant
+            label: 'Participants aux sorties'
+            list:
+                title: 'Liste des participants aux sorties'
+        Insurance:
+            class: App\Entity\Insurance
+            label: "Types d'assurance"
+            list:
+                title: "Types d'assurance"
+                fields:
+                    - name
+                    - { property: 'price', type_options: { currency: 'EUR' } }
+            form:
+                title: "Types d'assurance"
+                fields:
+                    - name
+                    - { property: 'price', type_options: { currency: 'EUR' } }
+        InscriptionStatus:
+            class: App\Entity\InscriptionStatus
+            label: "Status des inscriptions"
+            list:
+                title: "Status des inscriptions"
+                fields:
+                    - name
+            form:
+                title: "Editer un status"
+                fields:
+                    - name
+        Inscription:
+            class: App\Entity\Inscription
+            label: 'Inscriptions'
+            list:
+                title: 'Liste des inscriptions'
+                fields:
+                    - user
+                    - inscription_status
+                    - inscription_year
+                    - internal_procedure
+                    - medical_certificate
+                    - inscription_sheet
+                    - image_right
+            form:
+                title: "Inscription de l'adhérent"
+                fields:
+                    - user
+                    - inscription_status
+                    - inscription_year
+                    - internal_procedure
+                    - medical_certificate
+                    - inscription_sheet
+                    - image_right
+        Document:
+            class: App\Entity\Document
+            label: 'Documents'
+            list:
+                title: 'Documents'
+                fields:
+                    - name
+                    - { property: 'path', type: 'image' }
+            form:
+                title: 'Documents'
+                fields:
+                    - name
+                    - { property: 'path', type: 'file_upload' }
+        AdhesionPrice:
+            class: App\Entity\AdhesionPrice
+            label: "Types d'adhésion"
+            list:
+                title: "Types d'adhésion"

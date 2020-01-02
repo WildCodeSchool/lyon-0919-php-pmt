@@ -76,6 +76,11 @@ class Inscription
      */
     private $adhesionPrice;
 
+    public function __toString(): string
+    {
+        return $this->getstatus();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

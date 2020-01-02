@@ -135,6 +135,12 @@ class User implements UserInterface, \Serializable
      */
     private $password;
 
+    public function __toString(): string
+    {
+        $completeName = $this->getFirstname() . " " . $this->getLastname();
+        return $completeName;
+    }
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -513,5 +519,13 @@ class User implements UserInterface, \Serializable
             $this->email,
             $this->password
             ) = unserialize($string, ['allowed_classes' => false]);
+    }
+
+    /**
+     * @return Collection|Participant[]
+     */
+    public function getParticipants(): Collection
+    {
+        return $this->participants;
     }
 }
