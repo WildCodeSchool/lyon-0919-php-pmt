@@ -33,6 +33,11 @@ class InscriptionStatus
      */
     private $participant;
 
+    public function __toString(): string
+    {
+        return $this->getname();
+    }
+
     public function __construct()
     {
         $this->inscription = new ArrayCollection();

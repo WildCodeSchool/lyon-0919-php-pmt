@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 class LevelFixtures extends Fixture
 {
     const LEVELS = [
+        0 => 'Débutant',
         1 => 'N1',
         2 => 'PE40',
         3 => 'PA20',

@@ -33,6 +33,11 @@ class AdhesionPrice
      */
     private $inscription;
 
+    public function __toString(): string
+    {
+        return $this->getId();
+    }
+
     public function __construct()
     {
         $this->inscription = new ArrayCollection();
