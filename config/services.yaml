@@ -30,3 +30,5 @@ services:
     # please note that last definitions always *replace* previous ones
     app.html2pdf:
         class: App\Service\HTML2PDF
+
+
