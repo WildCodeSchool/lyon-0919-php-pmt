@@ -49,7 +49,4 @@ class PmtController extends AbstractController
             'userMonitors' => $userMonitors
         ]);
     }
-
-
-
 }
