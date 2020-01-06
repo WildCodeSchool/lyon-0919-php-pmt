@@ -16,11 +16,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdherentController extends AbstractController
 {
     /**
-
      * @Route("/account", name="account_index", methods={"GET" , "POST"})
      * @param Request $request
      * @return Response
-
      */
     public function show(Request $request): Response
     {
@@ -53,16 +51,10 @@ class AdherentController extends AbstractController
         }
 
         if ($form2->isSubmitted() && $form2->isValid()) {
-            $inscriptionStatuts = $this->getDoctrine()
-                ->getRepository(InscriptionStatus::class)
-                ->findOneBy(['name'=> 'Démarrage']);
-
             $entityManager = $this->getDoctrine()->getManager();
-            $participant->setUser($userLogin);
 //            TODO : changer le status si en attente ou inscription direct
             $participant->setStatus('inscription non validée');
-            $participant->setInscriptionStatus($inscriptionStatuts);
-
+            $participant->setUser($userLogin);
             $entityManager->persist($participant);
             $entityManager->flush();
         }
@@ -70,7 +62,7 @@ class AdherentController extends AbstractController
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,
             'form' => $form,
-            'formObject'=> $form2,
+            'formObject' => $form2,
             'trips' => $trips
         ]);
     }
