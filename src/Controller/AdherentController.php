@@ -67,7 +67,7 @@ class AdherentController extends AbstractController
             $tupleToDelete = $this->getDoctrine()
                 ->getRepository(Participant::class)
                 ->findOneBy(['user' => $userLogin, 'trip' => $participantToDelete->getTrip()]);
-            if($tupleToDelete !=null){
+            if ($tupleToDelete != null) {
                 $entityManager->remove($tupleToDelete);
                 $entityManager->flush();
             }
