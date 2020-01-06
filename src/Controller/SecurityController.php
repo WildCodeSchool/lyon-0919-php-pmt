@@ -82,7 +82,7 @@ class SecurityController extends AbstractController
             $message = (new \Swift_Message('Mot de passe oublié'))
                 ->setFrom('pmt@gmail.com')
                 ->setTo($user->getEmail())
-                ->setBody($this->render(
+                ->setBody($this->renderView(
                     'emails/password.html.twig',
                     ['url' => $url]
                 ), 'text/html');
