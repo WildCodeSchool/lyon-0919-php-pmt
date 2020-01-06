@@ -27,9 +27,9 @@ class ContactNotification
 
     public function notify(Contact $contact)
     {
-        $message = (new Swift_Message('Nouveau email de ' . $contact->getLastname() . " ". $contact->getFirstname()))
+        $message = (new Swift_Message('Nouvel email de ' . $contact->getLastname() . " ". $contact->getFirstname()))
             ->setFrom($contact->getEmail())
-            ->setTo('pamouse@hotmail.fr')
+            ->setTo('pmt@gmail.com')
             ->setReplyTo($contact->getEmail())
             ->setBody($this->renderer->render('emails/contact.html.twig', [
                 'contact' => $contact
