@@ -6,26 +6,28 @@ use Spipu\Html2Pdf\Html2Pdf;
 
 class PDF
 {
-    private $pdf;
+    private $orientation;
+    private $format;
+    private $lang;
+    private $unicode;
+    private $encoding;
+    private $margin;
 
-    public function create()
-    {
-//        $orientation = null,
-//        $format = null,
-//        $lang = null,
-//        $unicode = null,
-//        $encoding = null,
-//        $margin = null
-//    ) {
-        $this->pdf = new PDF();
+    public function __construct(
+        $orientation = null,
+        $format = null,
+        $lang = null,
+        $unicode = null,
+        $encoding = null,
+        $margin = null
+    ) {
+        $this->orientation = $orientation;
+        $this->format = $format;
+        $this->lang = $lang;
+        $this->unicode = $unicode;
+        $this->encoding = $encoding;
+        $this->margin = $margin;
     }
-//            $orientation ? $orientation : $this->orientation,
-//            $format ? $format : $this->format,
-//            $lang ? $lang : $this->lang,
-//            $unicode ? $unicode : $this->unicode,
-//            $encoding ? $encoding : $this->encoding,
-//            $margin ? $margin : $this->margin,
-//        );
 
     public function generatePdf($template)
     {

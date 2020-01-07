@@ -30,7 +30,7 @@ class Payment
 
     public function __toString(): string
     {
-        return $this->getTypePayment();
+        return strval($this->getTypePayment());
     }
 
     public function __construct()
