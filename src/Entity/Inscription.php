@@ -78,7 +78,7 @@ class Inscription
 
     public function __toString(): string
     {
-        return $this->getstatus();
+        return strval($this->getstatus());
     }
 
     public function getId(): ?int
