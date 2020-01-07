@@ -130,10 +130,10 @@
                                 <div class="card mb-3" style="max-width: 100%;">
                                     <div class="row no-gutters">
                                         <div class="col-md-4">
-                                            {% if trip.picture is null %}
+                                            {% if trip is null %}
                                                 <img src="" class="card-img" alt="...">
                                             {% else %}
-                                                <img src="{{ '/uploads/images/' ~ trip.picture.name }}"
+                                                <img src="{{ '/uploads/images/gallery' ~ trip.imageName }}"
                                                      class="card-img" alt="...">
                                             {% endif %}
                                         </div>
@@ -193,10 +193,10 @@
                                     <div class="card mb-3" style="max-width: 100%;">
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
-                                                {% if bookTrip.trip.picture is null %}
+                                                {% if bookTrip.trip is null %}
                                                     <img src="" class="card-img" alt="...">
                                                 {% else %}
-                                                    <img src="{{ '/uploads/images/' ~ bookTrip.trip.picture.name }}"
+                                                    <img src="{{ '/uploads/images/gallery' ~ bookTrip.trip.imageName }}"
                                                          class="card-img" alt="...">
                                                 {% endif %}
                                             </div>

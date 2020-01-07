@@ -2,15 +2,21 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
+ * @Vich\Uploadable
  */
 class Trip
 {
@@ -45,7 +51,7 @@ class Trip
      * @var \DateTime $createdAt
      *
      * @Gedmo\Timestampable(on="create")
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
     /**
@@ -82,9 +88,16 @@ class Trip
     private $typeTrip;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Picture", mappedBy="trip", cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255)
+     * @var string
      */
-    private $picture;
+    private $imageName;
+
+    /**
+     * @Vich\UploadableField(mapping="product_images", fileNameProperty="imageName")
+     * @var file
+     */
+    private $imageFile;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="trip", cascade={"persist", "remove"})
@@ -244,24 +257,6 @@ class Trip
         return $this;
     }
 
-    public function getPicture(): ?Picture
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(?Picture $picture): self
-    {
-        $this->picture = $picture;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newTrip = null === $picture ? null : $this;
-        if ($picture && ($picture->getTrip() !== $newTrip)) {
-            $picture->setTrip($newTrip);
-        }
-
-        return $this;
-    }
-
     /**
      * @return Collection|Participant[]
      */
@@ -289,6 +284,38 @@ class Trip
                 $participant->setTrip(null);
             }
         }
+
+        return $this;
+    }
+
+    /**
+     * @param File|UploadedFile $imageFile
+     * @throws Exception
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }
