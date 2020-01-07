@@ -27,8 +27,10 @@ class InscriptionClubController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request, User $user)
+    public function index(Request $request)
     {
+
+        $user = $this->getUser();
 
         $inscriptionForm = $this->createForm(InscriptionClubType::class, null, ['user' => $user]);
         $inscriptionForm->handleRequest($request);
