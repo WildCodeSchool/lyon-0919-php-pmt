@@ -18,6 +18,7 @@ class PDF
 //        $margin = null
 //    ) {
         $this->pdf = new PDF();
+    }
 //            $orientation ? $orientation : $this->orientation,
 //            $format ? $format : $this->format,
 //            $lang ? $lang : $this->lang,
@@ -25,7 +26,6 @@ class PDF
 //            $encoding ? $encoding : $this->encoding,
 //            $margin ? $margin : $this->margin,
 //        );
-    }
 
     public function generatePdf($template)
     {
