@@ -171,7 +171,6 @@ easy_admin:
         form:
           title: 'Ajouter une photo'
           fields:
-            - { property: 'name', type: 'text'}
             - { property: 'imageFile', type: 'vich_image'}
       Payment:
         class: App\Entity\Payment
@@ -261,12 +260,10 @@ easy_admin:
         form:
           title: 'Documents'
           fields:
-            - name
             - { property: 'documentFile', type: 'vich_file' }
         new:
           title: 'Documents'
           fields:
-            - name
             - { property: 'documentFile', type: 'vich_file' }
       AdhesionPrice:
         class: App\Entity\AdhesionPrice
