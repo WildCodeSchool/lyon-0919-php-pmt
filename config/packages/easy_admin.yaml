@@ -19,6 +19,7 @@ easy_admin:
             - { entity: 'Picture', icon: 'photo' }
             - { entity: 'Level', icon: 'life-saver' }
             - { entity: 'Document', icon: 'info' }
+            - { label: 'Retour au site', route: 'pmtindex', icon: 'reply'}
     list:
         max_results: 20
 

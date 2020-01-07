@@ -49,7 +49,7 @@ class TripController extends AbstractController
                 $destination,
                 $fileName
             );
-            $picture->setUrl($fileName);
+            $picture->setName($fileName);
             $trip->setPicture($picture);
 
             $entityManager = $this->getDoctrine()->getManager();
