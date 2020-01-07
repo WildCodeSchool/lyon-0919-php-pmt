@@ -27,7 +27,7 @@ class Participant
     private $nbCompanion;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participant")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participants")
      */
     private $user;
 
