@@ -30,7 +30,7 @@ class TypeTrip
 
     public function __toString(): string
     {
-        return $this->getName();
+        return strval($this->getName());
     }
 
     public function __construct()
