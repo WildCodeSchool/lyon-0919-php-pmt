@@ -6,9 +6,11 @@ namespace App\Controller;
 use App\Entity\InscriptionStatus;
 use App\Entity\Participant;
 use App\Entity\Trip;
+use App\Entity\User;
 use App\Form\ParticipantType;
 use App\Form\ParticipantCancelType;
 use App\Form\UserType;
+use mysql_xdevapi\Collection;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,7 +29,7 @@ class AdherentController extends AbstractController
 
         // returns your User object, or null if the user is not authenticated
         // use inline documentation to tell your editor your exact User class
-        /** @var \App\Entity\User $user */
+        /** @var User $user */
         $userLogin = $this->getUser();
 
 //        Gestion du form de mise à jour des infos de l'adherent
@@ -73,6 +75,7 @@ class AdherentController extends AbstractController
         }
 
 //        liste des sorties ou le user est inscrits
+        /* @var  Collection|Participant[] $alreadyBookedTrips*/
         $alreadyBookedTrips = $this->getDoctrine()
             ->getRepository(Participant::class)
             ->findBy(['user' => $userLogin]);
@@ -83,9 +86,10 @@ class AdherentController extends AbstractController
             ->findAll();
 
 //        listes des sorties non bookés
-        $bookedTrip=[];
+        $bookedTrip = [];
         $notBookedTrip = [];
 
+        /* @var  Trip $book */
         foreach ($alreadyBookedTrips as $book) {
             $bookedTrip[] = $book->getTrip();
         }
