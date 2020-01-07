@@ -27,16 +27,16 @@ class InscriptionClubController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request, User $user)
     {
-//        TODO : attention à la def de user!!! On prend le premier non null et ca colle pas
-        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['isAdmin' => null]);
 
         $inscriptionForm = $this->createForm(InscriptionClubType::class, null, ['user' => $user]);
         $inscriptionForm->handleRequest($request);
 
         if ($inscriptionForm->isSubmitted() && $inscriptionForm->isValid()) {
             $data = $inscriptionForm->getData();
+
+            $inscription = new Inscription();
 
             $inscription = $data['inscription'];
             $insurance = $data['insurance'];
@@ -64,7 +64,7 @@ class InscriptionClubController extends AbstractController
 
     /**
      * @Route("/pdf", name="pdf")
-     * @return void
+     *
      */
     public function pdfAction()
     {
@@ -83,8 +83,8 @@ class InscriptionClubController extends AbstractController
             'documents' => $documents,
         ]);
 
-        $html2pdf = new PDF();
-        $html2pdf->create('P', 'A4', 'fr', true, 'UTF-8', array(10, 15, 10, 15));
+        $html2pdf = new PDF('P', 'A4', 'fr', true, 'UTF-8', array(10, 15, 10, 15));
+//        $html2pdf->create();
 
         return $html2pdf->generatePdf($template);
     }

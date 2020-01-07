@@ -548,6 +548,8 @@ class User implements UserInterface, \Serializable
      */
     public function setResetToken(?string $resetToken): void
     {
-        $this->resetToken = $resetToken;
+        if ($resetToken != null) {
+            $this->resetToken = $resetToken;
+        }
     }
 }
