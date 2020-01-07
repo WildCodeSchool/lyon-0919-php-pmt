@@ -22,7 +22,7 @@ class PDF
             $lang ? $lang : $this->lang,
             $unicode ? $unicode : $this->unicode,
             $encoding ? $encoding : $this->encoding,
-            $margin ? $margin : $this->margin,
+            $margin ? $margin : $this->margin
         );
     }
 

@@ -2,10 +2,17 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
+ * @Vich\Uploadable
  */
 class Document
 {
@@ -22,9 +29,17 @@ class Document
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @Vich\UploadableField(mapping="product_files", fileNameProperty="name")
+     * @var file
      */
-    private $path;
+    private $documentFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var DateTime
+     */
+    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -36,22 +51,42 @@ class Document
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    public function getPath(): ?string
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->path;
+        return $this->updatedAt;
     }
 
-    public function setPath(string $path): self
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
-        $this->path = $path;
+        $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    /**
+     * @param File|UploadedFile $documentFile
+     * @throws Exception
+     */
+    public function setDocumentFile(?File $documentFile = null): void
+    {
+        $this->documentFile = $documentFile;
+
+        if (null !== $documentFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new DateTimeImmutable();
+        }
+    }
+
+    public function getDocumentFile(): ?File
+    {
+        return $this->documentFile;
     }
 }
