@@ -42,11 +42,6 @@ class Picture
      */
     private $updatedAt;
 
-    /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Trip", inversedBy="picture", cascade={"persist", "remove"})
-     */
-    private $trip;
-
     public function __toString(): string
     {
         return $this->getName();
@@ -55,18 +50,6 @@ class Picture
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTrip(): ?Trip
-    {
-        return $this->trip;
-    }
-
-    public function setTrip(?Trip $trip): self
-    {
-        $this->trip = $trip;
-
-        return $this;
     }
 
     public function getName(): ?string

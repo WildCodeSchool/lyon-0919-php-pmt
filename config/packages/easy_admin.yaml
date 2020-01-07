@@ -46,7 +46,7 @@ easy_admin:
           actions: ['edit', 'search', 'delete', 'show']
           title: 'Liste des sorties'
           fields:
-            - { property: 'picture', type: 'image'}
+            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
             - name
             - location
             - { property: 'price', number: '%0.02f'}
@@ -59,7 +59,7 @@ easy_admin:
         form:
           title: 'Editer une sortie'
           fields:
-            - { property: 'picture'}
+            - { property: 'imageFile', type: 'vich_image'}
             - name
             - typeTrip
             - location
@@ -69,10 +69,11 @@ easy_admin:
             - description
             - { property: 'nb_diver', type: 'text' }
             - { property: 'nb_monitor', type: 'text' }
+#            - { property: 'created_at', type: 'datetime' }
         show:
           title: 'Liste des sorties'
           fields:
-            - { property: 'picture', type: 'image'}
+            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
             - name
             - location
             - { property: 'price', number: '%0.02f'}
@@ -192,7 +193,8 @@ easy_admin:
             - user
             - trip
             - nb_companion
-            - { property: 'type_payment', type: 'text'}
+            - { property: 'payment', type: 'text'}
+            - status
             - inscription_status
         form:
           title: 'Editer un participant à une sortie'
@@ -200,8 +202,9 @@ easy_admin:
             - user
             - trip
             - { property: 'nb_companion', type: 'text'}
-            - { property: 'payment', type: 'text'}
-            - { property: 'inscription_status', type: 'text'}
+            - payment
+            - status
+            - inscriptionStatus
       Insurance:
         class: App\Entity\Insurance
         label: "Types d'assurance"
