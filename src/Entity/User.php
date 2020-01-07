@@ -110,7 +110,7 @@ class User implements UserInterface, \Serializable
     private $level;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Inscription", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Inscription", mappedBy="user", cascade={"persist", "remove"})
      */
     private $inscriptions;
 
