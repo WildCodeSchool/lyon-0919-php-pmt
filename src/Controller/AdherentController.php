@@ -53,7 +53,6 @@ class AdherentController extends AbstractController
         if ($formTripRegistration->isSubmitted() && $formTripRegistration->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
 //            TODO : changer le status si en attente ou inscription direct
-//            TODO: ne pas inscrire  2 fois la meme personne
             $participant->setStatus('inscription non validée');
             $participant->setUser($userLogin);
             $entityManager->persist($participant);
@@ -74,10 +73,9 @@ class AdherentController extends AbstractController
         }
 
 //        liste des sorties ou le user est inscrits
-        $alreadyBookedTrip = $this->getDoctrine()
+        $alreadyBookedTrips = $this->getDoctrine()
             ->getRepository(Participant::class)
             ->findBy(['user' => $userLogin]);
-
 
         //on recupere la liste des sorties
         $trips = $this->getDoctrine()
@@ -85,18 +83,15 @@ class AdherentController extends AbstractController
             ->findAll();
 
 //        listes des sorties non bookés
+        $bookedTrip=[];
         $notBookedTrip = [];
+
+        foreach ($alreadyBookedTrips as $book) {
+            $bookedTrip[] = $book->getTrip();
+        }
+
         foreach ($trips as $trip) {
-            $exist = 0;
-            foreach ($alreadyBookedTrip as $bookTrip) {
-                if ($trip->getId() === $bookTrip->getTrip()->getId()) {
-                    $exist = 1;
-                    break;
-                } else {
-                    $exist = 0;
-                }
-            }
-            if ($exist === 0) {
+            if (!in_array($trip, $bookedTrip)) {
                 $notBookedTrip[] = $trip;
             }
         }
@@ -107,7 +102,7 @@ class AdherentController extends AbstractController
             'formTripRegistration' => $formTripRegistration,
             'formTripCancellation' => $formTripCancellation,
 //            'trips' => $trips,
-            'tripsAlreadyBook' => $alreadyBookedTrip,
+            'tripsAlreadyBook' => $alreadyBookedTrips,
             'tripsNotBooked' => $notBookedTrip
         ]);
     }

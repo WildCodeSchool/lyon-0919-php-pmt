@@ -29,13 +29,13 @@ class Insurance
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\inscription", mappedBy="insurance")
+     * @ORM\OneToMany(targetEntity="App\Entity\Inscription", mappedBy="insurance")
      */
     private $inscription;
 
     public function __toString(): string
     {
-        return $this->getId();
+        return strval($this->getId());
     }
 
     public function __construct()
@@ -73,14 +73,14 @@ class Insurance
     }
 
     /**
-     * @return Collection|inscription[]
+     * @return Collection|Inscription[]
      */
     public function getInscription(): Collection
     {
         return $this->inscription;
     }
 
-    public function addInscription(inscription $inscription): self
+    public function addInscription(Inscription $inscription): self
     {
         if (!$this->inscription->contains($inscription)) {
             $this->inscription[] = $inscription;
@@ -90,7 +90,7 @@ class Insurance
         return $this;
     }
 
-    public function removeInscription(inscription $inscription): self
+    public function removeInscription(Inscription $inscription): self
     {
         if ($this->inscription->contains($inscription)) {
             $this->inscription->removeElement($inscription);
