@@ -5,12 +5,14 @@ namespace App\Entity;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\TripRepository")
@@ -52,12 +54,11 @@ class Trip
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
-
     /**
      * @var \DateTime $updatedAt
      *
      * @Gedmo\Timestampable(on="update")
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
@@ -103,14 +104,20 @@ class Trip
      */
     private $participant;
 
-    public function __toString(): string
+    public function __toString(): ?string
     {
-        return $this->getName();
+        return strval($this->getName());
     }
 
     public function __construct()
     {
         $this->participant = new ArrayCollection();
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new DateTime('now'));
+        } else {
+//            TODO: gestion de la update Date quand on update un trip
+            $this->setUpdatedAt(new DateTime('now'));
+        }
     }
 
     public function getId(): ?int

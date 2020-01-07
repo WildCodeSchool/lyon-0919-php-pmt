@@ -58,12 +58,12 @@ class Document
         return $this;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(\DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
@@ -76,12 +76,11 @@ class Document
      */
     public function setDocumentFile(?File $documentFile = null): void
     {
-        $this->documentFile = $documentFile;
-
         if (null !== $documentFile) {
+            $this->documentFile = $documentFile;
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new DateTimeImmutable();
+            $this->updatedAt = new DateTime('now');
         }
     }
 

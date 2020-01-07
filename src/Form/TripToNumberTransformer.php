@@ -25,9 +25,9 @@ class TripToNumberTransformer implements DataTransformerInterface
     public function transform($trip)
     {
         if (null === $trip) {
-            return '';
+            return -1;
         }
-        return $trip->getId();
+        return intval($trip->getId());
     }
 
     /**
@@ -41,7 +41,7 @@ class TripToNumberTransformer implements DataTransformerInterface
     {
         // no issue number? It's optional, so that's ok
         if (!$tripId) {
-            return;
+            return null;
         }
 
         $trip = $this->entityManager

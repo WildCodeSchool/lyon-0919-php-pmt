@@ -90,15 +90,14 @@
                                         <div class="mt-3">Ma periode d'inscription :
                                             <strong>{{ inscr.inscriptionYear }}</strong></div>
                                         <div class="mt-3">Statut de votre inscription:
-                                            <strong>{{ inscr.inscriptionStatus.name }}</strong></div>
+                                            <strong>{{  inscr.inscriptionStatus is null ? '' : 'A effectuer'  ~ inscr.inscriptionStatus.name }}</strong></div>
                                         <h4 class="mt-3"><strong>Rôle et activités:</strong></h4>
                                         <ul style="list-style: square;">
                                             {% if user.isMonitor %}
-{#                                                TODO modif user.level.name car si level=null renvoi erreur#}
-                                                <li>{{ 'Moniteur: niveau ' ~ user.level.name }}</li>
+                                                <li>{{  user.level is null ? '' : 'Moniteur: niveau '  ~ user.level.name }}</li>
                                             {% endif %}
                                             {% if user.isDiver %}
-                                                <li>{{ 'Adhérent plongeur: niveau ' ~ user.level.name }}</li>
+                                                <li> {{ user.level is null ? '' : 'Adhérent plongeur: niveau ' ~ user.level.name }}</li>
                                             {% endif %}
                                             {% if user.isSwim %}
                                                 <li>{{ 'Adhérent nageur' }}</li>
@@ -216,7 +215,6 @@
                                         {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                         on renvoi la validation de l'inscription #}
                                         <div class="card-footer bg-transparent border-success">
-                                            {#  TODO : gestion de la déinscription à une sortie #}
 {#                                            creation d'un from de déinscription #}
                                             {% set formTripCancel = formTripCancellation.createView %}
                                             {{ form_start(formTripCancel) }}
