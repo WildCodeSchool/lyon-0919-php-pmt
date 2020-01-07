@@ -8,8 +8,14 @@ class PDF
 {
     private $pdf;
 
-    public function create($orientation = null, $format = null, $lang = null, $unicode = null, $encoding = null, $margin = null)
-    {
+    public function create(
+        $orientation = null,
+        $format = null,
+        $lang = null,
+        $unicode = null,
+        $encoding = null,
+        $margin = null
+    ) {
         $this->pdf = new PDF(
             $orientation ? $orientation : $this->orientation,
             $format ? $format : $this->format,

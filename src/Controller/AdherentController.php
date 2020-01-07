@@ -7,6 +7,7 @@ use App\Entity\InscriptionStatus;
 use App\Entity\Participant;
 use App\Entity\Trip;
 use App\Form\ParticipantType;
+use App\Form\ParticipantCancelType;
 use App\Form\UserType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,11 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdherentController extends AbstractController
 {
     /**
-
      * @Route("/account", name="account_index", methods={"GET" , "POST"})
      * @param Request $request
      * @return Response
-
      */
     public function show(Request $request): Response
     {
@@ -31,20 +30,18 @@ class AdherentController extends AbstractController
         /** @var \App\Entity\User $user */
         $userLogin = $this->getUser();
 
-        //on recupere la liste des sorties
-        $trips = $this->getDoctrine()
-            ->getRepository(Trip::class)
-            ->findAll();
-
 //        Gestion du form de mise à jour des infos de l'adherent
         $form = $this->createForm(UserType::class, $userLogin);
         $form->handleRequest($request);
 
         $participant = new Participant();
         //gestion du form de participation à une sortie
-        $form2 = $this->createForm(ParticipantType::class, $participant);
-        $form2->handleRequest($request);
+        $formTripRegistration = $this->createForm(ParticipantType::class, $participant);
+        $formTripRegistration->handleRequest($request);
 
+        $participantToDelete = new Participant();
+        $formTripCancellation = $this->createForm(ParticipantCancelType::class, $participantToDelete);
+        $formTripCancellation->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -52,26 +49,66 @@ class AdherentController extends AbstractController
             $entityManager->flush();
         }
 
-        if ($form2->isSubmitted() && $form2->isValid()) {
-            $inscriptionStatuts = $this->getDoctrine()
-                ->getRepository(InscriptionStatus::class)
-                ->findOneBy(['name'=> 'Démarrage']);
-
+//        si on soumets l'inscription à un trip
+        if ($formTripRegistration->isSubmitted() && $formTripRegistration->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $participant->setUser($userLogin);
 //            TODO : changer le status si en attente ou inscription direct
+//            TODO: ne pas inscrire  2 fois la meme personne
             $participant->setStatus('inscription non validée');
-            $participant->setInscriptionStatus($inscriptionStatuts);
-
+            $participant->setUser($userLogin);
             $entityManager->persist($participant);
             $entityManager->flush();
+        }
+
+//        si on efface l'inscription à un trip
+        if ($formTripCancellation->isSubmitted() && $formTripCancellation->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $tupleToDelete = $this->getDoctrine()
+                ->getRepository(Participant::class)
+                ->findOneBy(['user' => $userLogin, 'trip' => $participantToDelete->getTrip()]);
+            if ($tupleToDelete != null) {
+                $entityManager->remove($tupleToDelete);
+                $entityManager->flush();
+            }
+        }
+
+//        liste des sorties ou le user est inscrits
+        $alreadyBookedTrip = $this->getDoctrine()
+            ->getRepository(Participant::class)
+            ->findBy(['user' => $userLogin]);
+
+
+        //on recupere la liste des sorties
+        $trips = $this->getDoctrine()
+            ->getRepository(Trip::class)
+            ->findAll();
+
+//        listes des sorties non bookés
+        $notBookedTrip = [];
+        foreach ($trips as $trip) {
+            $exist = 0;
+            foreach ($alreadyBookedTrip as $bookTrip) {
+                if ($trip->getId() === $bookTrip->getTrip()->getId()) {
+                    $exist = 1;
+                    break;
+                } else {
+                    $exist = 0;
+                }
+            }
+            if ($exist === 0) {
+                $notBookedTrip[] = $trip;
+            }
         }
 
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,
             'form' => $form,
-            'formObject'=> $form2,
-            'trips' => $trips
+            'formTripRegistration' => $formTripRegistration,
+            'formTripCancellation' => $formTripCancellation,
+//            'trips' => $trips,
+            'tripsAlreadyBook' => $alreadyBookedTrip,
+            'tripsNotBooked' => $notBookedTrip
         ]);
     }
 }
