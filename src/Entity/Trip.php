@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -294,12 +293,12 @@ class Trip
      */
     public function setImageFile(?File $imageFile = null): void
     {
-        $this->imageFile = $imageFile;
 
         if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new DateTimeImmutable();
+            $this->imageFile = $imageFile;
+            $this->updatedAt = new DateTime('now');
         }
     }
 
@@ -315,8 +314,9 @@ class Trip
 
     public function setImageName(?string $imageName): self
     {
-        $this->imageName = $imageName;
-
+        if (null !== $imageName) {
+            $this->imageName = $imageName;
+        }
         return $this;
     }
 }
