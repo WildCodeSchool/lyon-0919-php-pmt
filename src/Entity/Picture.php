@@ -31,9 +31,7 @@ class Picture
 
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="name")
-
      * @var ?File
-
      */
     private $imageFile;
 
@@ -78,17 +76,19 @@ class Picture
 
     public function setName(?string $name): self
     {
-        $this->name = $name;
+        if ($name != null) {
+            $this->name = $name;
+        }
 
         return $this;
     }
 
     /**
-//     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-//     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
-//     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-//     * must be able to accept an instance of 'File' as the bundle will inject one here
-//     * during Doctrine hydration.
+     * //     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * //     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * //     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * //     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * //     * during Doctrine hydration.
      *
      * @param File|UploadedFile $imageFile
      * @throws Exception
@@ -102,7 +102,6 @@ class Picture
 //            // otherwise the event listeners won't be called and the file is lost
 ////            $this->updatedAt = new \DateTimeImmutable();
 //        }
-
     }
 
     public function getImageFile(): ?File
@@ -110,12 +109,12 @@ class Picture
         return $this->imageFile;
     }
 
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTime
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
 
