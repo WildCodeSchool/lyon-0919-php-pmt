@@ -1,28 +1,29 @@
 easy_admin:
-  site_name: 'Le Plongeur Masqué de Trévoux'
-  formats:
-    number: '%0.02f'
-  design:
-    brand_color: '#1ABC9C'
-    menu:
-      - { label: 'Membres' }
-      - { entity: 'User', icon: 'user' }
-      - { entity: 'Inscription', icon: 'check-circle' }
-      - { entity: 'InscriptionStatus', icon: 'check-circle' }
-      - { label: 'Les sorties' }
-      - { entity: 'Trip', icon: 'plane' }
-      - { entity: 'Type', icon: 'ship' }
-      - { entity: 'Participant', icon: 'group' }
-      - { label: 'Adhésion / Assurance' }
-      - { entity: 'AdhesionPrice', icon: 'pencil' }
-      - { entity: 'Payment', icon: 'credit-card' }
-      - { entity: 'Insurance', icon: 'balance-scale' }
-      - { label: 'Autres' }
-      - { entity: 'Picture', icon: 'photo' }
-      - { entity: 'Level', icon: 'life-saver' }
-      - { entity: 'Document', icon: 'info' }
-  list:
-    max_results: 20
+    site_name: 'Le Plongeur Masqué de Trévoux'
+    formats:
+        number: '%0.02f'
+    design:
+        brand_color: '#1ABC9C'
+        menu:
+            - { label: 'Membres' }
+            - { entity: 'User', icon: 'user' }
+            - { entity: 'Inscription', icon: 'check-circle' }
+            - { entity: 'InscriptionStatus', icon: 'check-circle' }
+            - { label: 'Les sorties' }
+            - { entity: 'Trip', icon: 'plane' }
+            - { entity: 'Type', icon: 'ship' }
+            - { entity: 'Participant', icon: 'group' }
+            - { label: 'Adhésion / Assurance' }
+            - { entity: 'AdhesionPrice', icon: 'pencil' }
+            - { entity: 'Payment', icon: 'credit-card' }
+            - { entity: 'Insurance', icon: 'balance-scale' }
+            - { label: 'Autres' }
+            - { entity: 'Picture', icon: 'photo' }
+            - { entity: 'Level', icon: 'life-saver' }
+            - { entity: 'Document', icon: 'info' }
+            - { label: 'Retour au site', route: 'pmtindex', icon: 'reply'}
+    list:
+        max_results: 20
 
   entities:
     Level:

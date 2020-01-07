@@ -44,7 +44,9 @@ class InscriptionClubController extends AbstractController
             $inscription->setInsurance($insurance);
             $inscription->setAdhesionPrice($adhesion);
 
-            $user->setLevel($data['level']);
+            if ($user != null) {
+                $user->setLevel($data['level']);
+            }
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($data['user']);
             $entityManager->persist($inscription);
