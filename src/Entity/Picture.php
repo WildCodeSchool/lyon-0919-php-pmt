@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -28,9 +31,18 @@ class Picture
 
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="name")
+
      * @var ?File
+
      */
     private $imageFile;
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var DateTime
+     */
+    private $updatedAt;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Trip", inversedBy="picture", cascade={"persist", "remove"})
@@ -64,7 +76,7 @@ class Picture
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(?string $name): self
     {
         $this->name = $name;
 
@@ -79,8 +91,9 @@ class Picture
 //     * during Doctrine hydration.
      *
      * @param File|UploadedFile $imageFile
+     * @throws Exception
      */
-    public function setImageFile(?File $imageFile = null)
+    public function setImageFile(?File $imageFile = null): void
     {
         $this->imageFile = $imageFile;
 
@@ -89,10 +102,23 @@ class Picture
 //            // otherwise the event listeners won't be called and the file is lost
 ////            $this->updatedAt = new \DateTimeImmutable();
 //        }
+
     }
 
-    public function getImageFile()
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

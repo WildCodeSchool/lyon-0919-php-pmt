@@ -113,16 +113,15 @@ label {
   padding: 20px 0;
 }
 
-.cardText {
+.cardTextActivity {
+  text-align: center;
   margin: 30px 0;
   padding: 0 30px;
   font-size: 0.9em;
 }
 
-
-.card-body {
+.card-body-activity {
   margin-top: 5px;
-
 }
 
 .card-accueil {
@@ -132,10 +131,9 @@ label {
 .carouselActivity {
   width: 90%;
   margin-bottom: 5px;
-  margin-top: 5px;
+  margin-top: auto;
   margin-left: 10px;
 }
-
 
 .signForm {
   margin-bottom: 100px;
