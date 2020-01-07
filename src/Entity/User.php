@@ -135,6 +135,12 @@ class User implements UserInterface, \Serializable
      */
     private $password;
 
+    /**
+     * @var string le token qui servira lors de l'oubli de mot de passe
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    protected $resetToken;
+
     public function __toString(): string
     {
         $completeName = $this->getFirstname() . " " . $this->getLastname();
@@ -459,7 +465,7 @@ class User implements UserInterface, \Serializable
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        $roles[] = 'ROLE_SUBSCRIBER';
 
         return array_unique($roles);
     }
@@ -527,5 +533,21 @@ class User implements UserInterface, \Serializable
     public function getParticipants(): Collection
     {
         return $this->participants;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResetToken(): string
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * @param string $resetToken
+     */
+    public function setResetToken(?string $resetToken): void
+    {
+        $this->resetToken = $resetToken;
     }
 }
