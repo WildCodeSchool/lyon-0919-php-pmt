@@ -29,11 +29,11 @@ class AdhesionPrice
     private $price;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\inscription", mappedBy="adhesionPrice")
+     * @ORM\OneToMany(targetEntity="App\Entity\Inscription", mappedBy="adhesionPrice")
      */
     private $inscription;
 
-    public function __toString(): string
+    public function __toString(): ?string
     {
         return $this->getId();
     }
@@ -73,14 +73,14 @@ class AdhesionPrice
     }
 
     /**
-     * @return Collection|inscription[]
+     * @return Collection|Inscription[]
      */
     public function getInscription(): Collection
     {
         return $this->inscription;
     }
 
-    public function addInscription(inscription $inscription): self
+    public function addInscription(Inscription $inscription): self
     {
         if (!$this->inscription->contains($inscription)) {
             $this->inscription[] = $inscription;
@@ -90,7 +90,7 @@ class AdhesionPrice
         return $this;
     }
 
-    public function removeInscription(inscription $inscription): self
+    public function removeInscription(Inscription $inscription): self
     {
         if ($this->inscription->contains($inscription)) {
             $this->inscription->removeElement($inscription);
