@@ -35,7 +35,7 @@ class AdhesionPrice
 
     public function __toString(): ?string
     {
-        return $this->getId();
+        return strval($this->getId());
     }
 
     public function __construct()
