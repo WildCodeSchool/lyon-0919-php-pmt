@@ -46,7 +46,6 @@ class Trip
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
-
     /**
      * @var \DateTime $updatedAt
      *
@@ -90,7 +89,7 @@ class Trip
      */
     private $participant;
 
-    public function __toString(): string
+    public function __toString(): ?string
     {
         return $this->getName();
     }
@@ -98,6 +97,12 @@ class Trip
     public function __construct()
     {
         $this->participant = new ArrayCollection();
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new \DateTime('now'));
+        } else {
+//            TODO: gestion de la update Date quand on update un trip
+            $this->setUpdatedAt(new \DateTime('now'));
+        }
     }
 
     public function getId(): ?int

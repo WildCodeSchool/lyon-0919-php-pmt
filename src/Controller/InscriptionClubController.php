@@ -29,6 +29,7 @@ class InscriptionClubController extends AbstractController
      */
     public function index(Request $request)
     {
+//        TODO : attention à la def de user!!! On prend le premier non null et ca colle pas
         $user = $this->getDoctrine()->getRepository(User::class)->findOneBy(['isAdmin' => null]);
 
         $inscriptionForm = $this->createForm(InscriptionClubType::class, null, ['user' => $user]);
@@ -44,7 +45,10 @@ class InscriptionClubController extends AbstractController
             $inscription->setInsurance($insurance);
             $inscription->setAdhesionPrice($adhesion);
 
-            $user->setLevel($data['level']);
+            if ($user != null) {
+                $user->setLevel($data['level']);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($data['user']);
             $entityManager->persist($inscription);
