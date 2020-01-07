@@ -87,7 +87,7 @@ class Trip
     private $picture;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="trip")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="trip", cascade={"persist", "remove"})
      */
     private $participant;
 

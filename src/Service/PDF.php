@@ -8,6 +8,7 @@ class PDF
 {
     private $pdf;
 
+
     public function create()
     {
 //        $orientation = null,
@@ -25,6 +26,7 @@ class PDF
 //            $encoding ? $encoding : $this->encoding,
 //            $margin ? $margin : $this->margin,
 //        );
+
     }
 
     public function generatePdf($template)
