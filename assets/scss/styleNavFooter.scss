@@ -45,8 +45,8 @@
     background-size: cover;
     padding: 0px;
     margin: 0px;
-    position: absolute;
-    //bottom: 0;
+    margin-bottom: -50px;
+    display : table-row;
 }
 
 #sticky-footer {
@@ -58,9 +58,10 @@
 .svgFooter {
     position: relative;
     left: 0;
-    top: -24px;
+    top: -74px;
     width: 100%;
     height: 350px;
+    padding-top: 8px;
 }
 
 #sticky-footer {
