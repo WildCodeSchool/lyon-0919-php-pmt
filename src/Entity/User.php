@@ -141,6 +141,9 @@ class User implements UserInterface, \Serializable
      */
     protected $resetToken;
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         $completeName = $this->getFirstname() . " " . $this->getLastname();

@@ -28,9 +28,12 @@ class TypeTrip
      */
     private $trip;
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
-        return strval($this->getName());
+        return $this->getName();
     }
 
     public function __construct()

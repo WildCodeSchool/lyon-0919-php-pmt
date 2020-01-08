@@ -28,9 +28,12 @@ class Payment
      */
     private $participant;
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
-        return strval($this->getTypePayment());
+        return $this->getTypePayment();
     }
 
     public function __construct()

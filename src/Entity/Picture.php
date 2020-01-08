@@ -37,14 +37,16 @@ class Picture
 
     /**
      * @ORM\Column(type="datetime")
-     *
      * @var DateTime
      */
     private $updatedAt;
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
-        return strval($this->getName());
+        return $this->getName();
     }
 
     public function getId(): ?int

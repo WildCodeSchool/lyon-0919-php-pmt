@@ -103,9 +103,12 @@ class Trip
      */
     private $participant;
 
+    /**
+     * @return string
+     */
     public function __toString(): ?string
     {
-        return strval($this->getName());
+        return $this->getName();
     }
 
     public function __construct()
