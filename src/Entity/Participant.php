@@ -42,7 +42,7 @@ class Participant
     private $payment;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Trip", inversedBy="participant", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Trip", inversedBy="participant", cascade={"persist"})
      */
     private $trip;
 
