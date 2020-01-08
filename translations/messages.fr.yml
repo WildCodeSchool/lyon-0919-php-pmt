@@ -1,3 +1,4 @@
+#Traduction liste des adherents
 Image file: Image
 Firstname: Prénom
 Lastname: Nom
@@ -13,4 +14,37 @@ Is monitor: Moniteur
 Is swim: Adhérent Piscine
 Is diver: Plongeur
 Is handi: Handicapé
+#Traduction Inscriptions
+User: Adhérents
+Inscription status: Statut de l'inscription
+Inscription year: Année de l'inscription
+Internal procedure: Réglement intérieur
+Medical certificate: Certificat médical
+Inscription sheet: Formulaire d'inscription
+Image right: Droit à l'image
+#Traduction statut des inscriptions
+Name: Nom
+#Traduction Sortie
+Location: Lieu
+Price: Prix
+Type trip: Type de sortie
+Date start: Date de début
+Date end: Date de fin
+Nb diver: Plongeurs
+Nb monitor: Moniteurs
+#Traduction Liste Participant aux sorties
+Trip: Sortie
+Nb companion: Nombre d'accompagnants
+Payment: Type de paiements
+#Traduction payment
+Type payment: Type de paiements
+#Traduction niveaux de plongée
+Order level: Ordre des niveaux
+#Traduction document
+Document file: Aperçu
+
+
+
+
+
 

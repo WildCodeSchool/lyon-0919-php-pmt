@@ -27,6 +27,7 @@ easy_admin:
 
     entities:
       Level:
+        translation_domain: 'messages'
         class: App\Entity\Level
         label: 'Niveaux de plongée'
         list:
@@ -40,6 +41,7 @@ easy_admin:
             - { property: 'order_level', type: 'text' }
             - name
       Trip:
+        translation_domain: 'messages'
         class: App\Entity\Trip
         label: 'Sorties'
         list:
@@ -175,6 +177,7 @@ easy_admin:
           fields:
             - { property: 'imageFile', type: 'vich_image'}
       Payment:
+        translation_domain: 'messages'
         class: App\Entity\Payment
         label: 'Types de paiement'
         list:
@@ -220,6 +223,7 @@ easy_admin:
             - name
             - { property: 'price', number: '%0.02f' }
       InscriptionStatus:
+        translation_domain: 'messages'
         class: App\Entity\InscriptionStatus
         label: "Status des inscriptions"
         list:
@@ -231,6 +235,7 @@ easy_admin:
           fields:
             - name
       Inscription:
+        translation_domain: 'messages'
         class: App\Entity\Inscription
         label: 'Inscriptions'
         list:
@@ -254,6 +259,7 @@ easy_admin:
             - { property: 'inscription_sheet', type: 'text'}
             - { property: 'image_right', type: 'text'}
       Document:
+        translation_domain: 'messages'
         class: App\Entity\Document
         label: 'Documents'
         list:
