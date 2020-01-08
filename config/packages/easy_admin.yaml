@@ -84,6 +84,7 @@ easy_admin:
             - { property: 'nb_diver', type: 'text' }
             - { property: 'nb_monitor', type: 'text' }
       User:
+        translation_domain: 'messages'
         class: App\Entity\User
         label: 'Adhérents au PMT'
         list:
