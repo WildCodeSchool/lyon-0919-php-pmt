@@ -5,7 +5,7 @@
 {% block body %}
 
     {{ form_start(form) }}
-    <div class="container">
+    <div class="container mb-5">
         <div class="inscriptionTitle">
             <span>Formulaire de contact</span>
         </div>
@@ -36,3 +36,7 @@
     {{ form_end(form) }}
 
 {% endblock %}
+
+    {% block footer %}
+        {% include '_footer.html.twig' %}
+    {% endblock %}
