@@ -38,7 +38,7 @@ class Level
      */
     public function __toString(): string
     {
-        return strval($this->getId());
+        return strval($this->getName());
     }
 
     public function __construct()

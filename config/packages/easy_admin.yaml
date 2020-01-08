@@ -26,8 +26,71 @@ easy_admin:
         max_results: 20
 
     entities:
-      Level:
+      User:
         translation_domain: 'messages'
+        class: App\Entity\User
+        label: 'Adhérents au PMT'
+        list:
+          actions: ['edit', 'search', 'delete', 'show']
+          title: 'Liste des adhérents au PMT'
+          fields:
+            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
+            - { property: 'firstname',  type: 'text' }
+            - { property: 'lastname',  type: 'text' }
+            - { property: 'email', type: 'email' }
+            - { property: 'home_phone', type: 'tel' }
+            - { property: 'mobile_phone', type: 'tel' }
+            - birthday
+            - address
+            - { property: 'zip_code',  type: 'text' }
+            - city
+            - level
+            - comment
+            - { property: 'is_admin',  type: 'boolean' }
+            - { property: 'is_monitor',  type: 'boolean' }
+            - { property: 'is_swim',  type: 'boolean' }
+            - { property: 'is_diver',  type: 'boolean' }
+            - { property: 'is_handi',  type: 'boolean' }
+        form:
+          title: 'Editer un adhérent'
+          fields:
+            - { property: 'imageFile', type: 'vich_image'}
+            - { property: 'firstname',  type: 'text' }
+            - { property: 'lastname',  type: 'text' }
+            - { property: 'email', type: 'email' }
+            - { property: 'home_phone', type: 'tel' }
+            - { property: 'mobile_phone', type: 'tel' }
+            - birthday
+            - address
+            - { property: 'zip_code',  type: 'text' }
+            - city
+            - level
+            - comment
+            - { property: 'is_admin',  type: 'text' }
+            - { property: 'is_monitor',  type: 'text' }
+            - { property: 'is_swim',  type: 'text' }
+            - { property: 'is_diver',  type: 'text' }
+            - { property: 'is_handi',  type: 'text' }
+        show:
+          title: "Profil de l'adhérent"
+          fields:
+            - { property: 'imageFile', type: 'image' , template: 'vich_uploader_image.html.twig' }
+            - firstname
+            - lastname
+            - { property: 'email', type: 'email' }
+            - { property: 'home_phone', type: 'tel' }
+            - { property: 'mobile_phone', type: 'tel' }
+            - birthday
+            - address
+            - { property: 'zip_code', type: 'text'}
+            - city
+            - comment
+            - { property: 'is_admin',  type: 'boolean' }
+            - { property: 'is_monitor',  type: 'boolean' }
+            - { property: 'is_swim',  type: 'boolean' }
+            - { property: 'is_diver',  type: 'boolean' }
+            - { property: 'is_handi',  type: 'boolean' }
+      Level:
         class: App\Entity\Level
         label: 'Niveaux de plongée'
         list:
@@ -35,13 +98,12 @@ easy_admin:
           fields:
             - { property: 'order_level', type: 'text' }
             - name
-        edit:
+        form:
           title: 'Editer un niveaux de plongée'
           fields:
             - { property: 'order_level', type: 'text' }
             - name
       Trip:
-        translation_domain: 'messages'
         class: App\Entity\Trip
         label: 'Sorties'
         list:
@@ -85,68 +147,7 @@ easy_admin:
             - description
             - { property: 'nb_diver', type: 'text' }
             - { property: 'nb_monitor', type: 'text' }
-      User:
-        translation_domain: 'messages'
-        class: App\Entity\User
-        label: 'Adhérents au PMT'
-        list:
-          actions: ['edit', 'search', 'delete', 'show']
-          title: 'Liste des adhérents au PMT'
-          fields:
-            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
-            - { property: 'firstname',  type: 'text' }
-            - { property: 'lastname',  type: 'text' }
-            - { property: 'email', type: 'email' }
-            - { property: 'home_phone', type: 'tel' }
-            - { property: 'mobile_phone', type: 'tel' }
-            - birthday
-            - address
-            - { property: 'zip_code',  type: 'text' }
-            - city
-            - comment
-            - { property: 'is_admin',  type: 'boolean' }
-            - { property: 'is_monitor',  type: 'boolean' }
-            - { property: 'is_swim',  type: 'boolean' }
-            - { property: 'is_diver',  type: 'boolean' }
-            - { property: 'is_handi',  type: 'boolean' }
-        form:
-          title: 'Editer un adhérent'
-          fields:
-            - { property: 'imageFile', type: 'vich_image'}
-            - { property: 'firstname',  type: 'text' }
-            - { property: 'lastname',  type: 'text' }
-            - { property: 'email', type: 'email' }
-            - { property: 'home_phone', type: 'tel' }
-            - { property: 'mobile_phone', type: 'tel' }
-            - birthday
-            - address
-            - { property: 'zip_code',  type: 'text' }
-            - city
-            - comment
-            - { property: 'is_admin',  type: 'text' }
-            - { property: 'is_monitor',  type: 'text' }
-            - { property: 'is_swim',  type: 'text' }
-            - { property: 'is_diver',  type: 'text' }
-            - { property: 'is_handi',  type: 'text' }
-        show:
-          title: "Profil de l'adhérent"
-          fields:
-            - { property: 'imageFile', type: 'image' , template: 'vich_uploader_image.html.twig' }
-            - firstname
-            - lastname
-            - { property: 'email', type: 'email' }
-            - { property: 'home_phone', type: 'tel' }
-            - { property: 'mobile_phone', type: 'tel' }
-            - birthday
-            - address
-            - { property: 'zip_code', type: 'text'}
-            - city
-            - comment
-            - { property: 'is_admin',  type: 'boolean' }
-            - { property: 'is_monitor',  type: 'boolean' }
-            - { property: 'is_swim',  type: 'boolean' }
-            - { property: 'is_diver',  type: 'boolean' }
-            - { property: 'is_handi',  type: 'boolean' }
+
       Type:
         class: App\Entity\TypeTrip
         label: 'Types de sortie'

@@ -91,7 +91,7 @@ class UserController extends AbstractController
             $file = $form['ImageFile']->getData();
             if ($file) {
                 $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
-                // moves the file to the directory where brochures are stored
+//                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('image_user_upload');
                 $file->move(
                     $destination,
