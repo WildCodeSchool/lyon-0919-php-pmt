@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -74,7 +75,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $imageName;
+    private $imageName = "logo_PMT.png";
 
     /**
      * @Vich\UploadableField(mapping="image_users", fileNameProperty="imageName")
@@ -165,6 +166,10 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new DateTime('now'));
+            $this->setUpdateAt(new DateTime('now'));
+        }
         $this->inscriptions = new ArrayCollection();
         $this->participants = new ArrayCollection();
     }

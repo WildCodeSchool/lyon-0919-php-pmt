@@ -94,7 +94,6 @@ class AdherentController extends AbstractController
             $bookedTrip[] = $book->getTrip();
         }
 
-//        s<kjdghsdkqjhgskjdhg PrRPRPPRPRPRPRPOOUUUUUTTTT
         foreach ($trips as $trip) {
             if (!in_array($trip, $bookedTrip)) {
                 $notBookedTrip[] = $trip;

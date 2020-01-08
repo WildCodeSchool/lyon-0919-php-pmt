@@ -51,7 +51,28 @@ easy_admin:
             - { property: 'is_swim',  type: 'boolean' }
             - { property: 'is_diver',  type: 'boolean' }
             - { property: 'is_handi',  type: 'boolean' }
-        form:
+        new:
+          title: 'Editer un adhérent'
+          fields:
+            - { property: 'imageFile', type: 'vich_image'}
+            - { property: 'firstname',  type: 'text' }
+            - { property: 'lastname',  type: 'text' }
+            - { property: 'email', type: 'email' }
+            - password
+            - { property: 'home_phone', type: 'tel' }
+            - { property: 'mobile_phone', type: 'tel' }
+            - birthday
+            - address
+            - { property: 'zip_code',  type: 'text' }
+            - city
+            - level
+            - comment
+            - { property: 'is_admin',  type: 'text' }
+            - { property: 'is_monitor',  type: 'text' }
+            - { property: 'is_swim',  type: 'text' }
+            - { property: 'is_diver',  type: 'text' }
+            - { property: 'is_handi',  type: 'text' }
+        edit:
           title: 'Editer un adhérent'
           fields:
             - { property: 'imageFile', type: 'vich_image'}
