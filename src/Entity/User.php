@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Exception;
 use Symfony\Component\HttpFoundation\File\File;
@@ -42,7 +43,7 @@ class User implements UserInterface, \Serializable
     private $homePhone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $mobilePhone;
 
@@ -52,17 +53,17 @@ class User implements UserInterface, \Serializable
     private $birthday;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $address;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $zipCode;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $city;
 
@@ -72,7 +73,7 @@ class User implements UserInterface, \Serializable
     private $comment;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $imageName = "logo_PMT.png";
@@ -84,11 +85,15 @@ class User implements UserInterface, \Serializable
     private $imageFile;
 
     /**
+     * @var DateTime
+     * //     * @Gedmo\Mapping\Annotation\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
+     * @var DateTime
+     * //     * @Gedmo\Mapping\Annotation\Timestampable(on="create")
      * @ORM\Column(type="datetime")
      */
     private $updateAt;
@@ -145,7 +150,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @var string The hashed password
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $password;
 
@@ -164,6 +169,10 @@ class User implements UserInterface, \Serializable
         return $completeName;
     }
 
+    /**
+     * User constructor.
+     * @throws Exception
+     */
     public function __construct()
     {
         if ($this->getCreatedAt() === null) {
@@ -172,6 +181,12 @@ class User implements UserInterface, \Serializable
         }
         $this->inscriptions = new ArrayCollection();
         $this->participants = new ArrayCollection();
+
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new DateTime('now'));
+            $this->setUpdateAt(new DateTime('now'));
+            $this->setRoles(["ROLE_SUBSCRIBER"]);
+        }
     }
 
     public function getId(): ?int
