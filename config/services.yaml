@@ -8,6 +8,8 @@ parameters:
     pictures_directory: '%kernel.project_dir%/public/uploads/images'
     app.path.product_images: /uploads/images/gallery
     app.path.product_files: /uploads/files
+    app.path.image_users: /uploads/images/users
+    image_user_upload: '%kernel.project_dir%/public%app.path.image_users%'
 
 services:
     _defaults:

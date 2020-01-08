@@ -90,7 +90,7 @@ easy_admin:
           actions: ['edit', 'search', 'delete', 'show']
           title: 'Liste des adhérents au PMT'
           fields:
-            - { property: 'picture', type: 'avatar', is_image_url: 'true', height: 128 }
+            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
             - { property: 'firstname',  type: 'text' }
             - { property: 'lastname',  type: 'text' }
             - { property: 'email', type: 'email' }
@@ -109,7 +109,7 @@ easy_admin:
         form:
           title: 'Editer un adhérent'
           fields:
-            #                    - { property: 'picture', type: 'avatar', is_image_url: 'true', height: 128 }
+            - { property: 'imageFile', type: 'vich_image'}
             - { property: 'firstname',  type: 'text' }
             - { property: 'lastname',  type: 'text' }
             - { property: 'email', type: 'email' }
@@ -128,7 +128,7 @@ easy_admin:
         show:
           title: "Profil de l'adhérent"
           fields:
-            - { property: 'picture', type: 'avatar', is_image_url: 'true', height: 128 }
+            - { property: 'imageFile', type: 'image' , template: 'vich_uploader_image.html.twig' }
             - firstname
             - lastname
             - { property: 'email', type: 'email' }
