@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 
+use Swift_Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,6 +26,7 @@ class SecurityController extends AbstractController
      */
     public function login(Request $request, AuthenticationUtils $utils, ?UserInterface $user)
     {
+//        TODO virer les 2 $prout
         $prout = $request;
         $prout = $user;
         $error = $utils->getLastAuthenticationError();
@@ -57,6 +59,8 @@ class SecurityController extends AbstractController
         \Swift_Mailer $mailer,
         TokenGeneratorInterface $tokenGenerator
     ): Response {
+        $encoder;
+//        TODO enlever ce $encoder tout moche
         if ($request->isMethod('POST')) {
             $email = $request->request->get('email');
             $entityManager = $this->getDoctrine()->getManager();
@@ -79,7 +83,7 @@ class SecurityController extends AbstractController
 
             $url = $this->generateUrl('reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
 
-            $message = (new \Swift_Message('Mot de passe oublié'))
+            $message = (new Swift_Message('Mot de passe oublié'))
                 ->setFrom('pmt@gmail.com')
                 ->setTo($user->getEmail())
                 ->setBody($this->renderView(
@@ -117,13 +121,19 @@ class SecurityController extends AbstractController
                 return $this->redirectToRoute('pmtindex');
             }
 
-            $user->setResetToken(null);
-            $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
-            $entityManager->flush();
+            if ($request->request->get('password') === $request->request->get('password2')) {
+                $user->setResetToken(null);
+                $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
+                $entityManager->flush();
 
-            return $this->redirectToRoute('pmtindex');
-        } else {
-            return $this->render('security/reset_password.html.twig', ['token' => $token]);
+                return $this->redirectToRoute('pmtindex');
+            } else {
+                $this->addFlash(
+                    'danger',
+                    'Les mots de passe ne sont identiques !'
+                );
+            }
         }
+        return $this->render('security/reset_password.html.twig', ['token' => $token]);
     }
 }
