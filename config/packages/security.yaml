@@ -29,7 +29,7 @@ security:
                 secret:   '%kernel.secret%'
                 lifetime: 2592000
 
-                
+
             logout:
                 path: security_logout
                 target: pmtindex

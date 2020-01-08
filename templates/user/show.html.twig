@@ -43,10 +43,10 @@
                                 <div class="card mb-3" style="max-width: 100%;">
                                     <div class="row no-gutters">
                                         <div class="col-md-4">
-                                            {% if user.picture is null %}
+                                            {% if user is null %}
                                                 <img src="" class="card-img" alt="...">
                                             {% else %}
-                                                <img src="{{ '/uploads/images/' ~ user.picture }}"
+                                                <img src="{{ '/uploads/images/users/' ~ user.imageName }}"
                                                      class="card-img" alt="...">
                                             {% endif %}
                                         </div>

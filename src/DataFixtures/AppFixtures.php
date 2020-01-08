@@ -47,7 +47,7 @@ class AppFixtures extends Fixture
             $user->setZipCode($this->faker->numberBetween(10000, 60000));
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
-            $user->setPicture($this->faker->imageUrl());
+            $user->setImageName($this->faker->imageUrl());
             $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
@@ -73,7 +73,7 @@ class AppFixtures extends Fixture
             $user->setZipCode($this->faker->numberBetween(10000, 60000));
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
-            $user->setPicture($this->faker->imageUrl());
+            $user->setImageName($this->faker->imageUrl());
             $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
@@ -82,8 +82,8 @@ class AppFixtures extends Fixture
             $this->addReference('adherent' . ($i + 1), $user);
             $manager->persist($user);
         }
-        //100 plogneurs
-        for ($i = 0; $i < 100; $i++) {
+        //10 plogneurs
+        for ($i = 0; $i < 10; $i++) {
             $user = new User();
             $user->setFirstname($this->faker->firstName);
             $user->setLastname($this->faker->name);
@@ -99,7 +99,7 @@ class AppFixtures extends Fixture
             $user->setZipCode($this->faker->numberBetween(10000, 60000));
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
-            $user->setPicture($this->faker->imageUrl());
+            $user->setImageName($this->faker->imageUrl());
             $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
@@ -124,7 +124,7 @@ class AppFixtures extends Fixture
             $user->setZipCode($this->faker->numberBetween(10000, 60000));
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
-            $user->setPicture($this->faker->imageUrl());
+            $user->setImageName($this->faker->imageUrl());
             $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
@@ -133,8 +133,8 @@ class AppFixtures extends Fixture
             $this->addReference('adherent' . ($i + 106), $user);
             $manager->persist($user);
         }
-        //50 nageurs
-        for ($i = 0; $i < 50; $i++) {
+        //5 nageurs
+        for ($i = 0; $i < 5; $i++) {
             $user = new User();
             $user->setFirstname($this->faker->firstName);
             $user->setLastname($this->faker->name);
@@ -148,7 +148,7 @@ class AppFixtures extends Fixture
             $user->setZipCode($this->faker->numberBetween(10000, 60000));
             $user->setCity($this->faker->city);
             $user->setComment($this->faker->text(150));
-            $user->setPicture($this->faker->imageUrl());
+            $user->setImageName($this->faker->imageUrl());
             $date = new DateTime('@' . strtotime('now'));
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);

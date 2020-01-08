@@ -92,7 +92,7 @@ class UserController extends AbstractController
             if ($file) {
                 $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
                 // moves the file to the directory where brochures are stored
-                $destination = $this->getParameter('pictures_directory');
+                $destination = $this->getParameter('image_user_upload');
                 $file->move(
                     $destination,
                     $fileName
@@ -100,7 +100,7 @@ class UserController extends AbstractController
 
                 // updates the 'brochure' property to store the PDF file name
                 // instead of its contents
-                $user->setPicture($fileName);
+                $user->setImageName($fileName);
             }
             // ... persist the $product variable or any other work
             $this->getDoctrine()->getManager()->flush();
