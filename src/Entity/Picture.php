@@ -82,11 +82,12 @@ class Picture
     {
         $this->imageFile = $imageFile;
 
-//        if (null !== $imageFile) {
-//            // It is required that at least one field changes if you are using doctrine
-//            // otherwise the event listeners won't be called and the file is lost
-////            $this->updatedAt = new \DateTimeImmutable();
-//        }
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->imageFile = $imageFile;
+            $this->updatedAt = new DateTime('now');
+        }
     }
 
     public function getImageFile(): ?File
