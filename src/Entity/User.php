@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -165,6 +166,10 @@ class User implements UserInterface, \Serializable
 
     public function __construct()
     {
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new DateTime('now'));
+            $this->setUpdateAt(new DateTime('now'));
+        }
         $this->inscriptions = new ArrayCollection();
         $this->participants = new ArrayCollection();
     }
