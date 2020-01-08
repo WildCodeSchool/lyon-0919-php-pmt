@@ -33,9 +33,12 @@ class InscriptionStatus
      */
     private $participant;
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
-        return strval($this->getname());
+        return $this->getname();
     }
 
     public function __construct()

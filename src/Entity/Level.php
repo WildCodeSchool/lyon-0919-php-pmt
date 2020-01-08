@@ -33,6 +33,9 @@ class Level
      */
     private $user;
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
         return strval($this->getId());

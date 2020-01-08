@@ -33,6 +33,9 @@ class AdhesionPrice
      */
     private $inscription;
 
+    /**
+     * @return string
+     */
     public function __toString(): ?string
     {
         return strval($this->getId());
