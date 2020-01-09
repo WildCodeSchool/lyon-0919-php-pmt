@@ -36,5 +36,5 @@ yarn-error.log
 ### version php ###
 .php-version
 
-#dossier photos
+### uploads ###
 /public/uploads/
