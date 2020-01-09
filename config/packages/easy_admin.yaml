@@ -26,287 +26,287 @@ easy_admin:
         max_results: 20
 
     entities:
-      User:
-        translation_domain: 'messages'
-        class: App\Entity\User
-        label: 'Adhérents au PMT'
-        list:
-          actions: ['edit', 'search', 'delete', 'show']
-          title: 'Liste des adhérents au PMT'
-          fields:
-            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
-            - { property: 'firstname',  type: 'text' }
-            - { property: 'lastname',  type: 'text' }
-            - { property: 'email', type: 'email' }
-            - { property: 'home_phone', type: 'tel' }
-            - { property: 'mobile_phone', type: 'tel' }
-            - birthday
-            - address
-            - { property: 'zip_code',  type: 'text' }
-            - city
-            - level
-            - comment
-            - { property: 'is_admin',  type: 'boolean' }
-            - { property: 'is_monitor',  type: 'boolean' }
-            - { property: 'is_swim',  type: 'boolean' }
-            - { property: 'is_diver',  type: 'boolean' }
-            - { property: 'is_handi',  type: 'boolean' }
-        new:
-          title: 'Editer un adhérent'
-          fields:
-            - { property: 'imageFile', type: 'vich_image'}
-            - { property: 'firstname',  type: 'text' }
-            - { property: 'lastname',  type: 'text' }
-            - { property: 'email', type: 'email' }
-            - password
-            - { property: 'home_phone', type: 'tel' }
-            - { property: 'mobile_phone', type: 'tel' }
-            - birthday
-            - address
-            - { property: 'zip_code',  type: 'text' }
-            - city
-            - level
-            - comment
-            - { property: 'is_admin',  type: 'text' }
-            - { property: 'is_monitor',  type: 'text' }
-            - { property: 'is_swim',  type: 'text' }
-            - { property: 'is_diver',  type: 'text' }
-            - { property: 'is_handi',  type: 'text' }
-        edit:
-          title: 'Editer un adhérent'
-          fields:
-            - { property: 'imageFile', type: 'vich_image'}
-            - { property: 'firstname',  type: 'text' }
-            - { property: 'lastname',  type: 'text' }
-            - { property: 'email', type: 'email' }
-            - { property: 'home_phone', type: 'tel' }
-            - { property: 'mobile_phone', type: 'tel' }
-            - birthday
-            - address
-            - { property: 'zip_code',  type: 'text' }
-            - city
-            - level
-            - comment
-            - { property: 'is_admin',  type: 'text' }
-            - { property: 'is_monitor',  type: 'text' }
-            - { property: 'is_swim',  type: 'text' }
-            - { property: 'is_diver',  type: 'text' }
-            - { property: 'is_handi',  type: 'text' }
-        show:
-          title: "Profil de l'adhérent"
-          fields:
-            - { property: 'imageFile', type: 'image' , template: 'vich_uploader_image.html.twig' }
-            - firstname
-            - lastname
-            - { property: 'email', type: 'email' }
-            - { property: 'home_phone', type: 'tel' }
-            - { property: 'mobile_phone', type: 'tel' }
-            - birthday
-            - address
-            - { property: 'zip_code', type: 'text'}
-            - city
-            - comment
-            - { property: 'is_admin',  type: 'boolean' }
-            - { property: 'is_monitor',  type: 'boolean' }
-            - { property: 'is_swim',  type: 'boolean' }
-            - { property: 'is_diver',  type: 'boolean' }
-            - { property: 'is_handi',  type: 'boolean' }
-      Level:
-        class: App\Entity\Level
-        label: 'Niveaux de plongée'
-        list:
-          title: 'Niveaux de plongée'
-          fields:
-            - { property: 'order_level', type: 'text' }
-            - name
-        form:
-          title: 'Editer un niveaux de plongée'
-          fields:
-            - { property: 'order_level', type: 'text' }
-            - name
-      Trip:
-        class: App\Entity\Trip
-        label: 'Sorties'
-        list:
-          actions: ['edit', 'search', 'delete', 'show']
-          title: 'Liste des sorties'
-          fields:
-            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
-            - name
-            - location
-            - { property: 'price', number: '%0.02f'}
-            - typeTrip
-            - { property: 'date_start', type: 'datetime' }
-            - { property: 'date_end', type: 'datetime' }
-            - description
-            - nb_diver
-            - nb_monitor
-        form:
-          title: 'Editer une sortie'
-          fields:
-            - { property: 'imageFile', type: 'vich_image'}
-            - name
-            - typeTrip
-            - location
-            - { property: 'price', number: '%0.02f'}
-            - { property: 'date_start', type: 'datetime' }
-            - { property: 'date_end', type: 'datetime' }
-            - description
-            - { property: 'nb_diver', type: 'text' }
-            - { property: 'nb_monitor', type: 'text' }
-#            - { property: 'created_at', type: 'datetime' }
-        show:
-          title: 'Liste des sorties'
-          fields:
-            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
-            - name
-            - location
-            - { property: 'price', number: '%0.02f'}
-            - typeTrip
-            - { property: 'date_start', type: 'datetime' }
-            - { property: 'date_end', type: 'datetime' }
-            - description
-            - { property: 'nb_diver', type: 'text' }
-            - { property: 'nb_monitor', type: 'text' }
+        User:
+            translation_domain: 'messages'
+            class: App\Entity\User
+            label: 'Adhérents au PMT'
+            list:
+                actions: ['edit', 'search', 'delete', 'show']
+                title: 'Liste des adhérents au PMT'
+                fields:
+                    - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
+                    - { property: 'firstname',  type: 'text' }
+                    - { property: 'lastname',  type: 'text' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'home_phone', type: 'tel' }
+                    - { property: 'mobile_phone', type: 'tel' }
+                    - birthday
+                    - address
+                    - { property: 'zip_code',  type: 'text' }
+                    - city
+                    - level
+                    - comment
+                    - { property: 'is_admin',  type: 'boolean' }
+                    - { property: 'is_monitor',  type: 'boolean' }
+                    - { property: 'is_swim',  type: 'boolean' }
+                    - { property: 'is_diver',  type: 'boolean' }
+                    - { property: 'is_handi',  type: 'boolean' }
+            new:
+                title: 'Editer un adhérent'
+                fields:
+                    - { property: 'imageFile', type: 'vich_image'}
+                    - { property: 'firstname',  type: 'text' }
+                    - { property: 'lastname',  type: 'text' }
+                    - { property: 'email', type: 'email' }
+                    - password
+                    - { property: 'home_phone', type: 'tel' }
+                    - { property: 'mobile_phone', type: 'tel' }
+                    - birthday
+                    - address
+                    - { property: 'zip_code',  type: 'text' }
+                    - city
+                    - level
+                    - comment
+                    - { property: 'is_admin',  type: 'text' }
+                    - { property: 'is_monitor',  type: 'text' }
+                    - { property: 'is_swim',  type: 'text' }
+                    - { property: 'is_diver',  type: 'text' }
+                    - { property: 'is_handi',  type: 'text' }
+            edit:
+                title: 'Editer un adhérent'
+                fields:
+                    - { property: 'imageFile', type: 'vich_image'}
+                    - { property: 'firstname',  type: 'text' }
+                    - { property: 'lastname',  type: 'text' }
+                    - { property: 'email', type: 'email' }
+                    - { property: 'home_phone', type: 'tel' }
+                    - { property: 'mobile_phone', type: 'tel' }
+                    - birthday
+                    - address
+                    - { property: 'zip_code',  type: 'text' }
+                    - city
+                    - level
+                    - comment
+                    - { property: 'is_admin',  type: 'text' }
+                    - { property: 'is_monitor',  type: 'text' }
+                    - { property: 'is_swim',  type: 'text' }
+                    - { property: 'is_diver',  type: 'text' }
+                    - { property: 'is_handi',  type: 'text' }
+            show:
+                title: "Profil de l'adhérent"
+                fields:
+                    - { property: 'imageFile', type: 'image' , template: 'vich_uploader_image.html.twig' }
+                    - firstname
+                    - lastname
+                    - { property: 'email', type: 'email' }
+                    - { property: 'home_phone', type: 'tel' }
+                    - { property: 'mobile_phone', type: 'tel' }
+                    - birthday
+                    - address
+                    - { property: 'zip_code', type: 'text'}
+                    - city
+                    - comment
+                    - { property: 'is_admin',  type: 'boolean' }
+                    - { property: 'is_monitor',  type: 'boolean' }
+                    - { property: 'is_swim',  type: 'boolean' }
+                    - { property: 'is_diver',  type: 'boolean' }
+                    - { property: 'is_handi',  type: 'boolean' }
+        Level:
+            class: App\Entity\Level
+            label: 'Niveaux de plongée'
+            list:
+                title: 'Niveaux de plongée'
+                fields:
+                    - { property: 'order_level', type: 'text' }
+                    - name
+            form:
+                title: 'Editer un niveaux de plongée'
+                fields:
+                    - { property: 'order_level', type: 'text' }
+                    - name
+        Trip:
+            class: App\Entity\Trip
+            label: 'Sorties'
+            list:
+                actions: ['edit', 'search', 'delete', 'show']
+                title: 'Liste des sorties'
+                fields:
+                    - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
+                    - name
+                    - location
+                    - { property: 'price', number: '%0.02f'}
+                    - typeTrip
+                    - { property: 'date_start', type: 'datetime' }
+                    - { property: 'date_end', type: 'datetime' }
+                    - description
+                    - nb_diver
+                    - nb_monitor
+            form:
+                title: 'Editer une sortie'
+                fields:
+                    - { property: 'imageFile', type: 'vich_image'}
+                    - name
+                    - typeTrip
+                    - location
+                    - { property: 'price', number: '%0.02f'}
+                    - { property: 'date_start', type: 'datetime' }
+                    - { property: 'date_end', type: 'datetime' }
+                    - description
+                    - { property: 'nb_diver', type: 'text' }
+                    - { property: 'nb_monitor', type: 'text' }
+            #            - { property: 'created_at', type: 'datetime' }
+            show:
+                title: 'Liste des sorties'
+                fields:
+                    - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
+                    - name
+                    - location
+                    - { property: 'price', number: '%0.02f'}
+                    - typeTrip
+                    - { property: 'date_start', type: 'datetime' }
+                    - { property: 'date_end', type: 'datetime' }
+                    - description
+                    - { property: 'nb_diver', type: 'text' }
+                    - { property: 'nb_monitor', type: 'text' }
 
-      Type:
-        class: App\Entity\TypeTrip
-        label: 'Types de sortie'
-        list:
-          title: 'Types de sortie'
-          fields:
-            - name
-        form:
-          title: 'Editer un type de sortie'
-          fields:
-            - name
-      Picture:
-        class: App\Entity\Picture
-        label: 'Photos'
-        actions: ['search', 'delete', 'show']
-        list:
-          title: 'Liste des photos'
-          fields:
-            - { property: 'name', type: 'text'}
-            - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
-        show:
-          title: 'Liste des photos'
-          fields:
-            - { property: 'name', type: 'text'}
-            - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%' }
-        form:
-          title: 'Ajouter une photo'
-          fields:
-            - { property: 'imageFile', type: 'vich_image'}
-      Payment:
-        translation_domain: 'messages'
-        class: App\Entity\Payment
-        label: 'Types de paiement'
-        list:
-          title: 'Types de paiement'
-          fields:
-            - type_payment
-        form:
-          title: 'Editer un type de paiement'
-          fields:
-            - { property: 'type_payment', type: 'text'}
-      Participant:
-        class: App\Entity\Participant
-        label: 'Participants aux sorties'
-        list:
-          title: 'Liste des participants aux sorties'
-          fields:
-            - user
-            - trip
-            - nb_companion
-            - { property: 'payment', type: 'text'}
-            - status
-            - inscription_status
-        form:
-          title: 'Editer un participant à une sortie'
-          fields:
-            - user
-            - trip
-            - { property: 'nb_companion', type: 'text'}
-            - payment
-            - status
-            - inscriptionStatus
-      Insurance:
-        class: App\Entity\Insurance
-        label: "Types d'assurance"
-        list:
-          title: "Types d'assurance"
-          fields:
-            - name
-            - { property: 'price', number: '%0.02f' }
-        form:
-          title: "Types d'assurance"
-          fields:
-            - name
-            - { property: 'price', number: '%0.02f' }
-      InscriptionStatus:
-        translation_domain: 'messages'
-        class: App\Entity\InscriptionStatus
-        label: "Status des inscriptions"
-        list:
-          title: "Status des inscriptions"
-          fields:
-            - name
-        form:
-          title: "Editer un status"
-          fields:
-            - name
-      Inscription:
-        translation_domain: 'messages'
-        class: App\Entity\Inscription
-        label: 'Inscriptions'
-        list:
-          title: 'Liste des inscriptions'
-          fields:
-            - user
-            - inscription_status
-            - inscription_year
-            - internal_procedure
-            - medical_certificate
-            - inscription_sheet
-            - { property: 'image_right', type: 'boolean'}
-        form:
-          title: "Inscription de l'adhérent"
-          fields:
-            - user
-            - { property: 'inscription_status', type: 'text'}
-            - { property: 'inscription_year', type: 'text'}
-            - { property: 'internal_procedure', type: 'text'}
-            - { property: 'medical_certificate', type: 'text'}
-            - { property: 'inscription_sheet', type: 'text'}
-            - { property: 'image_right', type: 'text'}
-      Document:
-        translation_domain: 'messages'
-        class: App\Entity\Document
-        label: 'Documents'
-        list:
-          title: 'Documents'
-          fields:
-            - name
-            - { property: 'documentFile', template: 'vich_uploader_file.html.twig', base_path: '%app.path.product_files%' }
-        form:
-          title: 'Documents'
-          fields:
-            - { property: 'documentFile', type: 'vich_file' }
-        new:
-          title: 'Documents'
-          fields:
-            - { property: 'documentFile', type: 'vich_file' }
-      AdhesionPrice:
-        class: App\Entity\AdhesionPrice
-        label: "Types d'adhésion"
-        list:
-          title: "Types d'adhésion"
-          fields:
-            - name
-            - { property: 'price', number: '%0.02f'}
-        form:
-          title: "Editer le type d'adhésion"
-          fields:
-            - name
-            - { property: 'price', number: '%0.02f'}
+        Type:
+            class: App\Entity\TypeTrip
+            label: 'Types de sortie'
+            list:
+                title: 'Types de sortie'
+                fields:
+                    - name
+            form:
+                title: 'Editer un type de sortie'
+                fields:
+                    - name
+        Picture:
+            class: App\Entity\Picture
+            label: 'Photos'
+            actions: ['search', 'delete', 'show']
+            list:
+                title: 'Liste des photos'
+                fields:
+                    - { property: 'name', type: 'text'}
+                    - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
+            show:
+                title: 'Liste des photos'
+                fields:
+                    - { property: 'name', type: 'text'}
+                    - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%' }
+            form:
+                title: 'Ajouter une photo'
+                fields:
+                    - { property: 'imageFile', type: 'vich_image'}
+        Payment:
+            translation_domain: 'messages'
+            class: App\Entity\Payment
+            label: 'Types de paiement'
+            list:
+                title: 'Types de paiement'
+                fields:
+                    - type_payment
+            form:
+                title: 'Editer un type de paiement'
+                fields:
+                    - { property: 'type_payment', type: 'text'}
+        Participant:
+            class: App\Entity\Participant
+            label: 'Participants aux sorties'
+            list:
+                title: 'Liste des participants aux sorties'
+                fields:
+                    - user
+                    - trip
+                    - nb_companion
+                    - { property: 'payment', type: 'text'}
+                    - status
+                    - inscription_status
+            form:
+                title: 'Editer un participant à une sortie'
+                fields:
+                    - user
+                    - trip
+                    - { property: 'nb_companion', type: 'text'}
+                    - payment
+                    - status
+                    - inscriptionStatus
+        Insurance:
+            class: App\Entity\Insurance
+            label: "Types d'assurance"
+            list:
+                title: "Types d'assurance"
+                fields:
+                    - name
+                    - { property: 'price', number: '%0.02f' }
+            form:
+                title: "Types d'assurance"
+                fields:
+                    - name
+                    - { property: 'price', number: '%0.02f' }
+        InscriptionStatus:
+            translation_domain: 'messages'
+            class: App\Entity\InscriptionStatus
+            label: "Status des inscriptions"
+            list:
+                title: "Status des inscriptions"
+                fields:
+                    - name
+            form:
+                title: "Editer un status"
+                fields:
+                    - name
+        Inscription:
+            translation_domain: 'messages'
+            class: App\Entity\Inscription
+            label: 'Inscriptions'
+            list:
+                title: 'Liste des inscriptions'
+                fields:
+                    - user
+                    - inscription_status
+                    - inscription_year
+                    - internal_procedure
+                    - medical_certificate
+                    - inscription_sheet
+                    - { property: 'image_right', type: 'boolean'}
+            form:
+                title: "Inscription de l'adhérent"
+                fields:
+                    - user
+                    - { property: 'inscription_status', type: 'text'}
+                    - { property: 'inscription_year', type: 'text'}
+                    - { property: 'internal_procedure', type: 'text'}
+                    - { property: 'medical_certificate', type: 'text'}
+                    - { property: 'inscription_sheet', type: 'text'}
+                    - { property: 'image_right', type: 'text'}
+        Document:
+            translation_domain: 'messages'
+            class: App\Entity\Document
+            label: 'Documents'
+            list:
+                title: 'Documents'
+                fields:
+                    - name
+                    - { property: 'documentFile', template: 'vich_uploader_file.html.twig', base_path: '%app.path.product_files%' }
+            form:
+                title: 'Documents'
+                fields:
+                    - { property: 'documentFile', type: 'vich_file' }
+            new:
+                title: 'Documents'
+                fields:
+                    - { property: 'documentFile', type: 'vich_file' }
+        AdhesionPrice:
+            class: App\Entity\AdhesionPrice
+            label: "Types d'adhésion"
+            list:
+                title: "Types d'adhésion"
+                fields:
+                    - name
+                    - { property: 'price', number: '%0.02f'}
+            form:
+                title: "Editer le type d'adhésion"
+                fields:
+                    - name
+                    - { property: 'price', number: '%0.02f'}
