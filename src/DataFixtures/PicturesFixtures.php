@@ -5,27 +5,35 @@ namespace App\DataFixtures;
 use App\Entity\Picture;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Faker\Factory;
 use DateTime;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 
 class PicturesFixtures extends Fixture
 {
-    public function load(ObjectManager $manager)
-    {
-        $faker = Factory::create('fr_FR');
-        for ($i = 0; $i < 11; $i++) {
-            $picture = new Picture();
-            $picture->setName($faker->imageUrl(640, 480));
-            $picture->setUpdatedAt(new DateTime('now'));
-            $this->addReference('trip' . $i, $picture);
+    private $webDirectory;
+    private $imageLocation;
 
-            $manager->persist($picture);
-        }
-        $manager->flush();
+    public function __construct($webDirectory)
+    {
+        $this->webDirectory = $webDirectory;
+        $this->imageLocation = $webDirectory . 'uploads/images/gallery/';
     }
 
-    public function getDependencies()
+    public function load(ObjectManager $manager)
     {
-        return [TripFixtures::class];
+        $path = $this->imageLocation;
+        $directory = new RecursiveDirectoryIterator($path);
+        $iterator = new RecursiveIteratorIterator($directory);
+
+        foreach ($iterator as $info) {
+            $picture = new Picture();
+            $picture->setName($info->getFileName());
+            $picture->setUpdatedAt(new DateTime('now'));
+            if ($info->getFileName() !== '.' && $info->getFileName() !== '..') {
+                $manager->persist($picture);
+            }
+        }
+        $manager->flush();
     }
 }

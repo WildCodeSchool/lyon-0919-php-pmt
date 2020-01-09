@@ -130,11 +130,11 @@ class AppFixtures extends Fixture
             $user->setUpdateAt($date);
             $user->setIsDiver(1);
             $user->setIsHandi(1);
-            $this->addReference('adherent' . ($i + 106), $user);
+            $this->addReference('adherent' . ($i + 16), $user);
             $manager->persist($user);
         }
         //5 nageurs
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 7; $i++) {
             $user = new User();
             $user->setFirstname($this->faker->firstName);
             $user->setLastname($this->faker->name);
@@ -153,7 +153,7 @@ class AppFixtures extends Fixture
             $user->setCreatedAt($date);
             $user->setUpdateAt($date);
             $user->setIsSwim(1);
-            $this->addReference('adherent' . ($i + 111), $user);
+            $this->addReference('adherent' . ($i + 21), $user);
             $manager->persist($user);
         }
         $manager->flush();
