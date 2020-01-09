@@ -39,10 +39,7 @@
         Adresse : {{ userLogin.address }}<br/>
         Code Postal : {{ userLogin.zipCode }}<br/>
         Ville : {{ userLogin.city }}<br/>
-        Niveau de plongée :
-            {% for levelName in userLogin.level %}
-                {{ levelName.name }}
-            {% endfor %}
+        Niveau de plongée : {{ userLogin.level.name }}
         <br/>
         Commentaires : {{ userLogin.comment }}</p>
     </div>
@@ -55,20 +52,15 @@
 
         <p>Choix du type d'assurance :
             {% for inscription in userLogin.inscriptions %}
-                {% for insurance in inscription %}
-                    {{ insurance['name'] }} : {{ insurance.price }}
-                {% endfor %}
+                    {{ inscription.insurance.name }} : {{ inscription.insurance.price }} €
             {% endfor %}
         </p>
         <p>Choix du type d'adhésion :
             {% for inscription in userLogin.inscriptions %}
-                {% for adhesionPrice in inscription %}
-                    {{ adhesionPrice['name'] }} : {{ adhesionPrice.price }}
-                {% endfor %}
+                    {{ inscription.adhesionPrice.name }} : {{ inscription.adhesionPrice.price }} €
             {% endfor %}
         </p>
     </div>
-
 
     <div class="col-6">
         <div class="inscriptionTitle">
@@ -101,5 +93,3 @@
         <p>Signature de l'adhérent : </p>
     </div>
 </div>
-
-
