@@ -78,8 +78,6 @@ class InscriptionClubController extends AbstractController
             ->getRepository(Document::class)
             ->findAll();
 
-//        dd($userLogin);
-
         $template = $this->renderView('inscription_club/pdf.html.twig', [
             'userLogin' => $userLogin,
             'documents' => $documents,

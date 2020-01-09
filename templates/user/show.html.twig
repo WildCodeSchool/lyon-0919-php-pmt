@@ -113,6 +113,8 @@
                                         <div>{{ user.comment }}</div>
                                         {#    PAs d'afficahge du statut isHandi    #}
                                     {% endfor %}
+
+                                    <a href="{{ path ('pdf') }}" class="btn btn-info mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
                                     {#                                    end if si insrit ou pas: #}
                                 {% endif %}
 
