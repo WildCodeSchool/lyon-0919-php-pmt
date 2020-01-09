@@ -5,11 +5,12 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AppFixtures extends Fixture
+class AppFixtures extends Fixture implements DependentFixtureInterface
 {
     protected $faker;
 
@@ -56,7 +57,7 @@ class AppFixtures extends Fixture
             $this->addReference('adherent' . $i, $user);
             $manager->persist($user);
         }
-        //5 moniteurs et plongeurs
+        //5 moniteurs et plongeurs avec level
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
             $user->setFirstname($this->faker->firstName);
@@ -79,8 +80,9 @@ class AppFixtures extends Fixture
             $user->setUpdateAt($date);
             $user->setIsMonitor(1);
             $user->setIsDiver(1);
-            $this->addReference('adherent' . ($i + 1), $user);
             $manager->persist($user);
+            $user->setLevel($this->getReference('level' .random_int(1, 10)));
+            $this->addReference('adherent' . ($i + 1), $user);
         }
         //10 plogneurs
         for ($i = 0; $i < 10; $i++) {
@@ -157,5 +159,11 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [LevelFixtures::class];
+        // TODO: Implement getDependencies() method.
     }
 }

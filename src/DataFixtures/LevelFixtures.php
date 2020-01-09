@@ -24,11 +24,14 @@ class LevelFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        $i = 1;
         foreach (self::LEVELS as $order => $name) {
             $level = new Level();
             $level->setName($name);
             $level->setOrderLevel($order);
             $manager->persist($level);
+            $this->addReference('level' .$i, $level);
+            $i++;
         }
 
         $manager->flush();
