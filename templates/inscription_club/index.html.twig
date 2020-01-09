@@ -143,9 +143,11 @@
             </div>
             <div class="btn_footer">
                 <button class="btn btn-info">{{ button_label|default('S\'inscrire') }}</button>
-
             </div>
         </div>
     </div>
-    {{ form_end(inscriptionForm) }}
+    <div type="hidden" style="display: none;">
+
+        {{ form_end(inscriptionForm) }}
+    </div>
 {% endblock %}
