@@ -59,7 +59,7 @@
                                                 <p class="card-text">Adresse:{{ user.address }} </p>
                                                 <p class="card-text">{{ user.zipCode }} {{ user.city }} </p>
                                                 <p class="card-text">Date
-                                                    naissance:{{ user.birthday ? user.birthday|date('Y-m-d') : '' }} </p>
+                                                    naissance: {{ user.birthday ? user.birthday|localizeddate('none', 'none', null, null, 'eeee d MMMM Y') : '' }} </p>
                                             </div>
                                         </div>
                                     </div>
