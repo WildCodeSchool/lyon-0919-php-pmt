@@ -254,12 +254,10 @@
                                     <div class="col-6">
                                         <h4 class="mt-3">Mes documents importés</h4>
                                         <ul>
-                                            <li>
-                                                <a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a>
-                                                <a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a>
-                                                <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>
-                                                <a href="{{ "/uploads/files/users/" ~ inscription.imageRight }}">{{ inscription.imageRight }}</a>
-                                            </li>
+                                            {% if inscription.internalProcedure is not null %} <li><a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a></li> {% endif %}
+                                            {% if inscription.medicalCertificate is not null %}<li><a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a></li> {% endif %}
+                                            {% if inscription.inscriptionSheet is not null %}<li><a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a></li> {% endif %}
+                                            {% if inscription.imageRight is not null %}<li><a href="{{ "/uploads/files/users/" ~ inscription.imageRight }}">{{ inscription.imageRight }}</a></li> {% endif %}
                                         </ul>
                                     </div>
                                 </div>

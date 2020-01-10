@@ -135,7 +135,7 @@ class AdherentController extends AbstractController
             }
 
             if ($medicalCertificate) {
-                $fileName = 'Certificat_' . $this->getUser() . '.' . $medicalCertificate->guessExtension();
+                $fileName = 'Certificat_' . $this->getUser()->getId() . '.' . $medicalCertificate->guessExtension();
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $medicalCertificate->move($destination, $fileName);
@@ -145,7 +145,7 @@ class AdherentController extends AbstractController
             }
 
             if ($inscriptionSheet) {
-                $fileName = 'Inscription_' . $this->getUser() . '.' . $inscriptionSheet->guessExtension();
+                $fileName = 'Inscription_' . $this->getUser()->getId() . '.' . $inscriptionSheet->guessExtension();
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $inscriptionSheet->move($destination, $fileName);
@@ -155,7 +155,7 @@ class AdherentController extends AbstractController
             }
 
             if ($imageRight) {
-                $fileName = 'Droits_Image_' . $this->getUser() . '.' . $imageRight->guessExtension();
+                $fileName = 'Droits_Image_' . $this->getUser()->getId() . '.' . $imageRight->guessExtension();
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $imageRight->move($destination, $fileName);
