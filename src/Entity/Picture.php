@@ -45,7 +45,7 @@ class Picture
      */
     public function __toString(): string
     {
-        return $this->getName();
+        return strval($this->getName());
     }
 
     public function getId(): ?int
