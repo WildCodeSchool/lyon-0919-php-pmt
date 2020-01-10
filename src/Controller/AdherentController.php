@@ -12,7 +12,7 @@ use App\Form\InscriptionType;
 use App\Form\ParticipantType;
 use App\Form\ParticipantCancelType;
 use App\Form\UserType;
-use mysql_xdevapi\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -129,30 +129,41 @@ class AdherentController extends AbstractController
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $internalProcedure->move($destination, $fileName);
-                $inscription->setInternalProcedure($fileName);
+                if ($inscription !== null) {
+                    $inscription->setInternalProcedure($fileName);
+                }
             }
 
             if ($medicalCertificate) {
-                $fileName = 'Certificat_' . $this->getUser() . '.' . $medicalCertificate->guessExtension();
+                $fileName = 'Certificat_' . $this->getUser()->getId() . '.' . $medicalCertificate->guessExtension();
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $medicalCertificate->move($destination, $fileName);
-                $inscription->setMedicalCertificate($fileName);
+                if ($inscription !== null) {
+                    $inscription->setMedicalCertificate($fileName);
+                }
             }
+
             if ($inscriptionSheet) {
-                $fileName = 'Inscription_' . $this->getUser() . '.' . $inscriptionSheet->guessExtension();
+                $fileName = 'Inscription_' . $this->getUser()->getId() . '.' . $inscriptionSheet->guessExtension();
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $inscriptionSheet->move($destination, $fileName);
-                $inscription->setInscriptionSheet($fileName);
+                if ($inscription !== null) {
+                    $inscription->setInscriptionSheet($fileName);
+                }
             }
+
             if ($imageRight) {
-                $fileName = 'Droits_Image_' . $this->getUser() . '.' . $imageRight->guessExtension();
+                $fileName = 'Droits_Image_' . $this->getUser()->getId() . '.' . $imageRight->guessExtension();
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $imageRight->move($destination, $fileName);
-                $inscription->setImageRight($fileName);
+                if ($inscription !== null) {
+                    $inscription->setImageRight($fileName);
+                }
             }
+
             $this->getDoctrine()->getManager()->flush();
         }
 
@@ -165,6 +176,7 @@ class AdherentController extends AbstractController
             'tripsAlreadyBook' => $alreadyBookedTrips,
             'tripsNotBooked' => $notBookedTrip,
             'documents' => $documents,
+            'inscription' => $inscription,
             'formDocuments' => $formDocuments
         ]);
     }
