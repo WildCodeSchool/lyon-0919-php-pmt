@@ -116,7 +116,8 @@
                                         {#    PAs d'afficahge du statut isHandi    #}
                                     {% endfor %}
 
-                                    <a href="{{ path ('pdf') }}" class="btn btn-info mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
+                                    <a href="{{ path ('pdf') }}"
+                                       class="btn btn-info mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
                                     {#                                    end if si insrit ou pas: #}
                                 {% endif %}
 
@@ -239,14 +240,31 @@
                             {#                            TODO faire affichage des lien à télécharge: 2 colonnes doc à uploader et doc en download#}
                             <div class="tab-pane fade" id="nav-document" role="tabpanel"
                                  aria-labelledby="nav-profile-tab">
-                                <h4 class="mt-3">Documents modèle</h4>
-                                <ul>
-                                    {% for document in documents %}
-                                        <li><a href="{{ "/uploads/files/" ~ document.name }}">{{ document.name }}</a></li>
-                                    {% endfor %}
-                                </ul>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h4 class="mt-3">Documents modèle</h4>
+                                        <ul>
+                                            {% for document in documents %}
+                                                <li>
+                                                    <a href="{{ "/uploads/files/" ~ document.name }}">{{ document.name }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <h4 class="mt-3">Mes documents importés</h4>
+                                        <ul>
+                                            <li>
+                                                <a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a>
+                                                <a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a>
+                                                <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>
+                                                <a href="{{ "/uploads/files/users/" ~ inscription.imageRight }}">{{ inscription.imageRight }}</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 {#                                TODO ajouter liste des docs à télécharger en plus de ceux du menbres #}
-                                <h4 class="mt-3">Mes documents personnels</h4>
+                                <h4 class="mt-3">Importer mes documents</h4>
                                 {% if user.inscriptions is empty %}
                                     <div class="mt-2">Aucun document disponible ( à revoir si besoin)</div>
                                 {% else %}
