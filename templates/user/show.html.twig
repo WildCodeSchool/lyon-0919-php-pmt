@@ -256,24 +256,32 @@
                                         {% if user.inscriptions is empty %}
                                             <div class="mt-2">Aucun document disponible</div>
                                         {% else %}
-                                            <ul>
-                                                {% if inscription.internalProcedure is not null %}
-                                                    <li>
-                                                        <a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a>
-                                                    </li> {% endif %}
-                                                {% if inscription.medicalCertificate is not null %}
-                                                    <li>
-                                                    <a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a>
-                                                    </li> {% endif %}
-                                                {% if inscription.inscriptionSheet is not null %}
-                                                    <li>
-                                                    <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>
-                                                    </li> {% endif %}
-                                                {% if inscription.imageRight is not null %}
-                                                    <li>
-                                                    <a href="{{ "/uploads/files/users/" ~ inscription.imageRight }}">{{ inscription.imageRight }}</a>
-                                                    </li> {% endif %}
-                                            </ul>
+                                            {% if inscription is not null %}
+                                                <ul>
+                                                    {% if inscription.internalProcedure is not null %}
+                                                        <li>
+                                                            <a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if inscription.medicalCertificate is not null %}
+                                                        <li>
+                                                            <a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if inscription.inscriptionSheet is not null %}
+                                                        <li>
+                                                            <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if inscription.imageRight is not null %}
+                                                        <li>
+                                                            <a href="{{ "/uploads/files/users/" ~ inscription.imageRight }}">{{ inscription.imageRight }}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                </ul>
+                                            {% else %}
+                                                <div class="mt-2">Aucun document importé</div>
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 </div>

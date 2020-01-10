@@ -110,6 +110,7 @@ class AdherentController extends AbstractController
             ->findAll();
 
         //on recupere les documents de l'adhérent
+        $inscription = null;
         $formUploaded = new Inscription();
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
