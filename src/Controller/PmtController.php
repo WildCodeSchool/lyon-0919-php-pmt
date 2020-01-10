@@ -4,6 +4,8 @@
 
 namespace App\Controller;
 
+use App\Repository\LevelRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -28,25 +30,20 @@ class PmtController extends AbstractController
         return $this->render('tmp/index.html.twig');
     }
 
-     /**
+    /**
      * @Route("team", name="_showTeam")
+     * @param UserRepository $userRepository
      * @return Response
      */
-    public function showTeam(): Response
+    public function showTeam(UserRepository $userRepository): Response
     {
-        $userAdmins = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findBy(['isAdmin' => true]);
+        $levels = $this->getDoctrine()
+            ->getRepository(Level::class)
+            ->findAll();
 
-        $userMonitors = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findBy(['isMonitor' => true]);
-
-
-
-        return $this->render('tmp/team.html.twig', [
-            'userAdmins' => $userAdmins,
-            'userMonitors' => $userMonitors
+        return $this-> render('tmp/team.html.twig', [
+            'levels' => $levels,
+            'userAdmins' => $userRepository->findBy(['isAdmin' => true])
         ]);
     }
 }

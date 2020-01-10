@@ -29,13 +29,15 @@ class InscriptionClubController extends AbstractController
      */
     public function index(Request $request)
     {
-
         $user = $this->getUser();
 
         $inscriptionForm = $this->createForm(InscriptionClubType::class, null, ['user' => $user]);
         $inscriptionForm->handleRequest($request);
 
         if ($inscriptionForm->isSubmitted() && $inscriptionForm->isValid()) {
+
+            $this->addFlash('success', 'Votre adhesion est enregistré!');
+
             $data = $inscriptionForm->getData();
 
             $inscription = new Inscription();
@@ -56,7 +58,7 @@ class InscriptionClubController extends AbstractController
             $entityManager->persist($inscription);
             $entityManager->flush();
 
-            return $this->redirectToRoute('inscriptionForm');
+            return $this->redirectToRoute('account_index');
         }
 
         return $this->render('inscription_club/index.html.twig', [
@@ -77,8 +79,6 @@ class InscriptionClubController extends AbstractController
         $documents = $this->getDoctrine()
             ->getRepository(Document::class)
             ->findAll();
-
-//        dd($userLogin);
 
         $template = $this->renderView('inscription_club/pdf.html.twig', [
             'userLogin' => $userLogin,

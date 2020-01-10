@@ -60,7 +60,7 @@
                                                 <p class="card-text">Adresse:{{ user.address }} </p>
                                                 <p class="card-text">{{ user.zipCode }} {{ user.city }} </p>
                                                 <p class="card-text">Date
-                                                    naissance:{{ user.birthday ? user.birthday|date('Y-m-d') : '' }} </p>
+                                                    naissance: {{ user.birthday ? user.birthday|localizeddate('none', 'none', null, null, 'eeee d MMMM Y') : '' }} </p>
                                             </div>
                                         </div>
                                     </div>
@@ -115,6 +115,8 @@
                                         <div>{{ user.comment }}</div>
                                         {#    PAs d'afficahge du statut isHandi    #}
                                     {% endfor %}
+
+                                    <a href="{{ path ('pdf') }}" class="btn btn-info mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
                                     {#                                    end if si insrit ou pas: #}
                                 {% endif %}
 
