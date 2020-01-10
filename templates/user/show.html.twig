@@ -81,8 +81,9 @@
 
                                 {#                                si pas inscrit on affiche le lien vers le form d'inscription: si inscrit info de l'inscription#}
                                 {% if user.inscriptions is empty %}
-                                    <div><a href="{{ path('inscriptionForm') }}">S'inscrire</a></div>
-
+                                    <div class="btn_inscription">
+                                        <a href="{{ path('inscriptionForm') }}" class="btn btn-primary text-white">S'inscrire</a>
+                                    </div>
                                 {% else %}
 
 
