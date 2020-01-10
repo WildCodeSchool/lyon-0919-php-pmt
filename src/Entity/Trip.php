@@ -108,7 +108,7 @@ class Trip
      */
     public function __toString(): ?string
     {
-        return $this->getName();
+        return strval($this->getName());
     }
 
     public function __construct()
@@ -116,8 +116,9 @@ class Trip
         $this->participant = new ArrayCollection();
         if ($this->getCreatedAt() === null) {
             $this->setCreatedAt(new DateTime('now'));
+            $this->setUpdatedAt(new DateTime('now'));
         } else {
-//            TODO: gestion de la update Date quand on update un trip
+//            gestion de la update Date quand on update un trip
             $this->setUpdatedAt(new DateTime('now'));
         }
     }
