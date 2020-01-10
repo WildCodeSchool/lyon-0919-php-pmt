@@ -10,6 +10,7 @@ parameters:
     app.path.product_files: /uploads/files
     app.path.image_users: /uploads/images/users
     image_user_upload: '%kernel.project_dir%/public%app.path.image_users%'
+    doc_user_upload: '%kernel.project_dir%/public/uploads/files/users'
 
 services:
     _defaults:

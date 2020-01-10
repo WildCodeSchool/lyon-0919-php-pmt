@@ -41,6 +41,7 @@ class UserController extends AbstractController
      * @Route("/new", name="user_new", methods={"GET","POST"})
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function new(Request $request): Response
     {

@@ -3,10 +3,12 @@
 
 namespace App\Controller;
 
-use App\Entity\InscriptionStatus;
+use App\Entity\Document;
+use App\Entity\Inscription;
 use App\Entity\Participant;
 use App\Entity\Trip;
 use App\Entity\User;
+use App\Form\InscriptionType;
 use App\Form\ParticipantType;
 use App\Form\ParticipantCancelType;
 use App\Form\UserType;
@@ -37,6 +39,7 @@ class AdherentController extends AbstractController
         $form->handleRequest($request);
 
         $participant = new Participant();
+
         //gestion du form de participation à une sortie
         $formTripRegistration = $this->createForm(ParticipantType::class, $participant);
         $formTripRegistration->handleRequest($request);
@@ -45,6 +48,7 @@ class AdherentController extends AbstractController
         $formTripCancellation = $this->createForm(ParticipantCancelType::class, $participantToDelete);
         $formTripCancellation->handleRequest($request);
 
+//        from mise à jour user
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userLogin);
@@ -75,7 +79,7 @@ class AdherentController extends AbstractController
         }
 
 //        liste des sorties ou le user est inscrits
-        /* @var  Collection|Participant[] $alreadyBookedTrips*/
+        /* @var  Collection|Participant[] $alreadyBookedTrips */
         $alreadyBookedTrips = $this->getDoctrine()
             ->getRepository(Participant::class)
             ->findBy(['user' => $userLogin]);
@@ -100,6 +104,58 @@ class AdherentController extends AbstractController
             }
         }
 
+        //on recupere la liste des documents
+        $documents = $this->getDoctrine()
+            ->getRepository(Document::class)
+            ->findAll();
+
+        //on recupere les documents de l'adhérent
+        $formUploaded = new Inscription();
+        $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
+        $formDocuments->handleRequest($request);
+
+        if ($formDocuments->isSubmitted()) {
+            $inscription = $this->getDoctrine()
+                ->getRepository(Inscription::class)
+                ->findOneBy(['user' => $userLogin]);
+
+            $internalProcedure = $formDocuments['internalProcedure']->getData();
+            $medicalCertificate = $formDocuments['medicalCertificate']->getData();
+            $inscriptionSheet = $formDocuments['inscriptionSheet']->getData();
+            $imageRight = $formDocuments['imageRight']->getData();
+
+            if ($internalProcedure) {
+                $fileName = 'Reglement_' . $this->getUser()->getId() . '.' . $internalProcedure->guessExtension();
+//                 moves the file to the directory where brochures are stored
+                $destination = $this->getParameter('doc_user_upload');
+                $internalProcedure->move($destination, $fileName);
+                $inscription->setInternalProcedure($fileName);
+            }
+
+            if ($medicalCertificate) {
+                $fileName = 'Certificat_' . $this->getUser() . '.' . $medicalCertificate->guessExtension();
+//                 moves the file to the directory where brochures are stored
+                $destination = $this->getParameter('doc_user_upload');
+                $medicalCertificate->move($destination, $fileName);
+                $inscription->setMedicalCertificate($fileName);
+            }
+            if ($inscriptionSheet) {
+                $fileName = 'Inscription_' . $this->getUser() . '.' . $inscriptionSheet->guessExtension();
+//                 moves the file to the directory where brochures are stored
+                $destination = $this->getParameter('doc_user_upload');
+                $inscriptionSheet->move($destination, $fileName);
+                $inscription->setInscriptionSheet($fileName);
+            }
+            if ($imageRight) {
+                $fileName = 'Droits_Image_' . $this->getUser() . '.' . $imageRight->guessExtension();
+//                 moves the file to the directory where brochures are stored
+                $destination = $this->getParameter('doc_user_upload');
+                $imageRight->move($destination, $fileName);
+                $inscription->setImageRight($fileName);
+            }
+            $this->getDoctrine()->getManager()->flush();
+        }
+
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,
             'form' => $form,
@@ -107,7 +163,9 @@ class AdherentController extends AbstractController
             'formTripCancellation' => $formTripCancellation,
 //            'trips' => $trips,
             'tripsAlreadyBook' => $alreadyBookedTrips,
-            'tripsNotBooked' => $notBookedTrip
+            'tripsNotBooked' => $notBookedTrip,
+            'documents' => $documents,
+            'formDocuments' => $formDocuments
         ]);
     }
 }
