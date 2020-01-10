@@ -22,7 +22,8 @@
                                    href="#nav-account" role="tab" aria-controls="nav-account"
                                    aria-selected="false">Mon compte</a>
                                 <a class="nav-item nav-link " id="nav-inscription-tab" data-toggle="tab"
-                                   href="#nav-inscription" role="tab" aria-controls="nav-inscription" aria-selected="true">Mon
+                                   href="#nav-inscription" role="tab" aria-controls="nav-inscription"
+                                   aria-selected="true">Mon
                                     inscription au PMT</a>
                                 <a class="nav-item nav-link" id="nav-sortie-tab" data-toggle="tab"
                                    href="#nav-sortie" role="tab" aria-controls="nav-sortie"
@@ -90,11 +91,12 @@
                                         <div class="mt-3">Ma periode d'inscription :
                                             <strong>{{ inscr.inscriptionYear }}</strong></div>
                                         <div class="mt-3">Statut de votre inscription:
-                                            <strong>{{  inscr.inscriptionStatus is null ? '' : 'A effectuer'  ~ inscr.inscriptionStatus.name }}</strong></div>
+                                            <strong>{{ inscr.inscriptionStatus is null ? '' : 'A effectuer'  ~ inscr.inscriptionStatus.name }}</strong>
+                                        </div>
                                         <h4 class="mt-3"><strong>Rôle et activités:</strong></h4>
                                         <ul style="list-style: square;">
                                             {% if user.isMonitor %}
-                                                <li>{{  user.level is null ? '' : 'Moniteur: niveau '  ~ user.level.name }}</li>
+                                                <li>{{ user.level is null ? '' : 'Moniteur: niveau '  ~ user.level.name }}</li>
                                             {% endif %}
                                             {% if user.isDiver %}
                                                 <li> {{ user.level is null ? '' : 'Adhérent plongeur: niveau ' ~ user.level.name }}</li>
@@ -121,75 +123,78 @@
                             {# affichage de la listes des sorties #}
                             <div class="tab-pane fade" id="nav-sortie" role="tabpanel"
                                  aria-labelledby="nav-contact-tab">
-                                <h4 class="mt-3"><strong>Listes des sorties disponibles: {{  tripsNotBooked|length  }}</strong></h4>
+                                <h4 class="mt-3"><strong>Listes des sorties
+                                        disponibles: {{ tripsNotBooked|length }}</strong></h4>
                                 {#                                         ajout  des sorties une par une : suelement celle en cours#}
                                 {% for trip in tripsNotBooked %}
-                                {#                                            on cree une card  par trip #}
-{#                                    if trip is already book on ne l'affcieh pas sur cette onglet#}
+                                    {#                                            on cree une card  par trip #}
+                                    {#                                    if trip is already book on ne l'affcieh pas sur cette onglet#}
 
-                                <div class="card mb-3" style="max-width: 100%;">
-                                    <div class="row no-gutters">
-                                        <div class="col-md-4">
-                                            {% if trip is null %}
-                                                <img src="" class="card-img" alt="...">
-                                            {% else %}
-                                                <img src="{{ '/uploads/images/gallery/' ~ trip.imageName }}"
-                                                     class="card-img" alt="...">
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="card-body">
-                                                <h5 class="card-title">Sortie: {{ trip.name }}</h5>
-                                                <h5> lieu: {{ trip.location }}</h5>
-                                                <p class="card-text">{{ trip.description }}</p>
-                                                <p class="card-text"><small
-                                                            class="text-muted">du {{ trip.dateStart|date("d/m/Y") }}
-                                                        au {{ trip.dateEnd|date("d/m/Y") }}</small></p>
+                                    <div class="card mb-3" style="max-width: 100%;">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-4">
+                                                {% if trip is null %}
+                                                    <img src="" class="card-img" alt="...">
+                                                {% else %}
+                                                    <img src="{{ '/uploads/images/gallery/' ~ trip.imageName }}"
+                                                         class="card-img" alt="...">
+                                                {% endif %}
                                             </div>
-                                        </div>
-                                    </div>
-                                    {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
-                                    on renvoi la validation de l'inscription #}
-                                    <div class="card-footer bg-transparent border-success">
-
-                                        {#  creation du collapse de l'insription form participant Form2 de la page #}
-                                        <button class="btn btn-primary" type="button" data-toggle="collapse"
-                                                data-target="#{{ 'collapse' ~ trip.id }}" aria-expanded="false"
-                                                aria-controls="{{ 'collapse' ~ trip.id }}">
-                                            Accèder à l'inscription
-                                        </button>
-                                        <div class="collapse" id="{{ 'collapse' ~ trip.id }}">
-                                            <div class="card card-body">
-                                                {#                                                    afficahge form de participation #}
-                                                <div class="container">
-                                                    {% set formTrip = formTripRegistration.createView %}
-                                                    {{ form_start(formTrip) }}
-                                                        {{ form_widget(formTrip.trip, {"value" : trip.id, "attr": {"id": "participant_trip_" ~ trip.id} }) }}
-{#                                                        {{ form_widget(form2.token, { "attr": {"id": "participant_token_" ~ trip.id} }) }}#}
-                                                         {{ form_label(formTrip.payment, 'Choix de mon moyen de paiement') }}
-                                                        {{ form_widget(formTrip.payment, {'attr': {'id': 'payment_trip_' ~ trip.id} }) }}
-
-                                                    {{ form_label(formTrip.nbCompanion, 'Je viens avé mes copains!') }}
-                                                    {{ form_widget(formTrip.nbCompanion, {"attr": {"id": "nbCompanion_trip_" ~ trip.id} }) }}
-                                                    <button type="submit" class="btn btn-primary mt-4">M'inscrire</button>
-                                                    {{ form_end(formTrip) }}
+                                            <div class="col-md-8">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Sortie: {{ trip.name }}</h5>
+                                                    <h5> lieu: {{ trip.location }}</h5>
+                                                    <p class="card-text">{{ trip.description }}</p>
+                                                    <p class="card-text"><small
+                                                                class="text-muted">du {{ trip.dateStart|date("d/m/Y") }}
+                                                            au {{ trip.dateEnd|date("d/m/Y") }}</small></p>
                                                 </div>
                                             </div>
+                                        </div>
+                                        {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
+                                        on renvoi la validation de l'inscription #}
+                                        <div class="card-footer bg-transparent border-success">
 
+                                            {#  creation du collapse de l'insription form participant Form2 de la page #}
+                                            <button class="btn btn-primary" type="button" data-toggle="collapse"
+                                                    data-target="#{{ 'collapse' ~ trip.id }}" aria-expanded="false"
+                                                    aria-controls="{{ 'collapse' ~ trip.id }}">
+                                                Accèder à l'inscription
+                                            </button>
+                                            <div class="collapse" id="{{ 'collapse' ~ trip.id }}">
+                                                <div class="card card-body">
+                                                    {#                                                    afficahge form de participation #}
+                                                    <div class="container">
+                                                        {% set formTrip = formTripRegistration.createView %}
+                                                        {{ form_start(formTrip) }}
+                                                        {{ form_widget(formTrip.trip, {"value" : trip.id, "attr": {"id": "participant_trip_" ~ trip.id} }) }}
+                                                        {#                                                        {{ form_widget(form2.token, { "attr": {"id": "participant_token_" ~ trip.id} }) }}#}
+                                                        {{ form_label(formTrip.payment, 'Choix de mon moyen de paiement') }}
+                                                        {{ form_widget(formTrip.payment, {'attr': {'id': 'payment_trip_' ~ trip.id} }) }}
+
+                                                        {{ form_label(formTrip.nbCompanion, 'Je viens avé mes copains!') }}
+                                                        {{ form_widget(formTrip.nbCompanion, {"attr": {"id": "nbCompanion_trip_" ~ trip.id} }) }}
+                                                        <button type="submit" class="btn btn-primary mt-4">M'inscrire
+                                                        </button>
+                                                        {{ form_end(formTrip) }}
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                    {% endfor %}
+                                {% endfor %}
 
                             </div>
 
                             {# affichage de la listes des sorties ou le user est inscrit #}
                             <div class="tab-pane fade" id="nav-messorties" role="tabpanel"
                                  aria-labelledby="nav-contact-tab">
-                                <h4 class="mt-3"><strong>Mes inscriptions aux sorties: {{  tripsAlreadyBook|length  }}</strong></h4>
+                                <h4 class="mt-3"><strong>Mes inscriptions aux
+                                        sorties: {{ tripsAlreadyBook|length }}</strong></h4>
                                 {#                                         ajout  des sorties une par une : suelement celle en cours#}
                                 {% for bookTrip in tripsAlreadyBook %}
-{#                                    #}{#                                            on cree une card  par trip #}
+                                    {#                                    #}{#                                            on cree une card  par trip #}
                                     <div class="card mb-3" style="max-width: 100%;">
                                         <div class="row no-gutters">
                                             <div class="col-md-4">
@@ -215,7 +220,7 @@
                                         {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                         on renvoi la validation de l'inscription #}
                                         <div class="card-footer bg-transparent border-success">
-{#                                            creation d'un from de déinscription #}
+                                            {#                                            creation d'un from de déinscription #}
                                             {% set formTripCancel = formTripCancellation.createView %}
                                             {{ form_start(formTripCancel) }}
                                             {{ form_widget(formTripCancel.trip, {"value" : bookTrip.trip.id, "attr": {"id": "participant_trip_" ~ bookTrip.trip.id} }) }}
@@ -232,21 +237,26 @@
                             {#                            TODO faire affichage des lien à télécharge: 2 colonnes doc à uploader et doc en download#}
                             <div class="tab-pane fade" id="nav-document" role="tabpanel"
                                  aria-labelledby="nav-profile-tab">
+                                <h4 class="mt-3">Documents modèle</h4>
+                                <ul>
+                                    {% for document in documents %}
+                                        <li><a href="{{ "/uploads/files/" ~ document.name }}">{{ document.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
                                 {#                                TODO ajouter liste des docs à télécharger en plus de ceux du menbres #}
+                                <h4 class="mt-3">Mes documents personnels</h4>
                                 {% if user.inscriptions is empty %}
                                     <div class="mt-2">Aucun document disponible ( à revoir si besoin)</div>
                                 {% else %}
-                                    {% for inscr in user.inscriptions %}
-                                        {#                                lien vers le téléchargemetn des docs uploadé par les menbres#}
-                                        <div class="mt-2">Téléchargement du réglement intérieur</div>
-                                        <a href="{{ inscr.internalProcedure }}">Télécharger</a>
-
-                                        <div class="mt-2">Téléchargement de votre fiche inscription</div>
-                                        <a href="{{ inscr.inscriptionSheet }}"> Télécharger</a>
-
-                                        <div class="mt-2">Téléchargement de votre certificat médicale</div>
-                                        <a href="{{ inscr.medicalCertificate }}"> Télécharger</a>
-                                    {% endfor %}
+                                    {% set formDoc = formDocuments.createView %}
+                                    {{ form_start(formDoc) }}
+                                    {{ form_row(formDoc.internalProcedure) }}
+                                    {{ form_row(formDoc.medicalCertificate) }}
+                                    {{ form_row(formDoc.inscriptionSheet) }}
+                                    {{ form_row(formDoc.imageRight) }}
+                                    <div class="row text-center">
+                                        <button class="btn btn-primary col-12 col-sm-4 offset-4 mt-5 mb-5">{{ button_label|default('Save') }}</button>
+                                    </div>
                                 {% endif %}
                             </div>
                         </div>
