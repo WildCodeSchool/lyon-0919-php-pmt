@@ -326,12 +326,12 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeInterface
+    public function getUpdateAt(): ?DateTime
     {
         return $this->updateAt;
     }
 
-    public function setUpdateAt(\DateTimeInterface $updateAt): self
+    public function setUpdateAt(DateTime $updateAt): self
     {
         $this->updateAt = $updateAt;
 
@@ -588,7 +588,7 @@ class User implements UserInterface, \Serializable
         if (null !== $imageFile) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt( new DateTime());
+            $this->setUpdateAt(new DateTime());
         }
     }
 
@@ -602,7 +602,7 @@ class User implements UserInterface, \Serializable
         return $this->imageName;
     }
 
-    public function setImageName(?string $imageName): self
+    public function setImageName(string $imageName): self
     {
         $this->imageName = $imageName;
 
