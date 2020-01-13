@@ -4,6 +4,7 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
 
+    <h1 style="text-align: center">Une question à nous poser?</h1>
     {{ form_start(form) }}
     <div class="container mb-5">
         <div class="inscriptionTitle">
@@ -32,8 +33,17 @@
         </div>
 
         <button class="btn-primary float-right" type="submit">Envoyer</button>
+        {{ form_end(form) }}
     </div>
-    {{ form_end(form) }}
+        <h1 style="text-align: center">Où nous trouver?</h1>
+    <div class="container">
+        <div class="row">
+        <div class ="col-3 col-md-6 col-lg-12">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1jPvtX0eYv_GOjlnpWYMDIJ58OWsPBydo&hl=fr" width="640"
+                height="480"></iframe>
+        </div>
+        </div>
+    </div>
 
 {% endblock %}
 
