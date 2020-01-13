@@ -125,7 +125,7 @@ class User implements UserInterface, \Serializable
     private $isHandi;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Level", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Level", inversedBy="users")
      */
     private $level;
 
@@ -160,6 +160,11 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     protected $resetToken;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Office", inversedBy="users")
+     */
+    private $office;
 
     /**
      * @return string
@@ -606,6 +611,18 @@ class User implements UserInterface, \Serializable
     public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getOffice(): ?Office
+    {
+        return $this->office;
+    }
+
+    public function setOffice(?Office $office): self
+    {
+        $this->office = $office;
 
         return $this;
     }
