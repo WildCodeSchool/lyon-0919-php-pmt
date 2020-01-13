@@ -17,9 +17,7 @@ class ContactType extends AbstractType
     {
         $options;
         $builder
-            ->add('firstname', TextType::class)
             ->add('lastname', TextType::class)
-            ->add('phone', TextType::class)
             ->add('email', TextType::class)
             ->add('message', TextareaType::class);
     }

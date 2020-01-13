@@ -33,7 +33,7 @@ class ContactNotification
             $sentTo = $contact->getEmail();
         }
 
-        $message = (new Swift_Message('Nouvel email de ' . $contact->getLastname() . " " . $contact->getFirstname()))
+        $message = (new Swift_Message('Nouvel email de ' . $contact->getLastname()))
             ->setFrom($sentTo)
             ->setTo('pmt@gmail.com')
             ->setReplyTo($contact->getEmail())
