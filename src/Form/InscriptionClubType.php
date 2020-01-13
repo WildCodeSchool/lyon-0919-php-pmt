@@ -31,7 +31,7 @@ class InscriptionClubType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', UserType::class, ['data' => $options['user']])
+            ->add('user', UserType::class, ['data' => $options['user'], 'label' => false])
             ->add('inscription', InscriptionType::class, ['data' => new Inscription()])
             ->add('level', EntityType::class, [
                 'class' => Level::class,

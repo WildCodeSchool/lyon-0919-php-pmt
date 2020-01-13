@@ -105,6 +105,7 @@ class UserController extends AbstractController
             }
             // ... persist the $product variable or any other work
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Votre profil a été mis à jour!');
 //            return $this->redirect($this->generateUrl('app_product_list'));
 
             if ($this->auth->isGranted('ROLE_ADMIN')) {
