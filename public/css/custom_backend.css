@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Alatsi|Roboto&display=swap');
+
+.wrapper {
+    margin-left: 40px;
+}
+
+a{
+    color: #3c8e91;
+}
+
+.logo-long{
+    font-size: 1.3em;
+    font-family: 'Alatsi', sans-serif;
+}
+
