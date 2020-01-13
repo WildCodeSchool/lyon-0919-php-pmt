@@ -147,6 +147,17 @@
             </div>
         </div>
     </div>
-        {{ form_end(inscriptionForm,{'render_rest': false}) }}
-{#        {{ form_end(inscriptionForm) }}#}
+
+    <div type="hidden" style="display: none;">
+        {{ form_widget(inscriptionForm.user.ImageFile) }}
+        {{ form_widget(inscriptionForm.inscription.internalProcedure) }}
+        {{ form_widget(inscriptionForm.inscription.medicalCertificate) }}
+        {{ form_widget(inscriptionForm.inscription.inscriptionSheet) }}
+        {{ form_widget(inscriptionForm.inscription.imageRight) }}
+    </div>
+
+{#        {{ form_end(inscriptionForm,  }}#}
+    {{ form_end(inscriptionForm) }}
+
+
 {% endblock %}
