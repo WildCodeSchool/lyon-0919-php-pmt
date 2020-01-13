@@ -8,6 +8,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
@@ -33,7 +34,9 @@ class UserType extends AbstractType
             ->add('homePhone')
             ->add('mobilePhone')
             ->add('birthday')
-            ->add('comment', HiddenType::class)
+            ->add('comment', TextareaType::class, array(
+                'attr' => array('cols' => '5', 'rows' => '5'),
+            ))
             ->add('address')
             ->add('zipCode')
             ->add('city')

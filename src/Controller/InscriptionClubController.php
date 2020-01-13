@@ -35,7 +35,7 @@ class InscriptionClubController extends AbstractController
         $inscriptionForm->handleRequest($request);
 
         if ($inscriptionForm->isSubmitted() && $inscriptionForm->isValid()) {
-            $this->addFlash('success', 'Votre adhesion est enregistré!');
+            $this->addFlash('success', 'Votre adhesion est enregistrée!');
 
             $data = $inscriptionForm->getData();
 
