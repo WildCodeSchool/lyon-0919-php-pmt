@@ -87,10 +87,11 @@
                                 {{ form_widget(inscriptionForm.user.city, {'attr': {'class': 'form-control'}}) }}
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label for="pays" class="col-12 control-label">Commentaires</label>
                             <div class="col-10">
-                                {{ form_widget(inscriptionForm.user.comment) }}
+                                {{ form_widget(inscriptionForm.user.comment ) }}
                             </div>
                         </div>
                     </div>
@@ -146,7 +147,6 @@
             </div>
         </div>
     </div>
-    <div type="hidden" style="display: none;">
-        {{ form_end(inscriptionForm) }}
-    </div>
+        {{ form_end(inscriptionForm,{'render_rest': false}) }}
+{#        {{ form_end(inscriptionForm) }}#}
 {% endblock %}

@@ -8,5 +8,4 @@ parameters:
     excludes_analyse:
         - src/DataFixtures
     ignoreErrors:
-        - '#Call to an undefined method [a-zA-Z0-9\\_]+::method\(\)#'
-        - '#Call to an undefined method [a-zA-Z0-9\\_]+::expects\(\)#'
+        - '#Call to an undefined method [a-zA-Z0-9\\_]+::#'

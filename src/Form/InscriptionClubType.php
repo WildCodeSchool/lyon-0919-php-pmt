@@ -31,10 +31,8 @@ class InscriptionClubType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-
-            ->add('user', UserType::class, ['data' =>  $options['user']])
+            ->add('user', UserType::class, ['data' => $options['user']])
             ->add('inscription', InscriptionType::class, ['data' => new Inscription()])
-
             ->add('level', EntityType::class, [
                 'class' => Level::class,
                 'choice_label' => 'name',
@@ -44,7 +42,7 @@ class InscriptionClubType extends AbstractType
             ])
             ->add('insurance', EntityType::class, [
                 'class' => Insurance::class,
-                'choice_label' =>  function ($insurance) {
+                'choice_label' => function ($insurance) {
                     return $insurance->getName() . ' : ' . $insurance->getPrice() . " €";
                 },
                 'expanded' => false,
@@ -66,8 +64,7 @@ class InscriptionClubType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
                 'by_reference' => false,
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
