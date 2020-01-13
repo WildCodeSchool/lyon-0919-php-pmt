@@ -1,42 +1,70 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
+{% block title %}Contact{% endblock %}
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-
+    <h1 style="text-align: center">Contactez nous</h1>
     {{ form_start(form) }}
-    <div class="container mb-5">
-        <div class="inscriptionTitle">
-            <span>Formulaire de contact</span>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                    {{ form_label (form.firstname, 'Prénom :') }}
-                    {{ form_widget(form.firstname) }}
-                    {{ form_label (form.lastname, 'Nom :') }}
-                    {{ form_widget(form.lastname) }}
-                </div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    {{ form_label (form.phone, 'Téléphone :') }}
-                    {{ form_widget(form.phone) }}
-                    {{ form_label (form.email, 'Email :') }}
-                    {{ form_widget(form.email) }}
-                </div>
-            </div>
-            <div class="col-12 m-1">
-                {{ form_rest(form) }}
-            </div>
-        </div>
+    <div class="container">
+        <section class="section pb-5">
+            <div class="row">
+                <div class="col-lg-5 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-header blue accent-1">
+                                <h3> Pour nous écrire</h3>
+                            </div>
+                            <br>
+                            <div class="md-form">
+                                {{ form_label (form.lastname, 'Nom :') }}
+                                {{ form_widget(form.lastname) }}
 
-        <button class="btn-primary float-right" type="submit">Envoyer</button>
+                            </div>
+
+                            <div class="md-form">
+                                {{ form_label (form.email, 'Email :') }}
+                                {{ form_widget(form.email) }}
+                            </div>
+
+                            <div class="md-form">
+                                {{ form_rest(form) }}
+                            </div>
+                            <div class="text-center mt-4">
+                                <button class="btn-primary float-right" type="submit">Envoyer</button>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+
+
+                </div>
+                <div class="col-lg-7">
+
+                    <!--Google map-->
+                    <div id="map-container-google-11" class="z-depth-1-half map-container-6"
+                         style="height: 300px">
+                        <iframe src="https://www.google.com/maps/d/embed?mid=1jPvtX0eYv_GOjlnpWYMDIJ58OWsPBydo&hl=fr"
+                                frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+
+                    <br>
+                    <!--Buttons-->
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <a class="btn-floating blue accent-1"><i class="fas fa-map-marker-alt"></i></a>
+                            <p>Maison des associations - 95 allée Antoine Millan - 01600 TREVOUX</p>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!--Grid column-->
+
+            </div>
+        </section>
     </div>
-    {{ form_end(form) }}
 
 {% endblock %}
-
     {% block footer %}
         {% include '_footer.html.twig' %}
     {% endblock %}
