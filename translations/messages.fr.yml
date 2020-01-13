@@ -10,7 +10,7 @@ Zip code: Code Postal
 City: Ville
 Comment: Commentaires
 Is admin: Admin
-Is monitor: Moniteur
+Is monitor: Encadrant
 Is swim: Adhérent Piscine
 Is diver: Plongeur
 Is handi: Handicapé
@@ -40,6 +40,7 @@ Payment: Type de paiements
 Type payment: Type de paiements
 #Traduction niveaux de plongée
 Order level: Ordre des niveaux
+level: Niveaux
 #Traduction document
 Document file: Aperçu
 

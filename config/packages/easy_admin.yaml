@@ -67,11 +67,11 @@ easy_admin:
                     - city
                     - level
                     - comment
-                    - { property: 'is_admin',  type: 'text' }
-                    - { property: 'is_monitor',  type: 'text' }
-                    - { property: 'is_swim',  type: 'text' }
-                    - { property: 'is_diver',  type: 'text' }
-                    - { property: 'is_handi',  type: 'text' }
+                    - { property: 'is_admin',  type: 'checkbox' }
+                    - { property: 'is_monitor',  type: 'checkbox' }
+                    - { property: 'is_swim',  type: 'checkbox' }
+                    - { property: 'is_diver',  type: 'checkbox' }
+                    - { property: 'is_handi',  type: 'checkbox' }
             edit:
                 title: 'Editer un adhérent'
                 fields:
@@ -87,11 +87,11 @@ easy_admin:
                     - city
                     - level
                     - comment
-                    - { property: 'is_admin',  type: 'text' }
-                    - { property: 'is_monitor',  type: 'text' }
-                    - { property: 'is_swim',  type: 'text' }
-                    - { property: 'is_diver',  type: 'text' }
-                    - { property: 'is_handi',  type: 'text' }
+                    - { property: 'is_admin',  type: 'checkbox' }
+                    - { property: 'is_monitor',  type: 'checkbox' }
+                    - { property: 'is_swim',  type: 'checkbox' }
+                    - { property: 'is_diver',  type: 'checkbox' }
+                    - { property: 'is_handi',  type: 'checkbox' }
             show:
                 title: "Profil de l'adhérent"
                 fields:
