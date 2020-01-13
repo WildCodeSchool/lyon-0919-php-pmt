@@ -3,7 +3,9 @@ easy_admin:
     formats:
         number: '%0.02f €'
     design:
-        brand_color: '#1ABC9C'
+        brand_color: '#3c8e91'
+        assets:
+            css: ['css/custom_backend.css']
         menu:
             - { label: 'Membres' }
             - { entity: 'User', icon: 'user' }
