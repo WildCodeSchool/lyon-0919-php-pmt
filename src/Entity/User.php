@@ -75,7 +75,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @var string
+     * @var ?string
      */
     private $imageName = "logo_PMT.png";
 
