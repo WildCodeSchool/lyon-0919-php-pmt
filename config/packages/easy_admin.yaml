@@ -58,7 +58,6 @@ easy_admin:
                     - { property: 'firstname',  type: 'text' }
                     - { property: 'lastname',  type: 'text' }
                     - { property: 'email', type: 'email' }
-                    - password
                     - { property: 'home_phone', type: 'tel' }
                     - { property: 'mobile_phone', type: 'tel' }
                     - birthday
