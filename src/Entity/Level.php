@@ -31,7 +31,7 @@ class Level
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="level")
      */
-    private $user;
+    private $users;
 
     /**
      * @return string
@@ -43,7 +43,7 @@ class Level
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+        $this->users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -78,15 +78,15 @@ class Level
     /**
      * @return Collection|User[]
      */
-    public function getUser(): Collection
+    public function getUsers(): Collection
     {
-        return $this->user;
+        return $this->users;
     }
 
     public function addUser(User $user): self
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
             $user->setLevel($this);
         }
 
@@ -95,8 +95,8 @@ class Level
 
     public function removeUser(User $user): self
     {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
             if ($user->getLevel() === $this) {
                 $user->setLevel(null);

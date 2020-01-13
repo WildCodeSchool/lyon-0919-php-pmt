@@ -2,60 +2,62 @@
 
 {% block title %}bureau{% endblock %}
 {% block body %}
-    <div class="titleMembers">
-        <h2>Membres de l'association</h2>
-    </div>
+<div class="titleMembers">
+    <h2>Membres de l'association</h2>
+</div>
 
-    <div class="card-accueil mt-5 ml-5" style="width: 30rem;">
-        <div class="card-header"><h4>Bureau</h4></div>
-        <div class="card-body">
-            <ul>
-                {% for userAdmin in userAdmins %}
-                    <li><h5>Présidente : </h5>{{ userAdmin.firstname }} {{ userAdmin.lastname|upper }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+<div class="card-accueil mt-5 ml-5" style="width: 30rem;">
+    <div class="card-header"><h4>Bureau</h4></div>
+    <div class="card-body">
+        <ul>
+            {% for userAdmin in userAdmins %}
+                <li><h5>Présidente : </h5>{{ userAdmin.firstname }} {{ userAdmin.lastname|upper }}</li>
+            {% endfor %}
+        </ul>
     </div>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="card-accueil mt-5 ml-5 mr-5 w-100" style="width: 30rem;">
-                <div class="card-header"><h4>Encadrants</h4></div>
-                <div class="card-body">
-                    <div class="col-md-12 w-100">
-                            <ul class="levelTeam w-100" style="list-style-type: none;">
-                                {% for level in levels %}
-                                    <div class="card w-100 mb-3" style="width: 28rem;">
-                                        <div class="card-header"><h5>niveau : {{ level.name }}</h5></div>
-                                        <div class="card-body"
-                                             style="display: flex; padding-top: 0px; padding-bottom: 0px;">
-                                            <div class="row">
-                                                <div class="col-md-2">
-                                                    <ul style="display: flex;">
-                                                        {% for user in level.user %}
-                                                            <div class="card-body mr-5"
-                                                                 style="width: 12rem; text-align: center;">
-                                                                <img class="picture"
-                                                                     src="img/Berthet-Florence-E3MF1.jpg"
-                                                                     alt="photo encaddrant">
-                                                                <div>
-                                                                    <p class="card-text"
-                                                                       id="name">{{ user.firstname }}</br>
-                                                                        {{ user.lastname|upper }}</p>
-                                                                </div>
-                                                            </div>
-                                                        {% endfor %}
-                                                    </ul>
-                                                </div>
-                                            </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="card-accueil mt-5 ml-5 mr-5 w-100" style="width: 30rem;">
+            <div class="card-header"><h4>Encadrants</h4></div>
+            <div class="card-body">
+                <div class="col-md-12 w-100">
+                    <ul class="levelTeam w-100" style="list-style-type: none;">
+                        {% for level in levels %}
+                            <div class="card w-100 mb-3" style="width: 28rem;">
+                                <div class="card-header"><h5>{{ 'niveau : ' ~ level.name }}</h5></div>
+                                <div class="card-body"
+                                     style="display: flex; padding-top: 0px; padding-bottom: 0px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <ul style="display: flex;">
+                                                {% for user in level.users %}
+                                                    <div class="card-body mr-5"
+                                                         style="width: 12rem; text-align: center;">
+                                                        <img class="picture"
+                                                             src="img/Berthet-Florence-E3MF1.jpg"
+                                                             alt="photo encaddrant">
+                                                        <div>
+                                                            <p class="card-text"
+                                                               id="name">{{ user.firstname }}</br>
+                                                                {{ user.lastname|upper }}</p>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </ul>
                                         </div>
                                     </div>
-                                {% endfor %}
-                            </ul>
-                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
 {% block footer %}
     {% include '_footer.html.twig' %}

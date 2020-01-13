@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\LevelRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -33,17 +34,16 @@ class PmtController extends AbstractController
     /**
      * @Route("team", name="_showTeam")
      * @param UserRepository $userRepository
+     * @param LevelRepository $levelRepository
      * @return Response
      */
-    public function showTeam(UserRepository $userRepository): Response
+    public function showTeam(UserRepository $userRepository, LevelRepository $levelRepository): Response
     {
-        $levels = $this->getDoctrine()
-            ->getRepository(Level::class)
-            ->findAll();
 
-        return $this-> render('tmp/team.html.twig', [
-            'levels' => $levels,
-            'userAdmins' => $userRepository->findBy(['isAdmin' => true])
+        return $this->render('tmp/team.html.twig', [
+            'userAdmins' => $userRepository->findBy(['isAdmin' => true]),
+            'levels' => $levelRepository->findLevelsWithUsers()
+
         ]);
     }
 }
