@@ -264,22 +264,18 @@ easy_admin:
                 title: 'Liste des inscriptions'
                 fields:
                     - user
-                    - inscription_status
+                    - inscriptionStatus
                     - inscription_year
-                    - internal_procedure
-                    - medical_certificate
-                    - inscription_sheet
-                    - { property: 'image_right', type: 'boolean'}
+                    - { property: 'internal_procedure', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
+                    - { property: 'medical_certificate', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
+                    - { property: 'inscription_sheet', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
+                    - { property: 'image_right', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
             form:
                 title: "Inscription de l'adhérent"
                 fields:
                     - user
-                    - { property: 'inscription_status', type: 'text'}
+                    - inscriptionStatus
                     - { property: 'inscription_year', type: 'text'}
-                    - { property: 'internal_procedure', type: 'text'}
-                    - { property: 'medical_certificate', type: 'text'}
-                    - { property: 'inscription_sheet', type: 'text'}
-                    - { property: 'image_right', type: 'text'}
         Document:
             translation_domain: 'messages'
             class: App\Entity\Document
