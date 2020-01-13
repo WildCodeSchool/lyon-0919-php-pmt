@@ -11,6 +11,7 @@ easy_admin:
             - { entity: 'User', icon: 'user' }
             - { entity: 'Inscription', icon: 'check-circle' }
             - { entity: 'InscriptionStatus', icon: 'check-circle' }
+            - { entity: 'Office', icon: 'check-circle' }
             - { label: 'Les sorties' }
             - { entity: 'Trip', icon: 'plane' }
             - { entity: 'Type', icon: 'ship' }
@@ -48,6 +49,7 @@ easy_admin:
                     - city
                     - level
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'boolean' }
                     - { property: 'is_monitor',  type: 'boolean' }
                     - { property: 'is_swim',  type: 'boolean' }
@@ -81,6 +83,7 @@ easy_admin:
                     - city
                     - level
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'checkbox' }
                     - { property: 'is_monitor',  type: 'checkbox' }
                     - { property: 'is_swim',  type: 'checkbox' }
@@ -101,6 +104,7 @@ easy_admin:
                     - city
                     - level
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'checkbox' }
                     - { property: 'is_monitor',  type: 'checkbox' }
                     - { property: 'is_swim',  type: 'checkbox' }
@@ -120,11 +124,23 @@ easy_admin:
                     - { property: 'zip_code', type: 'text'}
                     - city
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'boolean' }
                     - { property: 'is_monitor',  type: 'boolean' }
                     - { property: 'is_swim',  type: 'boolean' }
                     - { property: 'is_diver',  type: 'boolean' }
                     - { property: 'is_handi',  type: 'boolean' }
+        Office:
+            class: App\Entity\Office
+            label: 'Roles du bureau'
+            list:
+                title: 'Roles des membres du bureau'
+                fields:
+                    - name
+            form:
+                title: 'Editer un role'
+                fields:
+                    - name
         Level:
             class: App\Entity\Level
             label: 'Niveaux de plongée'

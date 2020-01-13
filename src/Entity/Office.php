@@ -28,6 +28,14 @@ class Office
      */
     private $users;
 
+    /**
+     * @return string
+     */
+    public function __toString(): ?string
+    {
+        return strval($this->getName());
+    }
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
