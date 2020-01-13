@@ -18,29 +18,19 @@ class ActivityController extends AbstractController
 {
 
     /**
-     * show all rows for Program's entity
      *
      * @Route("", name="index")
-     * @param UserRepository $user
      * @return Response
      */
-    public function index(UserRepository $user): Response
-    {
-        return $this->render('tmp/activity.html.twig', ['users' => $user]);
-    }
-
-    /**
-     *
-     * @Route("/slide", name="activity_")
-     * @return Response
-     */
-    public function slidePicture(): Response
+    public function index(): Response
     {
         $pictures = $this->getDoctrine()
             ->getRepository(Picture::class)
             ->findAll();
+
+
         return $this->render('tmp/activity.html.twig', [
-            'pictures' => $pictures,
+            'pictures' => $pictures
         ]);
     }
 }
