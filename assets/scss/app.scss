@@ -8,30 +8,30 @@ $font-family: 'Alatsi', sans-serif;
 $font-family2: 'Roboto', sans-serif;
 
 body {
-  background-color: $secondary-color;
-  font-family: $font-family2;
-  display: table;
-  width: 100%;
+    background-color: $secondary-color;
+    font-family: $font-family2;
+    display: table;
+    width: 100%;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: $font-family;
+    font-family: $font-family;
 }
 
 a {
-  color: $warm-color;
+    color: $warm-color;
 }
 
 /*************INSCRIPTION CLUB*********************************/
 
 .logo {
-  width: 200px;
+    width: 200px;
 }
 
 .title_p {
-  text-align: center;
-  width: 100%;
-  margin: 30px 0;
+    text-align: center;
+    width: 100%;
+    margin: 30px 0;
 }
 
 /* scss page accueil */
@@ -46,155 +46,155 @@ a {
 //}
 
 .presentation {
-  width: 90%;
-  margin-left: 5%;
-  margin-bottom: 5%;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 5%;
 }
 
 .cardTitle {
-  background-color: #1678a5;
-  text-align: center;
-  color: white;
-  width: 100%;
-  padding: 20px 0;
+    background-color: #1678a5;
+    text-align: center;
+    color: white;
+    width: 100%;
+    padding: 20px 0;
 }
 
 .cardText {
-  margin: 30px 0;
-  padding: 0 30px;
-  font-size: 0.9em;
+    margin: 30px 0;
+    padding: 0 30px;
+    font-size: 0.9em;
 }
 
 .card-body {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .carousel-portfolio {
-  margin-left: 50px;
-  margin-top: 20px;
+    margin-left: 50px;
+    margin-top: 20px;
 }
 
 .card-accueil {
-  box-shadow: -8px -8px 12px #aaa;
+    box-shadow: -8px -8px 12px #aaa;
 }
 
 .checkbox {
-  width: 50px
+    width: 50px
 }
 
 .inline {
-  display: inline-block;
+    display: inline-block;
 }
 
 label {
-  min-width: 120px;
+    min-width: 120px;
 }
 
 .inscriptionTitle {
-  background: #060040;
-  height: 46px;
-  color: #ffffff;
-  font-size: 23px;
-  line-height: 40px;
-  padding: 0 0 0 20px;
-  margin: 20px 0 20px;
+    background: #060040;
+    height: 46px;
+    color: #ffffff;
+    font-size: 23px;
+    line-height: 40px;
+    padding: 0 0 0 20px;
+    margin: 20px 0 20px;
 }
 
 .btn_footer {
-  text-align: right;
-  margin: 20px 0;
+    text-align: right;
+    margin: 20px 0;
 }
 
 /* CSS page Activity */
 
 .cardTitle {
-  background-color: #1678a5;
-  text-align: center;
-  color: white;
-  width: 100%;
-  padding: 20px 0;
+    background-color: #1678a5;
+    text-align: center;
+    color: white;
+    width: 100%;
+    padding: 20px 0;
 }
 
 .cardTextActivity {
-  text-align: center;
-  margin: 30px 0;
-  padding: 0 30px;
-  font-size: 0.9em;
+    text-align: center;
+    margin: 30px 0;
+    padding: 0 30px;
+    font-size: 0.9em;
 }
 
 .card-body-activity {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .card-accueil {
-  box-shadow: -8px -8px 12px #aaa;
+    box-shadow: -8px -8px 12px #aaa;
 }
 
 .carouselActivity {
-  width: 90%;
-  margin-bottom: 5px;
-  margin-top: auto;
-  margin-left: 10px;
+    width: 90%;
+    margin-bottom: 5px;
+    margin-top: auto;
+    margin-left: 10px;
 }
 
 .signForm {
-  margin-bottom: 100px;
+    margin-bottom: 100px;
 }
 
 .card-footer {
-  background-color: $color-footer-card;
+    background-color: $color-footer-card;
 }
 
 .card-header {
-  background-color: $color-footer-card;
+    background-color: $color-footer-card;
 }
 
 /* page présentation bureau */
 
 .titleMembers {
-  margin-left: 10%;
+    margin-left: 10%;
 }
 
 .levelTeam {
-  padding-left: 0px;
-  width: 18rem;
+    padding-left: 0px;
+    width: 18rem;
 }
 
 h5 {
-  width: 18rem;
+    width: 18rem;
 }
 
 .picture {
-  overflow: hidden;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  width: 6rem;
+    overflow: hidden;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    width: 6rem;
 }
 
 #name {
-  width: 150px;
-  text-align: center;
+    width: 150px;
+    text-align: center;
 }
 
 .btn_inscription {
-  margin: 20px 20px;
+    margin: 20px 20px;
 }
 
 
 /********** Formulaire de contact */
 ///////////
 .map-container-6 {
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  position: relative;
-  height: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    position: relative;
+    height: 0;
 }
 
 .map-container-6 iframe {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
