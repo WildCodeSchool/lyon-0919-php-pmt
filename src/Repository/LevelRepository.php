@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DataFixtures\LevelFixtures;
 use App\Entity\Level;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -19,6 +20,14 @@ class LevelRepository extends ServiceEntityRepository
         parent::__construct($registry, Level::class);
     }
 
+    public function findLevelsWithUsers()
+    {
+        return $this->createQueryBuilder('l')
+            ->join('l.users', 'u')
+        ->getQuery()
+        ->getResult();
+    }
+
     // /**
     //  * @return LevelFixtures[] Returns an array of LevelFixtures objects
     //  */
@@ -32,18 +41,6 @@ class LevelRepository extends ServiceEntityRepository
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?LevelFixtures
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
         ;
     }
     */
