@@ -245,7 +245,7 @@
                                  aria-labelledby="nav-profile-tab">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h4 class="mt-3">Document modèle</h4>
+                                        <h4 class="mt-3 inscriptionTitle">Document modèle</h4>
                                         <ul>
                                             {% for document in documents %}
                                                 <li>
@@ -255,7 +255,7 @@
                                         </ul>
                                     </div>
                                     <div class="col-6">
-                                        <h4 class="mt-3">Mes documents importés</h4>
+                                        <h4 class="mt-3 inscriptionTitle">Mes documents importés</h4>
                                         {% if user.inscriptions is empty %}
                                             <div class="mt-2">Aucun document disponible</div>
                                         {% else %}
@@ -289,7 +289,7 @@
                                     </div>
                                 </div>
                                 {#                                TODO ajouter liste des docs à télécharger en plus de ceux du menbres #}
-                                <h4 class="mt-3">Importer mes documents</h4>
+                                <h4 class="inscriptionTitle">Importer mes documents</h4>
                                 {% if user.inscriptions is empty %}
                                     <div class="mt-2">Aucun document disponible ( à revoir si besoin)</div>
                                 {% else %}
@@ -300,7 +300,7 @@
                                     {{ form_row(formDoc.inscriptionSheet) }}
                                     {{ form_row(formDoc.imageRight) }}
                                     <div class="row text-center">
-                                        <button class="btn btn-primary col-12 col-sm-4 offset-4 mt-5 mb-5">{{ button_label|default('Save') }}</button>
+                                        <button class="btn btn-primary col-12 col-sm-4 offset-4 mt-5 mb-5">{{ button_label|default('Sauvegarder') }}</button>
                                     </div>
                                 {% endif %}
                             </div>
