@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Trip index{% endblock %}
+
+{% block body %}
+    <h1>Trip index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Price</th>
+                <th>DateStart</th>
+                <th>NbDiver</th>
+                <th>NbMonitor</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>DateEnd</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Name</th>
+                <th>ImageName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for trip in trips %}
+            <tr>
+                <td>{{ trip.id }}</td>
+                <td>{{ trip.price }}</td>
+                <td>{{ trip.dateStart ? trip.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ trip.nbDiver }}</td>
+                <td>{{ trip.nbMonitor }}</td>
+                <td>{{ trip.createdAt ? trip.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ trip.updatedAt ? trip.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ trip.dateEnd ? trip.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ trip.description }}</td>
+                <td>{{ trip.location }}</td>
+                <td>{{ trip.name }}</td>
+                <td>{{ trip.imageName }}</td>
+                <td>
+                    <a href="{{ path('trip_show', {'id': trip.id}) }}">show</a>
+                    <a href="{{ path('trip_edit', {'id': trip.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('trip_new') }}">Create new</a>
+{% endblock %}
