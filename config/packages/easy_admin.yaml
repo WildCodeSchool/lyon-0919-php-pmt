@@ -43,7 +43,7 @@ easy_admin:
                     - { property: 'email', type: 'email' }
                     - { property: 'home_phone', type: 'tel' }
                     - { property: 'mobile_phone', type: 'tel' }
-                    - birthday
+                    - { property: 'birthday', type: 'date', format: 'd/m/Y'}
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
@@ -77,7 +77,7 @@ easy_admin:
                     - { property: 'email', type: 'email' }
                     - { property: 'home_phone', type: 'tel' }
                     - { property: 'mobile_phone', type: 'tel' }
-                    - birthday
+                    - { property: 'birthday', type: 'App\Form\DatePicker'}
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
@@ -98,7 +98,7 @@ easy_admin:
                     - { property: 'email', type: 'email' }
                     - { property: 'home_phone', type: 'tel' }
                     - { property: 'mobile_phone', type: 'tel' }
-                    - birthday
+                    - { property: 'birthday', type: 'App\Form\DatePicker'}
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
