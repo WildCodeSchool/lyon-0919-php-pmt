@@ -24,19 +24,18 @@ class TripRepository extends ServiceEntityRepository
     // /**
     //  * @return Trip[] Returns an array of Trip objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findByExampleField($dateStart, $dateEnd)
     {
         return $this->createQueryBuilder('t')
-            ->andWhere('t.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('t.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('t.dateStart BETWEEN :dateStart and :dateEnd')
+            ->setParameter('dateStart', $dateStart->format('Y-m-d'))
+            ->setParameter('dateEnd', $dateEnd->format('Y-m-d'))
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Trip
