@@ -19,6 +19,8 @@ class TripRepository extends ServiceEntityRepository
         parent::__construct($registry, Trip::class);
     }
 
+
+
     // /**
     //  * @return Trip[] Returns an array of Trip objects
     //  */
