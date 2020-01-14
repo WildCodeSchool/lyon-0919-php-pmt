@@ -11,8 +11,11 @@
                 <p>P.M.T 636 chemin d'Arras TREVOUX</p>
             </div>
             <div>
+{#                on recupere l'année actuelle et on prerempli le form avec la saison en cours#}
                 <h2>Bulletin d'inscription -
-                    Saison {{ form_widget(inscriptionForm.inscription['inscriptionYear']) }}</h2>
+                    Saison {{ form_widget(inscriptionForm.inscription['inscriptionYear'],
+                        {attr: { value : "now"|date("Y") ~ "/" ~ "now"|date_modify("+1 year")|date("Y")  } }) }}
+                </h2>
             </div>
 
             <div class="contact_container">

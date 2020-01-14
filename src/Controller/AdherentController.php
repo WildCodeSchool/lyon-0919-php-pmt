@@ -68,13 +68,15 @@ class AdherentController extends AbstractController
                 ->getRepository(Participant::class)
                 ->findTripFull($participant->getTrip());
 
+//            dd($tripIsFull);
+
 //            en fct du résultats on enregistre si en liste d'attente ou non
-            if ($tripIsFull[0]['inscrit'] < $tripIsFull[0]['diverMax']) {
+            if ($tripIsFull===[] || $tripIsFull[0]['inscrit'] < $tripIsFull[0]['diverMax']) {
                 $participant->setStatus('inscrit à la sortie');
                 $this->addFlash('success', 'Vous etes inscrit à la sortie!');
             } else {
                 $participant->setStatus('En liste d\'attente');
-                $this->addFlash('success', 'ATTENTION, cette sortie esrt déja pleine, vous etes en liste d\'attente!');
+                $this->addFlash('success', 'ATTENTION, cette sortie est déja pleine, vous etes en liste d\'attente!');
             }
 
 
