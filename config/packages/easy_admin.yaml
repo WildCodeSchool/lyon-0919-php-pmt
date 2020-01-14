@@ -3,12 +3,15 @@ easy_admin:
     formats:
         number: '%0.02f €'
     design:
-        brand_color: '#1ABC9C'
+        brand_color: '#3c8e91'
+        assets:
+            css: ['css/custom_backend.css']
         menu:
             - { label: 'Membres' }
             - { entity: 'User', icon: 'user' }
             - { entity: 'Inscription', icon: 'check-circle' }
             - { entity: 'InscriptionStatus', icon: 'check-circle' }
+            - { entity: 'Office', icon: 'check-circle' }
             - { label: 'Les sorties' }
             - { entity: 'Trip', icon: 'plane' }
             - { entity: 'Type', icon: 'ship' }
@@ -46,11 +49,25 @@ easy_admin:
                     - city
                     - level
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'boolean' }
                     - { property: 'is_monitor',  type: 'boolean' }
                     - { property: 'is_swim',  type: 'boolean' }
                     - { property: 'is_diver',  type: 'boolean' }
                     - { property: 'is_handi',  type: 'boolean' }
+            search:
+                fields:
+                    - property: 'firstname'
+                    - property: 'lastname'
+                    - property: 'email'
+                    - property: 'homePhone'
+                    - property: 'mobilePhone'
+                    - property: 'birthday'
+                    - property: 'address'
+                    - property: 'zipCode'
+                    - property: 'city'
+                    - property: 'comment'
+                    - property: 'level.name'
             new:
                 title: 'Editer un adhérent'
                 fields:
@@ -66,6 +83,7 @@ easy_admin:
                     - city
                     - level
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'checkbox' }
                     - { property: 'is_monitor',  type: 'checkbox' }
                     - { property: 'is_swim',  type: 'checkbox' }
@@ -86,6 +104,7 @@ easy_admin:
                     - city
                     - level
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'checkbox' }
                     - { property: 'is_monitor',  type: 'checkbox' }
                     - { property: 'is_swim',  type: 'checkbox' }
@@ -105,11 +124,23 @@ easy_admin:
                     - { property: 'zip_code', type: 'text'}
                     - city
                     - comment
+                    - office
                     - { property: 'is_admin',  type: 'boolean' }
                     - { property: 'is_monitor',  type: 'boolean' }
                     - { property: 'is_swim',  type: 'boolean' }
                     - { property: 'is_diver',  type: 'boolean' }
                     - { property: 'is_handi',  type: 'boolean' }
+        Office:
+            class: App\Entity\Office
+            label: 'Rôles du bureau'
+            list:
+                title: 'Rôles des membres du bureau'
+                fields:
+                    - name
+            form:
+                title: 'Editer un rôle'
+                fields:
+                    - name
         Level:
             class: App\Entity\Level
             label: 'Niveaux de plongée'
@@ -170,9 +201,9 @@ easy_admin:
               - { property: 'nb_monitor', type: 'text' }
         Type:
             class: App\Entity\TypeTrip
-            label: 'Types de sortie'
+            label: 'Type de sortie'
             list:
-                title: 'Types de sortie'
+                title: 'Type de sortie'
                 fields:
                     - name
             form:
@@ -200,9 +231,9 @@ easy_admin:
         Payment:
             translation_domain: 'messages'
             class: App\Entity\Payment
-            label: 'Types de paiement'
+            label: 'Type de paiement'
             list:
-                title: 'Types de paiement'
+                title: 'Type de paiement'
                 fields:
                     - type_payment
             form:
@@ -221,6 +252,15 @@ easy_admin:
                     - { property: 'payment', type: 'text'}
                     - status
                     - inscription_status
+            search:
+                fields:
+                    - property: 'user.firstname'
+                    - property: 'user.lastname'
+                    - property: 'inscriptionStatus.name'
+                    - property: 'payment.typePayment'
+                    - property: 'trip.name'
+                    - property: 'status'
+                    - property: 'nbCompanion'
             form:
                 title: 'Editer un participant à une sortie'
                 fields:
@@ -234,25 +274,25 @@ easy_admin:
             class: App\Entity\Insurance
             label: "Types d'assurance"
             list:
-                title: "Types d'assurance"
+                title: "Type d'assurance"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €' }
             form:
-                title: "Types d'assurance"
+                title: "Type d'assurance"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €' }
         InscriptionStatus:
             translation_domain: 'messages'
             class: App\Entity\InscriptionStatus
-            label: "Status des inscriptions"
+            label: "Statut des inscriptions"
             list:
-                title: "Status des inscriptions"
+                title: "Statut des inscriptions"
                 fields:
                     - name
             form:
-                title: "Editer un status"
+                title: "Editer un statut"
                 fields:
                     - name
         Inscription:
@@ -269,6 +309,12 @@ easy_admin:
                     - { property: 'medical_certificate', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'inscription_sheet', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'image_right', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
+            search:
+                fields:
+                    - property: 'user.firstname'
+                    - property: 'user.lastname'
+                    - property: 'inscriptionStatus.name'
+                    - property: 'inscriptionYear'
             form:
                 title: "Inscription de l'adhérent"
                 fields:
@@ -294,9 +340,9 @@ easy_admin:
                     - { property: 'documentFile', type: 'vich_file' }
         AdhesionPrice:
             class: App\Entity\AdhesionPrice
-            label: "Types d'adhésion"
+            label: "Type d'adhésion"
             list:
-                title: "Types d'adhésion"
+                title: "Type d'adhésion"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €'}

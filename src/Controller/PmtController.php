@@ -5,7 +5,7 @@
 namespace App\Controller;
 
 use App\Repository\LevelRepository;
-use App\Repository\UserRepository;
+use App\Repository\OfficeRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,17 +33,16 @@ class PmtController extends AbstractController
 
     /**
      * @Route("team", name="_showTeam")
-     * @param UserRepository $userRepository
      * @param LevelRepository $levelRepository
+     * @param OfficeRepository $officeRepository
      * @return Response
      */
-    public function showTeam(UserRepository $userRepository, LevelRepository $levelRepository): Response
+    public function showTeam(LevelRepository $levelRepository, OfficeRepository $officeRepository): Response
     {
 
         return $this->render('tmp/team.html.twig', [
-            'userAdmins' => $userRepository->findBy(['isAdmin' => true]),
-            'levels' => $levelRepository->findLevelsWithUsers()
-
+            'levels' => $levelRepository->findLevelsWithUsers(),
+            'offices' => $officeRepository->findMembersOffice()
         ]);
     }
 }

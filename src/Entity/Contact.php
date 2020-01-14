@@ -10,32 +10,12 @@ class Contact
     /**
      * @var string|null
      * @Assert\NotBlank()
-     * @Assert\Length(min=2, max=100)
-     * @Assert\Regex(
-     *     pattern="/[A-Za-z\é\è\ê\-]+/"
-     * )
-     */
-    private $firstname;
-
-    /**
-     * @var string|null
-     * @Assert\NotBlank()
      * @Assert\Length(min=2, max=100,)
      * @Assert\Regex(
      *     pattern="/^[A-Za-z\é\è\ê\-]+/"
      * )
      */
     private $lastname;
-
-    /**
-     * @var string|null
-     * @Assert\NotBlank()
-     * @Assert\Regex(
-     *     pattern="/[0-9]{10}/"
-     * )
-     *
-     */
-    private $phone;
 
     /**
      * @var string|null
@@ -61,24 +41,6 @@ class Contact
     /**
      * @return string|null
      */
-    public function getFirstname(): ?string
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param string|null $firstname
-     * @return Contact
-     */
-    public function setFirstname(?string $firstname): Contact
-    {
-        $this->firstname = $firstname;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
     public function getLastname(): ?string
     {
         return $this->lastname;
@@ -94,23 +56,6 @@ class Contact
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
-    public function getPhone(): ?string
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @param string|null $phone
-     * @return Contact
-     */
-    public function setPhone(?string $phone): Contact
-    {
-        $this->phone = $phone;
-        return $this;
-    }
 
     /**
      * @return string|null
