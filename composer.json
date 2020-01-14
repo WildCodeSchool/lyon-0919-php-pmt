@@ -10,6 +10,7 @@
         "easycorp/easyadmin-bundle": "^2.3",
         "fzaninotto/faker": "^1.9",
         "gedmo/doctrine-extensions": "^2.4",
+        "liip/imagine-bundle": "^2.3",
         "phpmd/phpmd": "^2.6",
         "sensio/framework-extra-bundle": "^5.1",
         "spipu/html2pdf": "^5.2",
