@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Document;
 use App\Entity\Inscription;
+use App\Entity\InscriptionStatus;
 use App\Entity\Participant;
 use App\Entity\Trip;
 use App\Entity\User;
@@ -12,6 +13,7 @@ use App\Form\InscriptionType;
 use App\Form\ParticipantType;
 use App\Form\ParticipantCancelType;
 use App\Form\UserType;
+use App\Repository\ParticipantRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,13 +55,37 @@ class AdherentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userLogin);
             $entityManager->flush();
+            $this->addFlash('success', 'Votre profil a été mis à jour!');
         }
 
 //        si on soumets l'inscription à un trip
         if ($formTripRegistration->isSubmitted() && $formTripRegistration->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-//            TODO : changer le status si en attente ou inscription direct
-            $participant->setStatus('inscription non validée');
+
+// query qui permet de récupérer le nb de plogeurs inscrits à une sortie et le nb maw pour cette sortie
+            // si inf on enregistre le plongeur avec Inscrit sinon on le met en liste d'attente
+            $tripIsFull = $this->getDoctrine()
+                ->getRepository(Participant::class)
+                ->findTripFull($participant->getTrip());
+
+//            en fct du résultats on enregistre si en liste d'attente ou non
+            if ($tripIsFull[0]['inscrit'] < $tripIsFull[0]['diverMax']) {
+                $participant->setStatus('inscrit à la sortie');
+                $this->addFlash('success', 'Vous etes inscrit à la sortie!');
+            } else {
+                $participant->setStatus('En liste d\'attente');
+                $this->addFlash('success', 'ATTENTION, cette sortie esrt déja pleine, vous etes en liste d\'attente!');
+            }
+
+
+//            mise en place de l'inscription statut de base
+//            TODO: voir le niveau le plus bas pour une inscription et rechercher cette objet
+            /** @var InscriptionStatus $inscriptionStatus */
+            $inscriptionStatus = $this->getDoctrine()
+                ->getRepository(InscriptionStatus::class)
+                ->findOneBy(['name' => 'Démarrage']);
+
+            $participant->setInscriptionStatus($inscriptionStatus);
             $participant->setUser($userLogin);
             $entityManager->persist($participant);
             $entityManager->flush();
@@ -75,6 +101,7 @@ class AdherentController extends AbstractController
             if ($tupleToDelete != null) {
                 $entityManager->remove($tupleToDelete);
                 $entityManager->flush();
+                $this->addFlash('success', 'Vous etes déinscrit à cette sortie!');
             }
         }
 

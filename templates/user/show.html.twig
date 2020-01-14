@@ -224,6 +224,8 @@
                                         {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                         on renvoi la validation de l'inscription #}
                                         <div class="card-footer bg-transparent border-success">
+                                            <p>Pour cette sortie, le statut de votre inscription est: {{ bookTrip.status }}</p>
+                                            <p>Pour cette sortie, le statut de votre inscription est: {{ bookTrip.inscriptionStatus }}</p>
                                             {#                                            creation d'un from de déinscription #}
                                             {% set formTripCancel = formTripCancellation.createView %}
                                             {{ form_start(formTripCancel) }}
