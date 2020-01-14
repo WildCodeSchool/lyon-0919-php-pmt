@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -33,6 +34,7 @@ class InscriptionClubType extends AbstractType
         $builder
             ->add('user', UserType::class, ['data' => $options['user'], 'label' => false])
             ->add('inscription', InscriptionType::class, ['data' => new Inscription()])
+
             ->add('level', EntityType::class, [
                 'class' => Level::class,
                 'choice_label' => 'name',
