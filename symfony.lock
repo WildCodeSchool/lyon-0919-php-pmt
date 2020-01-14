@@ -692,6 +692,18 @@
     "tecnickcom/tcpdf": {
         "version": "6.3.2"
     },
+    "toiba/fullcalendar-bundle": {
+        "version": "6.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "6.2",
+            "ref": "43c9033fa6f75f9325f9ac21787c8e8acb086934"
+        },
+        "files": [
+            "config/routes/fullcalendar.yaml"
+        ]
+    },
     "twbs/bootstrap": {
         "version": "v4.0.0"
     },

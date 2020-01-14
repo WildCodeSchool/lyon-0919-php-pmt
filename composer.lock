@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "85d36983216aeb9d0064b0ad7def9bb9",
+    "content-hash": "7a14a08da6a6fa6048d33ccb73f2abe4",
     "packages": [
         {
             "name": "alexandresalome/mailcatcher",
@@ -6867,6 +6867,60 @@
                 "qrcode"
             ],
             "time": "2019-09-20T09:35:01+00:00"
+        },
+        {
+            "name": "toiba/fullcalendar-bundle",
+            "version": "v6.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/toiba/FullCalendarBundle.git",
+                "reference": "d8b22cc3a159819fa2a4bbd1c7aad026c6bbad74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/toiba/FullCalendarBundle/zipball/d8b22cc3a159819fa2a4bbd1c7aad026c6bbad74",
+                "reference": "d8b22cc3a159819fa2a4bbd1c7aad026c6bbad74",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5|^7.0",
+                "symfony/framework-bundle": "^3.4|^4.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "^2.5"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Toiba\\FullCalendarBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rebeca Mora Anca",
+                    "role": "Developer",
+                    "email": "anca.rebeca@gmail.com"
+                },
+                {
+                    "name": "Théo Attali",
+                    "role": "Developer",
+                    "email": "theoattali@gmail.com"
+                }
+            ],
+            "description": "Symfony integration of FullCalendar.js library. Events can be stored with Doctrine, MongoDB, CouchDB and others",
+            "homepage": "https://github.com/toiba/FullCalendarBundle",
+            "keywords": [
+                "calendar",
+                "fullcalendar",
+                "jquery calendar",
+                "symfony calendar"
+            ],
+            "abandoned": "tattali/CalendarBundle",
+            "time": "2018-08-09T18:06:32+00:00"
         },
         {
             "name": "twbs/bootstrap",
