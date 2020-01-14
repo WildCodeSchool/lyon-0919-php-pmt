@@ -132,13 +132,13 @@ easy_admin:
                     - { property: 'is_handi',  type: 'boolean' }
         Office:
             class: App\Entity\Office
-            label: 'Roles du bureau'
+            label: 'Rôles du bureau'
             list:
-                title: 'Roles des membres du bureau'
+                title: 'Rôles des membres du bureau'
                 fields:
                     - name
             form:
-                title: 'Editer un role'
+                title: 'Editer un rôle'
                 fields:
                     - name
         Level:
@@ -201,9 +201,9 @@ easy_admin:
               - { property: 'nb_monitor', type: 'text' }
         Type:
             class: App\Entity\TypeTrip
-            label: 'Types de sortie'
+            label: 'Type de sortie'
             list:
-                title: 'Types de sortie'
+                title: 'Type de sortie'
                 fields:
                     - name
             form:
@@ -231,9 +231,9 @@ easy_admin:
         Payment:
             translation_domain: 'messages'
             class: App\Entity\Payment
-            label: 'Types de paiement'
+            label: 'Type de paiement'
             list:
-                title: 'Types de paiement'
+                title: 'Type de paiement'
                 fields:
                     - type_payment
             form:
@@ -274,25 +274,25 @@ easy_admin:
             class: App\Entity\Insurance
             label: "Types d'assurance"
             list:
-                title: "Types d'assurance"
+                title: "Type d'assurance"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €' }
             form:
-                title: "Types d'assurance"
+                title: "Type d'assurance"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €' }
         InscriptionStatus:
             translation_domain: 'messages'
             class: App\Entity\InscriptionStatus
-            label: "Status des inscriptions"
+            label: "Statut des inscriptions"
             list:
-                title: "Status des inscriptions"
+                title: "Statut des inscriptions"
                 fields:
                     - name
             form:
-                title: "Editer un status"
+                title: "Editer un statut"
                 fields:
                     - name
         Inscription:
@@ -340,9 +340,9 @@ easy_admin:
                     - { property: 'documentFile', type: 'vich_file' }
         AdhesionPrice:
             class: App\Entity\AdhesionPrice
-            label: "Types d'adhésion"
+            label: "Type d'adhésion"
             list:
-                title: "Types d'adhésion"
+                title: "Type d'adhésion"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €'}
