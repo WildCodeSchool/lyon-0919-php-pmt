@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Document;
 use App\Entity\Inscription;
+use App\Entity\InscriptionStatus;
 use App\Entity\Level;
 use App\Form\InscriptionClubType;
 use App\Entity\User;
@@ -27,9 +28,11 @@ class InscriptionClubController extends AbstractController
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request)
+    public function index(Request $request, DocumentRepository $documentRepository)
     {
         $user = $this->getUser();
+
+        $documents = $documentRepository->findAll();
 
         $inscriptionForm = $this->createForm(InscriptionClubType::class, null, ['user' => $user]);
         $inscriptionForm->handleRequest($request);
@@ -39,14 +42,30 @@ class InscriptionClubController extends AbstractController
 
             $data = $inscriptionForm->getData();
 
-            $inscription = new Inscription();
-
             $inscription = $data['inscription'];
             $insurance = $data['insurance'];
             $adhesion = $data['adhesion'];
+            $imageRight = $data['imageRight'];
+
+            if ($imageRight == 0) {
+                $inscription->setImageRight(false);
+            } else {
+                $inscription->setImageRight(true);
+            }
+
             $inscription->setUser($user);
             $inscription->setInsurance($insurance);
             $inscription->setAdhesionPrice($adhesion);
+            $inscription->setImageRight($imageRight);
+
+            /** @var InscriptionStatus $inscriptionStatus */
+            $inscriptionStatus = $this->getDoctrine()
+                ->getRepository(InscriptionStatus::class)
+                ->findOneBy(['name' => 'Démarrage']);
+
+            $inscription->setInscriptionStatus($inscriptionStatus);
+//            TODO la valeur se status est à redefinir
+            $inscription->setStatus(12);
 
             if ($user != null) {
                 $user->setLevel($data['level']);
@@ -62,6 +81,7 @@ class InscriptionClubController extends AbstractController
 
         return $this->render('inscription_club/index.html.twig', [
             'inscriptionForm' => $inscriptionForm->createView(),
+            'documents' => $documents,
         ]);
     }
 

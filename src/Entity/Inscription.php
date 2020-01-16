@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\JoinColumn;
 
@@ -76,6 +77,22 @@ class Inscription
      * @ORM\ManyToOne(targetEntity="App\Entity\AdhesionPrice", inversedBy="inscription")
      */
     private $adhesionPrice;
+
+    /**
+     * Inscription constructor.
+     */
+    public function __construct()
+    {
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new DateTime('now'));
+            $this->setUpdatedAt(new DateTime('now'));
+        }
+
+        if ($this->getCreatedAt() === null) {
+            $this->setCreatedAt(new DateTime('now'));
+            $this->setUpdatedAt(new DateTime('now'));
+        }
+    }
 
     /**
      * @return string
