@@ -7,19 +7,9 @@ use App\Entity\Document;
 use App\Entity\Inscription;
 use App\Entity\Insurance;
 use App\Entity\Level;
-use App\Entity\Payment;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TelType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -34,7 +24,6 @@ class InscriptionClubType extends AbstractType
         $builder
             ->add('user', UserType::class, ['data' => $options['user'], 'label' => false])
             ->add('inscription', InscriptionType::class, ['data' => new Inscription()])
-
             ->add('level', EntityType::class, [
                 'class' => Level::class,
                 'choice_label' => 'name',
@@ -60,11 +49,20 @@ class InscriptionClubType extends AbstractType
                 'multiple' => false,
                 'by_reference' => true,
             ])
-            ->add('document', EntityType::class, [
-                'class' => Document::class,
-                'choice_label' => 'name',
+            ->add('validation', ChoiceType::class, [
+                'required' => true,
+                'choices' => ['Je reconnais avoir pris connaissance du règlement du PMT et je m\'engage à le respecter.
+L\'inscription au PMT comprend l\'adhésion à l\'assurance individuelle AXA pour la catégorie 1.
+J\'ai été informé des caractéristiques des options complémentaires.' => '1'],
                 'expanded' => true,
-                'multiple' => true,
+                'multiple' => false,
+                'by_reference' => false,
+            ])
+            ->add('imageRight', ChoiceType::class, [
+                'required' => true,
+                'choices' => ['oui' => '1' , 'non' =>'0'],
+                'expanded' => true,
+                'multiple' => false,
                 'by_reference' => false,
             ]);
     }

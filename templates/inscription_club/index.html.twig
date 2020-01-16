@@ -130,20 +130,31 @@
                             <span class="prg">Documents à fournir </span>
                         </div>
                         <div class="col-12">
-                            {{ form_widget(inscriptionForm.document) }}
+                            <ul>
+                            {% for document in documents %}
+                                <li>{{ document.name }} </li>
+                            {% endfor %}
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="inscriptionTitle">
+                <span>Droits à l'image</span>
+            </div>
+            <div class="pl-md-5 pr-md-5">
+                Acceptez vous que l'association PMT diffuse des images ?
+                {{ form_widget(inscriptionForm.imageRight) }}
+            </div>
+
             <div class="inscriptionTitle">
                 <span>Informations</span>
             </div>
-            <div>
-                <p class="col-12 control-label">Je reconnais avoir pris connaissance du règlement du PMT et je
-                    m'engage à le respecter.<br/>
-                    L'inscription au PMT comprend l'adhésion à l'assurance individuelle AXA pour la catégorie
-                    1.<br/>
-                    J'ai été informé des caractéristiques des options complémentaires.</p>
+            <div class="pl-md-5 pr-md-5">
+{#                    le je reconnias est dans un from choicetype #}
+                    {{ form_widget(inscriptionForm.validation) }}
+
             </div>
             <div class="btn_footer">
                 <button class="btn btn-info">{{ button_label|default('S\'inscrire') }}</button>
@@ -153,10 +164,11 @@
 
     <div type="hidden" style="display: none;">
         {{ form_widget(inscriptionForm.user.ImageFile) }}
+        {{ form_widget(inscriptionForm.inscription.imageRight) }}
         {{ form_widget(inscriptionForm.inscription.internalProcedure) }}
         {{ form_widget(inscriptionForm.inscription.medicalCertificate) }}
         {{ form_widget(inscriptionForm.inscription.inscriptionSheet) }}
-        {{ form_widget(inscriptionForm.inscription.imageRight) }}
+
     </div>
 
 {#        {{ form_end(inscriptionForm,  }}#}
