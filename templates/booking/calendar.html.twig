@@ -1,13 +1,18 @@
+
+{% extends 'base.html.twig' %}
 {% block stylesheets %}
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css">
     {{ encore_entry_link_tags('app') }}
 {% endblock %}
 {% block body %}
-    <h1 style="text-align: center">Calendrier de nos sorties annuelles </h1>
+    <h1 style="text-align: center; margin-top: 20px">Calendrier de nos sorties annuelles </h1>
 <div class="container p-3">
     {% include '@FullCalendar/Calendar/calendar.html.twig' %}
 </div>
 {% endblock %}
+ {% block footer %}
+     {% include '_footer.html.twig' %}
+ {% endblock %}
 {% block javascripts %}
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="https://momentjs.com/downloads/moment.min.js"></script>
@@ -32,7 +37,7 @@
                 ],
                 customButtons: {
                     myCustomButton: {
-                        text: 'Retour au site',
+                        text: 'Retour aux activités',
                         click: function() {
                             window.location.href = "{{path('activity_index')}}";
                         }
@@ -48,6 +53,7 @@
                 navLinks: true, // can click day/week names to navigate views
                 height: 700,
                 String, default:'bootstrap',
+
 
             });
 
