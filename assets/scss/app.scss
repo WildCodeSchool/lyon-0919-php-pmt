@@ -180,7 +180,7 @@ h5 {
 
 #name {
     text-align: center;
-    width: 100%;
+    width: 150px;
 }
 
 .btn_inscription {
@@ -188,6 +188,7 @@ h5 {
 }
 .vignette {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
 }
 
