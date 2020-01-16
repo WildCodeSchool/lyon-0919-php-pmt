@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Mon Compte{% endblock %}
 
 {% block body %}
     <div hidden>{{ user.id }}</div>
@@ -111,7 +111,7 @@
                                         </ul>
                                         <h4 class="mt-3"><strong>Droits à l'image</strong></h4>
                                         <div class="mt-2">
-                                            {{ inscr.imageRight? 'Vous avez autorisé la diffusion d\'image' : 'Vous n\'avez autorisé pas la diffusion d\'image' }}</div>
+                                            {{ inscr.imageRight? 'Vous avez autorisé la diffusion d\'image' : 'Vous n\'avez pas autorisé la diffusion d\'image' }}</div>
                                         <h4 class="mt-3"><strong>un commentaire?</strong></h4>
                                         <div>{{ user.comment }}</div>
                                         {#    PAs d'afficahge du statut isHandi    #}
@@ -176,8 +176,8 @@
                                                         {{ form_label(formTrip.payment, 'Choix de mon moyen de paiement') }}
                                                         {{ form_widget(formTrip.payment, {'attr': {'id': 'payment_trip_' ~ trip.id} }) }}
 
-                                                        {{ form_label(formTrip.nbCompanion, 'Je viens avé mes copains!') }}
-                                                        {{ form_widget(formTrip.nbCompanion, {"attr": {"id": "nbCompanion_trip_" ~ trip.id} }) }}
+                                                        {{ form_label(formTrip.nbCompanion, 'Je ne viens pas seul:') }}
+                                                        {{ form_widget(formTrip.nbCompanion, {"attr": {"id": "nbCompanion_trip_" ~ trip.id , value : "0"} }) }}
                                                         <button type="submit" class="btn btn-primary mt-4">M'inscrire
                                                         </button>
                                                         {{ form_end(formTrip) }}
@@ -230,7 +230,7 @@
                                             {% set formTripCancel = formTripCancellation.createView %}
                                             {{ form_start(formTripCancel) }}
                                             {{ form_widget(formTripCancel.trip, {"value" : bookTrip.trip.id, "attr": {"id": "participant_trip_" ~ bookTrip.trip.id} }) }}
-                                            <button type="submit" class="btn btn-primary mt-4">Me déinscrire</button>
+                                            <button type="submit" class="btn btn-primary mt-4">Me désinscrire</button>
                                             {{ form_end(formTripCancel) }}
 
                                         </div>
@@ -315,6 +315,8 @@
 
 
 {% endblock %}
+
+
 
 {% block footer %}
     {% include '_footer.html.twig' %}

@@ -90,7 +90,7 @@ class Trip
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $imageName;
+    private $imageName ="";
 
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="imageName")
