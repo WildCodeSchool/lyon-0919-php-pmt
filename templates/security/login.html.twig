@@ -52,44 +52,41 @@
     </style>
 
 
-        <h1 style="text-align: center">Connexion </h1>
+    <h1 style="text-align: center">Connexion </h1>
 
-        {% if error %}
-            <span class="error">{{ error.messageKey }}</span>
+    {% if error %}
+        <span class="error">{{ error.messageKey }}</span>
 
-        {% endif %}
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-                    <div class="card card-signin my-5">
-                        <div class="card-body">
-                            <form action="{{ path('login') }}" method="POST">
+    {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                <div class="card card-signin2 my-5">
+                    <div class="card-body">
+                        <form action="{{ path('login') }}" method="POST">
+                            <div class="connec-title">
                                 <h5 class="card-title text-center">Connecte toi ici !</h5>
-                                <div class="form-label-group ">
-                                    <label for="inputEmail">Adresse email : </label>
-                                    <input type="text" name="_username" value="{{ last_username }}"
-                                           style="border-radius: 5rem">
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputPassword">Mot de passe :</label>
-                                    <input type="password" name="_password" style=" border-radius: 5rem;">
+                            </div>
+                            <div class="form-label-group ">
+                                <label for="inputEmail">Adresse email : </label>
+                                <input type="text" name="_username" value="{{ last_username }}"
+                                       style="border-radius: 5rem">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword">Mot de passe :</label>
+                                <input type="password" name="_password" style=" border-radius: 5rem;">
 
-                                </div>
-                                <div>
-                                    <a  href="{{ path('forgotten_password') }}">Mot de passe oublié?</a>
-                                </div>
-                                <div class="form-group">
-                                    <button class="btn-secondary float-right" type="submit">Connexion</button>
-                                </div>
-                                <div class="checkbox mb-3">
-                                    <label>
-                                        <input type="checkbox" name="_remember_me"> Se souvenir de moi
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
+                            </div>
+                            <div>
+                                <a href="{{ path('forgotten_password') }}"><strong>Mot de passe oublié?</strong></a>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-secondary float-right" type="submit">Connexion</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 {% endblock %}

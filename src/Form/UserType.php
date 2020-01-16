@@ -46,7 +46,7 @@ class UserType extends AbstractType
                 'label' => 'photos de profil',
                 'mapped' => false,
                 'required' => false,
-                'attr' => ['placeholder' => 'Choisir une image'],
+                'attr' => ['placeholder' => 'Choisir une image' ,  'lang'=>"fr"],
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',

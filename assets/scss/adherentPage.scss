@@ -1,5 +1,5 @@
 .largeurScreen {
-    width: 80%;
+    width: 90%;
 }
 
 //.project-tab {
@@ -46,4 +46,9 @@
     text-decoration: none;
     color: #333;
     font-weight: 600;
+}
+
+/* traduction en live pour bootstrap */
+.custom-file-label::after {
+    content: "Parcourir";
 }
