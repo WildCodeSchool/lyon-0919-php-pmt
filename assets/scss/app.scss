@@ -103,6 +103,39 @@ label {
 
 /* CSS page Activity */
 
+@media (max-width: 575.98px){
+    .card-img,
+    .card-img-top,
+    .card-img-bottom,
+    .carousel {
+        flex-shrink: 0 ;
+        width: 80%;
+        margin: 10% ;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+
+    .card-img,
+    .card-img-top,
+    .card-img-bottom,
+    .carousel {
+        flex-shrink: 0 ;
+        width: 80%;
+        margin: 10% ;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+        flex-shrink: 0 ;
+        width: 100% ;
+    }
+}
+
 .cardTitle {
     background-color: #1678a5;
     text-align: center;
