@@ -184,15 +184,10 @@ class User implements UserInterface, \Serializable
         if ($this->getCreatedAt() === null) {
             $this->setCreatedAt(new DateTime('now'));
             $this->setUpdateAt(new DateTime('now'));
+            $this->setRoles(["ROLE_SUBSCRIBER"]);
         }
         $this->inscriptions = new ArrayCollection();
         $this->participants = new ArrayCollection();
-
-        if ($this->getCreatedAt() === null) {
-            $this->setCreatedAt(new DateTime('now'));
-            $this->setUpdateAt(new DateTime('now'));
-            $this->setRoles(["ROLE_SUBSCRIBER"]);
-        }
     }
 
     public function getId(): ?int
