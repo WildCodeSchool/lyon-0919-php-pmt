@@ -11,7 +11,7 @@ easy_admin:
             - { entity: 'User', icon: 'user' }
             - { entity: 'Inscription', icon: 'check-circle' }
             - { entity: 'InscriptionStatus', icon: 'check-circle' }
-            - { entity: 'Office', icon: 'check-circle' }
+            - { entity: 'Office', icon: 'group' }
             - { label: 'Les sorties' }
             - { entity: 'Trip', icon: 'plane' }
             - { entity: 'Type', icon: 'ship' }
@@ -132,9 +132,9 @@ easy_admin:
                     - { property: 'is_handi',  type: 'boolean' }
         Office:
             class: App\Entity\Office
-            label: 'Rôles du bureau'
+            label: 'Fonctions du bureau'
             list:
-                title: 'Rôles des membres du bureau'
+                title: 'Fonctions des membres du bureau'
                 fields:
                     - name
             form:
