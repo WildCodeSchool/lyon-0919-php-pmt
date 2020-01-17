@@ -127,7 +127,7 @@ class User implements UserInterface, \Serializable
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Level", inversedBy="users")
      */
-    private $level;
+    private $level = "Débutant";
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Inscription", mappedBy="user", cascade={"persist", "remove"})

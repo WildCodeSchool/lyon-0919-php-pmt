@@ -118,7 +118,7 @@
                                     {% endfor %}
 
                                     <a href="{{ path ('pdf') }}"
-                                       class="btn btn-info mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
+                                       class="btn btn-primary mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
                                     {#                                    end if si insrit ou pas: #}
                                 {% endif %}
 
@@ -146,8 +146,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Sortie : {{ trip.name }}</h5>
-                                                    <h5> lieu: {{ trip.location }}</h5>
+                                                    <h4 class="card-title">Sortie : {{ trip.name }}</h4>
+                                                    <h5> lieu : {{ trip.location }}</h5>
+                                                    <h5> Prix : {{ trip.price }} €</h5>
                                                     <p class="card-text">{{ trip.description }}</p>
                                                     <p class="card-text"><small
                                                                 class="text-muted">du {{ trip.dateStart|date("d/m/Y") }}
@@ -173,10 +174,10 @@
                                                         {{ form_start(formTrip) }}
                                                         {{ form_widget(formTrip.trip, {"value" : trip.id, "attr": {"id": "participant_trip_" ~ trip.id} }) }}
                                                         {#                                                        {{ form_widget(form2.token, { "attr": {"id": "participant_token_" ~ trip.id} }) }}#}
-                                                        {{ form_label(formTrip.payment, 'Choix de mon moyen de paiement') }}
+                                                        {{ form_label(formTrip.payment, 'Choix de mon moyen de paiement :') }}
                                                         {{ form_widget(formTrip.payment, {'attr': {'id': 'payment_trip_' ~ trip.id} }) }}
 
-                                                        {{ form_label(formTrip.nbCompanion, 'Je ne viens pas seul:') }}
+                                                        {{ form_label(formTrip.nbCompanion, 'Nombre d\'accompagnants :') }}
                                                         {{ form_widget(formTrip.nbCompanion, {"attr": {"id": "nbCompanion_trip_" ~ trip.id , value : "0"} }) }}
                                                         <button type="submit" class="btn btn-primary mt-4">M'inscrire
                                                         </button>
