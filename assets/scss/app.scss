@@ -12,6 +12,7 @@ body {
     font-family: $font-family2;
     display: table;
     width: 100%;
+    font-size: 1.3em;
 }
 
 h1, h2, h3, h4, h5 {
@@ -20,6 +21,14 @@ h1, h2, h3, h4, h5 {
 
 a {
     color: $warm-color;
+}
+
+.nav-link:hover {
+    opacity: 0.33;
+}
+
+.h1_accueil{
+    margin-bottom: 30px;
 }
 
 /**********************CONNEXION*******************************/
@@ -360,4 +369,3 @@ label {
 .fc-state-default {
     box-shadow: None;
 }
-
