@@ -164,11 +164,18 @@
 
     <div type="hidden" style="display: none;">
         {{ form_widget(inscriptionForm.user.ImageFile) }}
+{# TODO pbl de gestion du role ADMIN et du role subscriber #}
+        {% if is_granted('ROLE_ADMIN') %}
+        {{ form_widget(inscriptionForm.user.level) }}
+        {{ form_widget(inscriptionForm.user.isMonitor) }}
+        {{ form_widget(inscriptionForm.user.isSwim) }}
+        {{ form_widget(inscriptionForm.user.isDiver) }}
+        {{ form_widget(inscriptionForm.user.isHandi) }}
+        {% endif %}
         {{ form_widget(inscriptionForm.inscription.imageRight) }}
         {{ form_widget(inscriptionForm.inscription.internalProcedure) }}
         {{ form_widget(inscriptionForm.inscription.medicalCertificate) }}
         {{ form_widget(inscriptionForm.inscription.inscriptionSheet) }}
-
     </div>
 
 {#        {{ form_end(inscriptionForm,  }}#}
