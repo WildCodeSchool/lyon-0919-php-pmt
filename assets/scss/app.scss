@@ -103,6 +103,39 @@ label {
 
 /* CSS page Activity */
 
+@media (max-width: 575.98px){
+    .card-img,
+    .card-img-top,
+    .card-img-bottom,
+    .carousel {
+        flex-shrink: 0 ;
+        width: 80%;
+        margin: 10% ;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+
+    .card-img,
+    .card-img-top,
+    .card-img-bottom,
+    .carousel {
+        flex-shrink: 0 ;
+        width: 80%;
+        margin: 10% ;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+    .card-img,
+    .card-img-top,
+    .card-img-bottom {
+        flex-shrink: 0 ;
+        width: 100% ;
+    }
+}
+
 .cardTitle {
     background-color: #1678a5;
     text-align: center;
@@ -159,7 +192,7 @@ label {
 
 .levelTeam {
     padding-left: 0;
-    width: 18rem;
+    width: 100%;
 }
 
 .picture {
@@ -173,7 +206,7 @@ label {
 
 #name {
     text-align: center;
-    width: 100%;
+    width: 150px;
 }
 
 .btn_inscription {
@@ -182,6 +215,7 @@ label {
 
 .vignette {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
 }
 
