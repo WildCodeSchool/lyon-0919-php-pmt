@@ -21,7 +21,7 @@
                                 <a class="nav-item nav-link active" id="nav-account-tab" data-toggle="tab"
                                    href="#nav-account" role="tab" aria-controls="nav-account"
                                    aria-selected="false">Mon compte</a>
-                                <a class="nav-item nav-link " id="nav-inscription-tab" data-toggle="tab"
+                                <a class="nav-item nav-link" id="nav-inscription-tab" data-toggle="tab"
                                    href="#nav-inscription" role="tab" aria-controls="nav-inscription"
                                    aria-selected="true">Mon
                                     inscription au PMT</a>
@@ -53,14 +53,14 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="card-body">
-                                                <h5 class="card-title font-weight-bold">{{ user.firstname }} {{ user.lastname }}</h5>
-                                                <p class="card-text">mail:{{ user.email }} </p>
-                                                <p class="card-text">Téléphone:{{ user.homePhone }} </p>
-                                                <p class="card-text">Mobile:{{ user.mobilePhone }} </p>
-                                                <p class="card-text">Adresse:{{ user.address }} </p>
-                                                <p class="card-text">{{ user.zipCode }} {{ user.city }} </p>
-                                                <p class="card-text">Date
-                                                    naissance: {{ user.birthday ? user.birthday|localizeddate('none', 'none', null, null, 'eeee d MMMM Y') : '' }} </p>
+                                                <h4 class="card-title font-weight-bold">{{ user.firstname }} {{ user.lastname }}</h4>
+                                                <p class="card-text"><strong>Email</strong> : {{ user.email }} </p>
+                                                <p class="card-text"><strong>Téléphone fixe</strong> : {{ user.homePhone }} </p>
+                                                <p class="card-text"><strong>Mobile</strong> : {{ user.mobilePhone }} </p>
+                                                <p class="card-text"><strong>Adresse</strong>  : {{ user.address }} </p>
+                                                <p class="card-text"><strong>Ville</strong> : {{ user.zipCode }} {{ user.city }} </p>
+                                                <p class="card-text">
+                                                    <strong>Date de naissance</strong> : {{ user.birthday ? user.birthday|localizeddate('none', 'none', null, null, 'eeee d MMMM Y') : '' }} </p>
                                             </div>
                                         </div>
                                     </div>
@@ -112,13 +112,13 @@
                                         <h4 class="mt-3"><strong>Droits à l'image</strong></h4>
                                         <div class="mt-2">
                                             {{ inscr.imageRight? 'Vous avez autorisé la diffusion d\'image' : 'Vous n\'avez pas autorisé la diffusion d\'image' }}</div>
-                                        <h4 class="mt-3"><strong>un commentaire?</strong></h4>
+                                        <h4 class="mt-3"><strong>Un commentaire?</strong></h4>
                                         <div>{{ user.comment }}</div>
                                         {#    PAs d'afficahge du statut isHandi    #}
                                     {% endfor %}
 
                                     <a href="{{ path ('pdf') }}"
-                                       class="btn btn-info mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
+                                       class="btn btn-primary mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
                                     {#                                    end if si insrit ou pas: #}
                                 {% endif %}
 
@@ -128,7 +128,7 @@
                             <div class="tab-pane fade" id="nav-sortie" role="tabpanel"
                                  aria-labelledby="nav-contact-tab">
                                 <h4 class="mt-3"><strong>Listes des sorties
-                                        disponibles: {{ tripsNotBooked|length }}</strong></h4>
+                                        disponibles : {{ tripsNotBooked|length }}</strong></h4>
                                 {#                                         ajout  des sorties une par une : suelement celle en cours#}
                                 {% for trip in tripsNotBooked %}
                                     {#                                            on cree une card  par trip #}
@@ -146,8 +146,9 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="card-body">
-                                                    <h5 class="card-title">Sortie: {{ trip.name }}</h5>
-                                                    <h5> lieu: {{ trip.location }}</h5>
+                                                    <h4 class="card-title">Sortie : {{ trip.name }}</h4>
+                                                    <h5> lieu : {{ trip.location }}</h5>
+                                                    <h5> Prix : {{ trip.price }} €</h5>
                                                     <p class="card-text">{{ trip.description }}</p>
                                                     <p class="card-text"><small
                                                                 class="text-muted">du {{ trip.dateStart|date("d/m/Y") }}
@@ -173,10 +174,10 @@
                                                         {{ form_start(formTrip) }}
                                                         {{ form_widget(formTrip.trip, {"value" : trip.id, "attr": {"id": "participant_trip_" ~ trip.id} }) }}
                                                         {#                                                        {{ form_widget(form2.token, { "attr": {"id": "participant_token_" ~ trip.id} }) }}#}
-                                                        {{ form_label(formTrip.payment, 'Choix de mon moyen de paiement') }}
+                                                        {{ form_label(formTrip.payment, 'Choix de mon moyen de paiement :') }}
                                                         {{ form_widget(formTrip.payment, {'attr': {'id': 'payment_trip_' ~ trip.id} }) }}
 
-                                                        {{ form_label(formTrip.nbCompanion, 'Je ne viens pas seul:') }}
+                                                        {{ form_label(formTrip.nbCompanion, 'Nombre d\'accompagnants :') }}
                                                         {{ form_widget(formTrip.nbCompanion, {"attr": {"id": "nbCompanion_trip_" ~ trip.id , value : "0"} }) }}
                                                         <button type="submit" class="btn btn-primary mt-4">M'inscrire
                                                         </button>
@@ -195,7 +196,7 @@
                             <div class="tab-pane fade" id="nav-messorties" role="tabpanel"
                                  aria-labelledby="nav-contact-tab">
                                 <h4 class="mt-3"><strong>Mes inscriptions aux
-                                        sorties: {{ tripsAlreadyBook|length }}</strong></h4>
+                                        sorties : {{ tripsAlreadyBook|length }}</strong></h4>
                                 {#                                         ajout  des sorties une par une : suelement celle en cours#}
                                 {% for bookTrip in tripsAlreadyBook %}
                                     {#                                    #}{#                                            on cree une card  par trip #}
