@@ -77,7 +77,7 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255, nullable=true)
      * @var ?string
      */
-    private $imageName = "logo_PMT.png";
+    private $imageName = "logo.gif";
 
     /**
      * @Vich\UploadableField(mapping="image_users", fileNameProperty="imageName")
