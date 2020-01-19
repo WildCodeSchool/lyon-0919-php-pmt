@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Repository\LevelRepository;
 use App\Repository\OfficeRepository;
+use App\Repository\PictureRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,5 +43,16 @@ class PmtController extends AbstractController
             'levels' => $levelRepository->findLevelsWithUsers(),
             'offices' => $officeRepository->findMembersOffice()
         ]);
+    }
+
+    /**
+     * @Route("portfolio", name="_portfolio")
+     * @param PictureRepository $pictureRepository
+     * @return Response
+     */
+    public function portfolio(PictureRepository $pictureRepository): Response
+    {
+        $pictures= $pictureRepository->findAll();
+        return $this->render('tmp/portfolio.html.twig', ['pictures'=>$pictures]);
     }
 }

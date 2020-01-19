@@ -21,6 +21,11 @@
                 <li class="nav-item ">
                     <a class="nav-link text-white" href="{{ path('contact') }}">Contactez-nous</a>
                 </li>
+                {% if app.user or is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ path('pmt_portfolio') }}"> Portfolio PMT</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <div class="collapse navbar-collapse mr-1" id="navbarSupportedContent">
@@ -36,6 +41,7 @@
                         <a class="nav-link text-white" href="{{ path('account_index') }}"> Mon compte</a>
                     </li>
                 {% elseif app.user %}
+
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ path('account_index') }}"> Mon compte</a>
                     </li>

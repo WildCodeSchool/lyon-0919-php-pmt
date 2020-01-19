@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container">
+
+        <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Notre Portfolio </h1>
+
+        <hr class="mt-2 mb-5">
+        <div class="row text-center text-lg-left">
+            {% for picture in pictures %}
+
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="">
+
+                    <img class="img-fluid img-thumbnail" src="{{ '/uploads/images/gallery/'~picture.name }}" alt=""
+                         onclick="window.open(this.src,'_blank','toolbar=0, location=0, directories=0, status=0, scrollbars=0, resizable=0, copyhistory=0, menuBar=0, width='+this.width+', height='+this.height);"></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
