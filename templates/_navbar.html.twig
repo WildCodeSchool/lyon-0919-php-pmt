@@ -1,6 +1,6 @@
 <div class="nav-background">
     <nav class="navbar navbar-expand-lg positionZ bgNavbar-primary navbar-dark ">
-        <a class="navbar-brand  p-0" href="#"><h1>PMT</h1></a>
+        <a class="navbar-brand  p-0" href="{{ path('pmtindex') }}"><h1>PMT</h1></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,9 +10,6 @@
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto ">
                 <li class="nav-item ">
-                    <a class="nav-link text-white" href="{{ path('pmtindex') }}">Accueil</a>
-                </li>
-                <li class="nav-item ">
                     <a class="nav-link text-white" href="{{ path('activity_index') }}">Nos activités</a>
                 </li>
                 <li class="nav-item ">
@@ -21,6 +18,11 @@
                 <li class="nav-item ">
                     <a class="nav-link text-white" href="{{ path('contact') }}">Contactez-nous</a>
                 </li>
+                {% if app.user or is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ path('pmt_portfolio') }}"> Portfolio PMT</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <div class="collapse navbar-collapse mr-1" id="navbarSupportedContent">
@@ -36,6 +38,7 @@
                         <a class="nav-link text-white" href="{{ path('account_index') }}"> Mon compte</a>
                     </li>
                 {% elseif app.user %}
+
                     <li class="nav-item">
                         <a class="nav-link text-white" href="{{ path('account_index') }}"> Mon compte</a>
                     </li>
