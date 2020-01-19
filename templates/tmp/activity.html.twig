@@ -63,7 +63,7 @@
                             {% for picture in pictures %}
                                 <div class="carousel-item {% if loop.first %} active {% endif %}">
                                     <img class="ml-auto mr-auto d-block w-100" style="object-fit: cover"
-                                         src="{{ ('/uploads/images/gallery/' ~ picture.name) | imagine_filter('slideshow') }}" alt="Portfolio">
+                                             src="{{ ('/uploads/images/gallery/' ~ picture.name) | imagine_filter('slideshow') }}" alt="Portfolio">
                                 </div>
                             {% endfor %}
                         </div>
