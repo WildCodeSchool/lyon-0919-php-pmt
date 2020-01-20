@@ -66,7 +66,7 @@
                                     </div>
                                     {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                     on renvoi la validation de l'inscription #}
-                                    <div class="card-footer bg-transparent border-success">
+                                    <div class="card-footer bg-transparent border-top-0">
                                         <a href="{{ path('user_edit', {'id': user.id}) }}"
                                            class="btn btn-primary text-white">Modifiez
                                             vos informations</a>
@@ -141,7 +141,7 @@
                                                     <img src="" class="card-img" alt="...">
                                                 {% else %}
                                                     <img src="{{ '/uploads/images/gallery/' ~ trip.imageName }}"
-                                                         class="card-img" alt="...">
+                                                         class="card-img" alt="image de trip">
                                                 {% endif %}
                                             </div>
                                             <div class="col-md-8">
@@ -158,7 +158,7 @@
                                         </div>
                                         {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                         on renvoi la validation de l'inscription #}
-                                        <div class="card-footer bg-transparent border-success">
+                                        <div class="card-footer bg-transparent border-top-0">
 
                                             {#  creation du collapse de l'insription form participant Form2 de la page #}
                                             <button class="btn btn-primary" type="button" data-toggle="collapse"
@@ -167,7 +167,7 @@
                                                 Accéder à l'inscription
                                             </button>
                                             <div class="collapse" id="{{ 'collapse' ~ trip.id }}">
-                                                <div class="card card-body">
+                                                <div class="card card-body border-0">
                                                     {#                                                    afficahge form de participation #}
                                                     <div class="container">
                                                         {% set formTrip = formTripRegistration.createView %}
@@ -224,7 +224,7 @@
 
                                         {#   gestion si membre inscrit ou pas. si  inscrit info inscription ,si pas inscript
                                         on renvoi la validation de l'inscription #}
-                                        <div class="card-footer bg-transparent border-success">
+                                        <div class="card-footer bg-transparent border-top-0">
                                             <p>Pour cette sortie, le statut de votre inscription est: {{ bookTrip.status }}</p>
                                             <p>Pour cette sortie, le statut de votre inscription est: {{ bookTrip.inscriptionStatus }}</p>
                                             {#                                            creation d'un from de déinscription #}
