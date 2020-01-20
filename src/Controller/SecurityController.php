@@ -130,7 +130,7 @@ class SecurityController extends AbstractController
             } else {
                 $this->addFlash(
                     'danger',
-                    'Les mots de passe ne sont pas identiques !'
+                    'Les mots de passe ne sont pas identiques!'
                 );
             }
         }
