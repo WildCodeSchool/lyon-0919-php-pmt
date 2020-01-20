@@ -123,6 +123,7 @@ easy_admin:
                     - address
                     - { property: 'zip_code', type: 'text'}
                     - city
+                    - level
                     - comment
                     - office
                     - { property: 'is_admin',  type: 'boolean' }
