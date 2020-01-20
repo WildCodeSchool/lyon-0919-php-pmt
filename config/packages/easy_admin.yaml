@@ -217,7 +217,9 @@ easy_admin:
                 title: 'Liste des photos'
                 fields:
                     - { property: 'name', type: 'text'}
+
                     - { property: 'imageFile', template: 'vich_uploader_image.html.twig'}
+
                     - comments
             show:
                 title: 'Liste des photos'
