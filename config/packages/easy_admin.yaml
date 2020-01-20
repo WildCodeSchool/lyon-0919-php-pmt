@@ -69,7 +69,7 @@ easy_admin:
                     - property: 'comment'
                     - property: 'level.name'
             new:
-                title: 'Editer un adhérent'
+                title: 'Créer un adhérent'
                 fields:
                     - { property: 'imageFile', type: 'vich_image'}
                     - { property: 'firstname',  type: 'text' }
@@ -148,12 +148,10 @@ easy_admin:
             list:
                 title: 'Niveaux de plongée'
                 fields:
-                    - { property: 'order_level', type: 'text' }
                     - name
             form:
                 title: 'Editer un niveaux de plongée'
                 fields:
-                    - { property: 'order_level', type: 'text' }
                     - name
 
         Trip:
@@ -346,11 +344,11 @@ easy_admin:
                     - name
                     - { property: 'documentFile', template: 'vich_uploader_file.html.twig', base_path: '%app.path.product_files%' }
             form:
-                title: 'Ajouter / Modifier un document'
+                title: 'Modifier un document'
                 fields:
                     - { property: 'documentFile', type: 'vich_file' }
             new:
-                title: 'Documents'
+                title: 'Ajouter un document'
                 fields:
                     - { property: 'documentFile', type: 'vich_file' }
         AdhesionPrice:
