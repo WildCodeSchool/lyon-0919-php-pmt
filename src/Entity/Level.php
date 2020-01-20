@@ -24,11 +24,6 @@ class Level
     private $name;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $orderLevel;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="level")
      */
     private $users;
@@ -59,18 +54,6 @@ class Level
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getOrderLevel(): ?int
-    {
-        return $this->orderLevel;
-    }
-
-    public function setOrderLevel(int $orderLevel): self
-    {
-        $this->orderLevel = $orderLevel;
 
         return $this;
     }

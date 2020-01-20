@@ -8,7 +8,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 
 class PaymentFixtures extends Fixture
 {
-    const PAYMENTS = ['Chèque', 'Chèque vacances', 'Virement', 'Espèce'];
+    const PAYMENTS = ['Chèque', 'Chèque vacances', 'Virement', 'Espèces'];
 
     public function load(ObjectManager $manager)
     {
