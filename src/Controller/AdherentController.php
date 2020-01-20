@@ -27,6 +27,7 @@ class AdherentController extends AbstractController
      * @param Request $request
      * @return Response
      */
+
     public function show(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
@@ -71,7 +72,7 @@ class AdherentController extends AbstractController
 //            dd($tripIsFull);
 
 //            en fct du résultats on enregistre si en liste d'attente ou non
-            if ($tripIsFull===[] || $tripIsFull[0]['inscrit'] < $tripIsFull[0]['diverMax']) {
+            if ($tripIsFull === [] || $tripIsFull[0]['inscrit'] < $tripIsFull[0]['diverMax']) {
                 $participant->setStatus('Inscrit à la sortie');
                 $this->addFlash('success', 'Vous etes inscrit à la sortie!');
             } else {

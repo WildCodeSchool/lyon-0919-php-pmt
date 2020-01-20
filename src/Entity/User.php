@@ -168,6 +168,11 @@ class User implements UserInterface, \Serializable
     private $office;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="user")
+     */
+    private $picture;
+
+    /**
      * @return string
      */
     public function __toString(): string
@@ -189,6 +194,7 @@ class User implements UserInterface, \Serializable
         }
         $this->inscriptions = new ArrayCollection();
         $this->participants = new ArrayCollection();
+        $this->picture = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -619,6 +625,37 @@ class User implements UserInterface, \Serializable
     public function setOffice(?Office $office): self
     {
         $this->office = $office;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Picture[]
+     */
+    public function getPicture(): Collection
+    {
+        return $this->picture;
+    }
+
+    public function addPicture(Picture $picture): self
+    {
+        if (!$this->picture->contains($picture)) {
+            $this->picture[] = $picture;
+            $picture->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePicture(Picture $picture): self
+    {
+        if ($this->picture->contains($picture)) {
+            $this->picture->removeElement($picture);
+            // set the owning side to null (unless already changed)
+            if ($picture->getUser() === $this) {
+                $picture->setUser(null);
+            }
+        }
 
         return $this;
     }

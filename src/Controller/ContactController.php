@@ -25,7 +25,6 @@ class ContactController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $notification->notify($contact);
-            $this->addFlash('submit', 'Votre email a bien été envoyé');
             return $this->redirectToRoute('contact');
         }
         return $this->render('contact/index.html.twig', [

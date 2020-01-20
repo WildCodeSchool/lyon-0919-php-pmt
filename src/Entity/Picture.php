@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Symfony\Component\HttpFoundation\File\File;
@@ -39,6 +40,27 @@ class Picture
      * @var DateTime
      */
     private $updatedAt;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="picture")
+     */
+    private $user;
+
+
+    /**
+     * Picture constructor.
+     * @throws Exception
+     */
+    public function __construct()
+    {
+            $this->setUpdatedAt(new DateTime('now'));
+    }
+
 
     /**
      * @return string
@@ -102,6 +124,30 @@ class Picture
     public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getComments(): ?string
+    {
+        return $this->comments;
+    }
+
+    public function setComments(?string $comments): self
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
