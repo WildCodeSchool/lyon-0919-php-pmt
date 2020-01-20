@@ -195,6 +195,10 @@ label {
     margin-left: 10%;
 }
 
+.titleOffice {
+    display: inline;
+}
+
 .memberTeam {
     padding-left: 0;
 }
@@ -216,6 +220,12 @@ label {
 #name {
     text-align: center;
     width: 150px;
+    font-size: 0.8em;
+    word-spacing: 3px;
+}
+
+.lastName {
+    word-spacing: -1px;
 }
 
 .btn_inscription {

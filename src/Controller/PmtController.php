@@ -31,7 +31,7 @@ class PmtController extends AbstractController
     }
 
     /**
-     * @Route("team", name="_showTeam")
+     * @Route("bureau", name="_showTeam")
      * @param LevelRepository $levelRepository
      * @param OfficeRepository $officeRepository
      * @return Response

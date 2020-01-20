@@ -12,9 +12,9 @@
                 <div class="card-body">
                     <ul class="memberTeam w-100" style="list-style-type: none;">
                         {% for office in offices %}
-                            <strong>{{ office.name }} :</strong>
+                        <h4 class="titleOffice">{{ office.name }} :</h4>
                             {% for user in office.users %}
-                                {{ user.firstname }} {{ user.lastname|upper }}
+                                <span id="name">{{ user.firstname }} <strong class="lastName">{{ user.lastname|upper }}</strong></span>
                             {% endfor %}
                             <li><h5></h5></li>
                         {% endfor %}
@@ -29,7 +29,7 @@
                 <div class="card-body w-100">
                     <ul class="levelTeam" style="list-style-type: none;">
                         {% for level in levels %}
-                            <h4 class="levelName"><strong>{{ 'niveau : ' ~ level.name }}</strong></h4>
+                            <h4 class="levelName">{{ 'Niveau : ' ~ level.name }}</h4>
                             <div class="vignette">
                                 {% for user in level.users %}
                                     <div class="vignetteMember">
@@ -39,7 +39,7 @@
                                         <div>
                                             <p class="card-text"
                                                id="name">{{ user.firstname }}</br>
-                                                {{ user.lastname|upper }}</p>
+                                                <strong>{{ user.lastname|upper }}</strong></p>
                                         </div>
                                     </div>
                                 {% endfor %}
