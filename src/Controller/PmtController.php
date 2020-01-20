@@ -4,6 +4,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Picture;
 use App\Form\PictureType;
 use App\Repository\LevelRepository;
 use App\Repository\OfficeRepository;
@@ -52,21 +53,37 @@ class PmtController extends AbstractController
      * @param PictureRepository $pictureRepository
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function portfolio(PictureRepository $pictureRepository, Request $request): Response
     {
-        //on recupere l'utilisateur en cours
-        $userLogin = $this->getUser();
         // on recupere toute les photos
         $pictures = $pictureRepository->findAll();
+        $picture= new Picture();
         //on creer le formulaire pour un ajout de photo et de commentaire
-        $form = $this->createForm(PictureType::class);
+        $form = $this->createForm(PictureType::class, $picture);
+
         $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            $imageFile= $form->get('name')->getData();
+            $comments=$form->get('comments')->getData();
+            if ($imageFile) {
+                $fileName= $this->getUser()->getId().uniqid('_') .'.'.$imageFile->guessExtension();
+                $destination=$this->getParameter('product_images');
+                $imageFile->move($destination, $fileName);
+                $picture->setName($fileName);
+                $picture->setComments($comments);
+                $picture->setUser($this->getUser());
+                $this->getDoctrine()->getManager()->persist($picture);
+            }
+            $this->getDoctrine()->getManager()->flush();
+        }
+
         return $this->render(
             'tmp/portfolio.html.twig',
             ['pictures' => $pictures,
-                'form' => $form->createView(),
-            'user' => $userLogin]
+                'form' => $form->createView()]
         );
     }
 }

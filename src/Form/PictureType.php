@@ -13,6 +13,7 @@ class PictureType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $options;
         $builder
             ->add('name', FileType::class, [
                 'label' => 'Photo de voyage',
@@ -23,10 +24,9 @@ class PictureType extends AbstractType
                     new File([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'application/jpg',
-                            'application/jpeg',
+                            'image/jpg',
+                            'image/jpeg',
                         ],
-                        'mimeTypesMessage' => 'Veuillez charger une image valide',
                     ])
                 ],
             ])

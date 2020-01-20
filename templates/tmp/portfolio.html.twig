@@ -36,7 +36,6 @@
             }
         }
     </style>
-{{ dump() }}
     <div class="container">
 
         <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Notre Portfolio </h1>
@@ -61,6 +60,7 @@
         {{ form_start(form) }}
         {{ form_row(form.name) }}
         {{ form_row(form.comments) }}
+        <button class="btn-primary">Envoyer</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

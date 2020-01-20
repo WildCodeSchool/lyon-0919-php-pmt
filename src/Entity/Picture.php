@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Symfony\Component\HttpFoundation\File\File;
@@ -49,6 +50,17 @@ class Picture
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="picture")
      */
     private $user;
+
+
+    /**
+     * Picture constructor.
+     * @throws Exception
+     */
+    public function __construct()
+    {
+            $this->setUpdatedAt(new DateTime('now'));
+    }
+
 
     /**
      * @return string
