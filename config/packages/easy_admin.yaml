@@ -253,6 +253,7 @@ easy_admin:
                     - { property: 'payment', type: 'text'}
                     - status
                     - inscription_status
+                    - comment
             search:
                 fields:
                     - property: 'user.firstname'
@@ -271,6 +272,7 @@ easy_admin:
                     - payment
                     - status
                     - inscriptionStatus
+                    - comment
         Insurance:
             class: App\Entity\Insurance
             label: "Types d'assurance"

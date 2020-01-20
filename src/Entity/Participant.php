@@ -27,6 +27,11 @@ class Participant
     private $nbCompanion;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participants")
      */
     private $user;
@@ -119,6 +124,18 @@ class Participant
     public function setTrip(?Trip $trip): self
     {
         $this->trip = $trip;
+
+        return $this;
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(string $comment): self
+    {
+        $this->comment = $comment;
 
         return $this;
     }
