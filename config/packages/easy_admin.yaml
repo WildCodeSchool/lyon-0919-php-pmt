@@ -220,15 +220,18 @@ easy_admin:
                 fields:
                     - { property: 'name', type: 'text'}
                     - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
+                    - comments
             show:
                 title: 'Liste des photos'
                 fields:
                     - { property: 'name', type: 'text'}
                     - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%' }
+                    - comments
             form:
                 title: 'Ajouter une photo'
                 fields:
                     - { property: 'imageFile', type: 'vich_image'}
+                    - comments
         Payment:
             translation_domain: 'messages'
             class: App\Entity\Payment
