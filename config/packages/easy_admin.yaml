@@ -308,7 +308,7 @@ easy_admin:
                     - { property: 'internal_procedure', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'medical_certificate', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'inscription_sheet', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
-                    - { property: 'image_right', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
+                    - { property: 'image_right',  type: 'boolean' }
             search:
                 fields:
                     - property: 'user.firstname'
@@ -321,6 +321,7 @@ easy_admin:
                     - user
                     - inscriptionStatus
                     - { property: 'inscription_year', type: 'text'}
+                    - { property: 'image_right',  type: 'checkbox' }
         Document:
             translation_domain: 'messages'
             class: App\Entity\Document

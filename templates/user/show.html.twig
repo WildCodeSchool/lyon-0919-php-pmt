@@ -277,11 +277,6 @@
                                                             <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>
                                                         </li>
                                                     {% endif %}
-                                                    {% if inscription.imageRight is not null %}
-                                                        <li>
-                                                            <a href="{{ "/uploads/files/users/" ~ inscription.imageRight }}">{{ inscription.imageRight }}</a>
-                                                        </li>
-                                                    {% endif %}
                                                 </ul>
                                             {% else %}
                                                 <div class="mt-2">Aucun document importé</div>
@@ -299,7 +294,6 @@
                                     {{ form_row(formDoc.internalProcedure) }}
                                     {{ form_row(formDoc.medicalCertificate) }}
                                     {{ form_row(formDoc.inscriptionSheet) }}
-                                    {{ form_row(formDoc.imageRight) }}
                                     <div class="row text-center">
                                         <button class="btn btn-primary col-12 col-sm-4 offset-4 mt-5 mb-5">{{ button_label|default('Sauvegarder') }}</button>
                                     </div>
