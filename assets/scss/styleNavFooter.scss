@@ -32,6 +32,15 @@
     /* set height to pixels if you want angle to change with screen width */
 }
 
+.logoCarre {
+    width: 100px;
+    height: 100px;
+}
+
+.logoRectangle {
+    height: 100px;
+}
+
 .positionZ{
     z-index: 1;
 }
@@ -69,7 +78,7 @@
     display: flex;
     position: absolute;
     margin-top: 250px;
-    margin-left: 35%;
+    margin-left: 40%;
 }
 
 .copyright {
