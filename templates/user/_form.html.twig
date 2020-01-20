@@ -78,13 +78,25 @@
         <div class="col-12 offset-sm-2 col-sm-8">
             {{ form_widget(form.comment) }}
 
+
         </div>
+    </div>
+
+    {# TODO pbl de gestion du role ADMIN et du role subscriber #}
+    <div type="hidden" style="display: none;">
+        {% if is_granted('ROLE_ADMIN') %}
+            {{ form_widget(form.level) }}
+            {{ form_widget(form.isMonitor) }}
+            {{ form_widget(form.isSwim) }}
+            {{ form_widget(form.isDiver) }}
+            {{ form_widget(form.isHandi) }}
+        {% endif %}
     </div>
 
     {#        validation si pas admin #}
     <div class="row text-center">
         <a href="{{ path('account_index') }}" class="btn btn-primary col-12 col-sm-4 offset-sm-1 mt-5 mb-5">
-           Retour
+            Retour
         </a>
         <button class="btn btn-primary col-12  col-sm-4  offset-sm-2 mt-5 mb-5">Mettre à jour</button>
     </div>
