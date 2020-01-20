@@ -16,7 +16,7 @@ class PictureType extends AbstractType
         $options;
         $builder
             ->add('name', FileType::class, [
-                'label' => 'Photo de voyage',
+                'label' => 'Photo de voyage :',
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['placeholder' => 'Choisir une image', 'lang' => "fr"],
