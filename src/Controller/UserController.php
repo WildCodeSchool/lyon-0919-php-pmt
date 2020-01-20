@@ -87,7 +87,6 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         //TODO Attention le form n'est pas valide lors de la submitation: && $form->isValid()
-
         if ($form->isSubmitted()) {
             $file = $form['ImageFile']->getData();
             if ($file) {
