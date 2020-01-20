@@ -144,6 +144,8 @@ class AdherentController extends AbstractController
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
 
+//        TOD pbl de valid du form doc
+
         if ($formDocuments->isSubmitted()) {
             $inscription = $this->getDoctrine()
                 ->getRepository(Inscription::class)

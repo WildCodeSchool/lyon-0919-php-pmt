@@ -24,13 +24,16 @@ class ActivityController extends AbstractController
      */
     public function index(): Response
     {
-        $pictures = $this->getDoctrine()
+        $pictureToAdd = $this->getDoctrine()
             ->getRepository(Picture::class)
-            ->findAll();
+            ->findPicsRandom(4);
 
+// TODO valider avec beaucoup d'images si on prend bien aléatoirement
+
+//        dd($pictureToAdd);
 
         return $this->render('tmp/activity.html.twig', [
-            'pictures' => $pictures
+            'pictures' => $pictureToAdd
         ]);
     }
 }
