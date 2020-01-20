@@ -54,24 +54,11 @@
     width: 100%;
     background-image: url('/img/footer_1284px.png');
     background-size: cover;
-    min-height:300px;
-    max-height:300px;
     height:300px;
 }
 
 #sticky-footer{
     height: 100px;
-}
-
-.svgFooter {
-    width: 100%;
-    height: 300px;
-}
-
-.logoFacebook {
-    position: absolute;
-    margin-left: 96%;
-    margin-top: 100px;
 }
 
 .wildText {
@@ -101,6 +88,62 @@
 .textCopy {
     margin-top: 7px;
     margin-left: 5px;
+}
+
+@media screen and (max-width: 790px) {
+    .footer-background {
+        width: 100%;
+        height: 200px;
+    }
+
+    .wildText {
+        margin-top: 150px;
+        margin-left: 35%;
+    }
+
+    .copyright {
+        font-size: 0.5em;
+    }
+
+    .prenoms {
+        font-size: 0.5em;
+    }
+
+    .logo_wild {
+        width: 35px;
+        height: 35px;
+        margin-top: 3px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    .footer-background {
+        width: 100%;
+        height: 150px;
+    }
+    .wildText {
+        margin-top: 100px;
+        margin-left: 30%;
+    }
+    .copyright {
+        font-size: 0.4em;
+        line-height: 0.3em;
+    }
+
+    .prenoms {
+        font-size: 0.4em;
+        line-height: 0.3em;
+    }
+
+    .logo_wild {
+        width: 30px;
+        height: 30px;
+        margin-top: 5px;
+    }
+
+    .textCopy {
+        margin-top: 10px;
+    }
 }
 
 
