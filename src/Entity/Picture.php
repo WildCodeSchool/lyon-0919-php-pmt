@@ -41,6 +41,16 @@ class Picture
     private $updatedAt;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comments;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="picture")
+     */
+    private $user;
+
+    /**
      * @return string
      */
     public function __toString(): string
@@ -102,6 +112,30 @@ class Picture
     public function setUpdatedAt(DateTime $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getComments(): ?string
+    {
+        return $this->comments;
+    }
+
+    public function setComments(?string $comments): self
+    {
+        $this->comments = $comments;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

@@ -1,20 +1,68 @@
 {% extends 'base.html.twig' %}
+{% block title %}Portfolio{% endblock %}
+
 {% block body %}
+    <style>
+        .card {
+            border: none;
+        }
+
+        img,
+        .card-img-top {
+            border-radius: 0em;
+        }
+
+        @media (min-width: 576px) {
+            .card-columns {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .card-columns {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .card-columns {
+                column-count: 4;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .card-columns {
+                column-count: 5;
+            }
+        }
+    </style>
+{{ dump() }}
     <div class="container">
 
         <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Notre Portfolio </h1>
 
         <hr class="mt-2 mb-5">
-        <div class="row text-center text-lg-left">
+        <div class="card-columns">
             {% for picture in pictures %}
-
-                <div class="col-lg-3 col-md-4 col-6">
-                    <a href="">
-
-                    <img class="img-fluid img-thumbnail" src="{{ '/uploads/images/gallery/'~picture.name }}" alt=""
-                         onclick="window.open(this.src,'_blank','toolbar=0, location=0, directories=0, status=0, scrollbars=0, resizable=0, copyhistory=0, menuBar=0, width='+this.width+', height='+this.height);"></a>
-                </div>
+                <a href="">
+                    <div class="card">
+                        <img class="card-img-top"
+                             src="{{ ('/uploads/images/gallery/'~picture.name) }}"
+                             alt=""
+                             onclick="window.open(this.src,'_blank','toolbar=0, location=0, directories=0, status=0, scrollbars=0, resizable=0, copyhistory=0, menuBar=0, width='+this.width+', height='+this.height);">
+                    </div>
+                </a>
             {% endfor %}
         </div>
     </div>
+    <div class="container">
+        <h1 style="text-align: center;">Toi aussi tu veux participer au portfolio?</h1>
+
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.comments) }}
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
+
+
