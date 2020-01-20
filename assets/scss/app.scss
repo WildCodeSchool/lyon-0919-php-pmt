@@ -38,7 +38,7 @@ a {
     box-shadow: $card-shadow;
 }
 
-/*************INSCRIPTION CLUB*********************************/
+/* page accueil */
 
 .logo {
     width: 200px;
@@ -73,6 +73,14 @@ a {
 .card-body {
     margin-top: 5px;
 }
+.carousel {
+    height: 340px;
+}
+
+.border {
+    border: black 1px solid;
+}
+/* page inscription */
 
 .carousel-portfolio {
     margin-left: 50px;
