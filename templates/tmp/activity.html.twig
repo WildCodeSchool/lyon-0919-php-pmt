@@ -3,6 +3,7 @@
 {% block title %}Activités{% endblock %}
 
 {% block body %}
+    <pre>{{ dump(pictures) }}</pre>
     <div class="presentation"><h1>Activités proposées</h1></div>
     <div class="container-fluid">
         <div class="row justify-content-around mb-5">
@@ -56,14 +57,30 @@
             </div>
             {# card 5 carousel #}
             <div class="card col-12 col-lg-3 mt-4 p-0 card-accueil" style="width: 20rem;">
-                <div id="carouselComment" class="carousel slide" data-ride="carousel">
-                    <div class="carousel">
+                <div id="carouselComment" class="carousel slide m-0 p-0 w-100" data-ride="carousel">
+                    <div class="carousel m-0 p-0 w-100">
 
-                        <div class="carousel-inner" style="height: 500px; margin-top: 40px;">
+                        <div class="carousel-inner" style="">
                             {% for picture in pictures %}
                                 <div class="carousel-item {% if loop.first %} active {% endif %}">
-                                    <img class="ml-auto mr-auto d-block w-100" style="object-fit: cover"
-                                             src="{{ ('/uploads/images/gallery/' ~ picture.name) | imagine_filter('slideshow') }}" alt="Portfolio">
+{#                                    je tente #}
+                                    <div class="card w-100" style="">
+                                        <div class="card-body p-0 m-0">
+                                            <div class="card-footer"><h5 class="cardTitle">
+                                                     {{ picture.comments }}</h5>
+                                                <p class="text-white text-right"><i>{{ picture.user.firstname }}</i>  </p>
+
+                                            </div>
+                                            <img src="{{ ('/uploads/images/gallery/' ~ picture.name) | imagine_filter('slideshow') }}" class="card-img-top" alt="carrousel">
+                                        </div>
+                                    </div>
+
+{#                                    j'arrete de tenter #}
+{#                                    <img class="ml-auto mr-auto d-block w-100" style="object-fit: cover"#}
+{#                                             src="{{ ('/uploads/images/gallery/' ~ picture.name) | imagine_filter('slideshow') }}" alt="Portfolio">#}
+{#                                    #}
+{#                                        <p class="text-dark">{{ picture.comments }}</p>#}
+
                                 </div>
                             {% endfor %}
                         </div>
