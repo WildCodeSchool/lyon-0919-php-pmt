@@ -7,16 +7,26 @@
     <div>
         <div class="container">
             <div class="title_p">
-                <h1>Le plongeur masqué de Trévoux</h1>
+                <h1>Le Plongeur Masqué de Trévoux</h1>
                 <p>P.M.T 636 chemin d'Arras TREVOUX</p>
             </div>
             <div>
 {#                on recupere l'année actuelle et on prerempli le form avec la saison en cours#}
+{#                si jour de l'année inf à 31/08 année inscription = année-1/année et si sup année/année+1#}
+
+                {% if "now"|date("Y/m/d") <= "now"|date("Y") ~ "08/31"   %}
+                    {%  set dateInscription = "now"|date_modify("-1 year")|date("Y") ~ "/" ~ "now"|date("Y") %}
+                {% else %}
+                     {%    set dateInscription =  "now"|date("Y") ~ "/" ~ "now"|date_modify("+1 year")|date("Y") %}
+                {% endif %}
+
                 <h2>Bulletin d'inscription -
                     Saison {{ form_widget(inscriptionForm.inscription['inscriptionYear'],
-                        {attr: { value : "now"|date("Y") ~ "/" ~ "now"|date_modify("+1 year")|date("Y")  } }) }}
+                        {attr: { value : dateInscription }})  }}
                 </h2>
             </div>
+
+
 
             <div class="contact_container">
                 <div class="inscriptionTitle">
@@ -156,9 +166,17 @@
                     {{ form_widget(inscriptionForm.validation) }}
 
             </div>
-            <div class="btn_footer">
-                <button class="btn btn-info">{{ button_label|default('S\'inscrire') }}</button>
+{#            <div class="btn_footer">#}
+{#                <button class="btn btn-info">{{ button_label|default('S\'inscrire') }}</button>#}
+{#            </div>#}
+
+            <div class="row text-center">
+                <a href="{{ path('account_index') }}" class="btn btn-primary col-12 col-sm-4 offset-sm-1 mt-5 mb-5">
+                    Retour
+                </a>
+                <button class="btn btn-primary col-12  col-sm-4  offset-sm-2 mt-5 mb-5">{{ button_label|default('S\'inscrire') }}</button>
             </div>
+
         </div>
     </div>
 
