@@ -59,8 +59,10 @@
 
             {{ form_start(form) }}
             {{ form_row(form.name) }}
-            {{ form_row(form.comments) }}
-        <button class="btn btn-primary">Envoyer</button>
+        <label>Commentaire:</label>
+            {{ form_widget(form.comments) }}
+
+        <button class="btn btn-primary mt-2">Envoyer</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}
