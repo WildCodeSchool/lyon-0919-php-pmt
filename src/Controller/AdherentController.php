@@ -53,7 +53,7 @@ class AdherentController extends AbstractController
         $formTripCancellation = $this->createForm(ParticipantCancelType::class, $participantToDelete);
         $formTripCancellation->handleRequest($request);
 
-//        from mise à jour user
+//        form mise à jour infos user
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userLogin);
@@ -141,8 +141,7 @@ class AdherentController extends AbstractController
             ->getRepository(Document::class)
             ->findAll();
 
-        //on recupere les documents de l'adhérent
-        $inscription = null;
+
         $formUploaded = new Inscription();
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
@@ -191,6 +190,14 @@ class AdherentController extends AbstractController
 
             $this->getDoctrine()->getManager()->flush();
         }
+
+        // TODO gestion de l'inscription sur plusieurs années
+        //on recupere l'inscription et ainsi  les documents de l'adhérent
+        // on gere ici l'incription sur plusierus années
+        $inscription = $this->getDoctrine()
+            ->getRepository(Inscription::class)
+            ->findBy(['user' => $userLogin]);
+
 
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,

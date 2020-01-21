@@ -64,8 +64,6 @@ class InscriptionClubController extends AbstractController
                 ->findOneBy(['name' => 'Démarrage']);
 
             $inscription->setInscriptionStatus($inscriptionStatus);
-//            TODO la valeur se status est à redefinir
-            $inscription->setStatus(12);
 
             if ($user != null) {
                 $user->setLevel($data['level']);

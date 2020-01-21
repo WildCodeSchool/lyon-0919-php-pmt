@@ -3,6 +3,8 @@
 {% block title %}Mon Compte{% endblock %}
 
 {% block body %}
+    <pre>{{ dump(inscription) }}</pre>
+
     <div hidden>{{ user.id }}</div>
     <div class="container">
         <div class="row mb-5">
@@ -240,12 +242,12 @@
 
                             </div>
 
-                            {#                                    affichage de la zone de telechargement des docs #}
+                            {#  affichage de la zone de telechargement des docs #}
                             <div class="tab-pane fade" id="nav-document" role="tabpanel"
                                  aria-labelledby="nav-profile-tab">
                                 <div class="row">
                                     <div class="col-6">
-                                        <h4 class="mt-3 inscriptionTitle">Document modèle</h4>
+                                        <h4 class="mt-3 inscriptionTitle">Documents modèles</h4>
                                         <ul>
                                             {% for document in documents %}
                                                 <li>
@@ -259,23 +261,24 @@
                                         {% if user.inscriptions is empty %}
                                             <div class="mt-2">Aucun document disponible</div>
                                         {% else %}
+
                                             {% if inscription is not null %}
                                                 <ul>
-                                                    {% if inscription.internalProcedure is not null %}
-                                                        <li>
-                                                            <a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a>
-                                                        </li>
-                                                    {% endif %}
-                                                    {% if inscription.medicalCertificate is not null %}
-                                                        <li>
-                                                            <a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a>
-                                                        </li>
-                                                    {% endif %}
-                                                    {% if inscription.inscriptionSheet is not null %}
-                                                        <li>
-                                                            <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>
-                                                        </li>
-                                                    {% endif %}
+{#                                                    {% if inscription.internalProcedure is not null %}#}
+{#                                                        <li>#}
+{#                                                            <a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a>#}
+{#                                                        </li>#}
+{#                                                    {% endif %}#}
+{#                                                    {% if inscription.medicalCertificate is not null %}#}
+{#                                                        <li>#}
+{#                                                            <a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a>#}
+{#                                                        </li>#}
+{#                                                    {% endif %}#}
+{#                                                    {% if inscription.inscriptionSheet is not null %}#}
+{#                                                        <li>#}
+{#                                                            <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>#}
+{#                                                        </li>#}
+{#                                                    {% endif %}#}
                                                 </ul>
                                             {% else %}
                                                 <div class="mt-2">Aucun document importé</div>
