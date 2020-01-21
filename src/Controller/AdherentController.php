@@ -155,7 +155,6 @@ class AdherentController extends AbstractController
             $internalProcedure = $formDocuments['internalProcedure']->getData();
             $medicalCertificate = $formDocuments['medicalCertificate']->getData();
             $inscriptionSheet = $formDocuments['inscriptionSheet']->getData();
-            $imageRight = $formDocuments['imageRight']->getData();
 
             if ($internalProcedure) {
                 $fileName = 'Reglement_' . $this->getUser()->getId() . '.' . $internalProcedure->guessExtension();
@@ -187,15 +186,6 @@ class AdherentController extends AbstractController
                 }
             }
 
-            if ($imageRight) {
-                $fileName = 'Droits_Image_' . $this->getUser()->getId() . '.' . $imageRight->guessExtension();
-//                 moves the file to the directory where brochures are stored
-                $destination = $this->getParameter('doc_user_upload');
-                $imageRight->move($destination, $fileName);
-                if ($inscription !== null) {
-                    $inscription->setImageRight($fileName);
-                }
-            }
 
             $this->getDoctrine()->getManager()->flush();
         }
