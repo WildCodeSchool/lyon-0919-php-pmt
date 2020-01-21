@@ -52,38 +52,7 @@
                 </a>
             {% endfor %}
         </div>
-    </div>
-    <div class="container">
-        <h2 style="text-align: center;">Tu peux participer au portfolio ici :</h2>
-
-        {{ form_start(form) }}
-        {{ form_row(form.name) }}
-        <label>Commentaire:</label>
-        {{ form_widget(form.comments) }}
-
-        <button class="btn btn-primary mt-2">Envoyer</button>
-        {{ form_end(form) }}
-    </div>
-
-    <h2 style="text-align: center"> Mon espace photo</h2>
-    <div class="container">
-        <div class="card">
-            <div class="row">
-            {% for data in userData %}
-                <div class="col-12  offset-lg-1 col-lg-3">
-                    <img class="card-img-top" style="width: 50% ; margin-top: 10px; "
-                         src="{{ ('/uploads/images/gallery/'~data.name) }}">
-                    <form method="post" action="{{ path('pmt_picture_delete', {'id': data.id}) }}"
-                          onsubmit="return confirm('Voulez vous vraiment supprimer cette photo ?');">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ data.id) }}">
-                        <button class="btn btn-danger mt-1">X</button>
-                    </form>
-                </div>
-            {% endfor %}
-            </div>
-        </div>
-
+        <a class="btn btn-primary" href="{{ path('album_view') }}">Ajouter ou modifier mes photos</a>
     </div>
 {% endblock %}
 
