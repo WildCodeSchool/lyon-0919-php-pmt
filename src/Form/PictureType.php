@@ -20,14 +20,14 @@ class PictureType extends AbstractType
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['placeholder' => 'Choisir une image', 'lang' => "fr"],
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'image/jpg',
-                            'image/jpeg',
-                        ],
-                    ])
+                        'constraints' => [
+                            new File([
+                                'maxSize' => '1024k',
+                                'mimeTypes' => [
+                                    'image/jpg',
+                                    'image/jpeg',
+                                ],
+                            ])
                 ],
             ])
             ->add('comments');

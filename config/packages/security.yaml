@@ -42,7 +42,7 @@ security:
           - {path: ^/portfolio, roles: ROLE_SUBSCRIBER}
           - {path: ^/adherent/inscriptionForm, roles: ROLE_SUBSCRIBER}
           - {path: ^/participant, roles: ROLE_SUBSCRIBER }
-          - {path: ^/user/, roles: ROLE_ADMIN }
+          - {path: ^/user/, roles: ROLE_SUBSCRIBER }
         # - { path: ^/profile, roles: ROLE_USER }
         # - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 

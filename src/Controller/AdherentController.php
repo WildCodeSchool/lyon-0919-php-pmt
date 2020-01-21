@@ -147,7 +147,7 @@ class AdherentController extends AbstractController
 
 //        TOD pbl de valid du form doc
 
-        if ($formDocuments->isSubmitted()) {
+        if ($formDocuments->isSubmitted()&& $formDocuments->isValid()) {
             $inscription = $this->getDoctrine()
                 ->getRepository(Inscription::class)
                 ->findOneBy(['user' => $userLogin]);

@@ -296,6 +296,8 @@
                                     <div class="row text-center">
                                         <button class="btn btn-primary col-12 col-sm-4 offset-4 mt-5 mb-5">{{ button_label|default('Sauvegarder') }}</button>
                                     </div>
+                                    {{ form_widget(formDoc._token) }}
+                                    {{ form_end(formDoc, {'render_rest': false}) }}
                                 {% endif %}
                             </div>
                         </div>

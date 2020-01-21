@@ -31,7 +31,7 @@ class InscriptionType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
             ->add('medicalCertificate', FileType::class, [
@@ -46,7 +46,7 @@ class InscriptionType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
             ->add('inscriptionSheet', FileType::class, [
@@ -61,7 +61,7 @@ class InscriptionType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
             ->add('imageRight', FileType::class, [
@@ -76,7 +76,7 @@ class InscriptionType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
 //            ->add('inscriptionStatus')
