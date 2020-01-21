@@ -37,7 +37,6 @@
         }
     </style>
     <div class="container">
-
         <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">Notre Portfolio </h1>
 
         <hr class="mt-2 mb-5">
@@ -55,16 +54,36 @@
         </div>
     </div>
     <div class="container">
-        <h1 style="text-align: center;">Tu peux participer au portfolio ici :</h1>
+        <h2 style="text-align: center;">Tu peux participer au portfolio ici :</h2>
 
-            {{ form_start(form) }}
-            {{ form_row(form.name) }}
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
         <label>Commentaire:</label>
-            {{ form_widget(form.comments) }}
+        {{ form_widget(form.comments) }}
 
         <button class="btn btn-primary mt-2">Envoyer</button>
         {{ form_end(form) }}
     </div>
+
+    <h2 style="text-align: center"> Mon espace photo</h2>
+    <div class="container">
+        <div class="card-columns">
+            {% for data in userData %}
+                <div class="card-body">
+                    <img class="card-img-top" style="width: 50% ; margin-top: 10px;"
+                         src="{{ ('/uploads/images/gallery/'~data.name) }}">
+                    <form method="post" action="{{ path('pmt_picture_delete', {'id': data.id}) }}"
+                          onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ data.id) }}">
+                        <button class="btn btn-danger">X</button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
 {% endblock %}
+
 
 

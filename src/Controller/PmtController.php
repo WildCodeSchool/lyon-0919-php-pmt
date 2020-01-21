@@ -57,8 +57,9 @@ class PmtController extends AbstractController
      */
     public function portfolio(PictureRepository $pictureRepository, Request $request): Response
     {
+        $user= $this->getUser();
         $picture= new Picture();
-        //on creer le formulaire pour un ajout de photo et de commentaire
+        //on creer le formulaire pour un ajout de photo et de commentaires
         $form = $this->createForm(PictureType::class, $picture);
 
         $form->handleRequest($request);
@@ -79,10 +80,31 @@ class PmtController extends AbstractController
         }
         // on recupere toute les photos
         $pictures = $pictureRepository->findAll();
+
+        // on recupere les data du user connecté pour pouvoir modifier ou supp ses pictures
+        $userData = $pictureRepository->findBy(['user'=>$user]);
+
         return $this->render(
             'tmp/portfolio.html.twig',
             ['pictures' => $pictures,
-                'form' => $form->createView()]
+                'form' => $form->createView(),
+                'userData'=>$userData]
         );
+    }
+
+    /**
+     * @Route("/{id}", name="_picture_delete", methods={"DELETE"})
+     * @param Request $request
+     * @param Picture $picture
+     * @return Response
+     */
+    public function delete(Request $request, Picture $picture): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $picture->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($picture);
+            $entityManager->flush();
+        }
+        return $this->redirectToRoute('pmt_portfolio');
     }
 }
