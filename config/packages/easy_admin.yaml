@@ -166,8 +166,8 @@ easy_admin:
               - location
               - { property: 'price', number: '%0.02f €'}
               - typeTrip
-              - { property: 'date_start', type: 'datetime' }
-              - { property: 'date_end', type: 'datetime' }
+              - { property: 'date_start', type: 'date', format: 'd/m/Y H:i'}
+              - { property: 'date_end', type: 'date', format: 'd/m/Y H:i'}
               - description
               - nb_diver
               - nb_monitor
