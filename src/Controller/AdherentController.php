@@ -14,11 +14,13 @@ use App\Form\ParticipantType;
 use App\Form\ParticipantCancelType;
 use App\Form\UserType;
 use App\Repository\ParticipantRepository;
+use DateTime;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 class AdherentController extends AbstractController
 {
@@ -117,7 +119,7 @@ class AdherentController extends AbstractController
         //on recupere la liste des sorties
         $trips = $this->getDoctrine()
             ->getRepository(Trip::class)
-            ->findAll();
+            ->findByExampleField(new DateTime('now'), new DateTime('now  +100 month'));
 
 //        listes des sorties non bookés
         $bookedTrip = [];
@@ -145,7 +147,7 @@ class AdherentController extends AbstractController
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
 
-//        TOD pbl de valid du form doc
+//        TODO pbl de valid du form doc
 
         if ($formDocuments->isSubmitted()) {
             $inscription = $this->getDoctrine()
