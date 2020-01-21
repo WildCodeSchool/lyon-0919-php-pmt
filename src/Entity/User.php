@@ -136,7 +136,7 @@ class User implements UserInterface, \Serializable
     private $inscriptions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user", cascade={"persist", "remove"})
      */
     private $participants;
 

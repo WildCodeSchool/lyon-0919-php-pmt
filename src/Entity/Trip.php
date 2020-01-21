@@ -53,6 +53,7 @@ class Trip
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $createdAt;
+
     /**
      * @var \DateTime $updatedAt
      *
