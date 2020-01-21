@@ -19,6 +19,18 @@ class InscriptionRepository extends ServiceEntityRepository
         parent::__construct($registry, Inscription::class);
     }
 
+    public function findInscriptionUserYear($user, $year)
+    {
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.user = :user')
+            ->andWhere('i.inscriptionYear != :year')
+            ->setParameter('user', $user)
+            ->setParameter('year', $year)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Inscription[] Returns an array of Inscription objects
     //  */

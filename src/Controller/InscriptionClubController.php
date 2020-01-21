@@ -9,6 +9,7 @@ use App\Entity\Level;
 use App\Form\InscriptionClubType;
 use App\Entity\User;
 use App\Repository\DocumentRepository;
+use DateTime;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -93,6 +94,21 @@ class InscriptionClubController extends AbstractController
 
         $userLogin = $this->getUser();
 
+        //        inscription de l'année: Si une inscription de l'adherent actuel
+        $date = new DateTime('now');
+        $year = $date->format('Y');
+
+        if (new DateTime('now')< new DateTime('08/31')) {
+            $inscriptionYear = strval(intval($year)-1) . '/' .strval($year);
+        } else {
+            $inscriptionYear = strval($year) . '/' .strval(intval($year)+1);
+        }
+
+//        Récupération de l'inscription de l'année en cours
+        $inscriptionOfTheYear = $this->getDoctrine()
+            ->getRepository(Inscription::class)
+            ->findOneBy(['user' => $userLogin , 'inscriptionYear' => $inscriptionYear]);
+
         $documents = $this->getDoctrine()
             ->getRepository(Document::class)
             ->findAll();
@@ -100,6 +116,7 @@ class InscriptionClubController extends AbstractController
         $template = $this->renderView('inscription_club/pdf.html.twig', [
             'userLogin' => $userLogin,
             'documents' => $documents,
+            'inscription' => $inscriptionOfTheYear
         ]);
 
         $html2pdf = new PDF('P', 'A4', 'fr', true, 'UTF-8', array(10, 15, 10, 15));
