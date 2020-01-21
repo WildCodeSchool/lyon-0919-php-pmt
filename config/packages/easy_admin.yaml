@@ -251,6 +251,7 @@ easy_admin:
                 title: 'Liste des participants aux sorties'
                 fields:
                     - user
+                    - { property: 'register_on', type: 'date', format: 'd/m/Y'}
                     - trip
                     - nb_companion
                     - { property: 'payment', type: 'text'}
@@ -270,6 +271,7 @@ easy_admin:
                 title: 'Ajouter / Modifier un participant à une sortie'
                 fields:
                     - user
+                    - { property: 'register_on', type: 'date', format: 'd/m/Y'}
                     - trip
                     - { property: 'nb_companion', type: 'text'}
                     - payment
