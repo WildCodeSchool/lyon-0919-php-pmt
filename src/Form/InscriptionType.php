@@ -31,7 +31,7 @@ class InscriptionType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
             ->add('medicalCertificate', FileType::class, [
@@ -46,7 +46,7 @@ class InscriptionType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
             ->add('inscriptionSheet', FileType::class, [
@@ -61,27 +61,9 @@ class InscriptionType extends AbstractType
                             'application/pdf',
                             'application/x-pdf',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
-            ->add('imageRight', FileType::class, [
-                'label' => ' ',
-                'attr' => ['placeholder' => 'Droits d\'image (PDF)'],
-                'mapped' => false,
-                'required' => false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '1024k',
-                        'mimeTypes' => [
-                            'application/pdf',
-                            'application/x-pdf',
-                        ],
-                        'mimeTypesMessage' => 'Please upload a valid PDF document',
-                    ])
-                ]])
-//            ->add('inscriptionStatus')
-//            ->add('insurance')
-//            ->add('adhesionPrice')
         ;
     }
 
