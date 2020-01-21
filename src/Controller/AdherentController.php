@@ -14,11 +14,13 @@ use App\Form\ParticipantType;
 use App\Form\ParticipantCancelType;
 use App\Form\UserType;
 use App\Repository\ParticipantRepository;
+use DateTime;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Date;
 
 class AdherentController extends AbstractController
 {
@@ -51,7 +53,7 @@ class AdherentController extends AbstractController
         $formTripCancellation = $this->createForm(ParticipantCancelType::class, $participantToDelete);
         $formTripCancellation->handleRequest($request);
 
-//        from mise à jour user
+//        form mise à jour infos user
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userLogin);
@@ -117,7 +119,7 @@ class AdherentController extends AbstractController
         //on recupere la liste des sorties
         $trips = $this->getDoctrine()
             ->getRepository(Trip::class)
-            ->findAll();
+            ->findByExampleField(new DateTime('now'), new DateTime('now  +100 month'));
 
 //        listes des sorties non bookés
         $bookedTrip = [];
@@ -139,13 +141,12 @@ class AdherentController extends AbstractController
             ->getRepository(Document::class)
             ->findAll();
 
-        //on recupere les documents de l'adhérent
-        $inscription = null;
+
         $formUploaded = new Inscription();
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
 
-//        TOD pbl de valid du form doc
+//        TODO pbl de valid du form doc
 
         if ($formDocuments->isSubmitted()&& $formDocuments->isValid()) {
             $inscription = $this->getDoctrine()
@@ -155,7 +156,6 @@ class AdherentController extends AbstractController
             $internalProcedure = $formDocuments['internalProcedure']->getData();
             $medicalCertificate = $formDocuments['medicalCertificate']->getData();
             $inscriptionSheet = $formDocuments['inscriptionSheet']->getData();
-            $imageRight = $formDocuments['imageRight']->getData();
 
             if ($internalProcedure) {
                 $fileName = 'Reglement_' . $this->getUser()->getId() . '.' . $internalProcedure->guessExtension();
@@ -187,18 +187,17 @@ class AdherentController extends AbstractController
                 }
             }
 
-            if ($imageRight) {
-                $fileName = 'Droits_Image_' . $this->getUser()->getId() . '.' . $imageRight->guessExtension();
-//                 moves the file to the directory where brochures are stored
-                $destination = $this->getParameter('doc_user_upload');
-                $imageRight->move($destination, $fileName);
-                if ($inscription !== null) {
-                    $inscription->setImageRight($fileName);
-                }
-            }
 
             $this->getDoctrine()->getManager()->flush();
         }
+
+        // TODO gestion de l'inscription sur plusieurs années
+        //on recupere l'inscription et ainsi  les documents de l'adhérent
+        // on gere ici l'incription sur plusierus années
+        $inscription = $this->getDoctrine()
+            ->getRepository(Inscription::class)
+            ->findBy(['user' => $userLogin]);
+
 
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,

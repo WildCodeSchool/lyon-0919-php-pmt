@@ -64,6 +64,7 @@ class InscriptionType extends AbstractType
                         'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
+
             ->add('imageRight', FileType::class, [
                 'label' => ' ',
                 'attr' => ['placeholder' => 'Droits d\'image (PDF)'],

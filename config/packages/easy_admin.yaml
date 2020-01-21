@@ -81,7 +81,7 @@ easy_admin:
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
-                    - level
+                    - { property: 'level', type_options: { required: true }}
                     - comment
                     - office
                     - { property: 'is_admin',  type: 'checkbox' }
@@ -102,7 +102,7 @@ easy_admin:
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
-                    - level
+                    - { property: 'level', type_options: { required: true }}
                     - comment
                     - office
                     - { property: 'is_admin',  type: 'checkbox' }
