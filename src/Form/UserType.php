@@ -54,7 +54,7 @@ class UserType extends AbstractType
                             'application/jpg',
                             'application/jpeg',
                         ],
-                        'mimeTypesMessage' => 'Please upload a valid JPG or JPEG pics',
+                        'mimeTypesMessage' => 'L\'image doit être au format jpg ou jpeg',
                     ])
                 ],
             ]);

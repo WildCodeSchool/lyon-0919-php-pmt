@@ -64,6 +64,25 @@ class InscriptionType extends AbstractType
                         'mimeTypesMessage' => 'Le document doit être au format PDF',
                     ])
                 ]])
+
+            ->add('imageRight', FileType::class, [
+                'label' => ' ',
+                'attr' => ['placeholder' => 'Droits d\'image (PDF)'],
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'application/pdf',
+                            'application/x-pdf',
+                        ],
+                        'mimeTypesMessage' => 'Le document doit être au format PDF',
+                    ])
+                ]])
+//            ->add('inscriptionStatus')
+//            ->add('insurance')
+//            ->add('adhesionPrice')
         ;
     }
 
