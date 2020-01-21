@@ -57,8 +57,8 @@ class PmtController extends AbstractController
      */
     public function portfolio(PictureRepository $pictureRepository, Request $request): Response
     {
-        // on recupere toute les photos
-        $pictures = $pictureRepository->findAll();
+
+
         $picture= new Picture();
         //on creer le formulaire pour un ajout de photo et de commentaire
         $form = $this->createForm(PictureType::class, $picture);
@@ -79,6 +79,8 @@ class PmtController extends AbstractController
             }
             $this->getDoctrine()->getManager()->flush();
         }
+        // on recupere toute les photos
+        $pictures = $pictureRepository->findAll();
 
         return $this->render(
             'tmp/portfolio.html.twig',

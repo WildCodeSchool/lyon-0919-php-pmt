@@ -69,7 +69,7 @@ easy_admin:
                     - property: 'comment'
                     - property: 'level.name'
             new:
-                title: 'Editer un adhérent'
+                title: 'Créer un adhérent'
                 fields:
                     - { property: 'imageFile', type: 'vich_image'}
                     - { property: 'firstname',  type: 'text' }
@@ -81,7 +81,7 @@ easy_admin:
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
-                    - level
+                    - { property: 'level', type_options: { required: true }}
                     - comment
                     - office
                     - { property: 'is_admin',  type: 'checkbox' }
@@ -102,7 +102,7 @@ easy_admin:
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
-                    - level
+                    - { property: 'level', type_options: { required: true }}
                     - comment
                     - office
                     - { property: 'is_admin',  type: 'checkbox' }
@@ -148,12 +148,10 @@ easy_admin:
             list:
                 title: 'Niveaux de plongée'
                 fields:
-                    - { property: 'order_level', type: 'text' }
                     - name
             form:
                 title: 'Editer un niveaux de plongée'
                 fields:
-                    - { property: 'order_level', type: 'text' }
                     - name
 
         Trip:
@@ -168,8 +166,8 @@ easy_admin:
               - location
               - { property: 'price', number: '%0.02f €'}
               - typeTrip
-              - { property: 'date_start', type: 'datetime' }
-              - { property: 'date_end', type: 'datetime' }
+              - { property: 'date_start', type: 'date', format: 'd/m/Y H:i'}
+              - { property: 'date_end', type: 'date', format: 'd/m/Y H:i'}
               - description
               - nb_diver
               - nb_monitor
@@ -219,7 +217,9 @@ easy_admin:
                 title: 'Liste des photos'
                 fields:
                     - { property: 'name', type: 'text'}
-                    - { property: 'imageFile', template: 'vich_uploader_image.html.twig' }
+
+                    - { property: 'imageFile', template: 'vich_uploader_image.html.twig'}
+
                     - comments
             show:
                 title: 'Liste des photos'
@@ -228,7 +228,7 @@ easy_admin:
                     - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%' }
                     - comments
             form:
-                title: 'Ajouter une photo'
+                title: 'Ajouter / Modifier une photo'
                 fields:
                     - { property: 'imageFile', type: 'vich_image'}
                     - comments
@@ -241,7 +241,7 @@ easy_admin:
                 fields:
                     - type_payment
             form:
-                title: 'Editer un type de paiement'
+                title: 'Ajouter / Modifier un type de paiement'
                 fields:
                     - { property: 'type_payment', type: 'text'}
         Participant:
@@ -267,7 +267,7 @@ easy_admin:
                     - property: 'status'
                     - property: 'nbCompanion'
             form:
-                title: 'Editer un participant à une sortie'
+                title: 'Ajouter / Modifier un participant à une sortie'
                 fields:
                     - user
                     - trip
@@ -285,7 +285,7 @@ easy_admin:
                     - name
                     - { property: 'price', number: '%0.02f €' }
             form:
-                title: "Type d'assurance"
+                title: "Ajouter / Modifier un type d'assurance"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €' }
@@ -298,7 +298,7 @@ easy_admin:
                 fields:
                     - name
             form:
-                title: "Editer un statut"
+                title: "Ajouter / Modifier un statut"
                 fields:
                     - name
         Inscription:
@@ -327,7 +327,7 @@ easy_admin:
                     - property: 'insurance.name'
                     - property: 'adhesionPrice.name'
             form:
-                title: "Inscription de l'adhérent"
+                title: "Ajouter / Modifier l'inscription d'un adhérent"
                 fields:
                     - user
                     - inscriptionStatus
@@ -346,11 +346,11 @@ easy_admin:
                     - name
                     - { property: 'documentFile', template: 'vich_uploader_file.html.twig', base_path: '%app.path.product_files%' }
             form:
-                title: 'Documents'
+                title: 'Modifier un document'
                 fields:
                     - { property: 'documentFile', type: 'vich_file' }
             new:
-                title: 'Documents'
+                title: 'Ajouter un document'
                 fields:
                     - { property: 'documentFile', type: 'vich_file' }
         AdhesionPrice:
@@ -362,7 +362,7 @@ easy_admin:
                     - name
                     - { property: 'price', number: '%0.02f €'}
             form:
-                title: "Editer le type d'adhésion"
+                title: "Ajouter / Modifier un type d'adhésion"
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €'}
