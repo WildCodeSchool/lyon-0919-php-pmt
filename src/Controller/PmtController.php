@@ -57,19 +57,19 @@ class PmtController extends AbstractController
      */
     public function portfolio(PictureRepository $pictureRepository, Request $request): Response
     {
-        $user= $this->getUser();
-        $picture= new Picture();
+        $user = $this->getUser();
+        $picture = new Picture();
         //on creer le formulaire pour un ajout de photo et de commentaires
         $form = $this->createForm(PictureType::class, $picture);
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()&& $form->isValid()) {
-            $imageFile= $form->get('name')->getData();
-            $comments=$form->get('comments')->getData();
+        if ($form->isSubmitted() && $form->isValid()) {
+            $imageFile = $form->get('name')->getData();
+            $comments = $form->get('comments')->getData();
             if ($imageFile) {
-                $fileName= $this->getUser()->getId().uniqid('_') .'.'.$imageFile->guessExtension();
-                $destination=$this->getParameter('product_images');
+                $fileName = $this->getUser()->getId() . uniqid('_') . '.' . $imageFile->guessExtension();
+                $destination = $this->getParameter('product_images');
                 $imageFile->move($destination, $fileName);
                 $picture->setName($fileName);
                 $picture->setComments($comments);
@@ -82,13 +82,13 @@ class PmtController extends AbstractController
         $pictures = $pictureRepository->findAll();
 
         // on recupere les data du user connecté pour pouvoir modifier ou supp ses pictures
-        $userData = $pictureRepository->findBy(['user'=>$user]);
+        $userData = $pictureRepository->findBy(['user' => $user]);
 
         return $this->render(
             'tmp/portfolio.html.twig',
             ['pictures' => $pictures,
                 'form' => $form->createView(),
-                'userData'=>$userData]
+                'userData' => $userData]
         );
     }
 
@@ -98,6 +98,7 @@ class PmtController extends AbstractController
      * @param Picture $picture
      * @return Response
      */
+    // La fonction supprime la photo dans le portfolio avec le user en question logué
     public function delete(Request $request, Picture $picture): Response
     {
         if ($this->isCsrfTokenValid('delete' . $picture->getId(), $request->request->get('_token'))) {
