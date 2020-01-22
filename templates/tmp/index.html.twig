@@ -23,15 +23,15 @@
                     <div class="card-header"><h5 class="cardTitle">ACTIVITES</h5></div>
                 </a>
                 <div class="cardBody mb-3 mt-3">
-                    <p class="cardText">Some quick example text to build on the card title and make up the bulk of the
-                        card's content.</p>
+                    <p class="cardText">Le PMT propose des activités qui privilégient une belle cohésion du groupe dans
+                        une atmosphère bon enfant avec une recherche constante de sécurité.</p>
                 </div>
                 <img src="../img/activite_piscine.jpg" class="card-img-bottom" alt="...">
             </div>
 
             <div class="card col-12 col-lg-3 p-0 card-accueil">
                 <div id="carouselPicture" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-portfolio p-0 m-0">
+                    <div class="carousel-portfolio m-0">
                         <div class="carousel-inner" style="margin-top: 5%;">
                             <div class="carousel-item active">
                                 <img class="ml-auto mr-auto  d-block w-100" src="../img/plongeur1.jpg"
@@ -59,11 +59,12 @@
 
             <div class="card col-12 col-lg-3 p-0 card-accueil">
                 <div class="card-header"><h5 class="cardTitle">HANDI-SUB</h5></div>
-                <div class="cardBody mt-3 mb-3">
+                <div class="cardBody">
                     <div class="cardText">
                         <img src="../img/logoHandisub.jpg" alt="logo_handisub">
-                        <p class="textRight">Some quick example text to build on the card title and make up the bulk of
-                            the card's content.</p>
+                        <p class="textRight">Affiliés à la Fédération Handisports, nous pouvons accueillir et
+                            encadrer des personnes en situation de handicap voulant découvrir la plongée subaquatique.
+                            Contactez-nous pour de plus amples renseignements.</p>
                     </div>
                 </div>
                 <img src="../img/Logo_Handisub.jpg" class="card-img-bottom" alt="bannière_handisub">
@@ -75,23 +76,22 @@
 
             <div class="card  col-12 col-lg-3 p-0 card-accueil">
                 <img src="../img/Equipe.jpg" class="card-img-top" alt="equipe_bureau">
-                <div class="cardBody mb-5"><p class="cardText">Some quick example text to build on the card title and
-                        make
-                        up
-                        the bulk of the card's content.</p></div>
+                <div class="cardBodyTeam"><p class="cardText">Membres du PMT, ils sont élus lors de l’Assemblée Générale pour un
+                        mandat de 3 ans. Ils œuvrent pour un club dynamique, enthousiaste, rigoureux et festif.</p></div>
                 <a style="text-decoration:none" href="{{ path('pmt_showTeam') }}">
                     <div class="card-footer"><h5 class="cardTitle">MEMBRES DU BUREAU</h5></div>
                 </a>
             </div>
 
             <div class="card col-12 col-lg-3 p-0 card-accueil">
-                <a style="text-decoration:none" href="#">
-                    <div class="cardBody mb-5">
-                        <div class="card-header"><h5 class="cardTitle">HISTOIRE DU CLUB</h5></div>
+                <a style="text-decoration:none" href="{{ path('pmt_showTeam') }}#encadrants">
+                    <div class="cardBody">
+                        <div class="card-header"><h5 class="cardTitle">NOS ENCADRANTS</h5></div>
                     </div>
                 </a>
-                <p class="cardText">Some quick example text to build on the card title and make up the bulk of the
-                    card's content.</p>
+                <p class="cardText">Du niveau initiateur au niveau Moniteur Fédéral, ils ont tous à cœur de faire
+                    découvrir la plongée à chacun, selon son rythme et son envie, dans un esprit d’empathie et de
+                    sécurité.</p>
                 <img src="../img/Equipe_resized.jpg" class="card-img-bottom" alt="...">
             </div>
 
@@ -124,7 +124,7 @@
                         </a>
                     </div>
                 </div>
-                <div class="cardBody mt-5">
+                <div class="cardBodyPartner">
                     <div class="card-footer"><h5 class="cardTitle">NOS PARTENAIRES</h5></div>
                 </div>
             </div>
