@@ -178,7 +178,7 @@ easy_admin:
               - nb_participant
               - nb_pending
           form:
-            title: 'Editer une sortie'
+            title: 'Ajouter / Modifier une sortie'
             fields:
               - { property: 'imageFile', type: 'vich_image'}
               - name
@@ -212,7 +212,7 @@ easy_admin:
                 fields:
                     - name
             form:
-                title: 'Editer un type de sortie'
+                title: 'Ajouter / Modifier un type de sortie'
                 fields:
                     - name
         Picture:
@@ -325,7 +325,6 @@ easy_admin:
                 fields:
                     - user
                     - inscriptionStatus
-                    - status
                     - inscription_year
                     - insurance
                     - adhesionPrice
@@ -346,7 +345,6 @@ easy_admin:
                 fields:
                     - user
                     - inscriptionStatus
-                    - status
                     - { property: 'inscription_year', type: 'text'}
                     - insurance
                     - adhesionPrice
