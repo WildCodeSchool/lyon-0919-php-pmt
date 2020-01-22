@@ -218,20 +218,21 @@ easy_admin:
             list:
                 title: 'Liste des photos'
                 fields:
+                    - user
                     - { property: 'name', type: 'text'}
-
                     - { property: 'imageFile', template: 'vich_uploader_image.html.twig'}
-
                     - comments
             show:
                 title: 'Liste des photos'
                 fields:
+                    - user
                     - { property: 'name', type: 'text'}
                     - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%' }
                     - comments
             form:
                 title: 'Ajouter / Modifier une photo'
                 fields:
+                    - user
                     - { property: 'imageFile', type: 'vich_image'}
                     - comments
         Payment:
