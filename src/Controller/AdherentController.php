@@ -36,6 +36,8 @@ class AdherentController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        $tabsOpen = "account";
+
         // returns your User object, or null if the user is not authenticated
         // use inline documentation to tell your editor your exact User class
         /** @var User $user */
@@ -61,6 +63,7 @@ class AdherentController extends AbstractController
             $entityManager->persist($userLogin);
             $entityManager->flush();
             $this->addFlash('success', 'Votre profil a été mis à jour!');
+            $tabsOpen = "account";
         }
 
 //        si on soumets l'inscription à un trip
@@ -73,8 +76,6 @@ class AdherentController extends AbstractController
                 ->getRepository(Participant::class)
                 ->findTripFull($participant->getTrip());
 
-//            dd($tripIsFull);
-
 //            en fct du résultats on enregistre si en liste d'attente ou non
             if ($tripIsFull === [] || $tripIsFull[0]['inscrit'] < $tripIsFull[0]['diverMax']) {
                 $participant->setStatus('Inscrit à la sortie');
@@ -83,7 +84,6 @@ class AdherentController extends AbstractController
                 $participant->setStatus('En liste d\'attente');
                 $this->addFlash('success', 'ATTENTION, cette sortie est déja pleine, vous êtes en liste d\'attente!');
             }
-
 
 //            mise en place de l'inscription statut de base
 //            TODO: voir le niveau le plus bas pour une inscription et rechercher cette objet
@@ -96,6 +96,7 @@ class AdherentController extends AbstractController
             $participant->setUser($userLogin);
             $entityManager->persist($participant);
             $entityManager->flush();
+            $tabsOpen = "sortie";
         }
 
 //        si on efface l'inscription à un trip
@@ -109,6 +110,7 @@ class AdherentController extends AbstractController
                 $entityManager->remove($tupleToDelete);
                 $entityManager->flush();
                 $this->addFlash('success', 'Vous êtes  bien désinscrit à cette sortie!');
+                $tabsOpen = "messorties";
             }
         }
 
@@ -143,7 +145,6 @@ class AdherentController extends AbstractController
             ->getRepository(Document::class)
             ->findAll();
 
-
         $formUploaded = new Inscription();
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
@@ -152,25 +153,29 @@ class AdherentController extends AbstractController
         $date = new DateTime('now');
         $year = $date->format('Y');
 
-        if (new DateTime('now')< new DateTime('08/31')) {
-            $inscriptionYear = strval(intval($year) - 1) . '/' .strval($year);
+        if (new DateTime('now') < new DateTime('08/31')) {
+            $inscriptionYear = strval(intval($year) - 1) . '/' . strval($year);
         } else {
-            $inscriptionYear = strval($year) . '/' .strval(intval($year)+1);
+            $inscriptionYear = strval($year) . '/' . strval(intval($year) + 1);
         }
 
 //        Récupération de l'inscription de l'année en cours
         $inscriptionOfTheYear = $this->getDoctrine()
             ->getRepository(Inscription::class)
-            ->findOneBy(['user' => $userLogin , 'inscriptionYear' => $inscriptionYear]);
+            ->findOneBy(['user' => $userLogin, 'inscriptionYear' => $inscriptionYear]);
 
         //si inscription of year is null = gérer dasn la vue pour éviter l'affichage de la gestion des docs
 
-        if ($formDocuments->isSubmitted()&& $formDocuments->isValid()) {
+        if ($formDocuments->isSubmitted()) {
+            $tabsOpen = "document";
+        }
+
+        if ($formDocuments->isSubmitted() && $formDocuments->isValid()) {
             $internalProcedure = $formDocuments['internalProcedure']->getData();
             $medicalCertificate = $formDocuments['medicalCertificate']->getData();
             $inscriptionSheet = $formDocuments['inscriptionSheet']->getData();
 
-//            mise à jou des infos de inscriptionOfYear et uniquement celle là!!!
+//            mise à jour des infos de inscriptionOfYear et uniquement celle là!!!
 
             if ($internalProcedure) {
                 $fileName = 'Reglement_' . $this->getUser()->getId() . '.' . $internalProcedure->guessExtension();
@@ -201,7 +206,6 @@ class AdherentController extends AbstractController
                     $inscriptionOfTheYear->setInscriptionSheet($fileName);
                 }
             }
-
             $this->getDoctrine()->getManager()->flush();
         }
 
@@ -213,8 +217,6 @@ class AdherentController extends AbstractController
             ->findInscriptionUserYear($userLogin, $inscriptionYear);
 //TODO changer le findBy par un pariculier avec != de actuel inscription year $inscriptionYear
 
-//        dd($inscriptionPast);
-
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,
             'form' => $form,
@@ -225,7 +227,8 @@ class AdherentController extends AbstractController
             'documents' => $documents,
             'inscriptionPast' => $inscriptionPast,
             'inscriptionOfYear' => $inscriptionOfTheYear,
-            'formDocuments' => $formDocuments
+            'formDocuments' => $formDocuments,
+            'tabsOpen' => $tabsOpen,
         ]);
     }
 }
