@@ -91,7 +91,7 @@ class Trip
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $imageName ="";
+    private $imageName = "";
 
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="imageName")
@@ -110,6 +110,23 @@ class Trip
     public function __toString(): ?string
     {
         return strval($this->getName());
+    }
+
+    public function getNbParticipant()
+    {
+        return count($this->participant);
+    }
+
+    public function getNbPending()
+    {
+        $nbPending = 0;
+        $size = $this->getNbParticipant();
+        for ($i = 0; $i < $size; $i++) {
+            if ($this->participant[$i]->getStatus() === "En liste d'attente") {
+                $nbPending += 1;
+            }
+        }
+        return $nbPending;
     }
 
     public function __construct()

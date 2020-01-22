@@ -171,6 +171,8 @@ easy_admin:
               - description
               - nb_diver
               - nb_monitor
+              - nb_participant
+              - nb_pending
           form:
             title: 'Editer une sortie'
             fields:
@@ -272,10 +274,16 @@ easy_admin:
                 fields:
                     - user
                     - { property: 'register_on', type: 'date', format: 'd/m/Y'}
-                    - trip
-                    - { property: 'nb_companion', type: 'text'}
+                    - { property: 'trip', type_options: { required: true }}
+                    - { property: 'nb_companion', type: 'text', type_options: { required: true }}
                     - payment
-                    - status
+                    - property: 'status'
+                      type: 'choice'
+                      type_options:
+                        mapped: true
+                        expanded: true
+                        multiple: false
+                        choices: { "En liste d'attente": "En liste d'attente", "Inscription validé": 'Inscription validé' }
                     - inscriptionStatus
                     - comment
         Insurance:
