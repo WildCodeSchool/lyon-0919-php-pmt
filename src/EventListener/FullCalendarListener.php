@@ -29,7 +29,7 @@ class FullCalendarListener
         $startDate = $calendar->getStart();
         $endDate = $calendar->getEnd();
         $calendar->getFilters();
-        $bookings = $this->tripRepository->findByExampleField($startDate, $endDate);
+        $bookings = $this->tripRepository->findTripBetwennDates($startDate, $endDate);
         foreach ($bookings as $trip) {
             $tripEvent = new Event(
                 $trip->getName(),

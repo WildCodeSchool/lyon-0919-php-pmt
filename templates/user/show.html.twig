@@ -3,7 +3,6 @@
 {% block title %}Mon Compte{% endblock %}
 
 {% block body %}
-    <pre>{{ dump(inscription) }}</pre>
 
     <div hidden>{{ user.id }}</div>
     <div class="container">
@@ -82,19 +81,19 @@
                                  aria-labelledby="nav-home-tab">
 
                                 {#                                si pas inscrit on affiche le lien vers le form d'inscription: si inscrit info de l'inscription#}
-                                {% if user.inscriptions is empty %}
+                                {% if inscriptionOfYear is empty %}
                                     <div class="btn_inscription">
                                         <a href="{{ path('inscriptionForm') }}" class="btn btn-primary text-white">S'inscrire</a>
                                     </div>
                                 {% else %}
 
 
-                                    {% for inscr in user.inscriptions %}
+
 
                                         <div class="mt-3">Ma periode d'inscription :
-                                            <strong>{{ inscr.inscriptionYear }}</strong></div>
+                                            <strong>{{ inscriptionOfYear.inscriptionYear }}</strong></div>
                                         <div class="mt-3">Statut de votre inscription:
-                                            <strong>{{ inscr.inscriptionStatus is null ? '' :  inscr.inscriptionStatus.name }}</strong>
+                                            <strong>{{ inscriptionOfYear.inscriptionStatus is null ? '' :  inscriptionOfYear.inscriptionStatus.name }}</strong>
                                         </div>
                                         <h4 class="mt-3"><strong>Rôle et activités:</strong></h4>
                                         <ul style="list-style: square;">
@@ -113,16 +112,23 @@
                                         </ul>
                                         <h4 class="mt-3"><strong>Droits à l'image</strong></h4>
                                         <div class="mt-2">
-                                            {{ inscr.imageRight? 'Vous avez autorisé la diffusion d\'image' : 'Vous n\'avez pas autorisé la diffusion d\'image' }}</div>
+                                            {{ inscriptionOfYear.imageRight? 'Vous avez autorisé la diffusion d\'image' : 'Vous n\'avez pas autorisé la diffusion d\'image' }}</div>
                                         <h4 class="mt-3"><strong>Un commentaire?</strong></h4>
                                         <div>{{ user.comment }}</div>
-                                        {#    PAs d'afficahge du statut isHandi    #}
-                                    {% endfor %}
-
                                     <a href="{{ path ('pdf') }}"
                                        class="btn btn-primary mb-5 mt-5">{{ button_label|default('Générer un pdf') }}</a>
+                                        {#    PAs d'afficahge du statut isHandi    #}
                                     {#                                    end if si insrit ou pas: #}
                                 {% endif %}
+                                {%  if inscriptionPast is not empty %}
+                                    {#                                    affichage des anciennes inscription au club pour l'adherent #}
+                                    <h2>Mes inscriptions passées</h2>
+                                        <ul>
+                                        {%  for inscr in inscriptionPast %}
+                                                <li> {{inscr.inscriptionYear}}</li>
+                                        {% endfor %}
+                                        </ul>
+                                    {% endif %}
 
                             </div>
 
@@ -262,23 +268,23 @@
                                             <div class="mt-2">Aucun document disponible</div>
                                         {% else %}
 
-                                            {% if inscription is not null %}
+                                            {% if inscriptionOfYear is not null %}
                                                 <ul>
-{#                                                    {% if inscription.internalProcedure is not null %}#}
-{#                                                        <li>#}
-{#                                                            <a href="{{ "/uploads/files/users/" ~ inscription.internalProcedure }}">{{ inscription.internalProcedure }}</a>#}
-{#                                                        </li>#}
-{#                                                    {% endif %}#}
-{#                                                    {% if inscription.medicalCertificate is not null %}#}
-{#                                                        <li>#}
-{#                                                            <a href="{{ "/uploads/files/users/" ~ inscription.medicalCertificate }}">{{ inscription.medicalCertificate }}</a>#}
-{#                                                        </li>#}
-{#                                                    {% endif %}#}
-{#                                                    {% if inscription.inscriptionSheet is not null %}#}
-{#                                                        <li>#}
-{#                                                            <a href="{{ "/uploads/files/users/" ~ inscription.inscriptionSheet }}">{{ inscription.inscriptionSheet }}</a>#}
-{#                                                        </li>#}
-{#                                                    {% endif %}#}
+                                                    {% if inscriptionOfYear.internalProcedure is not null %}
+                                                        <li>
+                                                            <a href="{{ "/uploads/files/users/" ~ inscriptionOfYear.internalProcedure }}">{{ inscriptionOfYear.internalProcedure }}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if inscriptionOfYear.medicalCertificate is not null %}
+                                                        <li>
+                                                            <a href="{{ "/uploads/files/users/" ~ inscriptionOfYear.medicalCertificate }}">{{ inscriptionOfYear.medicalCertificate }}</a>
+                                                        </li>
+                                                    {% endif %}
+                                                    {% if inscriptionOfYear.inscriptionSheet is not null %}
+                                                        <li>
+                                                            <a href="{{ "/uploads/files/users/" ~ inscriptionOfYear.inscriptionSheet }}">{{ inscriptionOfYear.inscriptionSheet }}</a>
+                                                        </li>
+                                                    {% endif %}
                                                 </ul>
                                             {% else %}
                                                 <div class="mt-2">Aucun document importé</div>
@@ -288,8 +294,10 @@
                                 </div>
                                 {#                                TODO ajouter liste des docs à télécharger en plus de ceux du menbres #}
                                 <h4 class="inscriptionTitle">Importer mes documents</h4>
-                                {% if user.inscriptions is empty %}
-                                    <div class="mt-2">Aucun document disponible ( à revoir si besoin)</div>
+                                {% if inscriptionOfYear is empty %}
+                                    <div class="btn_inscription">
+                                        <a href="{{ path('inscriptionForm') }}" class="btn btn-primary text-white">S'inscrire</a>
+                                    </div>
                                 {% else %}
                                     {% set formDoc = formDocuments.createView %}
                                     {{ form_start(formDoc) }}

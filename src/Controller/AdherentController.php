@@ -14,7 +14,9 @@ use App\Form\ParticipantType;
 use App\Form\ParticipantCancelType;
 use App\Form\UserType;
 use App\Repository\ParticipantRepository;
+use DateInterval;
 use DateTime;
+use EasyCorp\Bundle\EasyAdminBundle\Tests\Controller\DataTransferObjectTest;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -119,7 +121,7 @@ class AdherentController extends AbstractController
         //on recupere la liste des sorties
         $trips = $this->getDoctrine()
             ->getRepository(Trip::class)
-            ->findByExampleField(new DateTime('now'), new DateTime('now  +100 month'));
+            ->findTripBetwennDates(new DateTime('now'), new DateTime('now  +100 month'));
 
 //        listes des sorties non bookés
         $bookedTrip = [];
@@ -146,24 +148,37 @@ class AdherentController extends AbstractController
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
 
-//        TODO pbl de valid du form doc
+//        inscription de l'année: Si une inscription de l'adherent actuel
+        $date = new DateTime('now');
+        $year = $date->format('Y');
+
+        if (new DateTime('now')< new DateTime('08/31')) {
+            $inscriptionYear = strval(intval($year) - 1) . '/' .strval($year);
+        } else {
+            $inscriptionYear = strval($year) . '/' .strval(intval($year)+1);
+        }
+
+//        Récupération de l'inscription de l'année en cours
+        $inscriptionOfTheYear = $this->getDoctrine()
+            ->getRepository(Inscription::class)
+            ->findOneBy(['user' => $userLogin , 'inscriptionYear' => $inscriptionYear]);
+
+        //si inscription of year is null = gérer dasn la vue pour éviter l'affichage de la gestion des docs
 
         if ($formDocuments->isSubmitted()&& $formDocuments->isValid()) {
-            $inscription = $this->getDoctrine()
-                ->getRepository(Inscription::class)
-                ->findOneBy(['user' => $userLogin]);
-
             $internalProcedure = $formDocuments['internalProcedure']->getData();
             $medicalCertificate = $formDocuments['medicalCertificate']->getData();
             $inscriptionSheet = $formDocuments['inscriptionSheet']->getData();
+
+//            mise à jou des infos de inscriptionOfYear et uniquement celle là!!!
 
             if ($internalProcedure) {
                 $fileName = 'Reglement_' . $this->getUser()->getId() . '.' . $internalProcedure->guessExtension();
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $internalProcedure->move($destination, $fileName);
-                if ($inscription !== null) {
-                    $inscription->setInternalProcedure($fileName);
+                if ($inscriptionOfTheYear !== null) {
+                    $inscriptionOfTheYear->setInternalProcedure($fileName);
                 }
             }
 
@@ -172,8 +187,8 @@ class AdherentController extends AbstractController
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $medicalCertificate->move($destination, $fileName);
-                if ($inscription !== null) {
-                    $inscription->setMedicalCertificate($fileName);
+                if ($inscriptionOfTheYear !== null) {
+                    $inscriptionOfTheYear->setMedicalCertificate($fileName);
                 }
             }
 
@@ -182,11 +197,10 @@ class AdherentController extends AbstractController
 //                 moves the file to the directory where brochures are stored
                 $destination = $this->getParameter('doc_user_upload');
                 $inscriptionSheet->move($destination, $fileName);
-                if ($inscription !== null) {
-                    $inscription->setInscriptionSheet($fileName);
+                if ($inscriptionOfTheYear !== null) {
+                    $inscriptionOfTheYear->setInscriptionSheet($fileName);
                 }
             }
-
 
             $this->getDoctrine()->getManager()->flush();
         }
@@ -194,21 +208,23 @@ class AdherentController extends AbstractController
         // TODO gestion de l'inscription sur plusieurs années
         //on recupere l'inscription et ainsi  les documents de l'adhérent
         // on gere ici l'incription sur plusierus années
-        $inscription = $this->getDoctrine()
+        $inscriptionPast = $this->getDoctrine()
             ->getRepository(Inscription::class)
-            ->findBy(['user' => $userLogin]);
+            ->findInscriptionUserYear($userLogin, $inscriptionYear);
+//TODO changer le findBy par un pariculier avec != de actuel inscription year $inscriptionYear
 
+//        dd($inscriptionPast);
 
         return $this->render('user/show.html.twig', [
             'user' => $userLogin,
             'form' => $form,
             'formTripRegistration' => $formTripRegistration,
             'formTripCancellation' => $formTripCancellation,
-//            'trips' => $trips,
             'tripsAlreadyBook' => $alreadyBookedTrips,
             'tripsNotBooked' => $notBookedTrip,
             'documents' => $documents,
-            'inscription' => $inscription,
+            'inscriptionPast' => $inscriptionPast,
+            'inscriptionOfYear' => $inscriptionOfTheYear,
             'formDocuments' => $formDocuments
         ]);
     }
