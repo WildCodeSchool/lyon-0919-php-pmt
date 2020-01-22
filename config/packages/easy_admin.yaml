@@ -31,8 +31,12 @@ easy_admin:
     entities:
         User:
             translation_domain: 'messages'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             class: App\Entity\User
             label: 'Adhérents au PMT'
+            export:
+                title: 'export'
             list:
                 actions: ['edit', 'search', 'delete', 'show']
                 title: 'Liste des adhérents au PMT'
