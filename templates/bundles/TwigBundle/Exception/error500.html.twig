@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur 500{% endblock %}
+
+{% block body %}
+
+    <div style="text-align: center;">
+        <h1>ERREUR {{ status_code }}</h1>
+        <div><img src="img/logo_anime_pmt.gif"></div>
+        <h2>Oups !!!!</h2>
+        <h3>Internal Server Error !</h3>
+        <a href="/">Cliquez ici</a><p> pour retourner à l'accueil du site</p>
+    </div>
+
+{% endblock %}
