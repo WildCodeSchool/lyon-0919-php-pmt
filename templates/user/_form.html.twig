@@ -66,10 +66,9 @@
     </div>
     <div class="row">
         <div class="col-12 offset-sm-3 col-sm-4">
-            {{ form_widget(form.ImageFile) }}
+            {{ form_row(form.ImageFile) }}
         </div>
     </div>
-
     {# comment #}
     <div class="inscriptionTitle col-12">
         <span>Commentaire</span>
@@ -102,5 +101,5 @@
 
 
 </div>
-
-{{ form_end(form) }}
+{{ form_widget(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}
