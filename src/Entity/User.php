@@ -255,7 +255,7 @@ class User implements UserInterface, \Serializable
         return $this->mobilePhone;
     }
 
-    public function setMobilePhone(string $mobilePhone): self
+    public function setMobilePhone(?string $mobilePhone): self
     {
         $this->mobilePhone = $mobilePhone;
 

@@ -43,7 +43,7 @@ class UserType extends AbstractType
             ->add('city')
             ->add('imageName', HiddenType::class)
             ->add('ImageFile', FileType::class, [
-                'label' => 'photos de profil',
+                'label' => 'Charger ma photo',
                 'mapped' => false,
                 'required' => false,
                 'attr' => ['placeholder' => 'Choisir une image' ,  'lang'=>"fr"],
@@ -51,10 +51,11 @@ class UserType extends AbstractType
                     new File([
                         'maxSize' => '1024k',
                         'mimeTypes' => [
-                            'application/jpg',
-                            'application/jpeg',
+                            'image/jpg',
+                            'image/jpeg',
+                            'image/png',
                         ],
-                        'mimeTypesMessage' => 'L\'image doit être au format jpg ou jpeg',
+                        'mimeTypesMessage' => 'L\'image doit être au format jpg, jpeg ou png',
                     ])
                 ],
             ]);
