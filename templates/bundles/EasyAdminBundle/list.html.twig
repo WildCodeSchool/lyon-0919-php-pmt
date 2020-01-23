@@ -1,14 +1,11 @@
-{% extends '@EasyAdmin/default/list.html.twig' %}
+{% extends "@EasyAdmin/default/list.html.twig" %}
 
-{% block global_actions %}
+{% block new_action %}
     {{ parent() }}
-    {% block export_csv %}
-        {% set referer = app.request.server.get('http-referer')|default('/') %}
-        <div class="btn-group pull-right">
-            <a class="btn btn-primary" href="{{ path('easyadmin', app.request.query|merge({ action: "export" })) }}" target="_blank">
-                <i class="fa fa-file-excel-o"></i>
-                {{ 'Exporter' }}
-            </a>
-        </div>
-    {% endblock export_csv %}
-{% endblock global_actions %}
+    <div class="btn-group pull-right">
+        <a class="btn btn-primary" href="{{ path('easyadmin', app.request.query|merge({ action: "export" })) }}" target="_blank">
+            <i class="fa fa-file-excel-o"></i>
+            {{ 'Exporter' }}
+        </a>
+    </div>
+{% endblock new_action %}
