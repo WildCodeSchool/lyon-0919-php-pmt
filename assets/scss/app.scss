@@ -2,10 +2,10 @@
 @import "~bootstrap/scss/bootstrap";
 @import "styleNavFooter.scss";
 @import "adherentPage.scss";
-@import url('https://fonts.googleapis.com/css?family=Alatsi|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alata|Open+Sans&display=swap');
 
-$font-family: 'Alatsi', sans-serif;
-$font-family2: 'Roboto', sans-serif;
+$font-family: 'Alata', sans-serif;
+$font-family2: 'Open Sans', sans-serif;
 
 body {
     background-color: $secondary-color;
@@ -374,7 +374,7 @@ label {
     font-size: 14px;
     font-style: inherit;
     font-variant: inherit;
-    font-family: inherit;
+    font-family: $font-family2;
     text-decoration: none;
     overflow: hidden;
     -webkit-transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
