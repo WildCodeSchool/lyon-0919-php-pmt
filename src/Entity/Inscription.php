@@ -54,6 +54,11 @@ class Inscription
     private $imageRight;
 
     /**
+     * @ORM\Column(type="float")
+     */
+    private $ccp = 60;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="inscriptions",  cascade={"persist", "remove"})
      */
     private $user;
@@ -225,6 +230,18 @@ class Inscription
     public function setAdhesionPrice(?AdhesionPrice $adhesionPrice): self
     {
         $this->adhesionPrice = $adhesionPrice;
+
+        return $this;
+    }
+
+    public function getCcp(): ?float
+    {
+        return $this->ccp;
+    }
+
+    public function setCcp(float $ccp): self
+    {
+        $this->ccp = $ccp;
 
         return $this;
     }
