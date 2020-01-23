@@ -3,6 +3,8 @@ easy_admin:
     formats:
         number: '%0.02f €'
     design:
+        templates:
+            list: 'bundles/EasyAdminBundle/list.html.twig'
         brand_color: '#3c8e91'
         assets:
             css: ['css/custom_backend.css']
@@ -31,12 +33,8 @@ easy_admin:
     entities:
         User:
             translation_domain: 'messages'
-            templates:
-                list: 'bundles/EasyAdminBundle/list.html.twig'
             class: App\Entity\User
             label: 'Adhérents au PMT'
-            export:
-                title: 'export'
             list:
                 actions: ['edit', 'search', 'delete', 'show']
                 title: 'Liste des adhérents au PMT'
@@ -328,6 +326,7 @@ easy_admin:
                     - inscription_year
                     - insurance
                     - adhesionPrice
+                    - { property: 'ccp', number: '%0.02f €' }
                     - { property: 'internal_procedure', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'medical_certificate', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'inscription_sheet', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
@@ -348,6 +347,7 @@ easy_admin:
                     - { property: 'inscription_year', type: 'text'}
                     - insurance
                     - adhesionPrice
+                    - { property: 'ccp', number: '%0.02f €' }
                     - { property: 'image_right',  type: 'checkbox' }
         Document:
             translation_domain: 'messages'
