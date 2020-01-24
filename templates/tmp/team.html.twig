@@ -14,7 +14,7 @@
                         {% for office in offices %}
                         <h4 class="titleOffice">{{ office.name }} :</h4>
                             {% for user in office.users %}
-                                <span id="name">{{ user.firstname }} <strong class="lastName">{{ user.lastname|upper }}</strong></span>
+                                <span id="name">{{ user.firstname }} <strong class="lastName">{{ user.lastname|upper }},</strong></span>
                             {% endfor %}
                             <li><h5></h5></li>
                         {% endfor %}
