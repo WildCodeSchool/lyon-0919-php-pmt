@@ -353,6 +353,12 @@ class User implements UserInterface, \Serializable
 
     public function setIsAdmin(?bool $isAdmin): self
     {
+        if ($isAdmin == true) {
+            $this->setRoles(['ROLE_ADMIN']);
+        } else {
+            $this->setRoles(['ROLE_SUBSCRIBER']);
+        }
+
         $this->isAdmin = $isAdmin;
 
         return $this;

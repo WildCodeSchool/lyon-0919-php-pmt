@@ -149,9 +149,9 @@ class AdherentController extends AbstractController
         $formDocuments = $this->createForm(InscriptionType::class, $formUploaded);
         $formDocuments->handleRequest($request);
 
-//        inscription de l'année: Si une inscription de l'adherent actuel
-        $date = new DateTime('now');
-        $year = $date->format('Y');
+//        inscription de l'année
+
+        $year = (new DateTime('now'))->format('Y');
 
         if (new DateTime('now') < new DateTime('08/31')) {
             $inscriptionYear = strval(intval($year) - 1) . '/' . strval($year);
