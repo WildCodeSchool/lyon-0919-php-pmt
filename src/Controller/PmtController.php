@@ -65,4 +65,18 @@ class PmtController extends AbstractController
             ['pictures' => $pictures]
         );
     }
+
+    /**
+     * @Route("plouf", name="_madamemongoingoingoin")
+     * @return Response
+     * @throws Exception
+     */
+    public function plouf(): Response
+    {
+        // on recupere toute les photos
+
+        return $this->render(
+            'tmp/activisme.html.twig',
+        );
+    }
 }
