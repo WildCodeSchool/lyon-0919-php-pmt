@@ -27,6 +27,7 @@ class InscriptionClubController extends AbstractController
     /**
      * @Route("/inscriptionForm", name="inscriptionForm")
      * @param Request $request
+     * @param DocumentRepository $documentRepository
      * @return Response
      */
     public function index(Request $request, DocumentRepository $documentRepository)
