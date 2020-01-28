@@ -7,12 +7,24 @@
 $font-family: 'Alata', sans-serif;
 $font-family2: 'Open Sans', sans-serif;
 
+html {
+    height: 100%;
+}
+
 body {
     background-color: $secondary-color;
     font-family: $font-family2;
     display: table;
     width: 100%;
     font-size: 1.3em;
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid, .container-team, .container-login, .container-user, #myContainer{
+    margin-bottom: 350px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -284,6 +296,10 @@ label {
     position: absolute;
 }
 
+.container-contact{
+    margin-top: 40px;
+    margin-bottom: 300px;
+}
 
 /**********calendar *********/
 
