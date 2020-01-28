@@ -20,6 +20,13 @@ services:
         bind:
             $webDirectory: '%kernel.project_dir%/public/'
 
+    console_command.csv_import:
+        class: App\Command\CsvImportCommand
+        arguments:
+            - "@doctrine.orm.entity_manager"
+        tags:
+            -{name: console.command}
+
 
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name

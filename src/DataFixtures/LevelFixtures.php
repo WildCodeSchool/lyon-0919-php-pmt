@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Level;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class LevelFixtures extends Fixture
+class LevelFixtures extends Fixture implements DependentFixtureInterface
 {
     const LEVELS = [
         0 => 'Débutant',
@@ -35,5 +36,11 @@ class LevelFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+        return [AppFixtures::class];
+        // TODO: Implement getDependencies() method.
     }
 }
