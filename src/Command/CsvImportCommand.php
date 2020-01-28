@@ -16,10 +16,15 @@ class CsvImportCommand extends Command
     /**
      * @var EntityManagerInterface
      */
-    public function __construct(EntityManagerInterface $em)
+    private $entityManager;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    public function __construct(EntityManagerInterface $entityManager)
     {
         parent::__construct();
-        $this->em = $em;
+        $this->entityManager = $entityManager;
     }
 
     protected function configure()
@@ -45,9 +50,9 @@ class CsvImportCommand extends Command
                 ->setLastname($row['lastname'])
                 ->setEmail($row['email']);
 
-            $this->em->persist($user);
+            $this->entityManager->persist($user);
         }
-        $this->em->flush();
+        $this->entityManager->flush();
 
         $io->success('Everything went well!');
     }
