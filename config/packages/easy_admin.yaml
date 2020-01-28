@@ -361,6 +361,7 @@ easy_admin:
                     - property: 'adhesionPrice.name'
             form:
                 title: "Ajouter / Modifier l'inscription d'un adhérent"
+                help: "ATTENTION! Le format de l'année d'inscription doit être aaaa/aaaa"
                 fields:
                     - user
                     - inscriptionStatus

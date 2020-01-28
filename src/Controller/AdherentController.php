@@ -79,10 +79,11 @@ class AdherentController extends AbstractController
 //            en fct du résultats on enregistre si en liste d'attente ou non
             if ($tripIsFull === [] || $tripIsFull[0]['inscrit'] < $tripIsFull[0]['diverMax']) {
                 $participant->setStatus('Inscrit à la sortie');
-                $this->addFlash('success', 'Vous etes inscrit à la sortie!');
+                $this->addFlash('success', 'Vous êtes inscrit à la sortie!');
             } else {
                 $participant->setStatus('En liste d\'attente');
-                $this->addFlash('success', 'ATTENTION, cette sortie est déja pleine, vous êtes en liste d\'attente!');
+                $this->addFlash('success', 'ATTENTION, 
+                cette sortie est déja au complet. Vous êtes sur liste d\'attente!');
             }
 
 //            mise en place de l'inscription statut de base
@@ -109,7 +110,7 @@ class AdherentController extends AbstractController
             if ($tupleToDelete != null) {
                 $entityManager->remove($tupleToDelete);
                 $entityManager->flush();
-                $this->addFlash('success', 'Vous êtes  bien désinscrit à cette sortie!');
+                $this->addFlash('success', 'Vous êtes bien désinscrit à cette sortie!');
                 $tabsOpen = "messorties";
             }
         }
