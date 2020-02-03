@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %} Mon album {% endblock %}
 {% block body %}
-    <div class="container">
+    <div class="container container-album">
         <a class=" btn btn-primary" style="margin-top: 10px" href="{{ path('pmt_portfolio') }}">Retour au Portfolio</a>
         <hr>
         <h2 style="text-align: center;">Ajouter mes photos:</h2>
@@ -14,7 +14,7 @@
         <button class="btn btn-primary mt-2">Envoyer</button>
         {{ form_end(form) }}
     </div>
-    <div class="container">
+    <div class="container container-pictures">
         <hr>
 
         <h2 style="text-align: center">Gerer mes photos:</h2>
