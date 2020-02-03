@@ -49,7 +49,7 @@ class User implements UserInterface, \Serializable
     private $mobilePhone;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $birthday;
 

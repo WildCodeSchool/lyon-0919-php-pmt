@@ -10,7 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AppFixtures extends Fixture implements DependentFixtureInterface
+class AppFixtures extends Fixture
 {
     protected $faker;
 
@@ -159,11 +159,5 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $manager->persist($user);
         }
         $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        return [LevelFixtures::class];
-        // TODO: Implement getDependencies() method.
     }
 }
