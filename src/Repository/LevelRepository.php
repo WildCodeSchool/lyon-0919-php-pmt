@@ -24,6 +24,7 @@ class LevelRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('l')
             ->join('l.users', 'u')
+            ->where('l.id >= 47')
         ->getQuery()
         ->getResult();
     }
