@@ -50,6 +50,7 @@ class CsvImportCommand extends Command
                 ->setLastname($row['lastname'])
                 ->setEmail($row['email']);
 
+
             $this->entityManager->persist($user);
         }
         $this->entityManager->flush();
