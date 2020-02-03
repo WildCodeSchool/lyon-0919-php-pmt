@@ -57,6 +57,7 @@ class AppFixtures extends Fixture
             $this->addReference('adherent' . $i, $user);
             $manager->persist($user);
         }
+        /*
         //5 moniteurs et plongeurs avec level
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
@@ -158,6 +159,7 @@ class AppFixtures extends Fixture
             $this->addReference('adherent' . ($i + 21), $user);
             $manager->persist($user);
         }
+        */
         $manager->flush();
     }
 }
