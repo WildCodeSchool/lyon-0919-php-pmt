@@ -23,7 +23,7 @@ body {
     padding: 0;
 }
 
-.container-fluid, .container-team, .container-login, .container-user, #myContainer{
+.container-fluid, .container-team, .container-login, .container-user, #myContainer, .container-pictures{
     margin-bottom: 350px;
 }
 
@@ -95,9 +95,9 @@ a {
     margin-top: 30px;
 }
 
-.carousel {
-    height: 260px;
-}
+//.carousel {
+//    height: 260px;
+//}
 
 .cardBodyPartner {
     margin-top: 130px;
@@ -302,6 +302,10 @@ label {
 }
 
 /**********calendar *********/
+
+.h1-calendar{
+    text-align: center;
+}
 
 .fc-state-highlight {
     opacity: 0;

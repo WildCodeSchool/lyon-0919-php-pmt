@@ -92,6 +92,18 @@
 }
 
 @media screen and (max-width: 790px) {
+    .nav-background {
+        height: 150px;
+    }
+
+    .svgnavbar {
+        height: 150px;
+    }
+
+    .form_pass, .presentation, .titleMembers, .h1-contact, .h1-connec, .container-user, .container-album, .h1-calendar{
+        margin-top: 150px;
+    }
+
     .footer-background {
         width: 100%;
         height: 200px;
