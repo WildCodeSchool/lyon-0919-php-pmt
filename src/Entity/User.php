@@ -168,7 +168,7 @@ class User implements UserInterface, \Serializable
     private $office;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="user", cascade={"remove"})
      */
     private $picture;
 

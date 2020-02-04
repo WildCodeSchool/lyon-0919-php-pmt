@@ -12,7 +12,7 @@ easy_admin:
             - { label: 'Membres' }
             - { entity: 'User', icon: 'user' }
             - { entity: 'Inscription', icon: 'check-circle' }
-            - { entity: 'InscriptionStatus', icon: 'check-circle' }
+#            - { entity: 'InscriptionStatus', icon: 'check-circle' }
             - { entity: 'Office', icon: 'group' }
             - { label: 'Les sorties' }
             - { entity: 'Trip', icon: 'plane' }
@@ -318,20 +318,20 @@ easy_admin:
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €' }
-        InscriptionStatus:
-            translation_domain: 'messages'
-            class: App\Entity\InscriptionStatus
-            label: "Statut des inscriptions"
-            templates:
-                list: 'bundles/EasyAdminBundle/list.html.twig'
-            list:
-                title: "Statut des inscriptions"
-                fields:
-                    - name
-            form:
-                title: "Ajouter / Modifier un statut"
-                fields:
-                    - name
+#        InscriptionStatus:
+#            translation_domain: 'messages'
+#            class: App\Entity\InscriptionStatus
+#            label: "Statut des inscriptions"
+#            templates:
+#                list: 'bundles/EasyAdminBundle/list.html.twig'
+#            list:
+#                title: "Statut des inscriptions"
+#                fields:
+#                    - name
+#            form:
+#                title: "Ajouter / Modifier un statut"
+#                fields:
+#                    - name
         Inscription:
             translation_domain: 'messages'
             class: App\Entity\Inscription

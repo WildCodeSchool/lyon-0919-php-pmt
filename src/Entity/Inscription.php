@@ -59,7 +59,7 @@ class Inscription
     private $ccp = 40;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="inscriptions",  cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="inscriptions")
      */
     private $user;
 
