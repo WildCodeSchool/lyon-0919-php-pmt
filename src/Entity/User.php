@@ -49,7 +49,7 @@ class User implements UserInterface, \Serializable
     private $mobilePhone;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="date", nullable=true)
      */
     private $birthday;
 
@@ -136,7 +136,7 @@ class User implements UserInterface, \Serializable
     private $inscriptions;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Participant", mappedBy="user", cascade={"persist", "remove"})
      */
     private $participants;
 
@@ -168,7 +168,7 @@ class User implements UserInterface, \Serializable
     private $office;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Picture", mappedBy="user", cascade={"remove"})
      */
     private $picture;
 
@@ -255,7 +255,7 @@ class User implements UserInterface, \Serializable
         return $this->mobilePhone;
     }
 
-    public function setMobilePhone(string $mobilePhone): self
+    public function setMobilePhone(?string $mobilePhone): self
     {
         $this->mobilePhone = $mobilePhone;
 
@@ -267,7 +267,7 @@ class User implements UserInterface, \Serializable
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 
@@ -353,6 +353,12 @@ class User implements UserInterface, \Serializable
 
     public function setIsAdmin(?bool $isAdmin): self
     {
+        if ($isAdmin == true) {
+            $this->setRoles(['ROLE_ADMIN']);
+        } else {
+            $this->setRoles(['ROLE_SUBSCRIBER']);
+        }
+
         $this->isAdmin = $isAdmin;
 
         return $this;

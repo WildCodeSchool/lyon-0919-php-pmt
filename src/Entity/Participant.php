@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +33,11 @@ class Participant
     private $comment;
 
     /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $registerOn;
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="participants")
      */
     private $user;
@@ -50,6 +56,16 @@ class Participant
      * @ORM\ManyToOne(targetEntity="App\Entity\Trip", inversedBy="participant", cascade={"persist"})
      */
     private $trip;
+
+    /**
+     * Participant constructor.
+     */
+    public function __construct()
+    {
+        if ($this->getRegisterOn() === null) {
+            $this->setRegisterOn(new DateTime('now'));
+        }
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +152,18 @@ class Participant
     public function setComment(string $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getRegisterOn(): ?\DateTimeInterface
+    {
+        return $this->registerOn;
+    }
+
+    public function setRegisterOn(\DateTimeInterface $registerOn): self
+    {
+        $this->registerOn = $registerOn;
 
         return $this;
     }

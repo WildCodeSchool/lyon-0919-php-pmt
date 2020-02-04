@@ -15,6 +15,8 @@ Is swim: Adhérent Piscine
 Is diver: Plongeur
 Is handi: Handicapé
 #Traduction Inscriptions
+Insurance: Assurance
+Adhesion price: Adhésion au PMT
 User: Adhérents
 Inscription status: Statut de l'inscription
 Inscription year: Année de l'inscription
@@ -25,6 +27,7 @@ Image right: Droit à l'image
 #Traduction statut des inscriptions
 Name: Nom
 Status : Statut
+Ccp: CCP
 #Traduction Sortie
 Location: Lieu
 Price: Prix
@@ -37,6 +40,9 @@ Nb monitor: Moniteurs
 Trip: Sortie
 Nb companion: Nombre d'accompagnants
 Payment: Type de paiements
+Register on: Date d'inscription
+Nb participant: Nb d'inscrits
+Nb pending: Nb en liste d'attente
 #Traduction payment
 Type payment: Type de paiements
 #Traduction niveaux de plongée
@@ -48,6 +54,19 @@ Document file: Aperçu
 Office: Fonction dans le bureau
 #Traduction Pictures
 Comments: Commentaire
+#Traduction Month
+January: Janvier
+February: Février
+March: Mars
+April: Avril
+May: Mai
+June: Juin
+July: Juillet
+August: Août
+September: Septembre
+October: Octobre
+November: Novembre
+December: Décembre
 
 form.label.delete: Cocher cette case pour supprimer l'élément
 

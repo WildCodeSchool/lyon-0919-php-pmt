@@ -3,6 +3,8 @@ easy_admin:
     formats:
         number: '%0.02f €'
     design:
+        templates:
+            list: 'bundles/EasyAdminBundle/list.html.twig'
         brand_color: '#3c8e91'
         assets:
             css: ['css/custom_backend.css']
@@ -10,7 +12,7 @@ easy_admin:
             - { label: 'Membres' }
             - { entity: 'User', icon: 'user' }
             - { entity: 'Inscription', icon: 'check-circle' }
-            - { entity: 'InscriptionStatus', icon: 'check-circle' }
+#            - { entity: 'InscriptionStatus', icon: 'check-circle' }
             - { entity: 'Office', icon: 'group' }
             - { label: 'Les sorties' }
             - { entity: 'Trip', icon: 'plane' }
@@ -81,7 +83,7 @@ easy_admin:
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
-                    - level
+                    - { property: 'level', type_options: { required: true }}
                     - comment
                     - office
                     - { property: 'is_admin',  type: 'checkbox' }
@@ -102,7 +104,7 @@ easy_admin:
                     - address
                     - { property: 'zip_code',  type: 'text' }
                     - city
-                    - level
+                    - { property: 'level', type_options: { required: true }}
                     - comment
                     - office
                     - { property: 'is_admin',  type: 'checkbox' }
@@ -134,6 +136,8 @@ easy_admin:
         Office:
             class: App\Entity\Office
             label: 'Fonctions du bureau'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: 'Fonctions des membres du bureau'
                 fields:
@@ -145,6 +149,8 @@ easy_admin:
         Level:
             class: App\Entity\Level
             label: 'Niveaux de plongée'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: 'Niveaux de plongée'
                 fields:
@@ -157,6 +163,8 @@ easy_admin:
         Trip:
           class: App\Entity\Trip
           label: 'Sorties'
+          templates:
+              list: 'bundles/EasyAdminBundle/list.html.twig'
           list:
             actions: ['edit', 'search', 'delete', 'show']
             title: 'Liste des sorties'
@@ -166,13 +174,15 @@ easy_admin:
               - location
               - { property: 'price', number: '%0.02f €'}
               - typeTrip
-              - { property: 'date_start', type: 'datetime' }
-              - { property: 'date_end', type: 'datetime' }
+              - { property: 'date_start', type: 'date', format: 'd/m/Y H:i'}
+              - { property: 'date_end', type: 'date', format: 'd/m/Y H:i'}
               - description
               - nb_diver
               - nb_monitor
+              - nb_participant
+              - nb_pending
           form:
-            title: 'Editer une sortie'
+            title: 'Ajouter / Modifier une sortie'
             fields:
               - { property: 'imageFile', type: 'vich_image'}
               - name
@@ -201,40 +211,47 @@ easy_admin:
         Type:
             class: App\Entity\TypeTrip
             label: 'Type de sortie'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: 'Type de sortie'
                 fields:
                     - name
             form:
-                title: 'Editer un type de sortie'
+                title: 'Ajouter / Modifier un type de sortie'
                 fields:
                     - name
         Picture:
             class: App\Entity\Picture
             label: 'Photos'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             actions: ['search', 'delete', 'show']
             list:
                 title: 'Liste des photos'
                 fields:
+                    - user
                     - { property: 'name', type: 'text'}
-
                     - { property: 'imageFile', template: 'vich_uploader_image.html.twig'}
-
                     - comments
             show:
                 title: 'Liste des photos'
                 fields:
+                    - user
                     - { property: 'name', type: 'text'}
                     - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%' }
                     - comments
             form:
                 title: 'Ajouter / Modifier une photo'
                 fields:
+                    - user
                     - { property: 'imageFile', type: 'vich_image'}
                     - comments
         Payment:
             translation_domain: 'messages'
             class: App\Entity\Payment
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             label: 'Type de paiement'
             list:
                 title: 'Type de paiement'
@@ -247,10 +264,13 @@ easy_admin:
         Participant:
             class: App\Entity\Participant
             label: 'Participants aux sorties'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: 'Liste des participants aux sorties'
                 fields:
                     - user
+                    - { property: 'register_on', type: 'date', format: 'd/m/Y'}
                     - trip
                     - nb_companion
                     - { property: 'payment', type: 'text'}
@@ -270,15 +290,24 @@ easy_admin:
                 title: 'Ajouter / Modifier un participant à une sortie'
                 fields:
                     - user
-                    - trip
-                    - { property: 'nb_companion', type: 'text'}
+                    - { property: 'register_on', type: 'date', format: 'd/m/Y'}
+                    - { property: 'trip', type_options: { required: true }}
+                    - { property: 'nb_companion', type: 'text', type_options: { required: true }}
                     - payment
-                    - status
+                    - property: 'status'
+                      type: 'choice'
+                      type_options:
+                        mapped: true
+                        expanded: true
+                        multiple: false
+                        choices: { "En liste d'attente": "En liste d'attente", "Inscription validé": 'Inscription validé' }
                     - inscriptionStatus
                     - comment
         Insurance:
             class: App\Entity\Insurance
             label: "Types d'assurance"
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: "Type d'assurance"
                 fields:
@@ -289,31 +318,35 @@ easy_admin:
                 fields:
                     - name
                     - { property: 'price', number: '%0.02f €' }
-        InscriptionStatus:
-            translation_domain: 'messages'
-            class: App\Entity\InscriptionStatus
-            label: "Statut des inscriptions"
-            list:
-                title: "Statut des inscriptions"
-                fields:
-                    - name
-            form:
-                title: "Ajouter / Modifier un statut"
-                fields:
-                    - name
+#        InscriptionStatus:
+#            translation_domain: 'messages'
+#            class: App\Entity\InscriptionStatus
+#            label: "Statut des inscriptions"
+#            templates:
+#                list: 'bundles/EasyAdminBundle/list.html.twig'
+#            list:
+#                title: "Statut des inscriptions"
+#                fields:
+#                    - name
+#            form:
+#                title: "Ajouter / Modifier un statut"
+#                fields:
+#                    - name
         Inscription:
             translation_domain: 'messages'
             class: App\Entity\Inscription
             label: 'Inscriptions'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: 'Liste des inscriptions'
                 fields:
                     - user
                     - inscriptionStatus
-                    - status
                     - inscription_year
                     - insurance
                     - adhesionPrice
+                    - { property: 'ccp', number: '%0.02f €' }
                     - { property: 'internal_procedure', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'medical_certificate', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
                     - { property: 'inscription_sheet', template: 'vich_uploader_inscriptionPdf.html.twig', base_path: /uploads/files/users}
@@ -328,18 +361,21 @@ easy_admin:
                     - property: 'adhesionPrice.name'
             form:
                 title: "Ajouter / Modifier l'inscription d'un adhérent"
+                help: "ATTENTION! Le format de l'année d'inscription doit être aaaa/aaaa"
                 fields:
                     - user
                     - inscriptionStatus
-                    - status
                     - { property: 'inscription_year', type: 'text'}
                     - insurance
                     - adhesionPrice
+                    - { property: 'ccp', number: '%0.02f €' }
                     - { property: 'image_right',  type: 'checkbox' }
         Document:
             translation_domain: 'messages'
             class: App\Entity\Document
             label: 'Documents'
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: 'Documents'
                 fields:
@@ -356,6 +392,8 @@ easy_admin:
         AdhesionPrice:
             class: App\Entity\AdhesionPrice
             label: "Type d'adhésion"
+            templates:
+                list: 'bundles/EasyAdminBundle/list.html.twig'
             list:
                 title: "Type d'adhésion"
                 fields:

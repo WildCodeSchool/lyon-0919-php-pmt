@@ -87,7 +87,7 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         //TODO Attention le form n'est pas valide lors de la submitation: && $form->isValid()
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $file = $form['ImageFile']->getData();
             if ($file) {
                 $fileName = 'Image' .$user->getId() . '.' . $file->guessExtension();
@@ -108,7 +108,7 @@ class UserController extends AbstractController
 //            return $this->redirect($this->generateUrl('app_product_list'));
 
             if ($this->auth->isGranted('ROLE_ADMIN')) {
-                return $this->redirectToRoute('user_index');
+                return $this->redirectToRoute('account_index');
             }
             if ($this->auth->isGranted('ROLE_SUBSCRIBER')) {
                 return $this->redirectToRoute('account_index');

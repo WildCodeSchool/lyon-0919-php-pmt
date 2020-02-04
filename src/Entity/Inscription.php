@@ -19,11 +19,6 @@ class Inscription
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $status;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $internalProcedure;
@@ -59,7 +54,12 @@ class Inscription
     private $imageRight;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="inscriptions",  cascade={"persist", "remove"})
+     * @ORM\Column(type="float")
+     */
+    private $ccp = 40;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="inscriptions")
      */
     private $user;
 
@@ -87,11 +87,6 @@ class Inscription
             $this->setCreatedAt(new DateTime('now'));
             $this->setUpdatedAt(new DateTime('now'));
         }
-
-        if ($this->getCreatedAt() === null) {
-            $this->setCreatedAt(new DateTime('now'));
-            $this->setUpdatedAt(new DateTime('now'));
-        }
     }
 
     /**
@@ -99,24 +94,12 @@ class Inscription
      */
     public function __toString(): string
     {
-        return strval($this->getstatus());
+        return strval($this->getInscriptionStatus());
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
-
-        return $this;
     }
 
     public function getInternalProcedure(): ?string
@@ -247,6 +230,18 @@ class Inscription
     public function setAdhesionPrice(?AdhesionPrice $adhesionPrice): self
     {
         $this->adhesionPrice = $adhesionPrice;
+
+        return $this;
+    }
+
+    public function getCcp(): ?float
+    {
+        return $this->ccp;
+    }
+
+    public function setCcp(float $ccp): self
+    {
+        $this->ccp = $ccp;
 
         return $this;
     }

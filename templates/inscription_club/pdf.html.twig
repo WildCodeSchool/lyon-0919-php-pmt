@@ -20,9 +20,7 @@
     <div>
         <h3>Bulletin d'inscription -
             Saison
-            {% for inscription in userLogin.inscriptions %}
                 {{ inscription.inscriptionYear }}
-            {% endfor %}
         </h3>
     </div>
 
@@ -51,14 +49,10 @@
         </div>
 
         <p>Choix du type d'assurance :
-            {% for inscription in userLogin.inscriptions %}
                     {{ inscription.insurance.name }} : {{ inscription.insurance.price }} €
-            {% endfor %}
         </p>
         <p>Choix du type d'adhésion :
-            {% for inscription in userLogin.inscriptions %}
                     {{ inscription.adhesionPrice.name }} : {{ inscription.adhesionPrice.price }} €
-            {% endfor %}
         </p>
     </div>
 

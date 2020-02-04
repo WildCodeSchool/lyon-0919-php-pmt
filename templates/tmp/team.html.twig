@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Nos membres{% endblock %}
+{% block title %}L'équipe{% endblock %}
 {% block body %}
     <div class="titleMembers">
         <h2>Membres de l'association</h2>
     </div>
-    <div class="container">
+    <div class="container container-team">
         <div class="row">
             <div class="card-accueil mt-5 ml-5 mr-5 w-100" style="width: 30rem;">
                 <div class="card-header"><h4>Comité directeur</h4></div>
                 <div class="card-body">
                     <ul class="memberTeam w-100" style="list-style-type: none;">
                         {% for office in offices %}
-                        <h4 class="titleOffice">{{ office.name }} :</h4>
+                        <h5 class="titleOffice">{{ office.name }} :</h5>
                             {% for user in office.users %}
                                 <span id="name">{{ user.firstname }} <strong class="lastName">{{ user.lastname|upper }}</strong></span>
                             {% endfor %}
@@ -25,7 +25,7 @@
 
         <div class="row">
             <div class="card-accueil mt-5 ml-5 mr-5 w-100">
-                <div class="card-header w-100"><h4>Encadrants</h4></div>
+                <div class="card-header w-100"><h4 id="encadrants">Encadrants</h4></div>
                 <div class="card-body w-100">
                     <ul class="levelTeam" style="list-style-type: none;">
                         {% for level in levels %}

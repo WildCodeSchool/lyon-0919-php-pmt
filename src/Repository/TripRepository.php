@@ -25,7 +25,7 @@ class TripRepository extends ServiceEntityRepository
     //  * @return Trip[] Returns an array of Trip objects
     //  */
 
-    public function findByExampleField($dateStart, $dateEnd)
+    public function findTripBetwennDates($dateStart, $dateEnd)
     {
         return $this->createQueryBuilder('t')
             ->where('t.dateStart BETWEEN :dateStart and :dateEnd')

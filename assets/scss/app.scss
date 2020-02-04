@@ -2,10 +2,18 @@
 @import "~bootstrap/scss/bootstrap";
 @import "styleNavFooter.scss";
 @import "adherentPage.scss";
-@import url('https://fonts.googleapis.com/css?family=Alatsi|Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Alata|Open+Sans&display=swap');
 
-$font-family: 'Alatsi', sans-serif;
-$font-family2: 'Roboto', sans-serif;
+$font-family: 'Alata', sans-serif;
+$font-family2: 'Open Sans', sans-serif;
+
+html {
+    height: 100%;
+}
+
+.ht{
+    height: 100%;
+}
 
 body {
     background-color: $secondary-color;
@@ -13,6 +21,14 @@ body {
     display: table;
     width: 100%;
     font-size: 1.3em;
+    position: relative;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid, .container-team, .container-login, .container-user, #myContainer, .container-pictures, .container-inscr{
+    margin-bottom: 350px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -44,6 +60,10 @@ a {
     width: 200px;
 }
 
+#sizePicture {
+    height: 183.25px;
+}
+
 .title_p {
     text-align: center;
     width: 100%;
@@ -65,21 +85,30 @@ a {
 }
 
 .cardText {
-    margin: 30px 0;
+    margin: 9% 0;
     padding: 0 30px;
-    font-size: 0.9em;
+    font-size: 0.8em;
+    text-align: center;
 }
 
 .card-body {
     margin-top: 5px;
 }
 
-.carousel {
-    height: 340px;
-}
-
 .border {
     border: black 1px solid;
+}
+
+.cardBodyTeam {
+    margin-top: 30px;
+}
+
+//.carousel {
+//    height: 260px;
+//}
+
+.cardBodyPartner {
+    margin-top: 130px;
 }
 /* page inscription */
 
@@ -224,6 +253,7 @@ label {
     -moz-border-radius: 50px;
     border-radius: 50px;
     width: 6rem;
+    height: 97px;
 }
 
 #name {
@@ -235,6 +265,7 @@ label {
 
 .lastName {
     word-spacing: -1px;
+    margin-right: 1%;
 }
 
 .btn_inscription {
@@ -249,6 +280,7 @@ label {
 
 .vignetteMember {
     margin-left: 3%;
+    margin-top: 2%;
 }
 
 .levelName {
@@ -273,8 +305,16 @@ label {
     position: absolute;
 }
 
+.container-contact{
+    margin-top: 40px;
+    margin-bottom: 300px;
+}
 
 /**********calendar *********/
+
+.h1-calendar{
+    text-align: center;
+}
 
 .fc-state-highlight {
     opacity: 0;
@@ -364,7 +404,7 @@ label {
     font-size: 14px;
     font-style: inherit;
     font-variant: inherit;
-    font-family: inherit;
+    font-family: $font-family2;
     text-decoration: none;
     overflow: hidden;
     -webkit-transition: box-shadow .4s cubic-bezier(.25,.8,.25,1),background-color .4s cubic-bezier(.25,.8,.25,1);
@@ -390,4 +430,69 @@ label {
 }
 
 
+/****************PICTURES*****************************/
+.image-area {
+    position: relative;
+    border: none;
+}
 
+.image-area img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 0em;
+}
+
+.remove-image {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 10em;
+    padding: 2px 6px 3px;
+    text-decoration: none;
+    font: 700 21px/20px sans-serif;
+    background: #000c9d;
+    border: 3px solid #fff;
+    color: #FFF;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    -webkit-transition: background 0.5s;
+    transition: background 0.5s;
+}
+
+.remove-image:hover {
+    background: #E54E4E;
+    padding: 3px 7px 5px;
+    top: 10px;
+    right: 11px;
+}
+
+.remove-image:active {
+    background: #E54E4E;
+    top: 11px;
+    right: 11px;
+}
+
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-columns {
+        column-count: 4;
+    }
+}
+
+@media (min-width: 1200px) {
+    .card-columns {
+        column-count: 5;
+    }
+}

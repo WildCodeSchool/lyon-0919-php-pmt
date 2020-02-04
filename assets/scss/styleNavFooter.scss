@@ -48,8 +48,9 @@
 //style du footer
 
 .footer-background {
-    position: relative;
+    position: absolute;
     left: 0;
+    right: 0;
     bottom: 0;
     width: 100%;
     background-image: url('/img/footer_1284px.png');
@@ -91,6 +92,18 @@
 }
 
 @media screen and (max-width: 790px) {
+    .nav-background {
+        height: 150px;
+    }
+
+    .svgnavbar {
+        height: 150px;
+    }
+
+    .form_pass, .presentation, .titleMembers, .h1-contact, .h1-connec, .container-user, .container-album, .h1-calendar, .container-inscr{
+        margin-top: 150px;
+    }
+
     .footer-background {
         width: 100%;
         height: 200px;

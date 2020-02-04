@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Modifier mon profil{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container container-user">
         {{ include('user/_form.html.twig', {'button_label': 'mettre à jour'}) }}
     </div>
 {% endblock %}

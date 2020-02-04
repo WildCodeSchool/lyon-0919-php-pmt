@@ -16,6 +16,7 @@ class InscriptionStatusFixtures extends Fixture
         'Démarrage',
         'Documents réceptionnés',
         'Paiement en cours',
+        'Validé'
     ];
 
     public function load(ObjectManager $manager)

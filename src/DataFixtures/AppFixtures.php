@@ -10,7 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AppFixtures extends Fixture implements DependentFixtureInterface
+class AppFixtures extends Fixture
 {
     protected $faker;
 
@@ -36,7 +36,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $user = new User();
             $user->setFirstname($this->faker->firstName);
             $user->setLastname($this->faker->name);
-            $user->setEmail('admin@admin.fr');
+            $user->setEmail('amongoin@gmail.com');
             $user->setPassword(
                 $this->encoder->encodePassword($user, '0000')
             );
@@ -57,6 +57,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $this->addReference('adherent' . $i, $user);
             $manager->persist($user);
         }
+        /*
         //5 moniteurs et plongeurs avec level
         for ($i = 0; $i < 5; $i++) {
             $user = new User();
@@ -158,12 +159,7 @@ class AppFixtures extends Fixture implements DependentFixtureInterface
             $this->addReference('adherent' . ($i + 21), $user);
             $manager->persist($user);
         }
+        */
         $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        return [LevelFixtures::class];
-        // TODO: Implement getDependencies() method.
     }
 }

@@ -42,7 +42,7 @@ class Picture
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="string",length=255, nullable=true)
      */
     private $comments;
 
@@ -58,7 +58,7 @@ class Picture
      */
     public function __construct()
     {
-            $this->setUpdatedAt(new DateTime('now'));
+        $this->setUpdatedAt(new DateTime('now'));
     }
 
 
@@ -135,6 +135,10 @@ class Picture
 
     public function setComments(?string $comments): self
     {
+        if ($comments != null && strlen($comments) < 255) {
+            $comments = $comments . str_repeat(' ', 255 - strlen($comments));
+        }
+
         $this->comments = $comments;
 
         return $this;

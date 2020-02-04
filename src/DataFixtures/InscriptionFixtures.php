@@ -11,6 +11,8 @@ use Faker\Factory;
 
 class InscriptionFixtures extends Fixture implements DependentFixtureInterface
 {
+
+
     protected $faker;
 
     public function load(ObjectManager $manager)
@@ -21,8 +23,8 @@ class InscriptionFixtures extends Fixture implements DependentFixtureInterface
         //165 adherents inscrits dans la base
         for ($i = 0; $i < 27; $i++) {
             $inscription = new Inscription();
-            $inscription->setStatus($this->getReference('inscriptionStatus' .
-                $this->faker->numberBetween(0, 2))->getId());
+//            $inscription->setStatus($this->getReference('inscriptionStatus' .
+//                $this->faker->numberBetween(0, 2))->getId());
             $inscription->setInscriptionStatus($this->getReference('inscriptionStatus' .
                 $this->faker->numberBetween(0, 2)));
             $inscription->setInternalProcedure('urlReglInterior');
@@ -33,7 +35,7 @@ class InscriptionFixtures extends Fixture implements DependentFixtureInterface
             $inscription->setUpdatedAt($date);
             $inscription->setInscriptionYear('2019-2020');
             $inscription->setImageRight($this->faker->numberBetween(0, 1));
-            $inscription->setUser($this->getReference('adherent' . $i));
+//            $inscription->setUser($this->getReference('adherent' . $i));
             $manager->persist($inscription);
         }
         $manager->flush();

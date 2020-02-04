@@ -4,36 +4,42 @@ namespace App\DataFixtures;
 
 use App\Entity\Level;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class LevelFixtures extends Fixture
 {
     const LEVELS = [
-        0 => 'Débutant',
-        1 => 'N1',
-        2 => 'PE40',
-        3 => 'PA20',
-        4 => 'N2',
-        5 => 'N3',
-        6 => 'N4(GP)',
-        7 => 'E1(initiateur)',
-        8 => 'E2',
-        9 => 'E3(MF1)',
-        10 => 'E4(MF2)'
+        'Débutant',
+        'N1',
+        'PE40',
+        'PA20',
+        'N2',
+        'N3',
+        'N4(GP)',
+        'E1(initiateur)',
+        'E2',
+        'E3(MF1)',
+        'E4(MF2)'
     ];
 
     public function load(ObjectManager $manager)
     {
         $i = 1;
-        foreach (self::LEVELS as $order => $name) {
+        foreach (self::LEVELS as $name) {
             $level = new Level();
             $level->setName($name);
-            $level->setOrderLevel($order);
             $manager->persist($level);
-            $this->addReference('level' .$i, $level);
+            $this->addReference('level' . $i, $level);
             $i++;
         }
 
         $manager->flush();
     }
+
+//    public function getDependencies()
+//    {
+//        return [AppFixtures::class];
+//        // TODO: Implement getDependencies() method.
+//    }
 }
