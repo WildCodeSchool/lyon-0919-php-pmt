@@ -43,6 +43,10 @@ class PmtController extends AbstractController
     public function showTeam(LevelRepository $levelRepository, OfficeRepository $officeRepository): Response
     {
 
+        $level = $levelRepository->findLevelsWithUsers();
+
+        dd($level[0]->getUsers());
+
         return $this->render('tmp/team.html.twig', [
             'levels' => $levelRepository->findLevelsWithUsers(),
             'offices' => $officeRepository->findMembersOffice()
