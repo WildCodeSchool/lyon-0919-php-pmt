@@ -25,8 +25,8 @@ class LevelRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('l')
             ->join('l.users', 'u')
             ->where('u.isMonitor = true')
-        ->getQuery()
-        ->getResult();
+            ->getQuery()
+            ->getResult();
     }
 
     // /**
