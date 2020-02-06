@@ -45,7 +45,7 @@ class PmtController extends AbstractController
 
         $level = $levelRepository->findLevelsWithUsers();
 
-        dd($level[0]->getUsers());
+        dd($level[0]);
 
         return $this->render('tmp/team.html.twig', [
             'levels' => $levelRepository->findLevelsWithUsers(),

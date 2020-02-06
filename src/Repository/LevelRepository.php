@@ -22,9 +22,10 @@ class LevelRepository extends ServiceEntityRepository
 
     public function findLevelsWithUsers()
     {
-        return $this->createQueryBuilder('l')
+        $qb = $this->createQueryBuilder('l');
+        return $qb
             ->join('l.users', 'u')
-            ->where('u.isMonitor is not null')
+            ->where($qb->expr()->isNotNull('u.isMonitor'))
             ->andwhere('u.isMonitor = true ')
             ->getQuery()
             ->getResult();
