@@ -35,7 +35,7 @@ class ContactNotification
 
         $message = (new Swift_Message('Nouvel email de ' . $contact->getLastname()))
             ->setFrom($sentTo)
-            ->setTo('pmt@gmail.com')
+            ->setTo('plongeurmasquetrevoux@gmail.com')
             ->setReplyTo($contact->getEmail())
             ->setBody($this->renderer->render('emails/contact.html.twig', [
                 'contact' => $contact
