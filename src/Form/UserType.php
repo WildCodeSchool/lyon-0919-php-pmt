@@ -37,6 +37,7 @@ class UserType extends AbstractType
             ->add('birthday', BirthdayType::class)
             ->add('comment', TextareaType::class, array(
                 'attr' => array('cols' => '5', 'rows' => '5'),
+                'required' => false,
             ))
             ->add('address')
             ->add('zipCode')
