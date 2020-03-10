@@ -192,8 +192,8 @@ easy_admin:
               - { property: 'date_start', type: 'datetime' }
               - { property: 'date_end', type: 'datetime' }
               - description
-              - { property: 'nb_diver', type: 'text' }
-              - { property: 'nb_monitor', type: 'text' }
+              - { property: 'nb_diver', type: 'integer' }
+              - { property: 'nb_monitor', type: 'integer' }
 
           show:
             title: 'Liste des sorties'
