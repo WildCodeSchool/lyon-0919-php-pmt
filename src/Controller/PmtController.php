@@ -27,11 +27,15 @@ class PmtController extends AbstractController
      * show all rows for Program's entity
      *
      * @Route("", name="index")
+     * @param PictureRepository $pictureRepository
      * @return Response
      */
-    public function index(): Response
+    public function index(PictureRepository $pictureRepository): Response
     {
-        return $this->render('tmp/index.html.twig');
+
+        $featuredPictures = $pictureRepository->findByIsFeatured(true);
+
+        return $this->render('tmp/index.html.twig', ['featuredPictures' => $featuredPictures]);
     }
 
     /**

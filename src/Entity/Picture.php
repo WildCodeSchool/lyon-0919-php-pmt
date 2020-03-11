@@ -51,7 +51,11 @@ class Picture
      */
     private $user;
 
-
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isFeatured = false;
+    
     /**
      * Picture constructor.
      * @throws Exception
@@ -152,6 +156,18 @@ class Picture
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getIsFeatured(): ?bool
+    {
+        return $this->isFeatured;
+    }
+
+    public function setIsFeatured(?bool $isFeatured): self
+    {
+        $this->isFeatured = $isFeatured;
 
         return $this;
     }
