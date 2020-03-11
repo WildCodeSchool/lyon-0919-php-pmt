@@ -27,11 +27,15 @@ class PmtController extends AbstractController
      * show all rows for Program's entity
      *
      * @Route("", name="index")
+     * @param PictureRepository $pictureRepository
      * @return Response
      */
-    public function index(): Response
+    public function index(PictureRepository $pictureRepository): Response
     {
-        return $this->render('tmp/index.html.twig');
+
+        $featuredPictures = $pictureRepository->findByIsFeatured(true);
+
+        return $this->render('tmp/index.html.twig', ['featuredPictures' => $featuredPictures]);
     }
 
     /**
@@ -63,20 +67,6 @@ class PmtController extends AbstractController
         return $this->render(
             'tmp/portfolio.html.twig',
             ['pictures' => $pictures]
-        );
-    }
-
-    /**
-     * @Route("plouf", name="_madamemongoingoingoin")
-     * @return Response
-     * @throws Exception
-     */
-    public function plouf(): Response
-    {
-        // on recupere toute les photos
-
-        return $this->render(
-            'tmp/activisme.html.twig',
         );
     }
 }

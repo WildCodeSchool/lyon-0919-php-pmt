@@ -192,8 +192,8 @@ easy_admin:
               - { property: 'date_start', type: 'datetime' }
               - { property: 'date_end', type: 'datetime' }
               - description
-              - { property: 'nb_diver', type: 'text' }
-              - { property: 'nb_monitor', type: 'text' }
+              - { property: 'nb_diver', type: 'integer' }
+              - { property: 'nb_monitor', type: 'integer' }
 
           show:
             title: 'Liste des sorties'
@@ -234,6 +234,7 @@ easy_admin:
                     - { property: 'name', type: 'text'}
                     - { property: 'imageFile', template: 'vich_uploader_image.html.twig'}
                     - comments
+                    - { property: 'is_featured',  type: 'boolean' }
             show:
                 title: 'Liste des photos'
                 fields:
@@ -241,12 +242,15 @@ easy_admin:
                     - { property: 'name', type: 'text'}
                     - { property: 'imageFile', type: 'image', base_path: '%app.path.product_images%' }
                     - comments
+                    - { property: 'isFeatured',  type: 'checkbox' }
+
             form:
                 title: 'Ajouter / Modifier une photo'
                 fields:
                     - user
                     - { property: 'imageFile', type: 'vich_image'}
                     - comments
+                    - { property: 'isFeatured',  type: 'checkbox' }
         Payment:
             translation_domain: 'messages'
             class: App\Entity\Payment

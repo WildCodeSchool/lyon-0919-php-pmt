@@ -39,12 +39,12 @@ class Trip
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbDiver;
+    private $nbDiver = 0;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nbMonitor;
+    private $nbMonitor = 0;
 
     /**
      * @var \DateTime $createdAt
