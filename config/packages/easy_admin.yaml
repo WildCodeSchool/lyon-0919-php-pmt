@@ -155,10 +155,12 @@ easy_admin:
                 title: 'Niveaux de plongée'
                 fields:
                     - name
+                    - { property: 'displayOrder', type: 'text'}
             form:
                 title: 'Editer un niveaux de plongée'
                 fields:
                     - name
+                    - displayOrder
 
         Trip:
           class: App\Entity\Trip

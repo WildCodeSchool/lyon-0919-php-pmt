@@ -27,6 +27,7 @@ class LevelRepository extends ServiceEntityRepository
             ->join('l.users', 'u')
             ->where($qb->expr()->isNotNull('u.isMonitor'))
             ->andwhere('u.isMonitor = true ')
+            ->addOrderBy('l.displayOrder', 'ASC')
             ->getQuery()
             ->getResult();
     }
