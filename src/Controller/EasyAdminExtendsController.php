@@ -48,13 +48,13 @@ class EasyAdminExtendsController extends EasyAdminController
         fputcsv($out, array_keys($fields));
 
         $twig = $this->get('twig');
-        $ea_twig = $twig->getExtension(EasyAdminTwigExtension::class);
+        $eaTwig = $twig->getExtension(EasyAdminTwigExtension::class);
 
         foreach ($paginator as $user) {
             $row = [];
             foreach ($fields as $field) {
-                $val = strip_tags($ea_twig->renderEntityField($twig, 'list', $this->entity['name'], $user, $field));
-                $row[] = $val;
+                $val = strip_tags($eaTwig->renderEntityField($twig, 'list', $this->entity['name'], $user, $field));
+                $row[] = trim($val);
             }
             fputcsv($out, $row);
         }
@@ -62,7 +62,6 @@ class EasyAdminExtendsController extends EasyAdminController
         fseek($out, 0);
         $response = new StreamedResponse(function () use ($out) {
             fpassthru($out);
-            exit;
         });
         $disposition = $response->headers->makeDisposition(
             ResponseHeaderBag::DISPOSITION_ATTACHMENT,
