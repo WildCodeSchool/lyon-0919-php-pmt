@@ -24,6 +24,11 @@ class Level
     private $name;
 
     /**
+     * @ORM\Column(type="integer", options={"default" : 100})
+     */
+    private $displayOrder = 100;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="level")
      */
     private $users;
@@ -54,6 +59,18 @@ class Level
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDisplayOrder(): int
+    {
+        return $this->displayOrder;
+    }
+
+    public function setDisplayOrder(int $displayOrder) : self
+    {
+        $this->displayOrder = $displayOrder;
 
         return $this;
     }

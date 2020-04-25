@@ -31,7 +31,7 @@
                         {% for level in levels %}
                             <h4 class="levelName">{{ 'Niveau : ' ~ level.name }}</h4>
                             <div class="vignette">
-                                {% for user in level.users %}
+                                {% for user in level.users if user.isMonitor %}
                                     <div class="vignetteMember">
                                         <img class="picture"
                                              src="uploads/images/users/{{ user.imageName}}"

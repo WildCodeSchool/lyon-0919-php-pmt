@@ -31,7 +31,6 @@ class AdherentController extends AbstractController
      * @param Request $request
      * @return Response
      */
-
     public function show(Request $request): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
