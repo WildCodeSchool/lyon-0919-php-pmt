@@ -340,8 +340,31 @@
             </div>
         </div>
     </div>
+    {{ dump(formDoc) }}
 {% endblock %}
 
 {% block footer %}
     {% include '_footer.html.twig' %}
 {% endblock %}
+
+{%  block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $('form[name="inscription"]').submit(() => {
+                let docs = "";
+                if ($('input[name="inscription[internalProcedure]"]').val())
+                    docs += "- Règlement intérieur\n";
+                if ($('input[name="inscription[medicalCertificate]"]').val())
+                    docs += "- Certificat Médical\n";
+                if ($('input[name="inscription[inscriptionSheet]"]').val())
+                    docs += "- Formulaire d'inscription\n";
+                if (docs) {
+                    if (!confirm('Êtes vous certain(e) de vouloir remplacer les documents suivants ?\n' + docs)) {
+                        return false;
+                    }
+                }
+            });
+        });
+    </script>
+{%  endblock %}

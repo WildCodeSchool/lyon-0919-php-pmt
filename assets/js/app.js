@@ -9,11 +9,12 @@
 require('../scss/app.scss');
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
-var $ = require('jquery');
+window.$ = require('jquery');
+var $ = window.$;
 require('bootstrap');
 
 var bsCustomFileInput = require('bs-custom-file-input');
 
-$(document).ready(function () {
-    bsCustomFileInput.init()
-})
+$(document).ready(() => {
+    bsCustomFileInput.init();
+});

@@ -21,7 +21,7 @@ class InscriptionType extends AbstractType
 
             ->add('internalProcedure', FileType::class, [
                 'label' => 'Règlement intérieur',
-                'attr' => ['placeholder' => 'Règlement intérieur (PDF)'],
+                'attr' => ['placeholder' => 'Sélectionnez un fichier (PDF)'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -36,7 +36,7 @@ class InscriptionType extends AbstractType
                 ]])
             ->add('medicalCertificate', FileType::class, [
                 'label' => 'Certificat Médical',
-                'attr' => ['placeholder' => 'Certificat Médical (PDF)'],
+                'attr' => ['placeholder' => 'Sélectionnez un fichier (PDF)'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -51,7 +51,7 @@ class InscriptionType extends AbstractType
                 ]])
             ->add('inscriptionSheet', FileType::class, [
                 'label' => 'Formulaire d\'inscription',
-                'attr' => ['placeholder' => 'Formulaire d\'inscription (PDF)'],
+                'attr' => ['placeholder' => 'Sélectionnez un fichier (PDF)'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
@@ -67,7 +67,7 @@ class InscriptionType extends AbstractType
 
             ->add('imageRight', FileType::class, [
                 'label' => 'Droits d\'image',
-                'attr' => ['placeholder' => 'Droits d\'image (PDF)'],
+                'attr' => ['placeholder' => 'Sélectionnez un fichier (PDF)'],
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
