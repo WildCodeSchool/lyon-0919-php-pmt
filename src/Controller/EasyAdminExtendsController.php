@@ -44,32 +44,28 @@ class EasyAdminExtendsController extends EasyAdminController
     public function getExportFile($paginator, $fields)
     {
         $out = fopen('php://temp', 'w+');
-
-        fputcsv($out, array_keys($fields));
-
-        $twig = $this->get('twig');
-        $eaTwig = $twig->getExtension(EasyAdminTwigExtension::class);
-
-        foreach ($paginator as $user) {
-            $row = [];
-            foreach ($fields as $field) {
-                $val = strip_tags($eaTwig->renderEntityField($twig, 'list', $this->entity['name'], $user, $field));
-                $row[] = trim($val);
+        if ($out) {
+            fputcsv($out, array_keys($fields));
+            $twig = $this->get('twig');
+            $eaTwig = $twig->getExtension(EasyAdminTwigExtension::class);
+            foreach ($paginator as $user) {
+                $row = [];
+                foreach ($fields as $field) {
+                    $val = strip_tags($eaTwig->renderEntityField($twig, 'list', $this->entity['name'], $user, $field));
+                    $row[] = trim($val);
+                }
+                fputcsv($out, $row);
             }
-            fputcsv($out, $row);
+            fseek($out, 0);
+            $response = new StreamedResponse(function () use ($out) {
+                fpassthru($out);
+            });
+            $disposition = $response->headers->makeDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                sprintf('export-%s-%s.csv', $this->entity['name'], date('Ymdhis'))
+            );
+            $response->headers->set('Content-Disposition', $disposition);
+            return $response;
         }
-
-        fseek($out, 0);
-        $response = new StreamedResponse(function () use ($out) {
-            fpassthru($out);
-        });
-        $disposition = $response->headers->makeDisposition(
-            ResponseHeaderBag::DISPOSITION_ATTACHMENT,
-            sprintf('export-%s-%s.csv', $this->entity['name'], date('Ymdhis'))
-        );
-
-        $response->headers->set('Content-Disposition', $disposition);
-
-        return $response;
     }
 }
