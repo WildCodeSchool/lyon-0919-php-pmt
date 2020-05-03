@@ -99,7 +99,7 @@ class InscriptionClubController extends AbstractController
         $date = new DateTime('now');
         $year = $date->format('Y');
 
-        if (new DateTime('now')< new DateTime('08/31')) {
+        if (new DateTime('now')< new DateTime('06/30')) {
             $inscriptionYear = strval(intval($year)-1) . '/' .strval($year);
         } else {
             $inscriptionYear = strval($year) . '/' .strval(intval($year)+1);
